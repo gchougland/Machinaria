@@ -1,0 +1,29 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "TimeAcceleration_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.0,
+        "Z": 0
+      },
+      "TotalSpawners": -1,
+      "MaxConcurrent": 1,
+      "SpawnRate": {
+        "Min": 1.0,
+        "Max": 1.0
+      }
+    },
+    {
+      "SpawnerId": "TimeAcceleration_Sparkle",
+      "PositionOffset": { "X": 0, "Y": 0.5, "Z": 0 },
+      "TotalSpawners": -1,
+      "MaxConcurrent": 1,
+      "SpawnRate": { "Min": 2.0, "Max": 2.0 }
+    }
+  ],
+  "LifeSpan": 1.5,
+  "CullDistance": 64.0,
+  "BoundingRadius": 2.0,
+  "IsImportant": false
+}

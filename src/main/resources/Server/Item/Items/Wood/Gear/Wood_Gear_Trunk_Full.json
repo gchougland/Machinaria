@@ -1,0 +1,35 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Wood_Gear_Trunk_Full.name"
+  },
+  "Parent": "Wood_Gear_Trunk",
+  "BlockType": {
+    "Textures": [
+      {
+        "Sides": "BlockTextures/Wood_Trunk_Gear_Side.png",
+        "UpDown": "BlockTextures/Wood_Trunk_Gear_Full.png",
+        "Weight": 1
+      }
+    ],
+    "Gathering": {
+      "Breaking": {
+        "ItemId": "Wood_Aspen_Trunk",
+        "GatherType": "Woods"
+      }
+    },
+    "ParticleColor": "#bdaf96"
+  },
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Trunk_Full.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  }
+}

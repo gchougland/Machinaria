@@ -1,0 +1,34 @@
+{
+  "Parent": "Template_Weapon_Shield",
+  "TranslationProperties": {
+    "Name": "server.items.Weapon_Shield_Scrap_Spiked.name"
+  },
+  "Quality": "Common",
+  "Recipe": {
+    "TimeSeconds": 3.5,
+    "Input": [
+      {
+        "ItemId": "Rubble_ScrapMetal",
+        "Quantity": 8
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Tools"
+        ],
+        "Id": "MechanicsBench"
+      }
+    ]
+  },
+  "ItemLevel": 40,
+  "Model": "NPC/Intelligent/Goblin_Duke/Models/Weapons/Shield/Scrap_Spiked.blockymodel",
+  "Texture": "NPC/Intelligent/Goblin_Duke/Models/Weapons/Shield/Scrap_Spiked_Texture.png",
+  "Icon": "Icons/ItemsGenerated/Weapon_Shield_Scrap_Spiked.png",
+  "Scale": 0.9
+}

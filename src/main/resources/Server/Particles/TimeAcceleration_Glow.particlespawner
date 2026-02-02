@@ -1,0 +1,123 @@
+{
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": -1.2,
+      "Max": 1.2
+    },
+    "Y": {
+      "Min": 0.5,
+      "Max": 1.5
+    },
+    "Z": {
+      "Min": -1.2,
+      "Max": 1.2
+    }
+  },
+  "UseEmitDirection": false,
+  "TotalParticles": {
+    "Min": 6,
+    "Max": 8
+  },
+  "LifeSpan": 1.2,
+  "MaxConcurrentParticles": 12,
+  "ParticleLifeSpan": {
+    "Min": 0.6,
+    "Max": 1.0
+  },
+  "SpawnRate": {
+    "Min": 3,
+    "Max": 5
+  },
+  "SpawnBurst": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 0.1,
+      "Max": 0.18
+    },
+    "Yaw": {
+      "Min": 0,
+      "Max": 360
+    },
+    "Pitch": {
+      "Min": 25,
+      "Max": 90
+    }
+  },
+  "ParticleRotationInfluence": "Billboard",
+  "ParticleRotateWithSpawner": false,
+  "RenderMode": "BlendLinear",
+  "LightInfluence": 0.5,
+  "LinearFiltering": true,
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Ball.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "None",
+    "SoftParticles": "Enable",
+    "InitialAnimationFrame": {
+      "Opacity": 0.7,
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 0
+      },
+      "Scale": {
+        "X": {
+          "Min": 0.15,
+          "Max": 0.2
+        },
+        "Y": {
+          "Min": 0.15,
+          "Max": 0.2
+        }
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0.7,
+        "Color": "#f4c430",
+        "Scale": {
+          "X": {
+            "Min": 0.15,
+            "Max": 0.2
+          },
+          "Y": {
+            "Min": 0.15,
+            "Max": 0.2
+          }
+        }
+      },
+      "50": {
+        "Opacity": 0.4,
+        "Color": "#e8a317",
+        "Scale": {
+          "X": {
+            "Min": 0.35,
+            "Max": 0.4
+          },
+          "Y": {
+            "Min": 0.35,
+            "Max": 0.4
+          }
+        }
+      },
+      "100": {
+        "Opacity": 0,
+        "Color": "#b8860b",
+        "Scale": {
+          "X": {
+            "Min": 0.5,
+            "Max": 0.55
+          },
+          "Y": {
+            "Min": 0.5,
+            "Max": 0.55
+          }
+        }
+      }
+    }
+  }
+}

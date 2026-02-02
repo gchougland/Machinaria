@@ -1,0 +1,196 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Weapon_Bolt.name"
+  },
+  "Categories": [
+    "Items.Weapons"
+  ],
+  "Quality": "Common",
+  "ItemLevel": 14,
+  "PlayerAnimationsId": "Dagger",
+  "Recipe": {
+    "TimeSeconds": 0.5,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "Quantity": 1,
+        "ItemId": "Rubble_ScrapMetal"
+      }
+    ],
+    "OutputQuantity": 4,
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Tools"
+        ],
+        "Id": "MechanicsBench"
+      },
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Weapon_Bow"
+        ],
+        "Id": "Weapon_Bench"
+      }
+    ]
+  },
+  "IconProperties": {
+    "Scale": 2.1,
+    "Rotation": [
+      43,
+      288,
+      5
+    ],
+    "Translation": [
+      1,
+      -2
+    ]
+  },
+  "Model": "Items/Bolt.blockymodel",
+  "Texture": "Items/ScrapMetal.png",
+  "Icon": "Icons/ItemsGenerated/Weapon_Bolt.png",
+  "Interactions": {
+    "Primary": "Knife_Attack",
+    "Secondary": "Knife_Block"
+  },
+  "InteractionVars": {
+    "Knife_Block_Damage": "Knife_Block_Damage",
+    "Knife_Swing_Left_Effect": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Swing_Left_Effect",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Axe_Special_Swing"
+          }
+        }
+      ]
+    },
+    "Knife_Swing_Left_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Swing_Left_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 1
+            }
+          },
+          "DamageEffects": {
+            "Knockback": {
+              "Force": 0,
+              "VelocityType": "Add"
+            },
+            "WorldSoundEventId": "SFX_Axe_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Knife_Swing_Right_Effect": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Swing_Right_Effect",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Axe_Special_Swing"
+          }
+        }
+      ]
+    },
+    "Knife_Swing_Right_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Swing_Right_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 1
+            }
+          },
+          "DamageEffects": {
+            "Knockback": {
+              "Force": 0,
+              "VelocityType": "Add"
+            },
+            "WorldSoundEventId": "SFX_Axe_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Knife_Stab_Effect": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Stab_Effect",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Axe_Special_Swing"
+          }
+        }
+      ]
+    },
+    "Knife_Stab_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Stab_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 1
+            }
+          },
+          "DamageEffects": {
+            "Knockback": {
+              "Force": 0,
+              "VelocityType": "Add"
+            },
+            "WorldSoundEventId": "SFX_Axe_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Knife_Lunge_Effect": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Lunge_Effect",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Axe_Special_Swing"
+          }
+        }
+      ]
+    },
+    "Knife_Lunge_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Lunge_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 1
+            }
+          },
+          "DamageEffects": {
+            "Knockback": {
+              "Force": 0,
+              "VelocityType": "Add"
+            },
+            "WorldSoundEventId": "SFX_Axe_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Knife_Throw_Charged_Projectile": {
+      "Interactions": [
+        {
+          "Parent": "Knife_Throw_Charged_Projectile",
+          "ProjectileId": "Arrow_HalfCharge"
+        }
+      ]
+    }
+  },
+  "MaxStack": 100,
+  "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
+  "Tags": {
+    "Type": [
+      "Weapon"
+    ],
+    "Family": [
+      "Arrow"
+    ]
+  },
+  "Weapon": {},
+  "ItemSoundSetId": "ISS_Weapons_Arrows"
+}

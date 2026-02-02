@@ -1,0 +1,59 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Ancient_Pocket_Watch.name",
+    "Description": "server.items.Ancient_Pocket_Watch.description"
+  },
+  "Model": "Items/Ancient_Pocket_Watch.blockymodel",
+  "Texture": "Resources/Ingredients/Clockwork_Heart.png",
+  "Icon": "Icons/ItemsGenerated/Ancient_Pocket_Watch.png",
+  "IconProperties": {
+    "Scale": 0.9,
+    "Rotation": [
+      0,
+      206,
+      8
+    ],
+    "Translation": [
+      -2,
+      -16
+    ]
+  },
+  "MaxStack": 1,
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Recipe": {
+    "TimeSeconds": 3.5,
+    "Input": [
+      {
+        "ItemId": "Rubble_ScrapMetal",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Clockwork_Heart",
+        "Quantity": 3
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Tools"
+        ],
+        "Id": "MechanicsBench"
+      }
+    ]
+  },
+  "Interactions": {
+    "Secondary": "Ancient_Pocketwatch_Use"
+  },
+  "ItemLevel": 21,
+  "ItemSoundSetId": "ISS_Items_Gadget",
+  "Scale": 1.5,
+  "PlayerAnimationsId": "Item",
+  "Quality": "Legendary"
+}
