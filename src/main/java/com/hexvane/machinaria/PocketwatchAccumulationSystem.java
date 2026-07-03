@@ -4,7 +4,7 @@ import com.hypixel.hytale.component.*;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.inventory.Inventory;
+import com.hypixel.hytale.server.core.inventory.InventoryComponent;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.inventory.container.CombinedItemContainer;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
@@ -25,7 +25,7 @@ public class PocketwatchAccumulationSystem extends EntityTickingSystem<EntitySto
 
     private static final String POCKETWATCH_ITEM_ID = "Ancient_Pocket_Watch";
 
-    public PocketwatchAccumulationSystem(@NonNull ComponentType<EntityStore,Player> componentType) {
+    public PocketwatchAccumulationSystem(@NonNull ComponentType<EntityStore, Player> componentType) {
         this.componentType = componentType;
         this.pocketwatchTimeType = MachinariaPlugin.get().getPocketwatchStoredTimeComponentComponentType();
         this.query = Query.and(componentType, refComponentType);
@@ -40,12 +40,11 @@ public class PocketwatchAccumulationSystem extends EntityTickingSystem<EntitySto
             @NonNull CommandBuffer<EntityStore> commandBuffer
     ) {
         Ref<EntityStore> playerRef = archetypeChunk.getReferenceTo(index);
-        Player player = archetypeChunk.getComponent(index, componentType);
-        if (player == null) {
+        CombinedItemContainer container = InventoryComponent.getCombined(
+                store, playerRef, InventoryComponent.BACKPACK_STORAGE_HOTBAR);
+        if (container == null) {
             return;
         }
-        Inventory inventory = player.getInventory();
-        CombinedItemContainer container = inventory.getCombinedBackpackStorageHotbar();
         short capacity = container.getCapacity();
         boolean hasPocketwatch = false;
         for (short slot = 0; slot < capacity; slot++) {
@@ -55,7 +54,9 @@ public class PocketwatchAccumulationSystem extends EntityTickingSystem<EntitySto
                 break;
             }
         }
-        if (!hasPocketwatch) return;
+        if (!hasPocketwatch) {
+            return;
+        }
         PocketwatchStoredTimeComponent pocketwatchTime = commandBuffer.getComponent(playerRef, pocketwatchTimeType);
         if (pocketwatchTime == null) {
             pocketwatchTime = new PocketwatchStoredTimeComponent(0);

@@ -8,7 +8,7 @@ import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.util.ChunkUtil;
-import com.hypixel.hytale.math.vector.Vector3i;
+import org.joml.Vector3i;
 import com.hypixel.hytale.protocol.InteractionState;
 import com.hypixel.hytale.protocol.InteractionType;
 import com.hypixel.hytale.protocol.WaitForDataFrom;
@@ -70,12 +70,12 @@ public class AccelerateTimeInteraction extends SimpleBlockInteraction {
             @Nonnull Vector3i targetBlock,
             @Nonnull CooldownHandler cooldownHandler
     ) {
-        int x = targetBlock.getX();
-        int z = targetBlock.getZ();
+        int x = targetBlock.x;
+        int z = targetBlock.z;
         WorldChunk worldChunk = world.getChunk(ChunkUtil.indexChunkFromBlock(x, z));
         Ref<ChunkStore> blockRef = null;
         if (worldChunk != null) {
-            blockRef = worldChunk.getBlockComponentEntity(x, targetBlock.getY(), z);
+            blockRef = worldChunk.getBlockComponentEntity(x, targetBlock.y, z);
         }
 
         if (blockRef == null) {
@@ -117,7 +117,7 @@ public class AccelerateTimeInteraction extends SimpleBlockInteraction {
                     chunkStore.addComponent(blockRef, overlayType, new TimeAccelerationOverlay(1, duration));
                     float newStored = stored - cost;
                     pocketwatchTime.setStoredTime(newStored);
-                    worldChunk.setTicking(x, targetBlock.getY(), z, true);
+                    worldChunk.setTicking(x, targetBlock.y, z, true);
                     if(playerRefComponent != null) {
                         NotificationUtil.sendNotification(
                                 playerRefComponent.getPacketHandler(),
@@ -142,7 +142,7 @@ public class AccelerateTimeInteraction extends SimpleBlockInteraction {
                         overlay.setExpiresAtEpochMillis(duration);
                         float newStored = stored - cost;
                         pocketwatchTime.setStoredTime(newStored);
-                        worldChunk.setTicking(x, targetBlock.getY(), z, true);
+                        worldChunk.setTicking(x, targetBlock.y, z, true);
                         if(playerRefComponent != null) {
                             NotificationUtil.sendNotification(
                                     playerRefComponent.getPacketHandler(),
