@@ -1,5 +1,7 @@
 package com.hexvane.machinaria;
 
+import com.hexvane.machinaria.aetherhaven.AetherhavenIntegration;
+import com.hexvane.machinaria.aetherhaven.RustyRobotOilImmersionSystem;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.farming.GrowthModifierAsset;
@@ -59,11 +61,24 @@ public class MachinariaPlugin extends JavaPlugin {
                 timeAccelerationOverlayComponentType
         );
         this.getChunkStoreRegistry().registerSystem(benchAccelerationSystem);
+        this.getEntityStoreRegistry().registerSystem(new RustyRobotOilImmersionSystem());
+        AetherhavenIntegration.setup();
+    }
+
+    @Override
+    protected void start() {
+        // Aetherhaven may finish constructing after our setup(); retry soft enable here.
+        AetherhavenIntegration.tryEnable();
     }
 
     @Override
     protected void shutdown() {
+        AetherhavenIntegration.shutdown();
         super.shutdown();
+    }
+
+    public HytaleLogger getLogger() {
+        return LOGGER;
     }
 
     public ComponentType<ChunkStore, TimeAccelerationOverlay> getTimeAccelerationOverlayComponentType() {

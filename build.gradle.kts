@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.hexvane"
-version = "0.2.0"
+version = "0.3.0"
 val javaVersion = 25
 
 repositories {
@@ -19,6 +19,16 @@ repositories {
 dependencies {
     compileOnly(libs.jetbrains.annotations)
     compileOnly(libs.jspecify)
+    // Soft-dep compile against sibling Aetherhaven (build Aetherhaven first if missing).
+    val aetherhavenClasses = file("${rootProject.projectDir}/../Aetherhaven/build/classes/java/main")
+    if (aetherhavenClasses.isDirectory) {
+        compileOnly(files(aetherhavenClasses))
+    } else {
+        logger.warn(
+            "Aetherhaven classes not found at {}; build Aetherhaven before compiling Aetherhaven soft-integration.",
+            aetherhavenClasses
+        )
+    }
 }
 
 hytale {

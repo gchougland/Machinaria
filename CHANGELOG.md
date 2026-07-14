@@ -2,6 +2,20 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [0.3.0] - 7/13/2026
+
+### Added
+
+- **Machinaria creative tab** — gear-icon tab in the creative library listing all mod items and blocks
+- **Aetherhaven integration (optional)** — Rivet Cogsworth mechanic villager: oil a rusty robot to free them, unlock them at the inn, shop and house quests, schedule, gifts, quest board fetches, journal guide page, and shop stock for vanilla metal sets plus Machinaria blocks
+- **Rusty Robot** block that drops itself, and **Oil** fluid used to wake Rivet (later husks become scrap once rescued)
+
+## [0.2.1] - 2026-07-03
+
+### Fixed
+
+- **Mechanic's Workstation** — added `BenchBlock` block entity component so the bench opens the crafting UI on Hytale 0.5 (break and replace existing placed benches)
+
 ## [0.2.0] - 2026-05-26
 
 ### Requirements

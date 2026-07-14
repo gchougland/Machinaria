@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "villagers": {
+    "Machinaria_Mechanic": {
+      "fetchEntries": [
+        {
+          "id": "machinaria_scrap_haul",
+          "rank": "E",
+          "minRank": "E",
+          "maxRank": "C",
+          "weight": 12,
+          "daysLimit": 3,
+          "titleLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.scrap_haul.title",
+          "descriptionLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.scrap_haul.description",
+          "itemSets": [
+            {
+              "weight": 1,
+              "items": [{ "itemId": "Rubble_ScrapMetal", "count": 10 }]
+            }
+          ],
+          "rewards": [
+            {
+              "kind": "item",
+              "itemId": "Aetherhaven_Gold_Coin",
+              "count": 20,
+              "grantTo": "player"
+            },
+            {
+              "kind": "reputation",
+              "amount": 5,
+              "grantTo": "quest_giver_npc"
+            }
+          ]
+        },
+        {
+          "id": "machinaria_rusty_crate",
+          "rank": "E",
+          "minRank": "E",
+          "maxRank": "D",
+          "weight": 10,
+          "daysLimit": 3,
+          "titleLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.rusty_crate.title",
+          "descriptionLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.rusty_crate.description",
+          "itemSets": [
+            {
+              "weight": 1,
+              "items": [
+                { "itemId": "Rock_Rusty_Metal", "count": 12 },
+                { "itemId": "Rock_Dark_Rusty_Metal", "count": 8 }
+              ]
+            },
+            {
+              "weight": 1,
+              "items": [{ "itemId": "Rock_Bronze_Metal", "count": 10 }]
+            }
+          ],
+          "rewards": [
+            {
+              "kind": "item",
+              "itemId": "Aetherhaven_Gold_Coin",
+              "count": 24,
+              "grantTo": "player"
+            },
+            {
+              "kind": "reputation",
+              "amount": 5,
+              "grantTo": "quest_giver_npc"
+            }
+          ]
+        },
+        {
+          "id": "machinaria_gear_forage",
+          "rank": "D",
+          "minRank": "D",
+          "maxRank": "B",
+          "weight": 8,
+          "daysLimit": 4,
+          "titleLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.gear_forage.title",
+          "descriptionLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.gear_forage.description",
+          "itemSets": [
+            {
+              "weight": 1,
+              "items": [
+                { "itemId": "Plant_Leaves_Gear", "count": 8 },
+                { "itemId": "Wood_Gear_Branch_Short", "count": 4 }
+              ]
+            }
+          ],
+          "rewards": [
+            {
+              "kind": "item",
+              "itemId": "Aetherhaven_Gold_Coin",
+              "count": 28,
+              "grantTo": "player"
+            },
+            {
+              "kind": "reputation",
+              "amount": 6,
+              "grantTo": "quest_giver_npc"
+            }
+          ]
+        },
+        {
+          "id": "machinaria_clockwork_heart",
+          "rank": "C",
+          "minRank": "C",
+          "maxRank": "A",
+          "weight": 4,
+          "daysLimit": 5,
+          "titleLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.clockwork_heart.title",
+          "descriptionLangKey": "machinaria_quest_board.aetherhaven.questBoard.mechanic.clockwork_heart.description",
+          "itemSets": [
+            {
+              "weight": 1,
+              "items": [{ "itemId": "Ingredient_Clockwork_Heart", "count": 1 }]
+            }
+          ],
+          "rewards": [
+            {
+              "kind": "item",
+              "itemId": "Aetherhaven_Gold_Coin",
+              "count": 45,
+              "grantTo": "player"
+            },
+            {
+              "kind": "reputation",
+              "amount": 10,
+              "grantTo": "quest_giver_npc"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

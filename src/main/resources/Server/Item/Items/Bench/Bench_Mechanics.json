@@ -5,7 +5,8 @@
   },
   "Icon": "Icons/ItemsGenerated/Bench_Mechanics.png",
   "Categories": [
-    "Furniture.Benches"
+    "Furniture.Benches",
+    "Machinaria.Content"
   ],
   "Recipe": {
     "TimeSeconds": 3,
@@ -57,8 +58,12 @@
       ],
       "Id": "MechanicsBench"
     },
+    "BlockEntity": {
+      "Components": {
+        "BenchBlock": {}
+      }
+    },
     "State": {
-      "Id": "crafting",
       "Definitions": {
         "CraftCompleted": {
           "CustomModelAnimation": "Blocks/Benches/Alchemy_Crafting.blockyanim",

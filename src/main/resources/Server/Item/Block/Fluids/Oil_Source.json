@@ -1,0 +1,27 @@
+{
+  "MaxFluidLevel": 1,
+  "Effect": [
+    "Slime"
+  ],
+  "Opacity": "Transparent",
+  "BlockParticleSetId": "Tar",
+  "Textures": [
+    {
+      "Weight": 1,
+      "All": "BlockTextures/Fluid_Oil.png"
+    }
+  ],
+  "ParticleColor": "#0a0a0a",
+  "BlockSoundSetId": "Mud",
+  "FluidFXId": "Water",
+  "Ticker": {
+    "CanDemote": false,
+    "SpreadFluid": "Oil",
+    "FlowRate": 12.0
+  },
+  "Tags": {
+    "Fluid": [
+      "Oil"
+    ]
+  }
+}

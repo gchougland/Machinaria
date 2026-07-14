@@ -1,0 +1,65 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Machinaria_Rusty_Robot.name",
+    "Description": "server.items.Machinaria_Rusty_Robot.description"
+  },
+  "PlayerAnimationsId": "Block",
+  "Categories": [
+    "Blocks.Deco",
+    "Machinaria.Content"
+  ],
+  "IconProperties": {
+    "Scale": 0.2,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -48
+    ]
+  },
+  "BlockType": {
+    "BlockParticleSetId": "Metal",
+    "BlockSoundSetId": "Metal",
+    "PhysicalMaterialId": "Stone",
+    "CustomModel": "Blocks/Rusty_Robot.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "NPC/Gear/RustyRobot.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Machinaria_Rusty_Robot"
+      }
+    },
+    "HitboxType": "Machinaria_Rusty_Robot",
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "VariantRotation": "NESW",
+    "ParticleColor": "#6b4a2e",
+    "TextureComputedColor": "#6b4a2e"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Rusty_Robot.png",
+  "Tags": {
+    "Type": [
+      "Deco"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "MaxStack": 1
+}

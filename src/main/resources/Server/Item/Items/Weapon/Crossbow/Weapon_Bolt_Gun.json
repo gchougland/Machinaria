@@ -8,7 +8,8 @@
   "Icon": "Icons/ItemsGenerated/Weapon_Bolt_Gun.png",
   "Quality": "Uncommon",
   "Categories": [
-    "Items.Weapons"
+    "Items.Weapons",
+    "Machinaria.Content"
   ],
   "Utility": {
     "Compatible": true
@@ -281,19 +282,8 @@
     "Guard_Bash": {
       "Interactions": [
         {
-          "Type": "ApplyEffect",
-          "EffectId": "Stamina_Broken_Immune"
-        },
-        {
           "$Comment": "Effects and stamina consumed upon a guard bash",
-          "Parent": "Weapon_Crossbow_Secondary_Guard_Bash",
-          "Effects": {
-            "WorldSoundEventId": "SFX_Hand_Crossbow_T1_Shove",
-            "LocalSoundEventId": "SFX_Hand_Crossbow_T1_Shove_Local"
-          },
-          "StatModifiers": {
-            "Stamina": -2
-          }
+          "Parent": "Weapon_Crossbow_Secondary_Guard_Bash"
         }
       ]
     },
