@@ -1,0 +1,23 @@
+{
+  "ShadowType": "Small",
+  "ItemId": "Machinaria_Clockfin_Item",
+  "AquariumSize": "Wide2x1",
+  "AquariumDisplayOffset": [-0.1, -0.1, 0.0],
+  "Rarity": "Rare",
+  "SpawnWeight": 6,
+  "SpawnRules": {
+    "Fluid": {"Ids": ["Oil", "Oil_Source"], "Mode": "Required"},
+    "WaterBody": {"Types": [], "Mode": "Ignored"},
+    "Underground": {"Only": false, "Mode": "Ignored"},
+    "DayTime": {"Range": [0, 24], "Mode": "Ignored"},
+    "Weather": {"Ids": [], "Mode": "Ignored"}
+  },
+  "VisionRange": 3.5,
+  "VisionAngleDegrees": 100,
+  "PokeReachBlocks": 0.25,
+  "SizeRangeCm": [12, 28],
+  "ShadowScaleRange": [0.85, 1.05],
+  "SwimSpeed": 0.9,
+  "FleePlayerRange": 3.0,
+  "FightSwimSpeed": 1.1
+}

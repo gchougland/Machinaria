@@ -1,0 +1,29 @@
+{
+  "Input": [
+    {
+      "ItemId": "Machinaria_Clockfin_Item",
+      "Quantity": 1
+    }
+  ],
+  "PrimaryOutput": {
+    "ItemId": "Rubble_ScrapMetal",
+    "Quantity": 2
+  },
+  "Output": [
+    {
+      "ItemId": "Rubble_ScrapMetal",
+      "Quantity": 2
+    },
+    {
+      "ItemId": "Ore_Iron",
+      "Quantity": 1
+    }
+  ],
+  "BenchRequirement": [
+    {
+      "Type": "Processing",
+      "Id": "Fish_Processor"
+    }
+  ],
+  "TimeSeconds": 3
+}

@@ -2,6 +2,18 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [0.4.0] - Unreleased
+
+### Added
+
+- **CozyTales Fishing (optional, assets-only)** — Oil is fishable when CozyTales Fishing is present; **Clockfin** can be caught in oil pools (journal entry). No hard dependency on CozyTales; `Server/CozyTalesFishing/*` JSON is inert without that mod.
+- **Clockfin wildlife** — Passive swimmers spawn in **Oil** (same world spawn pattern as vanilla fish in water). Killing them drops scrap metal (sometimes iron ore). Processing the caught fish item at a **Fish Processor** (CozyTales) yields scrap and iron ore.
+
+### Fixed
+
+- **Rivet's house quest** — quest objectives now use Aetherhaven progression kinds (`plot_token_received`, `construction_built`, `dialogue_turn_in`) so dialogue turn-in completes the quest after Rivet is assigned to a house
+- **Rivet's shop quest** — same progression-kind fix for blueprint learn, build, and dialogue turn-in
+
 ## [0.3.0] - 7/13/2026
 
 ### Added

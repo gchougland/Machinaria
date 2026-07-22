@@ -1,0 +1,50 @@
+{
+  "Parent": "Template_Fish_Item",
+  "Quality": "Rare",
+  "TranslationProperties": {
+    "Name": "server.items.Machinaria_Clockfin_Item.name",
+    "Description": "server.items.Machinaria_Clockfin_Item.description"
+  },
+  "Model": "NPC/Swimming_Wildlife/Clockfin/Clockfin.blockymodel",
+  "Texture": "NPC/Swimming_Wildlife/Clockfin/Clockfin.png",
+  "Animation": "NPC/Swimming_Wildlife/Bluegill/Animations/Swim/Swim.blockyanim",
+  "Icon": "Icons/ItemsGenerated/Machinaria_Clockfin_Item.png",
+  "IconProperties": {
+    "Scale": 0.4,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      4,
+      -13.5
+    ]
+  },
+  "InteractionVars": {
+    "SpawnNPC_Entity": {
+      "Interactions": [
+        {
+          "Parent": "SpawnNPC_Entity_Default",
+          "EntityId": "Clockfin",
+          "SpawnOffset": {
+            "X": 0,
+            "Y": 1,
+            "Z": 0
+          },
+          "Effects": {
+            "WorldSoundEventId": "SFX_Water_MoveOut"
+          }
+        }
+      ]
+    }
+  },
+  "ResourceTypes": [
+    {
+      "Id": "Fish"
+    },
+    {
+      "Id": "Fish_Rare"
+    }
+  ]
+}
