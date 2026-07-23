@@ -1,0 +1,29 @@
+{
+  "id": "reginald_volt",
+  "displayName": "Reginald Volt",
+  "gender": "male",
+  "race": "machinaria",
+  "modelAssetId": "Reginald_Volt",
+  "personalityIds": [
+    "crafty",
+    "snooty"
+  ],
+  "allowedAssignmentKinds": [
+    "idle",
+    "tourist",
+    "guard"
+  ],
+  "befriendable": false,
+  "equipmentProfileId": "guard_knight",
+  "speechVoiceId": "sharp",
+  "requiresOptionalPlugin": {
+    "group": "hexvane",
+    "name": "Machinaria"
+  },
+  "moveInRequirements": [
+    {
+      "itemId": "Bench_Mechanics",
+      "count": 1
+    }
+  ]
+}

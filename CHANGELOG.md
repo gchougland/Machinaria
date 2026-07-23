@@ -2,12 +2,17 @@
 
 All notable changes to Machinaria are documented in this file.
 
-## [0.4.0] - Unreleased
+## [0.4.0] - 7/22/2026
 
 ### Added
 
+- **Robot townsfolk (optional Aetherhaven)** — Reginald Volt and Copper Pin join the townsfolk pool when Machinaria and Aetherhaven are both installed. They use the robot body with player cosmetic attachments.
 - **CozyTales Fishing (optional, assets-only)** — Oil is fishable when CozyTales Fishing is present; **Clockfin** can be caught in oil pools (journal entry). No hard dependency on CozyTales; `Server/CozyTalesFishing/*` JSON is inert without that mod.
 - **Clockfin wildlife** — Passive swimmers spawn in **Oil** (same world spawn pattern as vanilla fish in water). Killing them drops scrap metal (sometimes iron ore). Processing the caught fish item at a **Fish Processor** (CozyTales) yields scrap and iron ore.
+
+### Changed
+
+- **Robot appearance** — Rivet and the robot body mesh no longer bake in the antenna. Antennas use a model attachment instead. The rusty robot block model matches (no antenna on the placed block).
 
 ### Fixed
 

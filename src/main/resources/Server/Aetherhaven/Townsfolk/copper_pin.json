@@ -1,0 +1,33 @@
+{
+  "id": "copper_pin",
+  "displayName": "Copper Pin",
+  "gender": "female",
+  "race": "machinaria",
+  "modelAssetId": "Copper_Pin",
+  "personalityIds": [
+    "curious",
+    "cheerful"
+  ],
+  "allowedAssignmentKinds": [
+    "idle",
+    "tourist",
+    "guard"
+  ],
+  "befriendable": false,
+  "equipmentProfileId": "guard_archer",
+  "speechVoiceId": "mid",
+  "requiresOptionalPlugin": {
+    "group": "hexvane",
+    "name": "Machinaria"
+  },
+  "moveInRequirements": [
+    {
+      "itemId": "Metal_Copper",
+      "count": 4
+    },
+    {
+      "itemId": "Metal_Bronze",
+      "count": 2
+    }
+  ]
+}
