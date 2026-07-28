@@ -2,6 +2,12 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [0.4.1] - Unreleased
+
+### Added
+
+- **Stormwind Mechanic's Shop** — Stormwind-style variant of the Mechanic's Shop for towns using the Stormwind building set (requires Aetherhaven).
+
 ## [0.4.0] - 7/22/2026
 
 ### Added
