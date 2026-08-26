@@ -73,14 +73,13 @@ public class ProcessingBenchAccelerationSystem extends EntityTickingSystem<Chunk
         int localZ = ChunkUtil.zFromBlockInColumn(blockIndex);
         int blockX = ChunkUtil.worldCoordFromLocalCoord(blockChunk.getX(), localX);
         int blockZ = ChunkUtil.worldCoordFromLocalCoord(blockChunk.getZ(), localZ);
-        BlockSection blockSection = blockChunk.getSectionAtBlockY(localY);
-        int blockId = blockSection.get(localX, localY, localZ);
+        int blockId = blockChunk.getBlock(localX, localY, localZ);
         BlockType blockType = BlockType.getAssetMap().getAsset(blockId);
         if (blockType == null || processingBenchBlock.getProcessingBench() == null) {
             return;
         }
 
-        int rotationIndex = blockSection.getRotationIndex(localX, localY, localZ);
+        int rotationIndex = rotationIndexAt(store, blockX, localY, blockZ, blockIndex);
         World world = store.getExternalData().getWorld();
         Store<EntityStore> entityStore = world.getEntityStore().getStore();
 
@@ -95,5 +94,26 @@ public class ProcessingBenchAccelerationSystem extends EntityTickingSystem<Chunk
     @Override
     public @Nullable Query<ChunkStore> getQuery() {
         return query;
+    }
+
+    /** Reads block rotation via the chunk-section entity for this block column. */
+    private static int rotationIndexAt(
+            @NonNull Store<ChunkStore> store,
+            int worldBlockX,
+            int localY,
+            int worldBlockZ,
+            int blockIndex
+    ) {
+        World world = store.getExternalData().getWorld();
+        Ref<ChunkStore> sectionRef =
+                world.getChunkStore().getChunkSectionReferenceAtBlock(worldBlockX, localY, worldBlockZ);
+        if (sectionRef == null || !sectionRef.isValid()) {
+            return 0;
+        }
+        BlockSection blockSection = store.getComponent(sectionRef, BlockSection.getComponentType());
+        if (blockSection == null) {
+            return 0;
+        }
+        return blockSection.getRotationIndex(blockIndex);
     }
 }

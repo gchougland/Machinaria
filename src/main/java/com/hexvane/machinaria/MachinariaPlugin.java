@@ -2,6 +2,7 @@ package com.hexvane.machinaria;
 
 import com.hexvane.machinaria.aetherhaven.AetherhavenIntegration;
 import com.hexvane.machinaria.aetherhaven.RustyRobotOilImmersionSystem;
+import com.hexvane.machinaria.generated.HstatsBuildMetadata;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.farming.GrowthModifierAsset;
@@ -32,6 +33,7 @@ public class MachinariaPlugin extends JavaPlugin {
     @Override
     protected void setup() {
         instance = this;
+        logHstats(this);
         timeAccelerationOverlayComponentType =
                 this.getChunkStoreRegistry().registerComponent(
                         TimeAccelerationOverlay.class, "TimeAcceleration", TimeAccelerationOverlay.CODEC
@@ -87,5 +89,19 @@ public class MachinariaPlugin extends JavaPlugin {
 
     public ComponentType<EntityStore, PocketwatchStoredTimeComponent> getPocketwatchStoredTimeComponentComponentType() {
         return this.pocketwatchStoredTimeComponentComponentType;
+    }
+
+    private static void logHstats(@NonNull MachinariaPlugin plugin) {
+        String hstatsModUuid = HstatsBuildMetadata.HSTATS_MOD_UUID;
+        String modVersion = plugin.getManifest().getVersion().toString();
+        if (!hstatsModUuid.isBlank()) {
+            new HStats(hstatsModUuid, modVersion);
+            LOGGER.atInfo().log("HStats metrics enabled for Machinaria v%s.", modVersion);
+        } else {
+            LOGGER.atInfo().log(
+                "HStats metrics disabled: set MACHINARIA_HSTATS_MOD_UUID when building, "
+                    + "or pass -Phstats_mod_uuid=... to Gradle."
+            );
+        }
     }
 }

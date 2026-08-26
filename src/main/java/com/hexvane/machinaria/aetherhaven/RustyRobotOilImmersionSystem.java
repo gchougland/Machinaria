@@ -13,6 +13,7 @@ import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.spatial.SpatialResource;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.util.MathUtil;
 import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.server.core.asset.type.fluid.Fluid;
@@ -48,7 +49,8 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     /** Scan a tall column: drops often float slightly above the fluid surface. */
     private static final int FLUID_SCAN_Y_ABOVE = 2;
     private static final int FLUID_SCAN_Y_BELOW = 4;
-    private static final long DEBUG_INTERVAL_MS = 3000L;
+    /** Stagger fluid probes across ticks; immersion still triggers within a few ticks of landing in oil. */
+    private static final int OIL_PROBE_INTERVAL_TICKS = 4;
 
     private final Query<EntityStore> query;
     private final ComponentTypeHolder types;
@@ -56,8 +58,6 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     private int oilIndex = Integer.MIN_VALUE;
     private int oilSourceIndex = Integer.MIN_VALUE;
     private boolean fluidIndexesResolved;
-    private long lastDebugLogMs;
-    private boolean loggedRegistered;
 
     public RustyRobotOilImmersionSystem() {
         this.types = new ComponentTypeHolder();
@@ -72,14 +72,6 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         @Nonnull Store<EntityStore> store,
         @Nonnull CommandBuffer<EntityStore> commandBuffer
     ) {
-        if (!loggedRegistered) {
-            loggedRegistered = true;
-            LOGGER.atInfo().log("RustyRobotOilImmersionSystem is ticking ItemEntities.");
-        }
-
-        // Soft AH is optional here — immersion must work even if get()/soft-enable fails.
-        AetherhavenIntegration.tryEnable();
-
         ItemComponent itemComponent = archetypeChunk.getComponent(index, types.itemType);
         TransformComponent transform = archetypeChunk.getComponent(index, types.transformType);
         if (itemComponent == null || transform == null) {
@@ -92,12 +84,15 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
 
         Vector3d position = transform.getPosition();
         World world = store.getExternalData().getWorld();
-        boolean inOil = isInOil(world, position);
-        maybeDebug(world, position, inOil, stack.getItemId());
-
-        if (!inOil) {
+        if (shouldSkipOilProbeThisTick(world, position)) {
             return;
         }
+
+        if (!isInOil(world, position)) {
+            return;
+        }
+
+        AetherhavenIntegration.tryEnable();
 
         Ref<EntityStore> itemRef = archetypeChunk.getReferenceTo(index);
         Vector3d spawnPos = new Vector3d(position);
@@ -128,39 +123,21 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         world.execute(() -> spawnRescueNpc(world, spawnPos, facePlayer));
     }
 
-    private void maybeDebug(@Nonnull World world, @Nonnull Vector3d position, boolean inOil, @Nonnull String itemId) {
-        long now = System.currentTimeMillis();
-        if (now - lastDebugLogMs < DEBUG_INTERVAL_MS) {
-            return;
-        }
-        lastDebugLogMs = now;
-        int bx = MathUtil.floor(position.x);
-        int by = MathUtil.floor(position.y);
-        int bz = MathUtil.floor(position.z);
-        int fluidHere = fluidIdAt(world, bx, by, bz);
-        int fluidBelow = fluidIdAt(world, bx, by - 1, bz);
-        LOGGER.atInfo().log(
-            "Rusty robot drop seen itemId=%s pos=%.2f,%.2f,%.2f inOil=%s fluid@feet=%s(%s) fluid@-1=%s(%s) ahEnabled=%s",
-            itemId,
-            position.x,
-            position.y,
-            position.z,
-            inOil,
-            fluidHere,
-            fluidName(fluidHere),
-            fluidBelow,
-            fluidName(fluidBelow),
-            AetherhavenIntegration.isEnabled()
-        );
+    /** Spreads work across ticks using block position so idle drops do not probe fluids every tick. */
+    private static boolean shouldSkipOilProbeThisTick(@Nonnull World world, @Nonnull Vector3d position) {
+        long tick = world.getTick();
+        int phase = Math.floorMod(MathUtil.floor(position.x) ^ MathUtil.floor(position.z), OIL_PROBE_INTERVAL_TICKS);
+        return Math.floorMod(tick, OIL_PROBE_INTERVAL_TICKS) != phase;
     }
 
     private boolean isInOil(@Nonnull World world, @Nonnull Vector3d position) {
         resolveFluidIndexes();
+        FluidProbe probe = new FluidProbe(world);
         int bx = MathUtil.floor(position.x);
         int by = MathUtil.floor(position.y);
         int bz = MathUtil.floor(position.z);
         for (int dy = FLUID_SCAN_Y_ABOVE; dy >= -FLUID_SCAN_Y_BELOW; dy--) {
-            if (isOilFluidId(fluidIdAt(world, bx, by + dy, bz))) {
+            if (isOilFluidId(probe.fluidIdAt(bx, by + dy, bz))) {
                 return true;
             }
         }
@@ -171,38 +148,13 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
                     continue;
                 }
                 for (int dy = 1; dy >= -2; dy--) {
-                    if (isOilFluidId(fluidIdAt(world, bx + dx, by + dy, bz + dz))) {
+                    if (isOilFluidId(probe.fluidIdAt(bx + dx, by + dy, bz + dz))) {
                         return true;
                     }
                 }
             }
         }
         return false;
-    }
-
-    /**
-     * Same chunk-section probe used by CozyTales fishing ({@code FishFluidHelper}).
-     */
-    private static int fluidIdAt(@Nonnull World world, int x, int y, int z) {
-        var sectionRef = world.getChunkStore().getChunkSectionReferenceAtBlock(x, y, z);
-        if (sectionRef == null) {
-            return Fluid.EMPTY_ID;
-        }
-        FluidSection fluidSection =
-            world.getChunkStore().getStore().getComponentConcurrent(sectionRef, FluidSection.getComponentType());
-        if (fluidSection == null) {
-            return Fluid.EMPTY_ID;
-        }
-        return fluidSection.getFluidId(x, y, z);
-    }
-
-    @Nonnull
-    private static String fluidName(int fluidId) {
-        if (fluidId == Fluid.EMPTY_ID || fluidId == Integer.MIN_VALUE) {
-            return "empty";
-        }
-        Fluid fluid = Fluid.getAssetMap().getAsset(fluidId);
-        return fluid != null && fluid.getId() != null ? fluid.getId() : ("#" + fluidId);
     }
 
     private boolean isOilFluidId(int fluidId) {
@@ -236,11 +188,7 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
             oilSourceIndex = Fluid.getAssetMap().getIndex(MachinariaConstants.FLUID_OIL_SOURCE);
             if (oilIndex != Integer.MIN_VALUE || oilSourceIndex != Integer.MIN_VALUE) {
                 fluidIndexesResolved = true;
-                LOGGER.atInfo().log(
-                    "Resolved oil fluid indexes Oil=%s Oil_Source=%s",
-                    oilIndex,
-                    oilSourceIndex
-                );
+                LOGGER.atFine().log("Resolved oil fluid indexes Oil=%s Oil_Source=%s", oilIndex, oilSourceIndex);
             }
         } catch (RuntimeException e) {
             oilIndex = Integer.MIN_VALUE;
@@ -385,6 +333,47 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     }
 
     private record NearestPlayer(@Nonnull UUID playerUuid, @Nonnull Vector3d position) {}
+
+    /**
+     * Reuses chunk-section fluid lookups while scanning a column and neighbors (same approach as fluid
+     * probes elsewhere; avoids repeated {@code getChunkSectionReferenceAtBlock} for adjacent blocks).
+     */
+    private static final class FluidProbe {
+        private final World world;
+        @Nullable
+        private Ref<com.hypixel.hytale.server.core.universe.world.storage.ChunkStore> sectionRef;
+        @Nullable
+        private FluidSection fluidSection;
+        private int sectionX = Integer.MIN_VALUE;
+        private int sectionY = Integer.MIN_VALUE;
+        private int sectionZ = Integer.MIN_VALUE;
+
+        private FluidProbe(@Nonnull World world) {
+            this.world = world;
+        }
+
+        private int fluidIdAt(int x, int y, int z) {
+            int sx = ChunkUtil.chunkCoordinate(x);
+            int sy = ChunkUtil.chunkCoordinate(y);
+            int sz = ChunkUtil.chunkCoordinate(z);
+            if (sectionRef == null || sx != sectionX || sy != sectionY || sz != sectionZ) {
+                sectionRef = world.getChunkStore().getChunkSectionReferenceAtBlock(x, y, z);
+                sectionX = sx;
+                sectionY = sy;
+                sectionZ = sz;
+                if (sectionRef == null) {
+                    fluidSection = null;
+                    return Fluid.EMPTY_ID;
+                }
+                fluidSection =
+                    world.getChunkStore().getStore().getComponentConcurrent(sectionRef, FluidSection.getComponentType());
+            }
+            if (fluidSection == null) {
+                return Fluid.EMPTY_ID;
+            }
+            return fluidSection.getFluidId(x, y, z);
+        }
+    }
 
     private static final class ComponentTypeHolder {
         private final ComponentType<EntityStore, ItemComponent> itemType = ItemComponent.getComponentType();

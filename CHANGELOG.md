@@ -2,6 +2,20 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [0.4.1] - Unreleased
+
+### Added
+
+- **HStats** — integrated anonymous server metrics via [hstats.dev](https://hstats.dev) (same pattern as Aetherhaven)
+
+### Fixed
+
+- **Robot villager emotes** — `Machinaria_Robot_Base` now defines `PonderDismissive`, `Yawn`, and `Laugh` using player emote animations so Aetherhaven leisure/shop visuals work on Rivet and other robot NPCs
+
+### Changed
+
+- **Rusty robot oil immersion** — removed debug log spam; fluid checks are throttled and section lookups cached so idle rusty robot drops no longer probe oil every tick
+
 ## [0.4.0] - 7/22/2026
 
 ### Added
