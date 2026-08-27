@@ -8,30 +8,24 @@ import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.util.ChunkUtil;
-import org.joml.Vector3i;
 import com.hypixel.hytale.protocol.InteractionState;
 import com.hypixel.hytale.protocol.InteractionType;
 import com.hypixel.hytale.protocol.WaitForDataFrom;
 import com.hypixel.hytale.server.core.Message;
-import com.hypixel.hytale.server.core.entity.EntityUtils;
 import com.hypixel.hytale.server.core.entity.InteractionContext;
-import com.hypixel.hytale.server.core.entity.LivingEntity;
-import com.hypixel.hytale.server.core.entity.entities.Player;
-import com.hypixel.hytale.server.core.inventory.Inventory;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
-import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.client.SimpleBlockInteraction;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.chunk.WorldChunk;
+import com.hypixel.hytale.server.core.universe.world.chunk.section.BlockComponentSection;
+import com.hypixel.hytale.server.core.universe.world.chunk.section.BlockSection;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
+import org.joml.Vector3i;
 import org.jspecify.annotations.NonNull;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class AccelerateTimeInteraction extends SimpleBlockInteraction {
     public static final BuilderCodec<AccelerateTimeInteraction> CODEC = BuilderCodec.builder(
@@ -62,97 +56,109 @@ public class AccelerateTimeInteraction extends SimpleBlockInteraction {
 
     @Override
     protected void interactWithBlock(
-            @Nonnull World world,
-            @Nonnull CommandBuffer<EntityStore> commandBuffer,
-            @Nonnull InteractionType type,
-            @Nonnull InteractionContext context,
+            @NonNull World world,
+            @NonNull CommandBuffer<EntityStore> commandBuffer,
+            @NonNull InteractionType type,
+            @NonNull InteractionContext context,
             @Nullable ItemStack itemInHand,
-            @Nonnull Vector3i targetBlock,
-            @Nonnull CooldownHandler cooldownHandler
+            @NonNull Vector3i targetBlock,
+            @NonNull CooldownHandler cooldownHandler
     ) {
-        int x = targetBlock.x;
-        int z = targetBlock.z;
-        WorldChunk worldChunk = world.getChunk(ChunkUtil.indexChunkFromBlock(x, z));
-        Ref<ChunkStore> blockRef = null;
-        if (worldChunk != null) {
-            blockRef = worldChunk.getBlockComponentEntity(x, targetBlock.y, z);
+        int x = targetBlock.x();
+        int y = targetBlock.y();
+        int z = targetBlock.z();
+
+        Store<ChunkStore> chunkStore = world.getChunkStore().getStore();
+        Ref<ChunkStore> sectionRef = world.getChunkStore().getChunkSectionReferenceAtBlock(x, y, z);
+        if (sectionRef == null || !sectionRef.isValid()) {
+            context.getState().state = InteractionState.Failed;
+            return;
         }
 
-        if (blockRef == null) {
+        BlockSection blockSection = chunkStore.getComponent(sectionRef, BlockSection.getComponentType());
+        BlockComponentSection blockComponentSection =
+                chunkStore.getComponent(sectionRef, BlockComponentSection.getComponentType());
+        if (blockSection == null || blockComponentSection == null) {
             context.getState().state = InteractionState.Failed;
-        } else {
-            Ref<EntityStore> playerRef = context.getEntity();
-            PlayerRef playerRefComponent = commandBuffer.getComponent(playerRef, PlayerRef.getComponentType());
-            PocketwatchStoredTimeComponent pocketwatchTime = commandBuffer.getComponent(
+            return;
+        }
+
+        int blockIndex = ChunkUtil.indexBlock(x, y, z);
+        Ref<ChunkStore> blockRef = blockComponentSection.getBlockReference(blockIndex);
+        if (blockRef == null || !blockRef.isValid()) {
+            context.getState().state = InteractionState.Failed;
+            return;
+        }
+
+        Ref<EntityStore> playerRef = context.getEntity();
+        PlayerRef playerRefComponent = commandBuffer.getComponent(playerRef, PlayerRef.getComponentType());
+        PocketwatchStoredTimeComponent pocketwatchTime = commandBuffer.getComponent(
+                playerRef,
+                MachinariaPlugin.get().getPocketwatchStoredTimeComponentComponentType()
+        );
+        if (pocketwatchTime == null) {
+            pocketwatchTime = new PocketwatchStoredTimeComponent(0);
+            commandBuffer.addComponent(
                     playerRef,
-                    MachinariaPlugin.get().getPocketwatchStoredTimeComponentComponentType()
+                    MachinariaPlugin.get().getPocketwatchStoredTimeComponentComponentType(),
+                    pocketwatchTime
             );
-            if (pocketwatchTime == null) {
-                pocketwatchTime = new PocketwatchStoredTimeComponent(0);
-                commandBuffer.addComponent(playerRef, MachinariaPlugin.get().getPocketwatchStoredTimeComponentComponentType(), pocketwatchTime);
+        }
+        float stored = pocketwatchTime.getStoredTime();
+        ComponentType<ChunkStore, TimeAccelerationOverlay> overlayType =
+                MachinariaPlugin.get().getTimeAccelerationOverlayComponentType();
+        TimeAccelerationOverlay overlay = chunkStore.getComponent(blockRef, overlayType);
+        Float cost = 0f;
+        long duration = System.currentTimeMillis() + 30_000L;
+        // If no existing overlay, create new one at level 1
+        if (overlay == null) {
+            cost = costPerLevel;
+            if (stored < cost) {
+                context.getState().state = InteractionState.Failed;
+                if (playerRefComponent != null) {
+                    NotificationUtil.sendNotification(
+                            playerRefComponent.getPacketHandler(),
+                            Message.translation("server.items.Ancient_Pocket_Watch.notEnoughTime")
+                                    .param("time", formatStoredTime(stored)));
+                }
+                return;
             }
-            float stored = pocketwatchTime.getStoredTime();
-            Store<ChunkStore> chunkStore = world.getChunkStore().getStore();
-            ComponentType<ChunkStore, TimeAccelerationOverlay> overlayType
-                    = MachinariaPlugin.get().getTimeAccelerationOverlayComponentType();
-            TimeAccelerationOverlay overlay = chunkStore.getComponent(
-                    blockRef,
-                    overlayType
-            );
-            Float cost = 0f;
-            long duration = System.currentTimeMillis() + 30_000L;
-            // If no existing overlay, create new one at level 1
-            if (overlay == null) {
-                cost = costPerLevel;
+            chunkStore.addComponent(blockRef, overlayType, new TimeAccelerationOverlay(1, duration));
+            float newStored = stored - cost;
+            pocketwatchTime.setStoredTime(newStored);
+            blockSection.setTicking(x, y, z, true);
+            if (playerRefComponent != null) {
+                NotificationUtil.sendNotification(
+                        playerRefComponent.getPacketHandler(),
+                        Message.translation("server.items.Ancient_Pocket_Watch.storedTime")
+                                .param("time", formatStoredTime(stored)));
+            }
+        } else { // If already has overlay, increase level by one if not maxed out
+            int newLevel = Math.min(overlay.getLevel() + 1, maxLevel);
+            if (newLevel > overlay.getLevel()) {
+                cost = costPerLevel * newLevel;
                 if (stored < cost) {
                     context.getState().state = InteractionState.Failed;
-                    if(playerRefComponent != null) {
+                    if (playerRefComponent != null) {
                         NotificationUtil.sendNotification(
                                 playerRefComponent.getPacketHandler(),
                                 Message.translation("server.items.Ancient_Pocket_Watch.notEnoughTime")
                                         .param("time", formatStoredTime(stored)));
                     }
-                    return;
                 } else {
-                    chunkStore.addComponent(blockRef, overlayType, new TimeAccelerationOverlay(1, duration));
+                    overlay.setLevel(newLevel);
+                    overlay.setExpiresAtEpochMillis(duration);
                     float newStored = stored - cost;
                     pocketwatchTime.setStoredTime(newStored);
-                    worldChunk.setTicking(x, targetBlock.y, z, true);
-                    if(playerRefComponent != null) {
+                    blockSection.setTicking(x, y, z, true);
+                    if (playerRefComponent != null) {
                         NotificationUtil.sendNotification(
                                 playerRefComponent.getPacketHandler(),
                                 Message.translation("server.items.Ancient_Pocket_Watch.storedTime")
                                         .param("time", formatStoredTime(stored)));
                     }
                 }
-            } else { // If already has overlay, increase level by one if not maxed out
-                int newLevel = Math.min(overlay.getLevel() + 1, maxLevel);
-                if (newLevel > overlay.getLevel()) {
-                    cost = costPerLevel * newLevel;
-                    if (stored < cost) {
-                        context.getState().state = InteractionState.Failed;
-                        if(playerRefComponent != null) {
-                            NotificationUtil.sendNotification(
-                                    playerRefComponent.getPacketHandler(),
-                                    Message.translation("server.items.Ancient_Pocket_Watch.notEnoughTime")
-                                            .param("time", formatStoredTime(stored)));
-                        }
-                    } else {
-                        overlay.setLevel(newLevel);
-                        overlay.setExpiresAtEpochMillis(duration);
-                        float newStored = stored - cost;
-                        pocketwatchTime.setStoredTime(newStored);
-                        worldChunk.setTicking(x, targetBlock.y, z, true);
-                        if(playerRefComponent != null) {
-                            NotificationUtil.sendNotification(
-                                    playerRefComponent.getPacketHandler(),
-                                    Message.translation("server.items.Ancient_Pocket_Watch.storedTime")
-                                            .param("time", formatStoredTime(stored)));
-                        }
-                    }
-                }
             }
-
         }
     }
 
@@ -168,7 +174,13 @@ public class AccelerateTimeInteraction extends SimpleBlockInteraction {
     }
 
     @Override
-    protected void simulateInteractWithBlock(@NonNull InteractionType interactionType, @NonNull InteractionContext interactionContext, @org.jspecify.annotations.Nullable ItemStack itemStack, @NonNull World world, @NonNull Vector3i vector3i) {
+    protected void simulateInteractWithBlock(
+            @NonNull InteractionType interactionType,
+            @NonNull InteractionContext interactionContext,
+            @Nullable ItemStack itemStack,
+            @NonNull World world,
+            @NonNull Vector3i vector3i
+    ) {
 
     }
 }

@@ -13,8 +13,8 @@ import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
 import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.chunk.BlockChunk;
 import com.hypixel.hytale.server.core.universe.world.chunk.section.BlockSection;
+import com.hypixel.hytale.server.core.universe.world.chunk.section.ChunkSection;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jspecify.annotations.NonNull;
@@ -57,36 +57,38 @@ public class ProcessingBenchAccelerationSystem extends EntityTickingSystem<Chunk
             return;
         }
 
-        Ref<ChunkStore> chunkRef = blockStateInfo.getChunkRef();
-        if (!chunkRef.isValid()) {
+        Ref<ChunkStore> sectionRef = blockStateInfo.getSectionRef();
+        if (!sectionRef.isValid()) {
             return;
         }
 
-        BlockChunk blockChunk = store.getComponent(chunkRef, BlockChunk.getComponentType());
-        if (blockChunk == null) {
+        ChunkSection section = store.getComponent(sectionRef, ChunkSection.getComponentType());
+        BlockSection blockSection = store.getComponent(sectionRef, BlockSection.getComponentType());
+        if (section == null || blockSection == null) {
             return;
         }
 
         int blockIndex = blockStateInfo.getIndex();
-        int localX = ChunkUtil.xFromBlockInColumn(blockIndex);
-        int localY = ChunkUtil.yFromBlockInColumn(blockIndex);
-        int localZ = ChunkUtil.zFromBlockInColumn(blockIndex);
-        int blockX = ChunkUtil.worldCoordFromLocalCoord(blockChunk.getX(), localX);
-        int blockZ = ChunkUtil.worldCoordFromLocalCoord(blockChunk.getZ(), localZ);
-        int blockId = blockChunk.getBlock(localX, localY, localZ);
+        int localX = ChunkUtil.xFromIndex(blockIndex);
+        int localY = ChunkUtil.yFromIndex(blockIndex);
+        int localZ = ChunkUtil.zFromIndex(blockIndex);
+        int blockX = ChunkUtil.worldCoordFromLocalCoord(section.getX(), localX);
+        int blockY = ChunkUtil.worldCoordFromLocalCoord(section.getY(), localY);
+        int blockZ = ChunkUtil.worldCoordFromLocalCoord(section.getZ(), localZ);
+        int blockId = blockSection.get(localX, localY, localZ);
         BlockType blockType = BlockType.getAssetMap().getAsset(blockId);
         if (blockType == null || processingBenchBlock.getProcessingBench() == null) {
             return;
         }
 
-        int rotationIndex = rotationIndexAt(store, blockX, localY, blockZ, blockIndex);
+        int rotationIndex = blockSection.getRotationIndex(localX, localY, localZ);
         World world = store.getExternalData().getWorld();
         Store<EntityStore> entityStore = world.getEntityStore().getStore();
 
         float bonusDt = dt * SPEED_BOOST_PER_LEVEL * overlay.getLevel();
         if (bonusDt > 0.0f) {
             processingBenchBlock.advanceProcessing(
-                    bonusDt, entityStore, benchBlock, blockStateInfo, blockX, localY, blockZ, blockType, rotationIndex
+                    bonusDt, entityStore, benchBlock, blockStateInfo, blockX, blockY, blockZ, blockType, rotationIndex
             );
         }
     }
@@ -94,26 +96,5 @@ public class ProcessingBenchAccelerationSystem extends EntityTickingSystem<Chunk
     @Override
     public @Nullable Query<ChunkStore> getQuery() {
         return query;
-    }
-
-    /** Reads block rotation via the chunk-section entity for this block column. */
-    private static int rotationIndexAt(
-            @NonNull Store<ChunkStore> store,
-            int worldBlockX,
-            int localY,
-            int worldBlockZ,
-            int blockIndex
-    ) {
-        World world = store.getExternalData().getWorld();
-        Ref<ChunkStore> sectionRef =
-                world.getChunkStore().getChunkSectionReferenceAtBlock(worldBlockX, localY, worldBlockZ);
-        if (sectionRef == null || !sectionRef.isValid()) {
-            return 0;
-        }
-        BlockSection blockSection = store.getComponent(sectionRef, BlockSection.getComponentType());
-        if (blockSection == null) {
-            return 0;
-        }
-        return blockSection.getRotationIndex(blockIndex);
     }
 }

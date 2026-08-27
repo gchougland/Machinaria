@@ -2,19 +2,25 @@
 
 All notable changes to Machinaria are documented in this file.
 
-## [0.4.1] - Unreleased
+## [0.4.1] - 8/27/2026 (Hytale Update 6)
 
 ### Added
 
 - **HStats** — integrated anonymous server metrics via [hstats.dev](https://hstats.dev) (same pattern as Aetherhaven)
-
-### Fixed
-
-- **Robot villager emotes** — `Machinaria_Robot_Base` now defines `PonderDismissive`, `Yawn`, and `Laugh` using player emote animations so Aetherhaven leisure/shop visuals work on Rivet and other robot NPCs
+- **Rivet (Aetherhaven crossmod)** — calendar birthday (Winter 18), birthday greetings and gift reactions, speech voice, holiday gift preferences, and Wintertide gift/incoming dialogue when Aetherhaven is installed
 
 ### Changed
 
+- **Hytale Update 6** — targets `>=0.6.0-pre.0 <0.7.0` (pre-release channel); chunk/block lookups use section refs and `BlockStateInfo.getSectionRef()` instead of deprecated column accessors
+- **Rusted Expanse Shard Recipe** - Simplified the recipe as not to require very rare flora.
 - **Rusty robot oil immersion** — removed debug log spam; fluid checks are throttled and section lookups cached so idle rusty robot drops no longer probe oil every tick
+- **Rivet's shop quest (Aetherhaven)** — grants the bronze mechanics shop plot token directly instead of a blueprint learn step
+
+### Fixed
+
+- **Clockfin spawning** — shallow-oil dive motion via `Template_Machinaria_Swimming_Passive`; spawns scoped to `Env_Machinaria_RustedExpanse` instead of all Zone 1 plains
+- **Ancient Pocket Watch** — migrated interactions and bench acceleration off deprecated chunk APIs to `BlockSection` / `BlockComponentSection` / `BlockStateInfo.getSectionRef()` (Update 6)
+- **Robot villager emotes** — `Machinaria_Robot_Base` now defines `PonderDismissive`, `Yawn`, and `Laugh` using player emote animations so Aetherhaven leisure/shop visuals work on Rivet and other robot NPCs
 
 ## [0.4.0] - 7/22/2026
 

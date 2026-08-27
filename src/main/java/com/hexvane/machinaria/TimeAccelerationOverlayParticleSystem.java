@@ -1,19 +1,23 @@
 package com.hexvane.machinaria;
 
-import com.hypixel.hytale.component.*;
+import com.hypixel.hytale.component.ArchetypeChunk;
+import com.hypixel.hytale.component.CommandBuffer;
+import com.hypixel.hytale.component.ComponentType;
+import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.spatial.SpatialResource;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
 import com.hypixel.hytale.math.util.ChunkUtil;
-import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.modules.entity.EntityModule;
 import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
 import com.hypixel.hytale.server.core.universe.world.World;
-import com.hypixel.hytale.server.core.universe.world.chunk.WorldChunk;
+import com.hypixel.hytale.server.core.universe.world.chunk.section.ChunkSection;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.List;
+import org.joml.Vector3d;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
@@ -56,23 +60,25 @@ public class TimeAccelerationOverlayParticleSystem extends EntityTickingSystem<C
             return;
         }
 
-        Ref<ChunkStore> chunkRef = blockStateInfo.getChunkRef();
-        if (!chunkRef.isValid()) {
+        Ref<ChunkStore> sectionRef = blockStateInfo.getSectionRef();
+        if (!sectionRef.isValid()) {
             return;
         }
 
-        WorldChunk worldChunk = store.getComponent(chunkRef, WorldChunk.getComponentType());
-        if (worldChunk == null) {
+        ChunkSection section = store.getComponent(sectionRef, ChunkSection.getComponentType());
+        if (section == null) {
             return;
         }
 
-        int localX = ChunkUtil.xFromBlockInColumn(blockStateInfo.getIndex());
-        int localY = ChunkUtil.yFromBlockInColumn(blockStateInfo.getIndex());
-        int localZ = ChunkUtil.zFromBlockInColumn(blockStateInfo.getIndex());
-        int worldX = ChunkUtil.worldCoordFromLocalCoord(worldChunk.getX(), localX);
-        int worldZ = ChunkUtil.worldCoordFromLocalCoord(worldChunk.getZ(), localZ);
+        int blockIndex = blockStateInfo.getIndex();
+        int localX = ChunkUtil.xFromIndex(blockIndex);
+        int localY = ChunkUtil.yFromIndex(blockIndex);
+        int localZ = ChunkUtil.zFromIndex(blockIndex);
+        int worldX = ChunkUtil.worldCoordFromLocalCoord(section.getX(), localX);
+        int worldY = ChunkUtil.worldCoordFromLocalCoord(section.getY(), localY);
+        int worldZ = ChunkUtil.worldCoordFromLocalCoord(section.getZ(), localZ);
 
-        Vector3d blockCenter = new Vector3d(worldX + 0.5, localY + 0.5, worldZ + 0.5);
+        Vector3d blockCenter = new Vector3d(worldX + 0.5, worldY + 0.5, worldZ + 0.5);
 
         tickCounter++;
         if (tickCounter < PARTICLE_UPDATE_INTERVAL) {

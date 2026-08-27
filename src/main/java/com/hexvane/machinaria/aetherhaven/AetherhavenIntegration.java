@@ -9,8 +9,8 @@ import com.hexvane.machinaria.MachinariaPlugin;
 import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.World;
 import java.util.UUID;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Soft Aetherhaven hooks for oil immersion after rescue (scrap vs spawn NPC).
@@ -65,7 +65,7 @@ public final class AetherhavenIntegration {
      * Whether the player’s town has finished {@code q_mechanic_rescue}. Used so later oil immersions drop scrap
      * instead of another rescue NPC. Searches loaded worlds (portal instances do not own towns).
      */
-    public static boolean hasCompletedRescue(@Nonnull UUID playerUuid) {
+    public static boolean hasCompletedRescue(@NonNull UUID playerUuid) {
         tryEnable();
         if (!enabled) {
             return false;
@@ -79,7 +79,7 @@ public final class AetherhavenIntegration {
     }
 
     @Nullable
-    private static TownRecord findPlayerTown(@Nonnull UUID playerUuid) {
+    private static TownRecord findPlayerTown(@NonNull UUID playerUuid) {
         AetherhavenPlugin ah = AetherhavenPlugin.get();
         if (ah == null) {
             return null;
@@ -117,15 +117,15 @@ public final class AetherhavenIntegration {
 
     @Nullable
     private static TownRecord findInWorldManager(
-        @Nonnull World world,
-        @Nonnull AetherhavenPlugin ah,
-        @Nonnull UUID playerUuid
+        @NonNull World world,
+        @NonNull AetherhavenPlugin ah,
+        @NonNull UUID playerUuid
     ) {
         TownManager tm = AetherhavenWorldRegistries.getOrCreateTownManager(world, ah);
         return tm.findTownForPlayerInWorld(playerUuid);
     }
 
-    private static void logMissing(@Nonnull String message) {
+    private static void logMissing(@NonNull String message) {
         if (loggedMissing) {
             return;
         }

@@ -31,9 +31,9 @@ import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import org.joml.Vector3d;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * When a rusty robot item entity sits in Oil, either frees Rivet (first time) or turns into scrap
@@ -68,9 +68,9 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     public void tick(
         float dt,
         int index,
-        @Nonnull ArchetypeChunk<EntityStore> archetypeChunk,
-        @Nonnull Store<EntityStore> store,
-        @Nonnull CommandBuffer<EntityStore> commandBuffer
+        @NonNull ArchetypeChunk<EntityStore> archetypeChunk,
+        @NonNull Store<EntityStore> store,
+        @NonNull CommandBuffer<EntityStore> commandBuffer
     ) {
         ItemComponent itemComponent = archetypeChunk.getComponent(index, types.itemType);
         TransformComponent transform = archetypeChunk.getComponent(index, types.transformType);
@@ -124,13 +124,13 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     }
 
     /** Spreads work across ticks using block position so idle drops do not probe fluids every tick. */
-    private static boolean shouldSkipOilProbeThisTick(@Nonnull World world, @Nonnull Vector3d position) {
+    private static boolean shouldSkipOilProbeThisTick(@NonNull World world, @NonNull Vector3d position) {
         long tick = world.getTick();
         int phase = Math.floorMod(MathUtil.floor(position.x) ^ MathUtil.floor(position.z), OIL_PROBE_INTERVAL_TICKS);
         return Math.floorMod(tick, OIL_PROBE_INTERVAL_TICKS) != phase;
     }
 
-    private boolean isInOil(@Nonnull World world, @Nonnull Vector3d position) {
+    private boolean isInOil(@NonNull World world, @NonNull Vector3d position) {
         resolveFluidIndexes();
         FluidProbe probe = new FluidProbe(world);
         int bx = MathUtil.floor(position.x);
@@ -198,7 +198,7 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     }
 
     @Nullable
-    private static NearestPlayer findNearestPlayer(@Nonnull Store<EntityStore> store, @Nonnull Vector3d position) {
+    private static NearestPlayer findNearestPlayer(@NonNull Store<EntityStore> store, @NonNull Vector3d position) {
         SpatialResource<Ref<EntityStore>, EntityStore> playerSpatial =
             store.getResource(EntityModule.get().getPlayerSpatialResourceType());
         List<Ref<EntityStore>> playerRefs = SpatialResource.getThreadLocalReferenceList();
@@ -226,7 +226,7 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         return best;
     }
 
-    private static boolean hasNearbyRescueNpc(@Nonnull Store<EntityStore> store, @Nonnull Vector3d position) {
+    private static boolean hasNearbyRescueNpc(@NonNull Store<EntityStore> store, @NonNull Vector3d position) {
         AtomicBoolean found = new AtomicBoolean(false);
         store.forEachEntityParallel(NPCEntity.getComponentType(), (i, chunk, buffer) -> {
             if (found.get()) {
@@ -250,7 +250,7 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         return found.get();
     }
 
-    private static void spawnScrap(@Nonnull World world, @Nonnull Vector3d position, int quantity) {
+    private static void spawnScrap(@NonNull World world, @NonNull Vector3d position, int quantity) {
         Store<EntityStore> store = world.getEntityStore().getStore();
         Holder<EntityStore> holder = ItemComponent.generateItemDrop(
             store,
@@ -268,9 +268,9 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
     }
 
     private static void spawnRescueNpc(
-        @Nonnull World world,
-        @Nonnull Vector3d position,
-        @Nonnull Rotation3f rotation
+        @NonNull World world,
+        @NonNull Vector3d position,
+        @NonNull Rotation3f rotation
     ) {
         Store<EntityStore> store = world.getEntityStore().getStore();
         if (hasNearbyRescueNpc(store, position)) {
@@ -312,8 +312,8 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         LOGGER.atInfo().log("Spawned Machinaria_Mechanic_Rescue after oil immersion");
     }
 
-    @Nonnull
-    private static Rotation3f yawToward(@Nonnull Vector3d from, @Nonnull Vector3d to) {
+    @NonNull
+    private static Rotation3f yawToward(@NonNull Vector3d from, @NonNull Vector3d to) {
         double dx = to.x - from.x;
         double dz = to.z - from.z;
         if (dx * dx + dz * dz < 1.0e-8) {
@@ -326,13 +326,13 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         return new Rotation3f(0f, yaw, 0f);
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public Query<EntityStore> getQuery() {
         return query;
     }
 
-    private record NearestPlayer(@Nonnull UUID playerUuid, @Nonnull Vector3d position) {}
+    private record NearestPlayer(@NonNull UUID playerUuid, @NonNull Vector3d position) {}
 
     /**
      * Reuses chunk-section fluid lookups while scanning a column and neighbors (same approach as fluid
@@ -348,7 +348,7 @@ public final class RustyRobotOilImmersionSystem extends EntityTickingSystem<Enti
         private int sectionY = Integer.MIN_VALUE;
         private int sectionZ = Integer.MIN_VALUE;
 
-        private FluidProbe(@Nonnull World world) {
+        private FluidProbe(@NonNull World world) {
             this.world = world;
         }
 

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "q_mechanic_shop",
   "category": "town",
-  "grantPlotBlueprintConstructionId": "plot_mechanics_shop",
+  "grantPlotTokenConstructionId": "plot_bronze_mechanics_shop",
   "title": "Rivet's Mechanics Shop",
   "description": "Rivet wants a shop where the town can buy metal and gear from the Rusted Expanse.",
   "prerequisites": {
@@ -11,23 +11,16 @@
   },
   "objectives": [
     {
-      "id": "blueprint",
-      "kind": "plot_blueprint_received",
-      "text": "Take the shop blueprint from Rivet.",
-      "textLangKey": "aetherhaven_story_quests.aetherhaven.storyQuests.q_mechanic_shop.objective.blueprint"
-    },
-    {
-      "id": "learn",
-      "kind": "plot_blueprint_learned",
-      "constructionId": "plot_mechanics_shop",
-      "text": "Use the blueprint to learn the mechanics shop at your plot crafting bench.",
-      "textLangKey": "aetherhaven_story_quests.aetherhaven.storyQuests.q_mechanic_shop.objective.learn"
+      "id": "token",
+      "kind": "plot_token_received",
+      "text": "Take the bronze mechanics shop plot token from Rivet.",
+      "textLangKey": "aetherhaven_story_quests.aetherhaven.storyQuests.q_mechanic_shop.objective.token"
     },
     {
       "id": "build",
       "kind": "construction_built",
-      "constructionId": "plot_mechanics_shop",
-      "text": "Craft a shop plot token and build the mechanics shop prefab.",
+      "constructionId": "plot_bronze_mechanics_shop",
+      "text": "Stake and build the bronze mechanics shop prefab.",
       "textLangKey": "aetherhaven_story_quests.aetherhaven.storyQuests.q_mechanic_shop.objective.build"
     },
     {

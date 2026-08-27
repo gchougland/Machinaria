@@ -11,16 +11,14 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jspecify.annotations.NonNull;
 
-import javax.annotation.Nonnull;
-
 public class PocketwatchAccumulationSystem extends EntityTickingSystem<EntityStore> {
-    @Nonnull
+    @NonNull
     private final Query<EntityStore> query;
-    @Nonnull
+    @NonNull
     private final ComponentType<EntityStore, Player> componentType;
-    @Nonnull
+    @NonNull
     private final ComponentType<EntityStore, PlayerRef> refComponentType = PlayerRef.getComponentType();
-    @Nonnull
+    @NonNull
     private final ComponentType<EntityStore, PocketwatchStoredTimeComponent> pocketwatchTimeType;
 
     private static final String POCKETWATCH_ITEM_ID = "Ancient_Pocket_Watch";
@@ -68,7 +66,7 @@ public class PocketwatchAccumulationSystem extends EntityTickingSystem<EntitySto
         pocketwatchTime.setStoredTime(next);
     }
 
-    @Nonnull
+    @NonNull
     @Override
     public Query<EntityStore> getQuery() {
         return this.query;
