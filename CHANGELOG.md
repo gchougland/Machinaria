@@ -6,6 +6,7 @@ All notable changes to Machinaria are documented in this file.
 
 ### Added
 
+- **Stormwind Mechanic's Shop** — Stormwind-style variant of the Mechanic's Shop for towns using the Stormwind building set (requires Aetherhaven).
 - **HStats** — integrated anonymous server metrics via [hstats.dev](https://hstats.dev) (same pattern as Aetherhaven)
 - **Rivet (Aetherhaven crossmod)** — calendar birthday (Winter 18), birthday greetings and gift reactions, speech voice, holiday gift preferences, and Wintertide gift/incoming dialogue when Aetherhaven is installed
 

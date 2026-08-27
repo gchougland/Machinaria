@@ -1,0 +1,109 @@
+{
+  "id": "plot_stormwind_mechanics_shop",
+  "displayName": "Stormwind Mechanic\u0027s Shop",
+  "description": "Inspired by WOW",
+  "prefabPath": "Stormwind/plot_stormwind_mechanics_shop.prefab.json",
+  "plotTokenItemId": "Aetherhaven_Plot_Token",
+  "plotAnchorOffset": [
+    0,
+    1,
+    0
+  ],
+  "rotationYaw": "None",
+  "selfBuildGameDays": 1.0,
+  "treasuryGoldCoinCost": 100,
+  "maxHomeResidents": 1,
+  "materials": [
+    {
+      "resourceTypeId": "Wood_All",
+      "count": 500
+    },
+    {
+      "resourceTypeId": "Rock",
+      "count": 100
+    }
+  ],
+  "pois": [
+    {
+      "localX": 7,
+      "localY": 1,
+      "localZ": -8,
+      "tags": [
+        "WORK",
+        "SHOP",
+        "workActivity:craft"
+      ],
+      "capacity": 1,
+      "blockTypeId": "Wood_Hardwood_Planks",
+      "interactionKind": "WORK_SURFACE",
+      "interactionTargetLocalX": 7,
+      "interactionTargetLocalY": 1,
+      "interactionTargetLocalZ": -9,
+      "interactionTargetYawDegrees": -175.61914
+    },
+    {
+      "localX": 5,
+      "localY": 1,
+      "localZ": -6,
+      "tags": [
+        "TOURIST_VISIT"
+      ],
+      "capacity": 1,
+      "blockTypeId": "Wood_Hardwood_Planks",
+      "interactionKind": "SIT",
+      "interactionTargetLocalX": 4,
+      "interactionTargetLocalY": 1,
+      "interactionTargetLocalZ": -6,
+      "interactionTargetYawDegrees": -47.270508
+    },
+    {
+      "localX": 7,
+      "localY": 1,
+      "localZ": -6,
+      "tags": [
+        "TOURIST_VISIT"
+      ],
+      "capacity": 1,
+      "blockTypeId": "Wood_Hardwood_Planks",
+      "interactionKind": "SIT",
+      "interactionTargetLocalX": 7,
+      "interactionTargetLocalY": 1,
+      "interactionTargetLocalZ": -5,
+      "interactionTargetYawDegrees": 9.405273
+    },
+    {
+      "localX": 6,
+      "localY": 6,
+      "localZ": -4,
+      "tags": [
+        "SLEEP",
+        "ENERGY"
+      ],
+      "capacity": 1,
+      "blockTypeId": "Furniture_Village_Bed",
+      "interactionKind": "SLEEP",
+      "interactionTargetLocalX": 6,
+      "interactionTargetLocalY": 6,
+      "interactionTargetLocalZ": -5,
+      "interactionTargetYawDegrees": 151.56055
+    }
+  ],
+  "managementBlockLocalPos": [
+    6,
+    3,
+    -9
+  ],
+  "countsAsConstructionId": [
+    "plot_mechanics_shop",
+    "plot_house"
+  ],
+  "styleId": "stormwind",
+  "tags": [
+    "work",
+    "shop",
+    "mechanic",
+    "house",
+    "home",
+    "rest"
+  ]
+}
