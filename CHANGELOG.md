@@ -2,6 +2,12 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [0.4.2] - 9/21/2026
+
+### Added
+
+- **Robot Villager Voice** Added a unique robot voice to the robot villagers for Aetherhaven.
+
 ## [0.4.1] - 8/27/2026 (Hytale Update 6)
 
 ### Added
