@@ -2,6 +2,17 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [0.5.0] - 10/12/2026 (Hytale Update 7)
+
+### Changed
+
+- **Hytale Update 7** — Machinaria now runs on Hytale Update 7 (0.7.0).
+- **Rusted Expanse** — The fragment now lasts 15 minutes.
+
+### Fixed
+
+- **Standalone Play** — Machinaria loads again when Aetherhaven is not installed.
+
 ## [0.4.2] - 9/21/2026
 
 ### Added

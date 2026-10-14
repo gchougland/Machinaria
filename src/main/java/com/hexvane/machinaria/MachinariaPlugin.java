@@ -1,6 +1,7 @@
 package com.hexvane.machinaria;
 
 import com.hexvane.machinaria.aetherhaven.AetherhavenIntegration;
+import com.hexvane.machinaria.aetherhaven.AetherhavenItemAnimations;
 import com.hexvane.machinaria.aetherhaven.RustyRobotOilImmersionSystem;
 import com.hexvane.machinaria.generated.HstatsBuildMetadata;
 import com.hypixel.hytale.component.ComponentType;
@@ -65,6 +66,7 @@ public class MachinariaPlugin extends JavaPlugin {
         this.getChunkStoreRegistry().registerSystem(benchAccelerationSystem);
         this.getEntityStoreRegistry().registerSystem(new RustyRobotOilImmersionSystem());
         AetherhavenIntegration.setup();
+        AetherhavenItemAnimations.register(this);
     }
 
     @Override
