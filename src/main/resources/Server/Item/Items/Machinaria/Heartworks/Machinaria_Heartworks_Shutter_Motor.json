@@ -1,0 +1,79 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Machinaria_Heartworks_Shutter_Motor.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Shutter_Motor.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Cube",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "VariantRotation": "NESW",
+    "Textures": [
+      {
+        "South": "BlockTextures/Machinaria/Heartworks/Shutter_Motor_Front.png",
+        "North": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+        "East": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+        "West": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+        "UpDown": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#535a62",
+    "ParticleColor": "#4a505a",
+    "Light": {
+      "Color": "#066"
+    },
+    "InteractionHint": "server.interactionHints.machinaria.repair",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Repaired": {
+          "Textures": [
+            {
+              "South": "BlockTextures/Machinaria/Heartworks/Shutter_Motor_Front_Repaired.png",
+              "North": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "East": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "West": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "UpDown": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a60"
+          },
+          "InteractionHint": null,
+          "Interactions": {
+            "Use": null
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$Comment": "Hit by the Steam Charge: 55 Crush and a launch. Analogue: Goblin_Feastmaster_Charge_Damage (Crush 70).",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Crush": 55
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Force",
+      "VelocityConfig": {
+        "AirResistance": 0.97,
+        "AirResistanceMax": 0.96,
+        "GroundResistance": 0.94,
+        "GroundResistanceMax": 0.3,
+        "Threshold": 3,
+        "Style": "Exp"
+      },
+      "Direction": {
+        "X": 0,
+        "Y": 12,
+        "Z": -2
+      },
+      "Force": 14,
+      "VelocityType": "Set"
+    },
+    "CameraEffect": "Impact_Strong",
+    "WorldSoundEventId": "SFX_Unarmed_Impact",
+    "LocalSoundEventId": "SFX_Unarmed_Impact",
+    "WorldParticles": [
+      {
+        "SystemId": "Impact_Sword_Basic"
+      }
+    ]
+  }
+}

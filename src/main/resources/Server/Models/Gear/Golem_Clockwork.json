@@ -1,13 +1,13 @@
 {
   "Parent": "Player",
-  "Model": "NPC/Gear/Clockwork_Golem.blockymodel",
-  "Texture": "NPC/Gear/Clockwork_Golem.png",
-  "EyeHeight": 2,
+  "Model": "NPC/Gear/Clockwork_Golem/Models/Model.blockymodel",
+  "Texture": "NPC/Gear/Clockwork_Golem/Models/Texture.png",
+  "EyeHeight": 1.85,
   "CrouchOffset": -0.35,
   "HitBox": {
     "Max": {
       "X": 0.85,
-      "Y": 2.8,
+      "Y": 2.5,
       "Z": 0.85
     },
     "Min": {
@@ -17,43 +17,82 @@
     }
   },
   "DefaultAttachments": [],
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 25,
+        "Min": -25
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 40,
+        "Min": -40
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Goblin_Decorative_Steam",
+      "TargetNodeName": "Cap-L",
+      "PositionOffset": {
+        "Y": 0.1
+      }
+    },
+    {
+      "SystemId": "Goblin_Decorative_Steam",
+      "TargetNodeName": "Cap-R",
+      "PositionOffset": {
+        "Y": 0.1
+      }
+    }
+  ],
+  "Light": {
+    "Color": "#a52"
+  },
   "AnimationSets": {
     "Idle": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Idle.blockyanim",
-          "Speed": 0.5
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim"
         }
       ]
     },
     "Walk": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Walk.blockyanim",
-          "BlendingDuration": 0.2,
-          "Speed": 1
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2
         }
       ]
     },
     "WalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Walk_Backward.blockyanim"
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk_Backward.blockyanim",
+          "BlendingDuration": 0.2
         }
       ]
     },
     "Run": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Run.blockyanim",
-          "Speed": 1
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Run.blockyanim",
+          "BlendingDuration": 0.2
         }
       ]
     },
     "Crouch": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Crouch.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim",
+          "Speed": 0.6,
           "BlendingDuration": 0.1
         }
       ]
@@ -61,7 +100,8 @@
     "CrouchWalk": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Crouch_Walk.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim",
+          "Speed": 0.7,
           "BlendingDuration": 0.1
         }
       ]
@@ -69,89 +109,73 @@
     "CrouchWalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Crouch_Walk_Backward.blockyanim",
-          "BlendingDuration": 0.1,
-          "Looping": true
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk_Backward.blockyanim",
+          "Speed": 0.7,
+          "BlendingDuration": 0.1
         }
       ]
     },
     "Jump": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Jump.blockyanim",
-          "BlendingDuration": 0.1,
-          "Looping": false,
-          "Speed": 0.8
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
         }
       ]
     },
     "JumpWalk": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Jump.blockyanim",
-          "BlendingDuration": 0.1,
-          "Looping": false,
-          "Speed": 0.8
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
         }
       ]
     },
     "JumpRun": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Jump_Far.blockyanim",
-          "BlendingDuration": 0.1,
-          "Looping": false,
-          "Speed": 0.8
-        },
-        {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Jump_Far2.blockyanim",
-          "BlendingDuration": 0.1,
-          "Looping": false,
-          "Speed": 0.8
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
         }
       ]
     },
     "Fall": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Fall.blockyanim",
-          "BlendingDuration": 0.4
-        },
-        {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Fall2.blockyanim",
-          "BlendingDuration": 0.4
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
         }
       ]
     },
     "FallFar": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Fall_Far.blockyanim",
-          "BlendingDuration": 0.4
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
         }
       ]
     },
     "Alerted": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Alerted.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Alerted.blockyanim",
           "Looping": false,
-          "SoundEventId": "SFX_Golem_Earth_Alerted"
+          "SoundEventId": "SFX_Golem_Firesteel_Alerted_01"
         }
       ]
     },
     "FluidIdle": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Idle.blockyanim",
-          "Speed": 0.3
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim",
+          "Speed": 0.5
         }
       ]
     },
     "FluidWalk": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Walk.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim",
           "Speed": 0.6
         }
       ]
@@ -159,7 +183,7 @@
     "FluidWalkBackward": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Walk_Backward.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk_Backward.blockyanim",
           "Speed": 0.6
         }
       ]
@@ -167,7 +191,7 @@
     "FluidRun": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Run.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Run.blockyanim",
           "Speed": 0.6
         }
       ]
@@ -175,7 +199,7 @@
     "ClimbIdle": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Climb/Climb_Idle.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Idle.blockyanim",
           "Speed": 0.5
         }
       ]
@@ -183,41 +207,35 @@
     "ClimbUp": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Climb/Climb_Up.blockyanim"
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim"
         }
       ]
     },
     "ClimbDown": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Climb/Climb_Down.blockyanim"
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk_Backward.blockyanim"
         }
       ]
     },
     "ClimbLeft": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Climb/Climb_Left.blockyanim"
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim"
         }
       ]
     },
     "ClimbRight": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Climb/Climb_Right.blockyanim"
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Walk.blockyanim"
         }
       ]
     },
     "Hurt": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Damage/Hurt.blockyanim",
-          "BlendingDuration": 0.1,
-          "Looping": false,
-          "SoundEventId": "SFX_Golem_Earth_Hurt"
-        },
-        {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Damage/Hurt2.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Hurt.blockyanim",
           "BlendingDuration": 0.1,
           "Looping": false,
           "SoundEventId": "SFX_Golem_Earth_Hurt"
@@ -227,43 +245,44 @@
     "Death": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Damage/Death.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Death.blockyanim",
           "Looping": false,
-          "SoundEventId": "SFX_Golem_Earth_Death"
+          "SoundEventId": "SFX_Golem_Firesteel_Death"
         }
       ]
     },
     "Laydown": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Laydown.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Laydown.blockyanim",
           "Looping": false,
-          "SoundEventId": "SFX_Golem_Earth_Laydown"
+          "SoundEventId": "SFX_Golem_Firesteel_Laydown"
         }
       ]
     },
     "Sleep": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Sleep.blockyanim"
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Sleep.blockyanim"
         }
       ]
     },
     "Wake": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Wake.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Wake.blockyanim",
           "Looping": false,
-          "SoundEventId": "SFX_Golem_Earth_Wake"
+          "SoundEventId": "SFX_Golem_Clockwork_Wake"
         }
       ]
     },
     "Spawn": {
       "Animations": [
         {
-          "Animation": "NPC/Elemental/Golem_Crystal/Animations/Default/Spawn.blockyanim",
+          "Animation": "NPC/Gear/Clockwork_Golem/Animations/Wake.blockyanim",
           "BlendingDuration": 0,
-          "Looping": false
+          "Looping": false,
+          "SoundEventId": "SFX_Golem_Clockwork_Wake"
         }
       ]
     }

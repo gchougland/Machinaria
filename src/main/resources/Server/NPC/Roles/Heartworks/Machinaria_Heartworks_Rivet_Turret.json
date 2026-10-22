@@ -1,0 +1,22 @@
+{
+  "$Comment": "Rivet Turret: the Heartworks' emplacement, a riveted dome on a pedestal with a rotary gun and an amber lens (DESIGN.md 6.1, 6.2). Unkillable (round 2: Invulnerable; 140 HP only matters on _Breakable), static, turns slowly (0.15), a dead zone within 2. Rivet Burst: 1 s aim, three rivets 0.15 s apart, 10 each, range 24, every 2.5 to 3.5 s. Its room's lever powers it down with the beacon Machinaria_Heartworks_Turret_Off (and up with _On); see the template. Round 6 (Gibson: 'make sure the turrets have quite a large range'): it sees and fires 48 blocks (was 24) and keeps a target to 56, so it covers the rooms it stands in end to end (W2's boiler hall is two cells, about 50 long). Line of sight is still required to see and to fire. The rivet (launch 34, gravity 4) is aimed ballistically by the Attack action (its AimingReference), and its flat reach is far past 48.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Rivet_Turret_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Rivet_Turret",
+    "DropList": "Machinaria_Heartworks_Rivet_Turret_Drops",
+    "MaxHealth": 140,
+    "ViewRange": 48,
+    "AttackDistance": 48,
+    "AlertedRange": 56,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Rivet_Turret.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

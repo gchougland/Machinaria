@@ -1,0 +1,196 @@
+{
+  "$Comment": "Hammer Slam, hard mode: the standard slam (1.3 s tell, circle 5, 60 Crush), then the aftershock: a radius 8 ring lights at the impact and 0.9 s later a low shock 0.75 high runs through the band from 5 to 8 (40 Crush). Jump it, or stay inside 5 or beyond 8. 0.7 s recovery after.",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.3,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+            "ItemAnimationId": "SlamCharge",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Mark",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "DetachedFromModel": true,
+                "Scale": 5.05,
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Key",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Selector",
+            "RunTime": 0.1,
+            "Selector": {
+              "Id": "AOECircle",
+              "Range": 5
+            },
+            "HitEntityRules": [
+              {
+                "Matchers": [
+                  {
+                    "Type": "Player"
+                  }
+                ],
+                "Next": {
+                  "Interactions": [
+                    {
+                      "Type": "Replace",
+                      "Var": "Slam_Damage",
+                      "DefaultValue": {
+                        "Interactions": [
+                          "Machinaria_Heartworks_Heartwinder_Slam_Damage"
+                        ]
+                      },
+                      "DefaultOk": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "Effects": {
+              "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+              "ItemAnimationId": "Slam",
+              "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Slam",
+              "Particles": [
+                {
+                  "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Impact",
+                  "TargetEntityPart": "Entity",
+                  "TargetNodeName": "Origin",
+                  "DetachedFromModel": true,
+                  "Scale": 5,
+                  "PositionOffset": {
+                    "X": 0,
+                    "Y": 0.05,
+                    "Z": 0
+                  }
+                }
+              ],
+              "CameraEffect": "Impact_Strong"
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.9,
+              "Effects": {
+                "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast",
+                "Particles": [
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Mark",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Origin",
+                    "DetachedFromModel": true,
+                    "Scale": 8.05,
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.05,
+                      "Z": 0
+                    }
+                  },
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Chest",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0,
+                      "Z": 0
+                    }
+                  }
+                ]
+              },
+              "Next": {
+                "Type": "Selector",
+                "RunTime": 0.2,
+                "Selector": {
+                  "Id": "Donut",
+                  "MinRadius": 6.5,
+                  "MaxRadius": 6.5,
+                  "Width": 3,
+                  "Height": 0.75,
+                  "Offset": {
+                    "Y": -0.5
+                  }
+                },
+                "HitEntityRules": [
+                  {
+                    "Matchers": [
+                      {
+                        "Type": "Player"
+                      }
+                    ],
+                    "Next": {
+                      "Interactions": [
+                        {
+                          "Type": "Replace",
+                          "Var": "Aftershock_Damage",
+                          "DefaultValue": {
+                            "Interactions": [
+                              "Machinaria_Heartworks_Heartwinder_Aftershock_Damage"
+                            ]
+                          },
+                          "DefaultOk": true
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "Effects": {
+                  "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Slam",
+                  "Particles": [
+                    {
+                      "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Impact",
+                      "TargetEntityPart": "Entity",
+                      "TargetNodeName": "Origin",
+                      "DetachedFromModel": true,
+                      "Scale": 8,
+                      "PositionOffset": {
+                        "X": 0,
+                        "Y": 0.05,
+                        "Z": 0
+                      }
+                    }
+                  ]
+                },
+                "Next": {
+                  "Type": "Simple",
+                  "RunTime": 0.7
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 3.2,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

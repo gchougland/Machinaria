@@ -1,0 +1,75 @@
+# boss (wave B): the Heartwinder, its arena and its rooms (B1 Antechamber, B2 the Winding Chamber, B3 the Heart Vault).
+# Keys are machinaria_hw_boss.<key>. Plain, short text; no dashes used as pauses.
+npcRoles.Machinaria_Heartworks_Heartwinder.name=The Heartwinder
+npcRoles.Machinaria_Heartworks_Heartwinder_Pendulum.name=Great Pendulum
+
+titles.b1=Antechamber
+titles.b1sub=The heart is close. Rest while you can.
+titles.b2=The Winding Chamber
+titles.b2sub=Something in here still keeps time.
+titles.b3=The Heart Vault
+titles.b3sub=Every heart it ever wound.
+titles.wake=The Heartwinder
+titles.wakeSub=The overseer wakes to wind again.
+titles.breach=The casing bursts
+titles.breachSub=The floor gives way. Mind the pendulums.
+titles.overwind=Overwind
+titles.overwindSub=Turn each of the four brake valves four times before midnight!
+titles.seized=It seizes
+titles.seizedSub=Strike the heart now.
+titles.midnight=Midnight
+titles.midnightSub=The brakes slipped. It winds again.
+titles.grit=Grit in the gears!
+titles.gritSub=It jams and takes 300 damage. Strike now!
+titles.pylons=The pylons hiss
+titles.pylonsSub=Turn a pylon four times to prime it, then lure its charge into it.
+titles.win=The Heartwinder runs down
+titles.winSub=The tick stops. The vault is open.
+
+msg.oilers=Oilers mend the Heartwinder. Break the clean ones. Let the sparking Grit Oilers reach it.
+msg.oiled=The Heartwinder is oiled and mends.
+msg.pylon.primed=The pylon is primed. Lure the charge into it.
+msg.pylon.alreadyPrimed=This pylon is already primed.
+msg.pylon.rearming=This pylon is burst. It re-arms soon.
+msg.pylon.braked=The brake is on.
+msg.pylon.brakeOn=This brake is already on.
+msg.pylon.turn1=Keep turning: 1 of 4.
+msg.pylon.turn2=Keep turning: 2 of 4.
+msg.pylon.turn3=Keep turning: 3 of 4.
+
+items.Machinaria_Heartworks_Heartwinder_Plaque_Antechamber.name=Notice at the Winding Chamber
+items.Machinaria_Heartworks_Heartwinder_Plaque_Antechamber.description=WINDING CHAMBER. The overseer winds the hearts at the turn of every hour. Do not enter while it winds. In case of overwind, turn all four brake valves at once. Do not let it reach midnight.
+items.Machinaria_Heartworks_Heartwinder_Plaque_Vault.name=Winding Log, Final Entry
+items.Machinaria_Heartworks_Heartwinder_Plaque_Vault.description=Hearts wound: all of them. Masters returned: none. The spring is tired and so am I. If you are reading this, the winding is finished. Take the hearts up into the light. Let them rest.
+items.Machinaria_Heartworks_Heartwinder_Tick.name=Winding Chamber Tick
+items.Machinaria_Heartworks_Heartwinder_Pylon.name=Winding Chamber Pylon
+items.Machinaria_Heartworks_Heartwinder_Pylon.description=A steam pylon with a gauge of four lamps. Each turn lights one more.
+
+# Hard mode (notes/boss.md "Hard mode")
+npcRoles.Machinaria_Heartworks_Heartwinder_Hard.name=The Overwound Heartwinder
+titles.wakeHard=The Overwound Heartwinder
+titles.wakeHardSub=Hard mode. It winds faster and hits harder.
+titles.hardOn=Hard mode
+titles.hardOnSub=The Heartwinder will be overwound. Better spoils.
+titles.hardOff=Standard mode
+titles.hardOffSub=The Heartwinder will wind as usual.
+titles.overwound=It overwinds!
+titles.overwoundSub=Its key spins faster. Its charges come twice.
+titles.overwindHardSub=Turn the brakes in order: one red ring first, four last. Twice each!
+titles.winHard=Hard mode cleared
+titles.winHardSub=The Golden Mainspring is yours.
+msg.selector.hint=The clutch by the door sets the fight. Lever back for standard, forward for hard mode.
+msg.selector.locked=The clutch is locked while the Heartwinder winds.
+msg.pylon.once=Once more.
+msg.pylon.slip=Wrong valve! Every brake slips. Start again from one red ring.
+hints.selector.hard=Press [{key}] to choose Hard mode
+hints.selector.standard=Press [{key}] to choose Standard mode
+hints.selector.locked=Press [{key}] to check the clutch
+hints.pylonOrder1=Press [{key}] to turn this brake first
+hints.pylonOrder2=Press [{key}] to turn this brake second
+hints.pylonOrder3=Press [{key}] to turn this brake third
+hints.pylonOrder4=Press [{key}] to turn this brake last
+items.Machinaria_Heartworks_Heartwinder_Selector.name=Governor Clutch
+items.Machinaria_Heartworks_Heartwinder_Selector.description=Sets how hard the Heartwinder winds. Back for standard, forward for hard mode.
+items.Machinaria_Heartworks_Heartwinder_Trophy.name=Golden Mainspring
+items.Machinaria_Heartworks_Heartwinder_Trophy.description=Taken from the Heartwinder in hard mode. A trophy to place.

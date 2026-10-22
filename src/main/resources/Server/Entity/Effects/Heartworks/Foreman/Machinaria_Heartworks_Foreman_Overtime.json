@@ -1,0 +1,20 @@
+{
+  "$Comment": "Overtime, the Foreman's phase 2 (DESIGN.md 6.2): from 50% health to the end. His stack blasts steam and sparks and he moves x1.15; the evaluator reads it (SelfHasEffect) for the Steam Dash, and the role for its faster action set.",
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 1.15,
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Foreman_Stack_Blast",
+        "TargetEntityPart": "Self",
+        "TargetNodeName": "Hat-Lip-A",
+        "PositionOffset": {
+          "Y": 0.05
+        }
+      }
+    ]
+  },
+  "Infinite": true,
+  "RemovalBehavior": "Infinite",
+  "OverlapBehavior": "Overwrite",
+  "Debuff": false
+}

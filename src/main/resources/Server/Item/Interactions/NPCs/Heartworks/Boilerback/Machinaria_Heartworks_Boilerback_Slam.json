@@ -1,0 +1,116 @@
+{
+  "$Comment": "Boiler Slam (DESIGN.md 6.2): within 4, every 14 s. 1.4 s wind-up standing still: the hammer goes up, steam hisses from the seams, the whistle rises, a warning ring of radius 4.5 glows on the floor (its orange flash lands just before the hit). Hit: circle 4.5, 45 Crush, knock-up 8. Then 1.5 s venting with the hammer down: the punish window. Analogue: Goblin_Feastmaster_Slam (1.167 s, r5, Crush 65 in the Glutton).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.4,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Boilerback",
+            "ItemAnimationId": "SlamCharge",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boilerback_Slam_Charge",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Boilerback_Slam_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "DetachedFromModel": true,
+                "Scale": 4.55
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Boilerback_Steam_Seams",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Body",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.7,
+                  "Z": 0
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Boilerback_Whistle_Plume",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Whistle",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.2,
+                  "Z": 0
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Selector",
+            "RunTime": 0.1,
+            "Effects": {
+              "ItemPlayerAnimationsId": "Machinaria_Heartworks_Boilerback",
+              "ItemAnimationId": "Slam",
+              "WorldSoundEventId": "SFX_Machinaria_HW_Boilerback_Slam",
+              "Particles": [
+                {
+                  "SystemId": "Machinaria_Heartworks_Boilerback_Slam_Ring",
+                  "TargetEntityPart": "Entity",
+                  "TargetNodeName": "Origin",
+                  "DetachedFromModel": true
+                }
+              ]
+            },
+            "Selector": {
+              "Id": "AOECircle",
+              "Range": 4.5
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Slam_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Boilerback_Slam_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "$Comment": "Venting: the punish window.",
+              "RunTime": 1.5,
+              "Effects": {
+                "WorldSoundEventId": "SFX_Machinaria_HW_Boilerback_Vent",
+                "Particles": [
+                  {
+                    "SystemId": "Machinaria_Heartworks_Boilerback_Steam_Seams",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Body",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.7,
+                      "Z": 0
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 3,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "Class": "EncounterManager",
+  "Type": "Generic",
+  "$Comment": "The Foreman encounter: the boss bar. Place it in the room (Prefab.encounter(id, [x, y, z]) in the room's build script) within 30 of the marker. It locks onto the elite (vanilla Encounter_Skeleton_Elite's capture) and shows its health bar to every player within 18 of the encounter (vanilla Example_Boss's EncounterMembers) while it lives. The arena seal is the room's.",
+  "Instructions": [
+    {
+      "$Comment": "Capture the elite so the bar follows it through its phases.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Mob",
+        "Range": 30,
+        "LockOnTarget": true,
+        "LockedTargetSlot": "EncounterTarget",
+        "Rebind": true,
+        "Filters": [
+          {
+            "Type": "NPCGroup",
+            "IncludeGroups": [
+              "Machinaria_Heartworks_Foreman_Encounter_Target"
+            ]
+          }
+        ]
+      },
+      "Actions": [
+        {
+          "Type": "Nothing"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "Player",
+        "Range": 18,
+        "Collector": {
+          "Type": "EncounterMembers"
+        }
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Target",
+            "Range": 100,
+            "TargetSlot": "EncounterTarget"
+          },
+          "Actions": [
+            {
+              "Type": "SetEncounterBossBar",
+              "Name": "machinaria_hw_heavy.npcRoles.Machinaria_Heartworks_Foreman.name"
+            }
+          ]
+        },
+        {
+          "Actions": [
+            {
+              "Type": "ClearEncounterBossBar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Actions": [
+        {
+          "Type": "Nothing"
+        }
+      ]
+    }
+  ]
+}

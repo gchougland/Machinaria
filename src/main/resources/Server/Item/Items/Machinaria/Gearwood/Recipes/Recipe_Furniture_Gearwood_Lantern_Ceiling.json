@@ -1,0 +1,66 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.RecipeItem.name",
+    "NameArguments": {
+      "itemName": "machinaria_gearwood.items.Furniture_Gearwood_Lantern_Ceiling.name"
+    },
+    "Description": "machinaria_gearwood.items.Recipe_Furniture_Gearwood_Lantern_Ceiling.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Recipe_Furniture_Gearwood_Lantern_Ceiling.png",
+  "Quality": "Rare",
+  "Categories": [
+    "Items.Recipes",
+    "Machinaria.Content"
+  ],
+  "PlayerAnimationsId": "Item",
+  "Model": "Items/Consumables/Recipes/Recipe.blockymodel",
+  "Texture": "Items/Consumables/Recipes/Recipe_Texture.png",
+  "IconProperties": {
+    "Scale": 0.76,
+    "Rotation": [
+      135,
+      135,
+      0
+    ],
+    "Translation": [
+      -1,
+      5
+    ]
+  },
+  "Consumable": true,
+  "Interactions": {
+    "Primary": {
+      "Interactions": [
+        {
+          "ItemId": "Furniture_Gearwood_Lantern_Ceiling",
+          "Type": "LearnRecipe",
+          "Next": {
+            "Type": "ModifyInventory",
+            "AdjustHeldItemQuantity": -1
+          }
+        }
+      ]
+    },
+    "Secondary": {
+      "Interactions": [
+        {
+          "ItemId": "Furniture_Gearwood_Lantern_Ceiling",
+          "Type": "LearnRecipe",
+          "Next": {
+            "Type": "ModifyInventory",
+            "AdjustHeldItemQuantity": -1
+          }
+        }
+      ]
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Recipe"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "MaxStack": 10
+}

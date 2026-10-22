@@ -1,0 +1,70 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Press_Frame.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Press_Frame.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Press_Frame.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Press_Frame.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Press_Frame.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#4a5260",
+    "ParticleColor": "#4a5260",
+    "State": {
+      "Definitions": {
+        "Warn": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Press_Frame_Warn.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#f31"
+          },
+          "Particles": [
+            {
+              "SystemId": "Goblin_Decorative_Steam",
+              "PositionOffset": {
+                "X": 1.2,
+                "Y": 1.6,
+                "Z": -0.25
+              },
+              "Scale": 0.5
+            }
+          ]
+        }
+      }
+    }
+  }
+}

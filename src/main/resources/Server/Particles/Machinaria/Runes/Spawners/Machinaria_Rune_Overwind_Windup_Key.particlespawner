@@ -1,0 +1,72 @@
+{
+  "$Comment": "One key sprite on the back, turning two full turns in its one second, as the Overwind rune winds up.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "SpawnBurst": true,
+  "TotalParticles": {
+    "Min": 1,
+    "Max": 1
+  },
+  "MaxConcurrentParticles": 1,
+  "SpawnRate": {
+    "Min": 1,
+    "Max": 1
+  },
+  "ParticleLifeSpan": {
+    "Min": 1,
+    "Max": 1
+  },
+  "Particle": {
+    "Texture": "Particles/Machinaria/Runes/Key.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.55,
+          "Max": 0.55
+        },
+        "Y": {
+          "Min": 0.55,
+          "Max": 0.55
+        }
+      },
+      "Opacity": 1,
+      "Rotation": {
+        "Z": {
+          "Min": 0,
+          "Max": 0
+        }
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0
+      },
+      "10": {
+        "Opacity": 1
+      },
+      "50": {
+        "Rotation": {
+          "Z": {
+            "Min": 360,
+            "Max": 360
+          }
+        }
+      },
+      "90": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0,
+        "Rotation": {
+          "Z": {
+            "Min": 720,
+            "Max": 720
+          }
+        }
+      }
+    }
+  },
+  "LinearFiltering": false,
+  "ParticleRotateWithSpawner": true
+}

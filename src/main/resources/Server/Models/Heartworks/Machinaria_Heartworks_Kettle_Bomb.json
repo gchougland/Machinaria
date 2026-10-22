@@ -1,0 +1,170 @@
+{
+  "Model": "NPC/Heartworks/Kettle_Bomb/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Kettle_Bomb/Models/Texture.png",
+  "EyeHeight": 0.55,
+  "CrouchOffset": -0.1,
+  "HitBox": {
+    "Max": {
+      "X": 0.42,
+      "Y": 0.86,
+      "Z": 0.42
+    },
+    "Min": {
+      "X": -0.42,
+      "Y": 0,
+      "Z": -0.42
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Goblin_Decorative_Steam",
+      "TargetNodeName": "WhistlePoint",
+      "PositionOffset": {
+        "Y": 0.05
+      },
+      "Scale": 0.35
+    }
+  ],
+  "Light": {
+    "Color": "#742"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Walk.blockyanim"
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Walk.blockyanim"
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Run.blockyanim"
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Arrow_Whistle"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Hurt.blockyanim",
+          "Looping": false,
+          "SoundEventId": "SFX_Metal_Hit"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Death.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false
+        }
+      ]
+    },
+    "Plant": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Plant.blockyanim",
+          "BlendingDuration": 0.08,
+          "Looping": false
+        }
+      ]
+    },
+    "Boil": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Boil.blockyanim",
+          "BlendingDuration": 0.05
+        }
+      ]
+    },
+    "Burst": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Kettle_Bomb/Animations/Burst.blockyanim",
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

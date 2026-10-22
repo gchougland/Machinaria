@@ -1,0 +1,40 @@
+{
+  "$Comment": "Scalded by the Steam Breath: 4 Fire a hit, two hits a 0.4 s cycle while you stand in the jet (vanilla's flamethrower: 4 Fire a hit as the Burner's item sets it), so 20 a second and 60 for the whole 3 s breath. Vanilla's small lift-and-shove (it helps you out of the jet) and the steam vents' Scalded look (Machinaria_Heartworks_Scalded) in place of a burn.",
+  "Type": "DamageEntity",
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Fire": 4
+    }
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Force",
+      "VelocityConfig": {
+        "GroundResistance": 0.804,
+        "GroundResistanceMax": 0,
+        "AirResistance": 0.972,
+        "AirResistanceMax": 0.028,
+        "Threshold": 1,
+        "Style": "Exp"
+      },
+      "Direction": {
+        "X": 0,
+        "Y": 2,
+        "Z": -1
+      },
+      "Force": 2,
+      "VelocityType": "Add"
+    },
+    "WorldSoundEventId": "SFX_Machinaria_HW_Steam_Puff",
+    "WorldParticles": [
+      {
+        "SystemId": "Machinaria_Scald_Hit"
+      }
+    ]
+  },
+  "Next": {
+    "Type": "ApplyEffect",
+    "EffectId": "Machinaria_Heartworks_Scalded",
+    "Entity": "Target"
+  }
+}

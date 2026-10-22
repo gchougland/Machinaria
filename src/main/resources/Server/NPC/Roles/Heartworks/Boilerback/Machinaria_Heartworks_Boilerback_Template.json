@@ -1,0 +1,1926 @@
+{
+  "Type": "Abstract",
+  "$Comment": "The Boilerback (DESIGN.md 6.1 to 6.4), the Heartworks heavy. Copied from vanilla Template_Goblin_Glutton and changed: its evaluator-driven melee, Steam Charge (2 s unblockable wind-up, a crash into a wall stuns it, here 4 s at -50% physical resistance) and leashes kept; the goblin brawls, scolding, goblin throwing and summoning removed; added the robots' rally (Machinaria_Robot_Attack), idle life (it shovels coal into its own firebox, lets off steam, plods about), the party health scaling of the dungeon goblins, and the boiler burst: a charge that crashes next to a great boiler bursts it (a scalding blast at the boiler, 5% of its own health, a signal for the room). Built by tools/models/heartworks/boilerback.data.mjs.",
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_heavy.npcRoles.Machinaria_Heartworks_Boilerback.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Boilerback",
+      "Description": "Model to be used"
+    },
+    "MaxHealth": {
+      "Value": 420,
+      "Description": "Max health (before party scaling)"
+    },
+    "MaxSpeed": {
+      "Value": 3,
+      "Description": "The NPC's max speed",
+      "TypeHint": "Double"
+    },
+    "ViewRange": {
+      "Value": 20,
+      "Description": "The view range of the NPC",
+      "TypeHint": "Double"
+    },
+    "ViewSector": {
+      "Value": 160,
+      "Description": "The view sector of the NPC",
+      "TypeHint": "Double"
+    },
+    "HearingRange": {
+      "Value": 10,
+      "Description": "The hearing range of the NPC",
+      "TypeHint": "Double"
+    },
+    "AbsoluteDetectionRange": {
+      "Value": 4,
+      "Description": "The range at which an entity is guaranteed to be detected",
+      "TypeHint": "Double"
+    },
+    "AlertedRange": {
+      "Value": 24,
+      "Description": "Range to keep a target and to call robots for help",
+      "TypeHint": "Double"
+    },
+    "AlertedTimeout": {
+      "Value": [
+        1,
+        1
+      ],
+      "Description": "Seconds in Alerted (its whistle) before it fights"
+    },
+    "CombatMessageTargetGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups that hear its call for help"
+    },
+    "CombatMaintainDistanceMelee": {
+      "Value": 3,
+      "Description": "Distance it keeps from its target in melee"
+    },
+    "CombatHeightTolerance": {
+      "Value": [
+        -2,
+        2
+      ],
+      "Description": "Height difference within which it fights or charges"
+    },
+    "CombatChargeDistance": {
+      "Value": [
+        16,
+        20
+      ],
+      "Description": "How far the Steam Charge runs"
+    },
+    "ChargeSpeed": {
+      "Value": 18,
+      "Description": "Steam Charge speed, blocks a second",
+      "TypeHint": "Double"
+    },
+    "ChargeLockOn": {
+      "Value": [
+        0.5,
+        0.5
+      ],
+      "Description": "Seconds it locks on before the wind-up"
+    },
+    "ChargeWindup": {
+      "Value": [
+        2,
+        2
+      ],
+      "Description": "Steam Charge wind-up (unblockable), seconds"
+    },
+    "ChargeIgnoredBlockSet": {
+      "Value": "Machinaria_Heartworks_Boilerback_Charge",
+      "Description": "Blocks the charge smashes through instead of stopping"
+    },
+    "CombatChargeHitEntityInteraction": {
+      "Value": "Root_Machinaria_Heartworks_Boilerback_Charge_HitEntity",
+      "Description": "Root run on whoever the charge hits"
+    },
+    "CombatChargeHitBlockInteraction": {
+      "Value": "Root_Machinaria_Heartworks_Boilerback_Charge_HitBlock",
+      "Description": "Root run on blocks the charge smashes through"
+    },
+    "StunnedEffect": {
+      "Value": "Machinaria_Heartworks_Boilerback_Stunned",
+      "Description": "Effect applied after a crash"
+    },
+    "StunTime": {
+      "Value": [
+        4,
+        4
+      ],
+      "Description": "Seconds stunned after a crash (the punish window)"
+    },
+    "BurstableBlocks": {
+      "Value": "Machinaria_Heartworks_Boilerback_Burstable",
+      "Description": "Blocks that burst when it crashes next to them (the great boilers)"
+    },
+    "BurstRange": {
+      "Value": 3.5,
+      "Description": "How near a boiler a crash must be to burst it",
+      "TypeHint": "Double"
+    },
+    "BoilerBurstInteraction": {
+      "Value": "Root_Machinaria_Heartworks_Boilerback_Boiler_Burst",
+      "Description": "Root spawned at a bursting boiler (the scald)"
+    },
+    "BoilerBurstSelfDamage": {
+      "Value": 21,
+      "Description": "Health it loses when it bursts a boiler (5% of 420)",
+      "TypeHint": "Double"
+    },
+    "BoilerVolumeTag": {
+      "Value": "Machinaria_HW_Boiler",
+      "Description": "Tag of the trigger volumes a burst signals: kit-machines boilerBurst() volumes (MatchKey Machinaria_HW_Boiler), which swap the boiler to Burst on burst=true"
+    },
+    "BreathAttack": {
+      "Value": "Root_Machinaria_Heartworks_Boilerback_Steam_Breath",
+      "Description": "Root of one 0.4 s Steam Breath cycle (repeated while it breathes)"
+    },
+    "BreathWindup": {
+      "Value": [
+        1,
+        1
+      ],
+      "Description": "Steam Breath tell, seconds: it rears back, the doors clamp shut, steam squirts out, a line on the floor"
+    },
+    "BreathDuration": {
+      "Value": [
+        3,
+        3
+      ],
+      "Description": "How long the Steam Breath jets (vanilla Burner: 8 s)"
+    },
+    "BreathRecovery": {
+      "Value": [
+        2,
+        2
+      ],
+      "Description": "Seconds it pants afterwards (the punish window; vanilla Burner reload 2.5 s)"
+    },
+    "BreathTurnSpeed": {
+      "Value": 0.12,
+      "Description": "How fast it turns to follow you while it breathes (vanilla Burner 0.1): sidestep out of the jet",
+      "TypeHint": "Double"
+    },
+    "BreathWindupSound": {
+      "Value": "SFX_Machinaria_HW_Boilerback_Slam_Charge",
+      "Description": "Pressure building before the breath"
+    },
+    "BreathSound": {
+      "Value": "SFX_Machinaria_HW_Steam_Release",
+      "Description": "The jet bursting out"
+    },
+    "IdleSound": {
+      "Value": "SFX_Machinaria_HW_Boilerback_Idle",
+      "Description": "Its idle grumble"
+    },
+    "CrashSound": {
+      "Value": "SFX_Machinaria_HW_Boilerback_Charge_Crash",
+      "Description": "Crash into a wall"
+    },
+    "ChargeSound": {
+      "Value": "SFX_Machinaria_HW_Boilerback_Charge_Windup",
+      "Description": "The charge wind-up shriek"
+    },
+    "LeashDistance": {
+      "Value": 30,
+      "Description": "Distance from the leash point before the NPC wants to return home"
+    },
+    "LeashMinPlayerDistance": {
+      "Value": 6,
+      "Description": "The NPC will not give up the chase while the player is closer than this"
+    },
+    "LeashTimer": {
+      "Value": [
+        4,
+        4
+      ],
+      "Description": "Seconds beyond leash range, without damage or a close player, before the NPC returns home"
+    },
+    "HardLeashDistance": {
+      "Value": 50,
+      "Description": "Absolute maximum distance from the leash point before the NPC returns home"
+    },
+    "ConfusedTimeRange": {
+      "Value": [
+        1,
+        2
+      ],
+      "Description": "Seconds confused after losing its target"
+    },
+    "SearchTimeRange": {
+      "Value": [
+        8,
+        12
+      ],
+      "Description": "Seconds it searches"
+    },
+    "KnockbackScale": {
+      "Value": 0,
+      "Description": "How much it is knocked back (a boiler on legs is not)"
+    },
+    "DeathAnimationTime": {
+      "Value": 3,
+      "Description": "Seconds the corpse stays"
+    },
+    "DeathParticles": {
+      "Value": "Machinaria_Heartworks_Boilerback_Death",
+      "Description": "Particles when the corpse goes"
+    },
+    "DropList": {
+      "Value": "Machinaria_Heartworks_Boilerback_Drops",
+      "Description": "Drops"
+    },
+    "AttitudeGroup": {
+      "Value": "Machinaria_Robots",
+      "Description": "Attitude group"
+    },
+    "DisableDamageGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups whose damage it ignores (the robots')"
+    }
+  },
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "ApplySeparation": true,
+  "AttitudeGroup": {
+    "Compute": "AttitudeGroup"
+  },
+  "CombatConfig": "CAE_Machinaria_Heartworks_Boilerback",
+  "DeathAnimationTime": {
+    "Compute": "DeathAnimationTime"
+  },
+  "DeathParticles": {
+    "Compute": "DeathParticles"
+  },
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": {
+    "Compute": "DisableDamageGroups"
+  },
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "IsMemory": false,
+  "KnockbackScale": {
+    "Compute": "KnockbackScale"
+  },
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "SeparationMode": "Push",
+  "StartState": "Idle",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "Acceleration": 8,
+      "Gravity": 10,
+      "MaxClimbHeight": 1.2,
+      "MaxFallSpeed": 8,
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "RunThreshold": 1
+    }
+  ],
+  "StateTransitions": [
+    {
+      "States": [
+        {
+          "From": [
+            "Combat"
+          ],
+          "To": [
+            "Search"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Status"
+        },
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Action"
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "From": [
+            "Search"
+          ],
+          "To": [
+            "Idle"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "ReleaseTarget"
+        }
+      ]
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "Scale health to the party size on first aggro (the dungeon goblins' tiers: x1.55, x2.1, x2.65).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Not",
+        "Sensor": {
+          "Type": "State",
+          "State": "Idle"
+        }
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Standard detection: the robots' rally beacon, sight and sound (crouching players are not heard).",
+          "Reference": "Component_Instruction_Generic_Detection",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat.Default",
+              "Combat.Default",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "BeaconMessage": "Machinaria_Robot_Attack",
+            "Attitudes": [
+              "Hostile"
+            ]
+          }
+        },
+        {
+          "$Comment": "Idle life (DESIGN.md 6.3: Boilerbacks shovel coal and vent): it ticks over, stokes its own firebox from the hopper on its back, lets off steam, or plods about its post.",
+          "Type": "Random",
+          "ExecuteFor": [
+            10,
+            16
+          ],
+          "Instructions": [
+            {
+              "$Comment": "Tick over and grumble",
+              "Weight": 3,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    8
+                  ]
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": {
+                    "Compute": "IdleSound"
+                  }
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    3,
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Shovel coal from the hopper into its firebox",
+              "Weight": 2,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    2,
+                    4
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Shovel"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    7
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Let off steam",
+              "Weight": 1,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    2,
+                    5
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Vent"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.8,
+                    0.8
+                  ]
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Boilerback_Steam_Seams",
+                  "TargetNodeName": "Body",
+                  "Offset": [
+                    0,
+                    0.7,
+                    0
+                  ]
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Boilerback_Vent"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.7,
+                    0.7
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    7
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Plod about its post",
+              "Weight": 1,
+              "BodyMotion": {
+                "Type": "Sequence",
+                "Looped": true,
+                "Motions": [
+                  {
+                    "Type": "Timer",
+                    "Time": [
+                      3,
+                      5
+                    ],
+                    "Motion": {
+                      "Type": "WanderInCircle",
+                      "Radius": 4
+                    }
+                  },
+                  {
+                    "Type": "Timer",
+                    "Time": [
+                      3,
+                      5
+                    ],
+                    "Motion": {
+                      "Type": "Nothing"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Alerted"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Its whistle shrieks",
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "ActionsBlocking": true,
+          "Continue": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Alerted"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Boilerback_Whistle_Plume",
+              "TargetNodeName": "Whistle",
+              "Offset": [
+                0,
+                0.2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Switch to combat if attacked",
+          "Sensor": {
+            "Type": "Damage"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Combat.Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Watch the target, call the robots, then fight",
+          "Sensor": {
+            "Type": "Target",
+            "Range": {
+              "Compute": "AlertedRange"
+            }
+          },
+          "HeadMotion": {
+            "Type": "Aim"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Robot_Attack",
+              "TargetGroups": {
+                "Compute": "CombatMessageTargetGroups"
+              },
+              "SendTargetSlot": "LockedTarget",
+              "Range": {
+                "Compute": "AlertedRange"
+              }
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "AlertedTimeout"
+              },
+              "Action": {
+                "Type": "State",
+                "State": "Combat.Default"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "No target, go back to idling",
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ],
+              "Action": {
+                "Type": "State",
+                "State": "Idle"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Combat, run by the combat evaluator (CAE_Machinaria_Heartworks_Boilerback).",
+      "Sensor": {
+        "Type": "State",
+        "State": "Combat"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Hard leash first and ungated (from the Glutton).",
+          "Sensor": {
+            "Type": "Leash",
+            "Range": {
+              "Compute": "HardLeashDistance"
+            }
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "ReturnHome"
+            }
+          ]
+        },
+        {
+          "$Comment": "The soft leash must not interrupt the charge or its recovery (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Or",
+              "Sensors": [
+                {
+                  "Type": "State",
+                  "State": ".Charge"
+                },
+                {
+                  "Type": "State",
+                  "State": ".ChargeEnd"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Stunned"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Breath"
+                }
+              ]
+            }
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Soft_Leash",
+              "Modify": {
+                "_ExportStates": [
+                  "ReturnHome"
+                ],
+                "LeashDistance": {
+                  "Compute": "LeashDistance"
+                },
+                "LeashMinPlayerDistance": {
+                  "Compute": "LeashMinPlayerDistance"
+                },
+                "LeashTimer": {
+                  "Compute": "LeashTimer"
+                },
+                "HardLeashDistance": {
+                  "Compute": "HardLeashDistance"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Crashed (the charge was obstructed): a crash, then stunned 4 s at -50% physical resistance. Next to a great boiler the crash bursts it.",
+          "Sensor": {
+            "Type": "State",
+            "IgnoreMissingSetState": true,
+            "State": ".Stunned"
+          },
+          "Instructions": [
+            {
+              "$Comment": "A great boiler within reach bursts: the scald at the boiler, 5% of its own health, a signal for the room. Once per crash.",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Block",
+                "Range": {
+                  "Compute": "BurstRange"
+                },
+                "MaxHeight": 3,
+                "Blocks": {
+                  "Compute": "BurstableBlocks"
+                },
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "SpawnInteraction",
+                  "Interaction": {
+                    "Compute": "BoilerBurstInteraction"
+                  },
+                  "PositionSource": "Sensor",
+                  "Ttl": 3
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": {
+                    "Compute": "BoilerVolumeTag"
+                  },
+                  "Radius": 6,
+                  "SignalKey": "burst",
+                  "SignalValue": "true",
+                  "PositionSource": "Sensor"
+                },
+                {
+                  "Type": "SetStat",
+                  "Stat": "Health",
+                  "Value": {
+                    "Compute": "0 - BoilerBurstSelfDamage"
+                  },
+                  "Add": true
+                },
+                {
+                  "Type": "ResetBlockSensors",
+                  "BlockSets": [
+                    "Machinaria_Heartworks_Boilerback_Burstable"
+                  ]
+                }
+              ]
+            },
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "Crash"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": {
+                    "Compute": "CrashSound"
+                  }
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.5,
+                    0.5
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "CrashStun"
+                },
+                {
+                  "Type": "ApplyEntityEffect",
+                  "EntityEffect": {
+                    "Compute": "StunnedEffect"
+                  },
+                  "Once": true,
+                  "UseTarget": false
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": {
+                    "Compute": "StunTime"
+                  }
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Collect any potential targets into the evaluator (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Standard_Detection",
+                "Modify": {
+                  "ViewRange": {
+                    "Compute": "AlertedRange"
+                  },
+                  "ViewSector": {
+                    "Compute": "ViewSector"
+                  },
+                  "HearingRange": {
+                    "Compute": "HearingRange"
+                  },
+                  "AbsoluteDetectionRange": {
+                    "Compute": "AbsoluteDetectionRange"
+                  },
+                  "Attitudes": [
+                    "Hostile"
+                  ]
+                }
+              },
+              {
+                "Type": "Damage",
+                "Combat": true
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            }
+          ]
+        },
+        {
+          "$Comment": "Store the evaluator's target in the marked target slot (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "CombatActionEvaluator",
+                "TargetInRange": true
+              },
+              {
+                "Type": "CombatActionEvaluator",
+                "TargetInRange": false
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "SetMarkedTarget"
+            }
+          ]
+        },
+        {
+          "$Comment": "Combat behaviour (controlled by the evaluator)",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Target_Sight_Or_Sound",
+                "Modify": {
+                  "ViewRange": {
+                    "Compute": "AlertedRange"
+                  },
+                  "ViewSector": {
+                    "Compute": "ViewSector"
+                  },
+                  "HearingRange": {
+                    "Compute": "HearingRange"
+                  }
+                }
+              },
+              {
+                "Type": "HasHostileTargetMemory"
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "$Comment": "STEAM BREATH (round 6), vanilla Template_Dungeon_Goblin_Burner's .Fire: shout once, a timed blocking list that ends in the recovery state, slow aiming while in sight, frozen out of sight, the attack repeated while firing, back to .Default if the target is lost. The Burner fires 8 s at once; here a 1.0 s tell (doors clamped, steam squirting, a line on the floor), 3 s of jet, then .BreathEnd. It stands and turns slowly (MatchLook, Aim 0.12), so a sidestep takes you out.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Breath",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "$Comment": "Once per breath: the tell.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any",
+                    "Once": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Breath_Firing",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action",
+                      "Animation": "BreathWindup"
+                    },
+                    {
+                      "Type": "PlaySound",
+                      "SoundEventId": {
+                        "Compute": "BreathWindupSound"
+                      }
+                    },
+                    {
+                      "Type": "SpawnParticles",
+                      "ParticleSystem": "Machinaria_Heartworks_Boilerback_Breath_Leak",
+                      "TargetNodeName": "Firebox",
+                      "Offset": [
+                        0,
+                        0,
+                        0
+                      ]
+                    },
+                    {
+                      "Type": "SpawnParticles",
+                      "ParticleSystem": "Machinaria_Heartworks_Boilerback_Breath_Line",
+                      "TargetNodeName": "Origin",
+                      "Offset": [
+                        0,
+                        0,
+                        0
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The timing: the tell, the jet, then the recovery.",
+                  "Continue": true,
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": {
+                        "Compute": "BreathWindup"
+                      }
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Breath_Firing"
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action",
+                      "Animation": "Breath"
+                    },
+                    {
+                      "Type": "PlaySound",
+                      "SoundEventId": {
+                        "Compute": "BreathSound"
+                      }
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": {
+                        "Compute": "BreathDuration"
+                      }
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Breath_Firing",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".BreathEnd"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "In sight: turn slowly after the target.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "MatchLook"
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "RelativeTurnSpeed": {
+                      "Compute": "BreathTurnSpeed"
+                    }
+                  }
+                },
+                {
+                  "$Comment": "Out of sight: hold still (vanilla).",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target"
+                  },
+                  "BodyMotion": {
+                    "Type": "Nothing"
+                  },
+                  "HeadMotion": {
+                    "Type": "Nothing"
+                  }
+                },
+                {
+                  "$Comment": "Jetting: one 0.4 s cycle after another.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Breath_Firing"
+                  },
+                  "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "Target"
+                      },
+                      "Actions": [
+                        {
+                          "Type": "Attack",
+                          "Attack": {
+                            "Compute": "BreathAttack"
+                          },
+                          "AttackPauseRange": [
+                            0,
+                            0
+                          ],
+                          "AvoidFriendlyFire": false
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Lost the target: stop.",
+                  "Sensor": {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Target"
+                    }
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Breath_Firing",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "After the breath: 2 s panting, doors hanging open, steam wheezing out of the seams: the punish window (the Burner reloads 2.5 s).",
+              "Sensor": {
+                "Type": "State",
+                "State": ".BreathEnd"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target"
+                  },
+                  "HeadMotion": {
+                    "Type": "Watch"
+                  }
+                },
+                {
+                  "BodyMotion": {
+                    "Type": "Nothing"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Breath_Firing",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action",
+                      "Animation": "BreathEnd"
+                    },
+                    {
+                      "Type": "PlaySound",
+                      "SoundEventId": "SFX_Machinaria_HW_Boilerback_Vent"
+                    },
+                    {
+                      "Type": "SpawnParticles",
+                      "ParticleSystem": "Machinaria_Heartworks_Boilerback_Steam_Seams",
+                      "TargetNodeName": "Body",
+                      "Offset": [
+                        0,
+                        0.7,
+                        0
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": {
+                        "Compute": "BreathRecovery"
+                      }
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "After a charge that hit or missed: 1.5 s to recover",
+              "Sensor": {
+                "Type": "State",
+                "State": ".ChargeEnd"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target"
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim"
+                  }
+                },
+                {
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        1.5,
+                        1.5
+                      ]
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Seek the target until it is in sight again (from the Glutton)",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Seek"
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": 3,
+                    "StopDistance": 3
+                  },
+                  "HeadMotion": {
+                    "Type": "Watch"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        3,
+                        3
+                      ]
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    }
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": {
+                      "Compute": "CombatMaintainDistanceMelee"
+                    },
+                    "StopDistance": {
+                      "Compute": "CombatMaintainDistanceMelee"
+                    }
+                  }
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "The Steam Charge (from the Glutton): lock on, a 2 s unblockable wind-up (the whistle shrieks, steam jets, a stampede line on the ground), then up to 20 blocks at 18 a second. A wall stops it: crash and stun.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Charge",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": true
+                      },
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": false
+                      }
+                    ]
+                  },
+                  "Instructions": [
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "Target"
+                      },
+                      "BodyMotion": {
+                        "Type": "Charge",
+                        "BlockCollisionInteraction": "",
+                        "ChargeAbsoluteSpeed": {
+                          "Compute": "ChargeSpeed"
+                        },
+                        "ChargeAccelerationDistance": 2,
+                        "ChargeDecelerationDistance": 0,
+                        "ChargeDistanceRange": {
+                          "Compute": "CombatChargeDistance"
+                        },
+                        "ChargeRelativeSpeed": 0,
+                        "ClearOnceOnStateChange": true,
+                        "ClimbSlope": 2,
+                        "DropSlope": 2,
+                        "EntityStopsCharge": false,
+                        "HorizontalSkipGapWidth": 2.5,
+                        "IgnoredBlockSet": {
+                          "Compute": "ChargeIgnoredBlockSet"
+                        },
+                        "IgnoredBlockSetTriggers": false,
+                        "KnockbackThreshold": 10,
+                        "LockedOnDurationRange": {
+                          "Compute": "ChargeLockOn"
+                        },
+                        "LockedOnToleranceAngle": 20,
+                        "NPCCollisionInteraction": {
+                          "Compute": "CombatChargeHitEntityInteraction"
+                        },
+                        "PlayerCollisionInteraction": {
+                          "Compute": "CombatChargeHitEntityInteraction"
+                        },
+                        "PostChargeDurationRange": [
+                          0,
+                          0
+                        ],
+                        "RelativeTurnSpeed": 1,
+                        "WindingUpDurationRange": {
+                          "Compute": "ChargeWindup"
+                        },
+                        "WindingUpRelativeTurnSpeed": 1,
+                        "WindingUpUninterruptable": true
+                      },
+                      "HeadMotion": {
+                        "Type": "Aim",
+                        "RelativeTurnSpeed": 0.5
+                      }
+                    },
+                    {
+                      "$Comment": "Give up the charge if the target is within melee range",
+                      "TreeMode": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming",
+                          "LockedOn",
+                          "WindingUp"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Target",
+                            "Range": {
+                              "Compute": "CombatMaintainDistanceMelee"
+                            }
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Status"
+                            },
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Action"
+                            },
+                            {
+                              "Type": "State",
+                              "State": ".Default"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Give up if the target is too far above or below",
+                      "TreeMode": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Target",
+                            "Filters": [
+                              {
+                                "Type": "Not",
+                                "Filter": {
+                                  "Type": "HeightDifference",
+                                  "HeightDifference": {
+                                    "Compute": "CombatHeightTolerance"
+                                  },
+                                  "UseEyePosition": false
+                                }
+                              }
+                            ]
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Status"
+                            },
+                            {
+                              "Type": "State",
+                              "State": ".Default"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "LostTarget",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "LostTarget"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Aiming too long: seek instead",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming"
+                        ]
+                      },
+                      "ActionsBlocking": true,
+                      "Actions": [
+                        {
+                          "Type": "Timeout",
+                          "Delay": [
+                            3,
+                            3
+                          ]
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".Seek"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "LockedOn",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "LockedOn"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Winding up: the clip, steam, the whistle, the stampede warning, unblockable",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "WindingUp"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Any",
+                            "Once": true
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Action",
+                              "Animation": "ChargeWindup"
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "ParticleSystem": "Goblin_Feastmaster_StampedePrepare"
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "ParticleSystem": "Machinaria_Heartworks_Boilerback_Steam_Seams",
+                              "TargetNodeName": "Body",
+                              "Offset": [
+                                0,
+                                0.7,
+                                0
+                              ]
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "ParticleSystem": "Machinaria_Heartworks_Boilerback_Whistle_Plume",
+                              "TargetNodeName": "Whistle",
+                              "Offset": [
+                                0,
+                                0.2,
+                                0
+                              ]
+                            },
+                            {
+                              "Type": "PlaySound",
+                              "SoundEventId": {
+                                "Compute": "ChargeSound"
+                              }
+                            },
+                            {
+                              "Type": "ApplyEntityEffect",
+                              "UseTarget": false,
+                              "EntityEffect": "Unblockable"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Launch",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Launch"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Charging",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Charging"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "PlayAnimation",
+                          "Slot": "Action",
+                          "Animation": "Charge"
+                        },
+                        {
+                          "Type": "SpawnParticles",
+                          "ParticleSystem": "Goblin_Feastmaster_Stampede"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Obstructed: crash and stun",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Obstructed"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "State",
+                          "State": ".Stunned"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Hit a player: barge, stop",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeEntityCollisions",
+                        "GetNPCs": false,
+                        "GetPlayers": true
+                      },
+                      "Actions": [
+                        {
+                          "Type": "PlayAnimation",
+                          "Slot": "Action",
+                          "Animation": "ChargeHit"
+                        },
+                        {
+                          "Type": "EntityHitInteraction",
+                          "Interaction": {
+                            "Compute": "CombatChargeHitEntityInteraction"
+                          }
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".ChargeEnd"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Hit an NPC: it is knocked aside (robots ignore it: DisableDamageGroups)",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeEntityCollisions",
+                        "GetNPCs": true,
+                        "GetPlayers": false
+                      },
+                      "Actions": [
+                        {
+                          "Type": "EntityHitInteraction",
+                          "Interaction": {
+                            "Compute": "CombatChargeHitEntityInteraction"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Smash through plants and rubble",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeBlockCollisions"
+                      },
+                      "Actions": [
+                        {
+                          "Type": "BlockHitInteraction",
+                          "Interaction": {
+                            "Compute": "CombatChargeHitBlockInteraction"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Missed: skid to a stop",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Finished"
+                        ]
+                      },
+                      "ActionsBlocking": true,
+                      "Actions": [
+                        {
+                          "Type": "PlayAnimation",
+                          "Slot": "Action",
+                          "Animation": "ChargeMiss"
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".ChargeEnd"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Lost sight of the target for 4 s: seek it (from the Glutton)",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "AlertedRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "LineOfSight"
+                    }
+                  }
+                ]
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "Type": "State",
+                  "State": ".Seek"
+                }
+              ]
+            },
+            {
+              "$Comment": "Default: close to melee range; the evaluator picks the moves",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Default",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          },
+                          {
+                            "Type": "HeightDifference",
+                            "HeightDifference": {
+                              "Compute": "CombatHeightTolerance"
+                            },
+                            "UseEyePosition": false
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "MaintainDistance",
+                        "DesiredDistanceRange": {
+                          "Compute": "makeRange(CombatMaintainDistanceMelee)"
+                        }
+                      }
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "Seek",
+                        "SlowDownDistance": 1,
+                        "StopDistance": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": true
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "HitProbability": 1
+                  },
+                  "Actions": [
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": false
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Lost the target: clear the clips and search",
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Target"
+            }
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "Timeout"
+            },
+            {
+              "Type": "State",
+              "State": "Search"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Search"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Generic_Search",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat",
+              "Combat",
+              "ReturnHome",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "ConfusedTimeRange": {
+              "Compute": "ConfusedTimeRange"
+            },
+            "SearchTimeRange": {
+              "Compute": "SearchTimeRange"
+            },
+            "SearchRadius": 8
+          }
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "ReturnHome"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              },
+              {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": {
+                  "Compute": "AbsoluteDetectionRange"
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 2
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "RelativeSpeed": 1.5,
+            "UsePathfinder": true
+          }
+        },
+        {
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Idle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

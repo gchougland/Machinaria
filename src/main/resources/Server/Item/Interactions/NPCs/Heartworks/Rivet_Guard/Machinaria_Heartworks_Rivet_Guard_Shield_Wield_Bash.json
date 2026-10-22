@@ -1,0 +1,76 @@
+{
+  "$Comment": "The guard (vanilla Goblin_Guardian_Shield_Guard_Damage_Bash_Interrupt): a 100 degree frontal cone (DESIGN.md 6.2), damage x0, knockback x0.25, one stamina point per 25 damage blocked; held as long as the role charges it (1 to 2 s), then the shield bash. Breaks into Plate Buckled when stamina runs out.",
+  "Type": "Wielding",
+  "OnItemChangeBehavior": "Ignore",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+    "ItemAnimationId": "Guard",
+    "ClearAnimationOnFinish": false
+  },
+  "AngledWielding": {
+    "Angle": 0,
+    "AngleDistance": 100,
+    "DamageModifiers": {
+      "Physical": 0,
+      "Projectile": 0,
+      "Poison": 0,
+      "Fire": 0,
+      "Wind": 0,
+      "Earth": 0,
+      "Water": 0,
+      "Bludgeoning": 0
+    },
+    "KnockbackModifiers": {
+      "Physical": 0.25,
+      "Projectile": 0.25,
+      "Fire": 0.25,
+      "Wind": 0.25,
+      "Earth": 0.25,
+      "Water": 0.25,
+      "Bludgeoning": 0.25
+    }
+  },
+  "StaminaCost": {
+    "Value": 25,
+    "CostType": "Damage"
+  },
+  "CancelOnOtherClick": false,
+  "BlockedEffects": {
+    "WorldSoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Shield_Block",
+    "WorldParticles": [
+      {
+        "SystemId": "Shield_Block"
+      }
+    ]
+  },
+  "BlockedInteractions": {
+    "Interactions": [
+      {
+        "Type": "Simple",
+        "RunTime": 0.3333,
+        "Effects": {
+          "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+          "ItemAnimationId": "GuardHit",
+          "ClearAnimationOnFinish": false,
+          "WorldSoundEventId": "SFX_Machinaria_HW_Steam_Puff"
+        },
+        "Next": {
+          "Type": "ApplyEffect",
+          "Entity": "User",
+          "EffectId": "Machinaria_Heartworks_Rivet_Guard_Riposte_Ready"
+        }
+      }
+    ]
+  },
+  "Next": {
+    "Type": "EffectCondition",
+    "Entity": "User",
+    "EntityEffectIds": [
+      "Machinaria_Heartworks_Rivet_Guard_Riposte_Ready"
+    ],
+    "Match": "All",
+    "Next": "Machinaria_Heartworks_Rivet_Guard_Riposte",
+    "Failed": "Machinaria_Heartworks_Rivet_Guard_Shield_Bash"
+  },
+  "Failed": "Machinaria_Heartworks_Rivet_Guard_Shield_Broken"
+}

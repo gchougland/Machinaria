@@ -1,0 +1,16 @@
+{
+  "$Comment": "Overloaded (DESIGN.md 6.2): from 50% health to the end. The coil spine crackles violet; the coils recharge faster (the room's, on the signal). A marker for the role too (it overloads once).",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Overload_Crackle",
+        "TargetEntityPart": "Self",
+        "TargetNodeName": "Spine-Hub"
+      }
+    ]
+  },
+  "Infinite": true,
+  "RemovalBehavior": "Infinite",
+  "OverlapBehavior": "Overwrite",
+  "Debuff": false
+}

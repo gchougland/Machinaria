@@ -1,0 +1,19 @@
+{
+  "$Comment": "A Fitter (round 6, the Foreman's Work Order): enemies-small's Oiler (Machinaria_Heartworks_Oiler_Template, from vanilla Dungeon_Goblin_Food_Carrier) sent to the Foreman instead of the Heartwinder. 45 HP, walks at 2.2, ignores players; from 3.5 blocks it pumps for 1.5 s, then refits him +90 and leaves. An amber work lamp hangs over it.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Oiler_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Foreman_Fitter",
+    "NameTranslationKey": "machinaria_hw_heavy.npcRoles.Machinaria_Heartworks_Foreman_Fitter.name",
+    "TargetGroups": [
+      "Machinaria_Heartworks_Foreman_Fitter_Targets"
+    ],
+    "OilEffect": "Machinaria_Heartworks_Foreman_Refit",
+    "OilFlourish": "Machinaria_Heartworks_Oiler_Sheen",
+    "OilMessage": "Machinaria_Heartworks_Foreman_Refitted",
+    "Lifetime": [
+      40,
+      40
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$Comment": "The Heartwinder's fight (round 2 music, ElevenLabs; tools/audio/music_build.py). Started by the encounter (StartEncounterMusic); its phases follow the encounter's AudioState_Goblin_Boss_Phase values, as vanilla Track_Z1D_Goblin_Boss. Each phase crossfades in over 2 s at once.",
+  "Type": "Horizontal",
+  "AudioCategory": "AudioCat_Music_In_Game",
+  "LoopCount": 1,
+  "Volume": 1.5,
+  "TransitionType": "Immediate",
+  "DefaultPhaseTransitionType": "Immediate",
+  "DefaultPhaseTransitionDuration": 0.0,
+  "AudioState": "AudioState_Goblin_Boss_Phase",
+  "Phases": [
+    {
+      "Value": "Phase1",
+      "Phase": 0
+    },
+    {
+      "Value": "Interlude",
+      "Phase": 1
+    },
+    {
+      "Value": "Phase2",
+      "Phase": 2
+    },
+    {
+      "Value": "Phase3",
+      "Phase": 3
+    },
+    {
+      "Value": "Ending",
+      "Phase": 4
+    }
+  ],
+  "Children": [
+    "Track_Machinaria_Heartworks_Boss_Phase1",
+    "Track_Machinaria_Heartworks_Boss_Interlude",
+    "Track_Machinaria_Heartworks_Boss_Phase2",
+    "Track_Machinaria_Heartworks_Boss_Phase3",
+    "Track_Machinaria_Heartworks_Boss_Ending"
+  ]
+}

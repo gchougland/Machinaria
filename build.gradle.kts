@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.hexvane"
-version = "0.5.0"
+version = "1.0.0"
 val javaVersion = 25
 
 repositories {
@@ -127,10 +127,17 @@ tasks.named<ProcessResources>("processResources") {
         expand(replaceProperties)
     }
 
+    // Prefab caches the editor writes next to each prefab, and backups, never ship.
+    exclude("**/*.lpf", "**/*.bak")
+
     inputs.properties(replaceProperties)
 }
 
 tasks.withType<Jar> {
+    // The server reads a .prefab.json.lpf inside a jar instead of the prefab, without checking its age: a stale
+    // cache from a dev run would ship an old prefab. processResources excludes them, but old ones linger in
+    // build/resources/main, so the jar excludes them too.
+    exclude("**/*.lpf", "**/*.bak")
     manifest {
         attributes["Specification-Title"] = rootProject.name
         attributes["Specification-Version"] = version

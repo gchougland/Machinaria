@@ -1,0 +1,80 @@
+{
+  "$Comment": "Round 5 note 4: the players' Rivet Club runs vanilla's full mace kit (Template_Weapon_Mace: charged swings, guard, Groundslam signature), but stays a one-handed club so a shield still works beside it. So this is vanilla's Club set (Parent, which also gives Camera, PullbackConfig and WiggleWeights) plus the animation ids the mace interactions ask for and the Club set lacks, each mapped to vanilla's one-handed club clips (the club's own Swing_Down_Charging / Swing_Down_Charged). Vanilla's mace clips are two-handed and would pull the shield arm onto the haft.",
+  "Parent": "Club",
+  "Animations": {
+    "SwingUpRight": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Right/Swing_Right.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Right/Swing_Right_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Frown.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Right/Swing_Right_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.75
+    },
+    "SwingLeftCharging": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.72
+    },
+    "SwingRightCharging": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.72
+    },
+    "SwingUpLeftCharging": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.72
+    },
+    "RuneSwingUpLeftCharging": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.72
+    },
+    "SwingLeftCharged": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.75,
+      "BlendingDuration": 0
+    },
+    "SwingRightCharged": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.75,
+      "BlendingDuration": 0
+    },
+    "SwingUpLeftCharged": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged.blockyanim",
+      "ThirdPersonMoving": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged_Moving.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charged_FPS.blockyanim",
+      "KeepPreviousFirstPersonAnimation": true,
+      "Speed": 0.75,
+      "BlendingDuration": 0
+    },
+    "SwingDownChargedFalling": {
+      "ThirdPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging.blockyanim",
+      "FirstPerson": "Characters/Animations/Items/Main_Handed/Club/Attacks/Swing_Down_Charged/Swing_Down_Charging_FPS.blockyanim",
+      "ThirdPersonFace": "Characters/Animations/Expressions/Rage.blockyanim",
+      "Looping": true,
+      "BlendingDuration": 0.3
+    }
+  }
+}

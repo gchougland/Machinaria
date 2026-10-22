@@ -1,0 +1,213 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_boss.items.Machinaria_Heartworks_Heartwinder_Pylon.name",
+    "Description": "machinaria_hw_boss.items.Machinaria_Heartworks_Heartwinder_Pylon.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Brake_Pylon.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Idle.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Idle.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Statue",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.pylon.turn",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Turn1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Turn1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Turn1.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Turn2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Turn2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Turn2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Turn3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Turn3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Turn3.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Primed": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Primed.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Primed.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#c83"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Steam_Leak",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 2.1
+              }
+            }
+          ],
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_B_Steam_Bursts_Winding"
+        },
+        "Burst": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Burst.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Burst.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.pylon.check",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Smoke_Stack",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 1.6
+              }
+            },
+            {
+              "SystemId": "Machinaria_Emitter_Sparks",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 1.5
+              }
+            }
+          ]
+        },
+        "Brake": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Brake.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Brake.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#b52"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.pylon.check"
+        },
+        "Order1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order1.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_boss.hints.pylonOrder1"
+        },
+        "Order2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_boss.hints.pylonOrder2"
+        },
+        "Order3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order3.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_boss.hints.pylonOrder3"
+        },
+        "Order4": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order4.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Pylon/Order4.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_boss.hints.pylonOrder4"
+        }
+      }
+    }
+  },
+  "$Comment": "The Winding Chamber's pylon (round 5, Gibson note 17): kit-controls' Brake Pylon copied whole (built by tools/models/heartworks/heartwinder.pylon.mjs from the kit's item and models), with a gauge of four lamp rings up its column that fill one a turn: 0 idle, 1 to 3 on Turn1..3, 4 primed or braked, none burst. Hard mode's climax adds Order1..4: red rings showing the pylon's place in the brake order. B2's wiring places and swaps this block."
+}

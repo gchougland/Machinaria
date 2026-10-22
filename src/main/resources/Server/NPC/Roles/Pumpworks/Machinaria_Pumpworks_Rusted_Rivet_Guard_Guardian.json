@@ -1,0 +1,38 @@
+{
+  "$Comment": "Vault guardian of the Collapsed Lift vault: a Rusted Rivet Guard (the Rivet Guard's template, enemies-robots'), 80 HP, mace 14, bash 12. Always drops the Tarnished Mainspring (Machinaria_Pumpworks_Drop_Guardian).",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Rivet_Guard_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Pumpworks_Rusted_Rivet_Guard",
+    "DropList": "Machinaria_Pumpworks_Drop_Guardian",
+    "MaxHealth": 80,
+    "MaxSpeed": 4.2,
+    "NameTranslationKey": "machinaria_pumpworks.npcRoles.Machinaria_Pumpworks_Rusted_Rivet_Guard_Guardian.name",
+    "_InteractionVars": {
+      "Rivet_Guard_Mace_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Rivet_Guard_Mace_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 14
+              }
+            }
+          }
+        ]
+      },
+      "Rivet_Guard_Bash_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Rivet_Guard_Shield_Bash_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 12
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

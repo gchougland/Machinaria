@@ -1,0 +1,8 @@
+{
+  "$Comment": "A chained pendulum stops its swing hits: interrupts its own Primary chains (only the swing runs there), so nothing hits after the boss dies or the arena resets, and the next release starts a fresh chain in step with the restarted clip.",
+  "Type": "Interrupt",
+  "Entity": "User",
+  "InterruptTypes": [
+    "Primary"
+  ]
+}

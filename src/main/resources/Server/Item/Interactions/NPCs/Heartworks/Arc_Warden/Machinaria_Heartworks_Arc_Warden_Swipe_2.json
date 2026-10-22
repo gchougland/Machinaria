@@ -1,0 +1,75 @@
+{
+  "$Comment": "Staff swipe 2 (DESIGN.md 6.2): 0.5 s wind-up with the staff drawn back and sparking, a 120 degree arc from 0.5 to 3.5 blocks for 0.1 s, 0.4 s recovery; 20. Analogue: the Skeleton Elite's swings.",
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Arc_Warden",
+    "ItemAnimationId": "Swipe2",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Warden_Swipe"
+  },
+  "RunTime": 0.5,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "RunTime": 0.1,
+            "Selector": {
+              "Id": "Horizontal",
+              "Direction": "ToRight",
+              "TestLineOfSight": true,
+              "ExtendTop": 1.5,
+              "ExtendBottom": 1,
+              "StartDistance": 0.5,
+              "EndDistance": 3.5,
+              "Length": 120,
+              "YawStartOffset": -60
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Swipe_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Arc_Warden_Swipe_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.4
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.1,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Goblin_Feastmaster_Whoosh_Quick",
+              "Particles": [
+                {
+                  "SystemId": "Machinaria_Heartworks_Arc_Warden_Swipe_Spark",
+                  "TargetEntityPart": "Entity",
+                  "TargetNodeName": "Staff-Yoke",
+                  "PositionOffset": {
+                    "X": 0,
+                    "Y": 0,
+                    "Z": 0
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

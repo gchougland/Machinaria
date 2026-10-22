@@ -1,0 +1,28 @@
+{
+  "$Comment": "Caught under a stamp press: pinned for a second, as vanilla Stun but grey and without its screen.",
+  "Duration": 1,
+  "ApplicationEffects": {
+    "EntityBottomTint": "#3c3c42",
+    "EntityTopTint": "#9a9aa4",
+    "Particles": [
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Head"
+      }
+    ],
+    "MovementEffects": {
+      "DisableAll": true
+    },
+    "AbilityEffects": {
+      "Disabled": [
+        "Primary",
+        "Secondary",
+        "Ability1",
+        "Ability3"
+      ]
+    }
+  },
+  "OverlapBehavior": "Overwrite",
+  "Debuff": true
+}

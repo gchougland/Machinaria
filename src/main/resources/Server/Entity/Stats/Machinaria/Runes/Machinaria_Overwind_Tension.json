@@ -1,0 +1,34 @@
+{
+  "$Comment": "Overwind rune: full while the Rune_Overwind_Overwound effect lasts; when it ends this falls to 0 and applies Rune_Overwind_Unwound (2 s). Rune_Overwind_Cast sets it full.",
+  "InitialValue": 0,
+  "Min": 0,
+  "Max": 100,
+  "Shared": false,
+  "HideFromTooltip": true,
+  "Regenerating": [
+    {
+      "Interval": 0.1,
+      "Amount": -100,
+      "RegenType": "Additive",
+      "ClampAtZero": true,
+      "Conditions": [
+        {
+          "Id": "HasEffect",
+          "EffectId": "Rune_Overwind_Overwound",
+          "Inverse": true
+        }
+      ]
+    }
+  ],
+  "MinValueEffects": {
+    "Interactions": {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Rune_Overwind_Unwound",
+          "Duration": 2
+        }
+      ]
+    }
+  }
+}

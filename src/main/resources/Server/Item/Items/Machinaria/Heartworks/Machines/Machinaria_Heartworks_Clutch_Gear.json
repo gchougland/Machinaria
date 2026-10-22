@@ -1,0 +1,87 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Clutch_Gear.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Clutch_Gear.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Clutch_Gear.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#8a6a34",
+    "TextureComputedColor": "#8a6a34",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Clutch_Gear.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Clutch_Gear.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Clutch_Gear",
+    "State": {
+      "Definitions": {
+        "Out": {},
+        "In": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Clutch_Gear_In.blockyanim",
+          "Looping": true,
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_B"
+        },
+        "In_Reverse": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Clutch_Gear_In_Reverse.blockyanim",
+          "Looping": true,
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_B"
+        },
+        "Broken": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Clutch_Gear_Broken.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Clutch_Gear_Broken.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Jammed": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Clutch_Gear_Broken.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Clutch_Gear_Broken.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Clutch_Gear_Jammed.blockyanim",
+          "Looping": true,
+          "Light": {
+            "Color": "#a20"
+          },
+          "AmbientSoundEventId": "SFX_GoblinLab_Broken_Device",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Clutch_Jam_Sparks",
+              "TargetNodeName": "Gear_Boss"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

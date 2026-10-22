@@ -1,0 +1,217 @@
+{
+  "Type": "CombatActionEvaluator",
+  "$Comment": "The Boilerback's moves (DESIGN.md 6.2), from vanilla CAE_Goblin_Glutton: the piston chain as the basic attack (cooldown 1.5 to 2 s), the Boiler Slam (within 4, every 14 s), the Vent Burst (two or more players within 3, every 10 s), the Steam Breath (round 6: a target 3.5 to 7 away in sight, every 11 s; the role's .Breath), the Steam Charge (a target 6 or more away, every 12 s).",
+  "EntityEffects": [
+    "Immunity_Poison"
+  ],
+  "TargetMemoryDuration": 30,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "ResponseCurve": "Linear",
+          "XRange": [
+            0,
+            4
+          ]
+        }
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "SelectTarget": {
+        "Type": "SelectBasicAttackTarget",
+        "OffhandSlot": -1,
+        "Conditions": [
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "ResponseCurve": "SimpleDescendingLogistic",
+              "XRange": [
+                0,
+                6
+              ]
+            }
+          }
+        ]
+      },
+      "Slam": {
+        "Type": "Ability",
+        "Description": "Boiler Slam: within 4, every 14 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          4
+        ],
+        "PostExecuteDistanceRange": [
+          2.5,
+          2.5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Boilerback_Slam",
+        "WeightCoefficient": 1.5,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 14
+            }
+          }
+        ]
+      },
+      "VentBurst": {
+        "Type": "Ability",
+        "Description": "Vent Burst: two or more players within 3, every 10 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          3
+        ],
+        "PostExecuteDistanceRange": [
+          2.5,
+          2.5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Boilerback_Vent_Burst",
+        "WeightCoefficient": 1.6,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 10
+            }
+          },
+          {
+            "Type": "NearbyCount",
+            "NPCGroup": "Player",
+            "Range": 3,
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 2
+            }
+          }
+        ]
+      },
+      "Breath": {
+        "Type": "State",
+        "Description": "Steam Breath: a target 3.5 to 7 away in sight, every 11 s",
+        "Target": "Hostile",
+        "State": "Combat",
+        "SubState": "Breath",
+        "PostExecuteDistanceRange": [
+          5,
+          5
+        ],
+        "WeightCoefficient": 1.35,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 11
+            }
+          },
+          {
+            "$Comment": "Not inside piston reach.",
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "InitialState": 0,
+              "FinalState": 1,
+              "SwitchPoint": 3.5
+            }
+          },
+          {
+            "$Comment": "Not beyond the jet.",
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "InitialState": 1,
+              "FinalState": 0,
+              "SwitchPoint": 7
+            }
+          },
+          {
+            "Type": "LineOfSight"
+          }
+        ]
+      },
+      "Charge": {
+        "Type": "State",
+        "Description": "Steam Charge: a target 6 or more away, every 12 s",
+        "Target": "Hostile",
+        "State": "Combat",
+        "SubState": "Charge",
+        "PostExecuteDistanceRange": [
+          3,
+          3
+        ],
+        "WeightCoefficient": 1.25,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 12
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6
+            }
+          }
+        ]
+      }
+    },
+    "ActionSets": {
+      "Default": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Boilerback_Piston"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 4,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1.5,
+            2
+          ]
+        },
+        "Actions": [
+          "Slam",
+          "VentBurst",
+          "Breath",
+          "SelectTarget",
+          "Charge"
+        ]
+      },
+      "Seek": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Boilerback_Piston"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 4,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1.5,
+            2
+          ]
+        },
+        "Actions": [
+          "Slam",
+          "VentBurst",
+          "Breath",
+          "SelectTarget",
+          "Charge"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "$Comment": "Cradle Vents (round 4, phase 3 anti-melee): 1.2 s with the vents hissing, steam wisps at its feet and a pale radius 6 ring on the floor; then 0.3 s of a circle 6 for 30 Fire, thrown up and out (12); 0.5 s recovery. The arena vents' sounds. Analogue: the Heartworks floor vents, centred on the boss.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 1.2,
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Vent_Warn",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Vent_Mark",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 6.05,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 1,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.2,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.3,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 6
+      },
+      "HitEntityRules": [
+        {
+          "Matchers": [
+            {
+              "Type": "Player"
+            }
+          ],
+          "Next": {
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "Cradle_Vent_Damage",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Machinaria_Heartworks_Heartwinder_Cradle_Vent_Damage"
+                  ]
+                },
+                "DefaultOk": true
+              }
+            ]
+          }
+        }
+      ],
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Vent_Burst",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Vent_Burst",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 6,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.5
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$Comment": "The Heartworks' exploration music (round 2, ElevenLabs): sparse, mechanical, 38 bars at 90, loops. Played by Mus_Machinaria_Heartworks in the Heartworks environment, as vanilla Track_Z1D_The_Deepworks; one layer (no combat layer yet).",
+  "Type": "Segment",
+  "AudioCategory": "AudioCat_Music_In_Game",
+  "Volume": 1,
+  "LoopCount": 0,
+  "FadeInDuration": 2.0,
+  "TransitionType": "FadeOutFadeIn",
+  "TransitionDuration": 3.0,
+  "Tempo": {
+    "Bpm": 90,
+    "BeatsPerBar": 4,
+    "BeatValue": 4
+  },
+  "Layers": [
+    {
+      "Name": "explore",
+      "Container": {
+        "Type": "SingleTrack",
+        "Track": "Music/Machinaria/Heartworks/HW_Explore_Loop.ogg",
+        "LoopCount": 0
+      }
+    }
+  ]
+}

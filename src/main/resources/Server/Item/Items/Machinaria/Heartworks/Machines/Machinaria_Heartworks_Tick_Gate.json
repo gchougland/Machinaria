@@ -1,0 +1,68 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Tick_Gate.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Tick_Gate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Tick_Gate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#56606c",
+    "TextureComputedColor": "#56606c",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Tick_Gate.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Tick_Gate.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Tick_Gate",
+    "State": {
+      "Definitions": {
+        "Middle": {},
+        "Bottom": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Tick_Gate_Edge.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Tick_Gate_Edge.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Warn": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Tick_Gate_Warn.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Tick_Gate_Warn.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a10"
+          }
+        }
+      }
+    }
+  }
+}

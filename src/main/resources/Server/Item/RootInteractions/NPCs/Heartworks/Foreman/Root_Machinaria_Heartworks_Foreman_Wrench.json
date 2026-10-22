@@ -1,0 +1,20 @@
+{
+  "$Comment": "The basic attack: the three-swing wrench chain (sweep, backhand, overhead); resets after 4 s.",
+  "Interactions": [
+    {
+      "Type": "Chaining",
+      "ChainId": "Machinaria_Heartworks_Foreman_Wrench",
+      "ChainingAllowance": 4,
+      "Next": [
+        "Machinaria_Heartworks_Foreman_Wrench_1",
+        "Machinaria_Heartworks_Foreman_Wrench_2",
+        "Machinaria_Heartworks_Foreman_Wrench_3"
+      ]
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

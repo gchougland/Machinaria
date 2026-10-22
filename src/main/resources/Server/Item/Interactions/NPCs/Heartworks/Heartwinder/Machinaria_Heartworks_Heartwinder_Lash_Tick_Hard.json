@@ -1,0 +1,142 @@
+{
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.2
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.2,
+          "Selector": {
+            "Id": "Donut",
+            "MinRadius": 11,
+            "MaxRadius": 11,
+            "Width": 18,
+            "Height": 0.75,
+            "AngleDeg": 6,
+            "YawOffsetDeg": 90,
+            "Offset": {
+              "Y": -0.5
+            }
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "Replace",
+                    "Var": "Lash_Damage",
+                    "DefaultValue": {
+                      "Interactions": [
+                        "Machinaria_Heartworks_Heartwinder_Lash_Damage"
+                      ]
+                    },
+                    "DefaultOk": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.2,
+          "Selector": {
+            "Id": "Donut",
+            "MinRadius": 11,
+            "MaxRadius": 11,
+            "Width": 18,
+            "Height": 0.75,
+            "AngleDeg": 6,
+            "YawOffsetDeg": -90,
+            "Offset": {
+              "Y": -0.5
+            }
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "Replace",
+                    "Var": "Lash_Damage",
+                    "DefaultValue": {
+                      "Interactions": [
+                        "Machinaria_Heartworks_Heartwinder_Lash_Damage"
+                      ]
+                    },
+                    "DefaultOk": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.2,
+          "Selector": {
+            "Id": "Donut",
+            "MinRadius": 11,
+            "MaxRadius": 11,
+            "Width": 18,
+            "Height": 0.75,
+            "AngleDeg": 6,
+            "YawOffsetDeg": 180,
+            "Offset": {
+              "Y": -0.5
+            }
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "Replace",
+                    "Var": "Lash_Damage",
+                    "DefaultValue": {
+                      "Interactions": [
+                        "Machinaria_Heartworks_Heartwinder_Lash_Damage"
+                      ]
+                    },
+                    "DefaultOk": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

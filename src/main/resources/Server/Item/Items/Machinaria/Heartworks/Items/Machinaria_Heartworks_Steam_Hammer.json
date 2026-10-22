@@ -1,0 +1,183 @@
+{
+  "$Comment": "Between vanilla Weapon_Battleaxe_Cobalt (35) and _Adamantite (40), at 38. The Downstrike lands in a burst of steam and Scalds what it hits (Machinaria_Scalded). Built by tools/items/weapons.build.mjs.",
+  "Parent": "Template_Weapon_Battleaxe",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_items.items.Machinaria_Heartworks_Steam_Hammer.name",
+    "Description": "machinaria_hw_items.items.Machinaria_Heartworks_Steam_Hammer.description"
+  },
+  "Model": "Items/Machinaria/Heartworks/Items/Steam_Hammer.blockymodel",
+  "Texture": "Items/Machinaria/Heartworks/Items/Steam_Hammer.png",
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Steam_Hammer.png",
+  "Categories": [
+    "Items.Weapons",
+    "Machinaria.Content"
+  ],
+  "Quality": "Rare",
+  "ItemLevel": 38,
+  "Recipe": {
+    "TimeSeconds": 5,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Heartwinder_Mainspring",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Clockwork_Heart",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Bronze",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Leather_Heavy",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Weapons"
+        ],
+        "Id": "MechanicsBench"
+      }
+    ]
+  },
+  "InteractionVars": {
+    "Swing_Down_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Battleaxe_Primary_Swing_Down_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 55
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Battleaxe_T2_Impact",
+            "LocalSoundEventId": "SFX_Battleaxe_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Down_Left_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Battleaxe_Primary_Swing_Down_Left_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 26
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Battleaxe_T2_Impact",
+            "LocalSoundEventId": "SFX_Battleaxe_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Down_Right_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Battleaxe_Primary_Swing_Down_Right_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 33
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Battleaxe_T2_Impact",
+            "LocalSoundEventId": "SFX_Battleaxe_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Downstrike_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Battleaxe_Primary_Downstrike_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 38
+            }
+          },
+          "EntityStatsOnHit": [
+            {
+              "EntityStatId": "SignatureEnergy",
+              "Amount": 2
+            }
+          ],
+          "Next": {
+            "Type": "ApplyEffect",
+            "Entity": "Target",
+            "EffectId": "Machinaria_Scalded"
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Battleaxe_T2_Impact",
+            "LocalSoundEventId": "SFX_Battleaxe_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Downstrike_Selector": {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Steam_Release",
+            "LocalSoundEventId": "SFX_Machinaria_HW_Steam_Release",
+            "Particles": [
+              {
+                "SystemId": "Golem_Clockwork_Steam_Burst",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Hip",
+                "PositionOffset": {
+                  "Y": 0.1
+                },
+                "Scale": 0.4
+              }
+            ]
+          }
+        },
+        "Weapon_Battleaxe_Primary_Downstrike_Selector"
+      ]
+    },
+    "Signature_Whirlwind_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Battleaxe_Signature_Whirlwind_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 21
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Battleaxe_T2_Impact",
+            "LocalSoundEventId": "SFX_Battleaxe_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Guard_Wield": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Battleaxe_Secondary_Guard_Wield",
+          "StaminaCost": {
+            "Value": 14.5,
+            "CostType": "Damage"
+          }
+        }
+      ]
+    }
+  },
+  "ItemSoundSetId": "ISS_Weapon_Blunt_Large",
+  "MaxDurability": 450,
+  "DurabilityLossOnHit": 0.27
+}

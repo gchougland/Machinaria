@@ -1,0 +1,153 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Checkpoint.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Checkpoint.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Checkpoint.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Inactive.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Inactive.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Statue",
+    "VariantRotation": "NESW",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "Light": {
+      "Color": "#078"
+    },
+    "State": {
+      "Definitions": {
+        "Inactive": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Inactive.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Inactive.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          },
+          "Particles": [
+            {
+              "SystemId": "Dungeon_Checkpoint_Inactive",
+              "TargetEntityPart": "Self",
+              "RotationOffset": {
+                "Yaw": 90
+              },
+              "PositionOffset": {
+                "Y": -1
+              }
+            }
+          ]
+        },
+        "Activating": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Activating.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Activating.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#c83"
+          },
+          "Particles": [
+            {
+              "SystemId": "Dungeon_Checkpoint_Trigger",
+              "TargetEntityPart": "Self",
+              "RotationOffset": {
+                "Yaw": 90
+              },
+              "PositionOffset": {
+                "Y": -1
+              }
+            }
+          ]
+        },
+        "Active": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Active.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Active.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#c83"
+          },
+          "Particles": [
+            {
+              "SystemId": "Dungeon_Checkpoint_Active",
+              "TargetEntityPart": "Self",
+              "RotationOffset": {
+                "Yaw": 90
+              },
+              "PositionOffset": {
+                "Y": -1
+              }
+            }
+          ]
+        },
+        "Disabled": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Disabled.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Checkpoint/Disabled.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "Particles": [
+            {
+              "SystemId": "Dungeon_Checkpoint_Disabled",
+              "TargetEntityPart": "Self",
+              "RotationOffset": {
+                "Yaw": 90
+              },
+              "PositionOffset": {
+                "Y": -1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

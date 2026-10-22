@@ -1,0 +1,36 @@
+{
+  "$Comment": "The live puddle a spark orb leaves (DESIGN.md 6.2): 3 s of 6 damage every 0.5 s to players standing in it, a flickering blue disc. As vanilla Dungeon_Cauldron_Goo_Volume.",
+  "Effects": [
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "Interval": 0,
+      "Delay": 0,
+      "ParticleSystem": "Machinaria_Heartworks_Arc_Tinker_Puddle",
+      "Offset": {
+        "X": 0,
+        "Y": 0.2,
+        "Z": 0
+      },
+      "Anchor": "Volume",
+      "Scale": 1,
+      "Rotation": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "Duration": 0
+    },
+    {
+      "Type": "DamageEntity",
+      "Event": "TICK",
+      "Interval": 0.5,
+      "Delay": 0,
+      "Mode": "Flat",
+      "Amount": 6
+    }
+  ],
+  "TargetTypes": [
+    "Player"
+  ]
+}

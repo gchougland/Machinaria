@@ -1,0 +1,167 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Valve.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Valve.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Valve.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Valve/Closed.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Valve/Closed.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Chest_Small",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.valve.turn",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Turn1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Valve/Turn1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Valve/Turn1.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Turn2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Valve/Turn2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Valve/Turn2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Turn3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Valve/Turn3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Valve/Turn3.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Open": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Valve/Open.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Valve/Open.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.valve.close",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Steam_Puff",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 0.4
+              },
+              "Scale": 0.6
+            }
+          ]
+        },
+        "Missing": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Valve/Missing.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Valve/Missing.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.valve.fit"
+        },
+        "Hold": {
+          "Light": {
+            "Color": "#078"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.valve.hold",
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "Charging",
+                  "DisplayProgress": true,
+                  "FailOnDamage": false,
+                  "AllowIndefiniteHold": false,
+                  "Next": {
+                    "2.0": {
+                      "Type": "SignalNearbyVolumes",
+                      "MatchKey": "Machinaria_HW_Hold",
+                      "Radius": 1,
+                      "RequireHitLocation": true,
+                      "SignalKeys": [
+                        "held"
+                      ],
+                      "SignalValues": [
+                        "true"
+                      ]
+                    }
+                  },
+                  "Failed": {
+                    "Type": "Simple"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

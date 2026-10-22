@@ -1,0 +1,26 @@
+{
+  "$Comment": "Staggered with no shield: weak sparks sputter and drop off the coil top, a little smoke rises, the power flickers. Looped; attach at Spine-Hub.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Grounded_Sputter_Sputter"
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Grounded_Sputter_Smoke",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.1,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Grounded_Sputter_Flicker",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.05,
+        "Z": 0
+      }
+    }
+  ],
+  "BoundingRadius": 3,
+  "CullDistance": 96
+}

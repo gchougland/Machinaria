@@ -1,0 +1,71 @@
+{
+  "$Comment": "Rivet Burst (DESIGN.md 6.2; analogue vanilla Goblin_Turret_Trash_Throw, 0.4 s then one throw). 1.0 s of aim (the lens turns red, the barrels spin up, a ratchet tick), then three rivets 0.15 s apart, then 0.6 s of recovery. Only the first projectile carries AimingReference (at most one per root).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 1.0,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Turret",
+        "ItemAnimationId": "Aim",
+        "WorldSoundEventId": "SFX_Hand_Crossbow_T2_Reload_Start"
+      }
+    },
+    {
+      "Type": "Projectile",
+      "Config": "Machinaria_Heartworks_Rivet_Turret_Rivet",
+      "Tags": {
+        "AimingReference": []
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.15,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Turret",
+        "ItemAnimationId": "Fire",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Rivet_Turret_Muzzle",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Muzzle"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Projectile",
+      "Config": "Machinaria_Heartworks_Rivet_Turret_Rivet"
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.15,
+      "Effects": {
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Rivet_Turret_Muzzle",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Muzzle"
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Projectile",
+      "Config": "Machinaria_Heartworks_Rivet_Turret_Rivet"
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.6,
+      "Effects": {
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Rivet_Turret_Muzzle",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Muzzle"
+          }
+        ]
+      }
+    }
+  ]
+}

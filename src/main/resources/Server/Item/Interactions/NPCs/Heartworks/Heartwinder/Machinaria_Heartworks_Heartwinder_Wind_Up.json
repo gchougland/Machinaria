@@ -1,0 +1,54 @@
+{
+  "$Comment": "Wind Up (DESIGN.md 7.5): 2.5 s standing still, three heavy key turns, a loud ratchet, the key glows. The evaluator then reads the damage taken in those 2.5 s: 150 or more jams the key (Key_Jam), less winds it tight (Wound_Tight). Analogue: the Skeleton Elite answering damage (RecentSustainedDamage).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 2.5,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+            "ItemAnimationId": "WindUp",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Wind_Up",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Key",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Chest",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 2.5,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

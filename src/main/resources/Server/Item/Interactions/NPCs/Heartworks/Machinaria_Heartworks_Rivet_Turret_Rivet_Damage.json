@@ -1,0 +1,26 @@
+{
+  "$Comment": "One rivet (DESIGN.md 6.2): 10 Physical (round 2; was 7: a burst of 30 against the Deepworks turret's 8 a throw), a small shove away from the shot.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Physical": 10
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Point",
+      "Force": 3.5,
+      "VelocityY": 1.5,
+      "VelocityType": "Add"
+    },
+    "WorldSoundEventId": "SFX_Metal_Hit",
+    "LocalSoundEventId": "SFX_Metal_Hit",
+    "WorldParticles": [
+      {
+        "SystemId": "Impact_Sword_Basic"
+      }
+    ]
+  }
+}

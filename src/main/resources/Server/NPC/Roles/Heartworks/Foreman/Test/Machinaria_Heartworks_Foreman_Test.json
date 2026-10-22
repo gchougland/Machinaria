@@ -1,0 +1,15 @@
+{
+  "$Comment": "TEST ONLY: the Foreman with short cooldowns (throw 5 s, dash 5 s, whistle 6 s) that spawns three Coglings beside him when he calls the line, so one bot sees every move on a test server. Delete before release.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Foreman_Template",
+  "Modify": {
+    "MaxHealth": 900,
+    "MaxSpeed": 5,
+    "_CombatConfig": "CAE_Machinaria_Heartworks_Foreman_Test",
+    "SpawnCrewOnCall": true,
+    "WhistleCooldown": [
+      6,
+      6
+    ]
+  }
+}

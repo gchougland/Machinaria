@@ -1,0 +1,16 @@
+{
+  "$Comment": "Rusted Rivet Guard of the Expanse surface (world spawn, notes/world-spawns.md): the Rivet Guard's template (shield guard, bash, mace, rally) with the Pumpworks' rusted body. Weathered and weaker than the Heartworks guard (220 HP): 100 HP, a little slower. Damage stays the template's (its damage variables are being renamed for the club, so they are not overridden here). Surface drop list: scrap, bolts, studs or bronze, no held-item drops (those stay Heartworks rewards). Rally reaches both robot groups.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Rivet_Guard_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Pumpworks_Rusted_Rivet_Guard",
+    "DropList": "Machinaria_RustedExpanse_Drop_Rivet_Guard",
+    "MaxHealth": 100,
+    "MaxSpeed": 4.2,
+    "NameTranslationKey": "machinaria_rusted_expanse.npcRoles.Machinaria_RustedExpanse_Rivet_Guard.name",
+    "CombatMessageTargetGroups": [
+      "Machinaria_Heartworks_Robots",
+      "Machinaria_RustedExpanse_Robots"
+    ]
+  }
+}

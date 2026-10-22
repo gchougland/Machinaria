@@ -1,0 +1,31 @@
+{
+  "$Comment": "Galvanic rune on-hit: a 3 s shock, 3 lightning damage a second, 15% slower, crackling.",
+  "Name": "machinaria_hw_items.entityEffects.Machinaria_Galvanized",
+  "Duration": 3,
+  "OverlapBehavior": "Overwrite",
+  "Debuff": true,
+  "StatusEffectIcon": "Icons/ItemsGenerated/Rune_Galvanic.png",
+  "DamageCalculatorCooldown": 1,
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Lightning": 3
+    }
+  },
+  "DamageEffects": {
+    "WorldSoundEventId": "SFX_Machinaria_HW_Galvanized_Zap"
+  },
+  "DeathMessageKey": "machinaria_hw_items.deathCause.galvanized",
+  "ApplicationEffects": {
+    "EntityTopTint": "#5fbcff",
+    "EntityBottomTint": "#123a6e",
+    "HorizontalSpeedMultiplier": 0.85,
+    "WorldSoundEventId": "SFX_Machinaria_HW_Galvanized_Zap",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Rune_Galvanic_Shock",
+        "TargetNodeName": "Chest",
+        "Scale": 0.8
+      }
+    ]
+  }
+}

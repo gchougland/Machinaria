@@ -1,0 +1,57 @@
+{
+  "$Comment": "A hot rivet from the Rivet Turret (DESIGN.md 6.2): fast and flat (gravity 4), 7 Physical and a small shove that can knock a player off a ledge. Shaped like vanilla Projectile_Config_Goblin_Turret_Trash (8 damage).",
+  "Model": "Machinaria_Heartworks_Rivet_Turret_Rivet",
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 4,
+    "TerminalVelocityAir": 60,
+    "TerminalVelocityWater": 15,
+    "RotationMode": "VelocityDamped",
+    "Bounciness": 0.0,
+    "SticksVertically": true
+  },
+  "LaunchForce": 34,
+  "SpawnOffset": {
+    "X": 0,
+    "Y": 0,
+    "Z": 0.9
+  },
+  "LaunchWorldSoundEventId": "SFX_Bow_T2_Shoot",
+  "Interactions": {
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        "Machinaria_Heartworks_Rivet_Turret_Rivet_Damage",
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Metal_Hit",
+            "Particles": [
+              {
+                "SystemId": "Impact_Sword_Basic",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  }
+}

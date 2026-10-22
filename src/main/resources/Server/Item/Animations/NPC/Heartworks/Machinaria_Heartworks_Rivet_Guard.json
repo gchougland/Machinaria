@@ -1,0 +1,177 @@
+{
+  "$Comment": "The Rivet Guard attack clips (DESIGN.md 6.2), played by its interactions. Each has a ThirdPersonMoving copy without the hips and legs, so it can guard and swing while walking. Camera and WiggleWeights as vanilla Golem_Crystal_Thunder_Default (the server requires WiggleWeights). Also the movement clips (round 4: this is the held items' PlayerAnimationsId).",
+  "Animations": {
+    "GuardRaise": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/GuardRaise.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/GuardRaise_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "Guard": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Guard.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/Guard_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.1
+    },
+    "GuardHit": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/GuardHit.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/GuardHit_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.05
+    },
+    "GuardLower": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/GuardLower.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/GuardLower_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "Bash": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Bash.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/Bash_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.08
+    },
+    "Mace1": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Mace1.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/Mace1_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "Mace2": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Mace2.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/Mace2_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.08
+    },
+    "GuardBroken": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/GuardBroken.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Rivet_Guard/Animations/GuardBroken_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.05
+    },
+    "Idle": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Idle.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Walk": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Walk.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "WalkBackward": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/WalkBackward.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Run": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Run.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "RunBackward": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/WalkBackward.blockyanim",
+      "Speed": 1.3,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Sprint": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Run.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Crouch": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Guard.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.15
+    },
+    "CrouchWalk": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Walk.blockyanim",
+      "Speed": 0.7,
+      "Looping": true,
+      "BlendingDuration": 0.15
+    },
+    "CrouchWalkBackward": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/WalkBackward.blockyanim",
+      "Speed": 0.7,
+      "Looping": true,
+      "BlendingDuration": 0.15
+    },
+    "Jump": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Jump.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "JumpWalk": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Jump.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "JumpRun": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Jump.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "Fall": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Fall.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.3
+    },
+    "FallFar": {
+      "ThirdPerson": "NPC/Heartworks/Rivet_Guard/Animations/Fall.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.3
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

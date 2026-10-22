@@ -1,0 +1,54 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Belt_Roller.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Belt_Roller.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Belt_Roller.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Belt_Roller.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Belt_Roller.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Roller_Run.blockyanim",
+    "Looping": true,
+    "TextureComputedColor": "#6a6a60",
+    "ParticleColor": "#6a6a60",
+    "State": {
+      "Definitions": {
+        "Fast": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Roller_Run_Fast.blockyanim",
+          "Looping": true
+        }
+      }
+    }
+  }
+}

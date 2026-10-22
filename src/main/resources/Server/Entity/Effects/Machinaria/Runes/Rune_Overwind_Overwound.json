@@ -1,0 +1,42 @@
+{
+  "$Comment": "Overwind rune, 8 s: +20% move speed, and +30% physical, elemental and projectile damage (the design asks for +30% attack speed; no data field sets attack speed, so the same gain in damage per second stands in for it). Nothing here touches attacking: the cast chain is over 1.1 s after the cast.",
+  "Name": "machinaria_hw_items.entityEffects.Rune_Overwind_Overwound",
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 1.2,
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Rune_Overwind_Aura",
+        "TargetNodeName": "Chest",
+        "PositionOffset": {
+          "X": 0,
+          "Y": -0.6,
+          "Z": 0
+        }
+      }
+    ]
+  },
+  "Duration": 8,
+  "OverlapBehavior": "Overwrite",
+  "Debuff": false,
+  "StatusEffectIcon": "Icons/ItemsGenerated/Rune_Overwind.png",
+  "OutgoingDamage": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.3
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.3
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.3
+      }
+    ]
+  }
+}

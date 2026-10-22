@@ -1,0 +1,80 @@
+{
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "None",
+  "ParticleLifeSpan": {
+    "Min": 1.01,
+    "Max": 1.01
+  },
+  "ParticleRotateWithSpawner": true,
+  "TrailSpawnerPositionMultiplier": 1,
+  "TrailSpawnerRotationMultiplier": 1,
+  "Particle": {
+    "Texture": "Particles/Textures/Indicators/Warning_Square_Base.png",
+    "ScaleRatioConstraint": "None",
+    "UVOption": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 0,
+        "Color": "#ff3a1a"
+      },
+      "15": {
+        "Opacity": 1
+      },
+      "30": {
+        "Opacity": 0.3
+      },
+      "45": {
+        "Opacity": 1
+      },
+      "60": {
+        "Opacity": 0.3
+      },
+      "75": {
+        "Opacity": 1
+      },
+      "90": {
+        "Opacity": 0.6
+      },
+      "100": {
+        "Opacity": 0,
+        "Color": "#ff3a1a"
+      }
+    },
+    "SoftParticles": "Disable",
+    "InitialAnimationFrame": {
+      "Opacity": 0.6,
+      "Rotation": {
+        "X": {
+          "Min": 90,
+          "Max": 90
+        },
+        "Y": {
+          "Min": 180,
+          "Max": 180
+        }
+      },
+      "Scale": {
+        "X": {
+          "Min": 2,
+          "Max": 2
+        },
+        "Y": {
+          "Min": 10,
+          "Max": 10
+        }
+      }
+    }
+  },
+  "Shape": "Sphere",
+  "TotalParticles": {
+    "Min": 1,
+    "Max": 1
+  },
+  "SpawnRate": {
+    "Min": 1,
+    "Max": 1
+  },
+  "MaxConcurrentParticles": 1,
+  "SpawnBurst": true,
+  "LinearFiltering": true
+}

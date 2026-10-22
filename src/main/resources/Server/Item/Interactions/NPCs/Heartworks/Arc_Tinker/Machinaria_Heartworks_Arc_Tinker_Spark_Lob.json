@@ -1,0 +1,38 @@
+{
+  "$Comment": "Spark Lob (DESIGN.md 6.2, tuned against vanilla Goblin_Lobber_Bomb_Throw): a 1.2 s wind-up while the left hand gathers a spark at the coil and the coil whines, a 0.3 s throw, the orb, 0.4 s to recover.",
+  "Type": "Simple",
+  "RunTime": 1.2,
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Arc_Tinker",
+    "ItemAnimationId": "Charge",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Charge",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Tinker_Charge",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "L-Hand"
+      }
+    ]
+  },
+  "Next": {
+    "Type": "Simple",
+    "RunTime": 0.3,
+    "Effects": {
+      "ItemPlayerAnimationsId": "Machinaria_Heartworks_Arc_Tinker",
+      "ItemAnimationId": "Throw",
+      "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Throw"
+    },
+    "Next": {
+      "Type": "Projectile",
+      "Config": "Machinaria_Heartworks_Arc_Tinker_Spark_Orb",
+      "Tags": {
+        "AimingReference": []
+      },
+      "Next": {
+        "Type": "Simple",
+        "$Comment": "Recovery: the opening.",
+        "RunTime": 0.4
+      }
+    }
+  }
+}

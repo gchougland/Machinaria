@@ -1,0 +1,206 @@
+{
+  "$Comment": "The Rivet Turret's brain (DESIGN.md 6.2; analogue vanilla Template_Dungeon_Goblin_Turret: 0.4 s throw, 8 damage, range 25, scared within 3). A static emplacement: it never moves; it turns slowly (head yaw at TurnSpeed of 360 degrees a second, and the model turns its dome with the head), fires a Rivet Burst at targets between DeadZone and AttackDistance with line of sight, and cannot depress its gun into the DeadZone. THE LEVER HOOK: a beacon message PowerOffMessage (default Machinaria_Heartworks_Turret_Off) received within PowerRange puts it in PoweredDown (it runs down and goes dark and ignores everyone); PowerOnMessage (Machinaria_Heartworks_Turret_On) brings it back to Idle. Any interaction can send them: { \"Type\": \"SendBeacon\", \"Message\": \"Machinaria_Heartworks_Turret_Off\", \"Range\": 40, \"TargetGroups\": [ \"Machinaria_Heartworks_Robots\" ] }. A turret placed with StartPowered false starts powered down. UNKILLABLE (round 2, Gibson: a lever turns it off): the role flag Invulnerable (parameter, default true) adds the engine's Invulnerable component at spawn, so every hit is cancelled in the damage filter (no damage numbers, no knockback; selectors skip it). Rooms turn it off with their lever (RemoveEntities Mode Remove, which ignores invulnerability, then SpawnNpc _Unpowered). _Breakable is the killable one, for a room with no lever.",
+  "Type": "Abstract",
+  "Parameters": {
+    "Appearance": { "Value": "Machinaria_Heartworks_Rivet_Turret", "Description": "Model to be used" },
+    "MaxHealth": { "Value": 140, "Description": "Max health" },
+    "DropList": { "Value": "Machinaria_Heartworks_Rivet_Turret_Drops", "Description": "Drops when destroyed" },
+    "NameTranslationKey": { "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Rivet_Turret.name", "Description": "Translation key for NPC name display" },
+    "ViewRange": { "Value": 24, "Description": "View range" },
+    "ViewSector": { "Value": 240, "Description": "View sector" },
+    "HearingRange": { "Value": 12, "Description": "Hearing range" },
+    "AlertedRange": { "Value": 30, "Description": "Range within which it keeps its target" },
+    "AttackDistance": { "Value": 24, "Description": "Furthest it fires (DESIGN.md 6.2: range 24)" },
+    "DeadZone": { "Value": 2, "Description": "It cannot fire at targets this close" },
+    "Attack": { "Value": "Machinaria_Heartworks_Rivet_Turret_Burst", "Description": "The burst root" },
+    "AttackPauseRange": { "Value": [ 2.5, 3.5 ], "Description": "Seconds between bursts, counted from the start of the burst" },
+    "TurnSpeed": { "Value": 0.15, "Description": "Relative turn speed of the dome (DESIGN.md 6.2: 0.15)" },
+    "PowerOffMessage": { "Value": "Machinaria_Heartworks_Turret_Off", "Description": "Beacon that powers it down (the room's lever)" },
+    "PowerOnMessage": { "Value": "Machinaria_Heartworks_Turret_On", "Description": "Beacon that powers it up again" },
+    "PowerRange": { "Value": 48, "Description": "How far from the sender it hears the power beacons" },
+    "Invulnerable": { "Value": true, "Description": "Whether it ignores all damage (round 2: the turret is unkillable; its room's lever turns it off)" },
+    "StartPowered": { "Value": true, "Description": "false: it starts powered down (a room whose lever starts off)" },
+    "AttitudeGroup": { "Value": "Machinaria_Robots", "Description": "Attitude group" }
+  },
+  "Appearance": { "Compute": "Appearance" },
+  "MaxHealth": { "Compute": "MaxHealth" },
+  "DropList": { "Compute": "DropList" },
+  "NameTranslationKey": { "Compute": "NameTranslationKey" },
+  "AttitudeGroup": { "Compute": "AttitudeGroup" },
+  "Invulnerable": { "Compute": "Invulnerable" },
+  "IsMemory": false,
+  "StartState": "Idle",
+  "DefaultPlayerAttitude": "Hostile",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [ "Self" ],
+  "KnockbackScale": 0,
+  "DeathAnimationTime": 1.2,
+  "DeathParticles": "Machinaria_Heartworks_Rivet_Turret_Sparks",
+  "MotionControllerList": [
+    {
+      "$Comment": "Positive speeds satisfy the validator; no instruction ever issues a moving body motion, so it never moves (vanilla Goblin_Launcher does the same).",
+      "Type": "Walk",
+      "MaxWalkSpeed": 1,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 360,
+      "Acceleration": 10
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "Scale health to the party size on first aggro: the dungeon goblins' lower tier for ranged enemies (x1.2, x1.4, x1.6).",
+      "Continue": true,
+      "Sensor": { "Type": "State", "State": "Combat" },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health",
+          "Modify": {
+            "EffectP2": "Dungeon_Goblin_Scale_Health_Low_P2",
+            "EffectP3": "Dungeon_Goblin_Scale_Health_Low_P3",
+            "EffectP4": "Dungeon_Goblin_Scale_Health_Low_P4"
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Placed unpowered: go dark at once.",
+      "Enabled": { "Compute": "!StartPowered" },
+      "Continue": true,
+      "Sensor": { "Type": "And", "Sensors": [ { "Type": "State", "State": "Idle" }, { "Type": "Not", "Sensor": { "Type": "Flag", "Name": "Placed" } } ] },
+      "Actions": [ { "Type": "SetFlag", "Name": "Placed", "SetTo": true }, { "Type": "State", "State": "PoweredDown" } ]
+    },
+    {
+      "$Comment": "The lever hook: power off from any state but PoweredDown.",
+      "Sensor": {
+        "Type": "And",
+        "Sensors": [
+          { "Type": "Not", "Sensor": { "Type": "State", "State": "PoweredDown" } },
+          { "Type": "Beacon", "Message": { "Compute": "PowerOffMessage" }, "Range": { "Compute": "PowerRange" } }
+        ]
+      },
+      "Actions": [ { "Type": "State", "State": "PoweredDown" } ]
+    },
+    {
+      "Sensor": { "Type": "State", "State": "PoweredDown" },
+      "Instructions": [
+        {
+          "Sensor": { "Type": "Beacon", "Message": { "Compute": "PowerOnMessage" }, "Range": { "Compute": "PowerRange" } },
+          "Actions": [
+            { "Type": "PlayAnimation", "Slot": "Status", "Animation": "PowerUp" },
+            { "Type": "PlaySound", "SoundEventId": "SFX_Lever_Metal_On" },
+            { "Type": "State", "State": "Idle" }
+          ]
+        },
+        {
+          "Sensor": { "Type": "Any" },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Nothing" },
+          "ActionsBlocking": true,
+          "Actions": [
+            { "Type": "PlayAnimation", "Slot": "Status", "Animation": "PowerDown", "Once": true },
+            { "Type": "PlaySound", "SoundEventId": "SFX_Lever_Metal_Off", "Once": true },
+            { "Type": "SpawnParticles", "ParticleSystem": "Machinaria_Heartworks_Rivet_Turret_Sparks", "Offset": [ 0, 0, 0 ], "Once": true },
+            { "Type": "Timeout", "Delay": [ 1.2, 1.2 ], "Once": true },
+            { "Type": "PlayAnimation", "Slot": "Status", "Animation": "Off", "Once": true }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": { "Type": "State", "State": "Idle" },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Damage_Check",
+          "Modify": {
+            "_ExportStates": [ "Combat", "Combat" ],
+            "AlertedRange": { "Compute": "AlertedRange" }
+          }
+        },
+        {
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Sight_By_Attitude",
+                "Modify": { "ViewRange": { "Compute": "ViewRange" }, "ViewSector": { "Compute": "ViewSector" }, "Attitudes": [ "Hostile" ] }
+              },
+              {
+                "Reference": "Component_Sensor_Sound_By_Attitude",
+                "Modify": { "HearingRange": { "Compute": "HearingRange" }, "Attitudes": [ "Hostile" ] }
+              }
+            ]
+          },
+          "Actions": [ { "Type": "State", "State": "Alerted" } ]
+        },
+        {
+          "$Comment": "Idle: the dome sweeps slowly from side to side.",
+          "Sensor": { "Type": "Any" },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Observe", "AngleRange": [ -70, 70 ], "PauseTimeRange": [ 1.5, 3 ], "ViewSegments": 3, "RelativeTurnSpeed": 0.12 }
+        }
+      ]
+    },
+    {
+      "$Comment": "Alerted: the lens flickers on, the barrels whirr (the Alerted clip), and it turns to the target.",
+      "Sensor": { "Type": "State", "State": "Alerted" },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": { "Type": "Any", "Once": true },
+          "Actions": [ { "Type": "PlayAnimation", "Slot": "Status", "Animation": "Alerted" } ]
+        },
+        {
+          "Sensor": { "Type": "Target", "Range": { "Compute": "AlertedRange" } },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Aim", "RelativeTurnSpeed": { "Compute": "TurnSpeed" } },
+          "Actions": [ { "Type": "Timeout", "Delay": [ 0.8, 0.8 ], "Action": { "Type": "State", "State": "Combat" } } ]
+        },
+        {
+          "Actions": [ { "Type": "Timeout", "Delay": [ 2, 2 ], "Action": { "Type": "State", "State": "Idle" } } ]
+        }
+      ]
+    },
+    {
+      "Sensor": { "Type": "State", "State": "Combat" },
+      "Instructions": [
+        { "Reference": "Component_Instruction_Clear_Status_Animation" },
+        {
+          "$Comment": "Lost the target: keep watching for a few seconds, then go back to sweeping.",
+          "Sensor": { "Type": "Not", "Sensor": { "Type": "Target", "Range": { "Compute": "AlertedRange" } } },
+          "BodyMotion": { "Type": "Nothing" },
+          "ActionsBlocking": true,
+          "Actions": [
+            { "Type": "Timeout", "Delay": [ 3, 4 ] },
+            { "Type": "State", "State": "Idle" }
+          ]
+        },
+        {
+          "$Comment": "The dead zone: it cannot depress its gun this far. It rattles and tracks, and does not fire.",
+          "Sensor": { "Type": "Target", "Range": { "Compute": "DeadZone" } },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Watch", "RelativeTurnSpeed": { "Compute": "TurnSpeed" } }
+        },
+        {
+          "Sensor": { "Type": "Target", "Range": { "Compute": "AttackDistance" }, "Filters": [ { "Type": "LineOfSight" } ] },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Aim", "RelativeTurnSpeed": { "Compute": "TurnSpeed" }, "HitProbability": 0.85, "Spread": 1 },
+          "Actions": [
+            { "Type": "Attack", "Attack": { "Compute": "Attack" }, "AttackPauseRange": { "Compute": "AttackPauseRange" }, "AimingTimeRange": [ 0.1, 0.2 ], "LineOfSight": true }
+          ]
+        },
+        {
+          "Sensor": { "Type": "Target", "Range": { "Compute": "AlertedRange" } },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Aim", "RelativeTurnSpeed": { "Compute": "TurnSpeed" } }
+        }
+      ]
+    }
+  ],
+  "StateTransitions": [
+    {
+      "States": [ { "From": [ "Combat", "Alerted" ], "To": [ "Idle", "PoweredDown" ] } ],
+      "Actions": [ { "Type": "ReleaseTarget" } ]
+    }
+  ]
+}

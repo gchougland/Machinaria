@@ -1,0 +1,68 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Spare_Parts.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Spare_Parts.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Spare_Parts.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Spare_Parts/A.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Spare_Parts/A.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Rubble",
+    "VariantRotation": "NESW",
+    "RandomRotation": "YawStep90",
+    "RequiresAlphaBlending": true,
+    "State": {
+      "Definitions": {
+        "B": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Spare_Parts/B.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Spare_Parts/B.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "C": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Spare_Parts/C.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Spare_Parts/C.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

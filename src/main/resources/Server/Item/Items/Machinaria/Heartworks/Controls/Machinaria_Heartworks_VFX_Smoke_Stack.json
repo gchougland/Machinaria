@@ -1,0 +1,64 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_VFX_Smoke_Stack.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Emitter_Firework_Mix.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "PlayerAnimationsId": "Item",
+  "BlockType": {
+    "DrawType": "Model",
+    "Group": "Wood",
+    "Flags": {},
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Emitter_Smoke_Stack",
+        "TargetEntityPart": "Self"
+      }
+    ],
+    "Opacity": "Transparent",
+    "CubeShadingMode": "Standard",
+    "VariantRotation": "NESW",
+    "Material": "Empty",
+    "CustomModel": "Blocks/_Debug/Model.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/_Debug/TextureEmpty.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Rubble",
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_Drone_B",
+    "Support": {},
+    "SupportDropType": "Destroy",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Wood",
+  "SubCategory": "VFX Spawners",
+  "Quality": "Developer",
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "Condition",
+          "RequiredGameMode": "Adventure",
+          "Failed": "Block_Secondary"
+        }
+      ]
+    }
+  }
+}

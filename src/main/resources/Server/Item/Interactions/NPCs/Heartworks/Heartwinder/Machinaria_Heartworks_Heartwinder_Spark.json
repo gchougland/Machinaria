@@ -1,0 +1,63 @@
+{
+  "$Comment": "One spark of the volley, spawned by the encounter at a player: a decal for 1.2 s, then a strike in radius 2.5 for 25 Lightning (players only).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 1.2,
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Charge",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
+            "TargetEntityPart": "Entity",
+            "Scale": 2.55,
+            "PositionOffset": {
+              "Y": 0.05
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.1,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 2.5
+      },
+      "HitEntityRules": [
+        {
+          "Matchers": [
+            {
+              "Type": "Player"
+            }
+          ],
+          "Next": {
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "Spark_Damage",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Machinaria_Heartworks_Heartwinder_Spark_Damage"
+                  ]
+                },
+                "DefaultOk": true
+              }
+            ]
+          }
+        }
+      ],
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Fall",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
+            "TargetEntityPart": "Entity"
+          }
+        ]
+      }
+    }
+  ]
+}

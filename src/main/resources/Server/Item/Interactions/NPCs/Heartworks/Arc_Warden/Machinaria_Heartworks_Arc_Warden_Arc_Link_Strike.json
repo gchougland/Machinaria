@@ -1,0 +1,43 @@
+{
+  "$Comment": "Arc Link (DESIGN.md 6.2): spawned by the role at its target's feet as the cast begins: a mark of radius 2 on the floor for 1.2 s (step out), then a bolt: 25 Lightning within 2.",
+  "Type": "Simple",
+  "RunTime": 1.2,
+  "Effects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Arc_Mark",
+        "Scale": 2
+      }
+    ]
+  },
+  "Next": {
+    "Type": "Selector",
+    "RunTime": 0.1,
+    "Effects": {
+      "WorldSoundEventId": "SFX_Emit_Goblin_Electric_Fence_Zap",
+      "Particles": [
+        {
+          "SystemId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt"
+        }
+      ]
+    },
+    "Selector": {
+      "Id": "AOECircle",
+      "Range": 2
+    },
+    "HitEntity": {
+      "Interactions": [
+        {
+          "Type": "Replace",
+          "Var": "Arc_Link_Damage",
+          "DefaultValue": {
+            "Interactions": [
+              "Machinaria_Heartworks_Arc_Warden_Arc_Link_Damage"
+            ]
+          },
+          "DefaultOk": true
+        }
+      ]
+    }
+  }
+}

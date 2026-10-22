@@ -1,0 +1,26 @@
+{
+  "$Comment": "Hard mode marker on the boss (vanilla Gobliterator_Hard_Mode, applied the same way: every hard evaluator lists it in EntityEffects). Its own hits land 20% harder.",
+  "Infinite": true,
+  "RemovalBehavior": "Infinite",
+  "OverlapBehavior": "Ignore",
+  "OutgoingDamage": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.2
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.2
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.2
+      }
+    ]
+  }
+}

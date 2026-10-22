@@ -1,0 +1,97 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Robot_Arm.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Robot_Arm.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Robot_Arm.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "IconProperties": {
+    "Scale": 0.35,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -6
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Robot_Arm.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Robot_Arm.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#8a6a34",
+    "ParticleColor": "#8a6a34",
+    "State": {
+      "Definitions": {
+        "Raise": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Arm_Raise.blockyanim",
+          "Looping": false,
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Robot_Arm_Warn.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#f31"
+          }
+        },
+        "Sweep": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Arm_Sweep.blockyanim",
+          "Looping": false,
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Robot_Arm_Warn.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Arm_Trail",
+              "TargetNodeName": "Paddle",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 0,
+                "Z": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

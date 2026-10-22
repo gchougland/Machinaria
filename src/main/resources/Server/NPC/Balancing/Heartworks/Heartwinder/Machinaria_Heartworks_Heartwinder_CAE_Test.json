@@ -1,0 +1,406 @@
+{
+  "Type": "CombatActionEvaluator",
+  "$Comment": "TEST ONLY (delete before release): every move on cooldowns of a third (4 s at least), all in one role, so a bot sees each. The Wind Up needs no damage first.",
+  "EntityEffects": [
+    "Immunity_Slow",
+    "Immunity_Freeze",
+    "Immunity_Poison"
+  ],
+  "TargetMemoryDuration": 30,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "Type": "Switch",
+          "SwitchPoint": 2
+        }
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "NoAimDefault": {
+        "Type": "State",
+        "Description": "Leave NoAim for Default",
+        "State": "Combat",
+        "SubState": "Default",
+        "Target": "Hostile",
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 0.1
+            }
+          }
+        ]
+      },
+      "SelectTarget": {
+        "Type": "SelectBasicAttackTarget",
+        "OffhandSlot": -1,
+        "Conditions": [
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "ResponseCurve": "SimpleDescendingLogistic",
+              "XRange": [
+                0,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "Slam": {
+        "Type": "Ability",
+        "Description": "Hammer Slam: within 5, every 12 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Slam",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.6,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 4
+            }
+          }
+        ]
+      },
+      "GearToss": {
+        "Type": "Ability",
+        "Description": "Gear Toss: a target 6 to 18 away, every 10 s; it tracks the target through its wind-up (.GearToss)",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          6,
+          18
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Gear_Toss",
+        "SubState": "GearToss",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.4,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 4
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6
+            }
+          }
+        ]
+      },
+      "WindUp": {
+        "Type": "Ability",
+        "Description": "Wind Up: every 30 s once it has taken 300",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          40
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Wind_Up",
+        "SubState": "WindUp",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.2,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 10
+            }
+          }
+        ]
+      },
+      "KeyJam": {
+        "Type": "Ability",
+        "Description": "The key was struck for 150 in the Wind Up: jammed",
+        "Target": "Self",
+        "AttackDistanceRange": [
+          1,
+          1
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Key_Jam",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "RecentSustainedDamage",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 150
+            }
+          }
+        ]
+      },
+      "WoundTight": {
+        "Type": "Ability",
+        "Description": "The Wind Up was not stopped: Wound Tight",
+        "Target": "Self",
+        "AttackDistanceRange": [
+          1,
+          1
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Wound_Tight",
+        "SubState": "Default",
+        "RequireAiming": false,
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "RecentSustainedDamage",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 150,
+              "InitialState": 1,
+              "FinalState": 0
+            }
+          }
+        ]
+      },
+      "Charge": {
+        "Type": "State",
+        "Description": "Steam Charge: a target 6 or more away, every 12 s",
+        "Target": "Hostile",
+        "State": "Combat",
+        "SubState": "Charge",
+        "PostExecuteDistanceRange": [
+          3,
+          3
+        ],
+        "WeightCoefficient": 1.4,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 4
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6
+            }
+          }
+        ]
+      },
+      "SparkVolley": {
+        "Type": "Ability",
+        "Description": "Spark Volley: every 15 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          30
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Spark_Volley",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.3,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 5
+            }
+          }
+        ]
+      },
+      "Lash": {
+        "Type": "Ability",
+        "Description": "Mainspring Lash (the spin, Gibson round 5 note 15): every 16 s, and it outranks every other phase 3 move so the anti-melee pair can never crowd it out",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          30
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Lash",
+        "SubState": "Lash",
+        "RequireAiming": false,
+        "WeightCoefficient": 3.5,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 5
+            }
+          }
+        ]
+      },
+      "GearRain": {
+        "Type": "Ability",
+        "Description": "Gear Rain: every 20 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          30
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Gear_Rain",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.3,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 7
+            }
+          }
+        ]
+      },
+      "Overpressure": {
+        "Type": "Ability",
+        "Description": "Overpressure: every 16 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          22
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Overpressure",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.4,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 5
+            }
+          }
+        ]
+      },
+      "HeartBurst": {
+        "Type": "Ability",
+        "Description": "Heart Burst: a player within 5, every 6 s (round 4: was within 4, every 8 s)",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Heart_Burst",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 3,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 4
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 5,
+              "InitialState": 1,
+              "FinalState": 0
+            }
+          }
+        ]
+      },
+      "CradleVent": {
+        "Type": "Ability",
+        "Description": "Cradle Vents: a player within 6, every 7 s (round 4 anti-melee)",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          6
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Cradle_Vent",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 2.6,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 4
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6,
+              "InitialState": 1,
+              "FinalState": 0
+            }
+          }
+        ]
+      }
+    },
+    "ActionSets": {
+      "Default": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Heartwinder_Jab"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 5,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1.5,
+            2
+          ]
+        },
+        "Actions": [
+          "Slam",
+          "GearToss",
+          "WindUp",
+          "Charge",
+          "SparkVolley",
+          "Lash",
+          "GearRain",
+          "Overpressure",
+          "HeartBurst",
+          "CradleVent",
+          "SelectTarget"
+        ]
+      },
+      "NoAim": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      },
+      "GearToss": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      },
+      "WindUp": {
+        "Actions": [
+          "KeyJam",
+          "WoundTight"
+        ]
+      },
+      "Lash": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      }
+    }
+  }
+}

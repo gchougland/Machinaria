@@ -1,0 +1,54 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Loose_Panel.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Loose_Panel.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Loose_Panel.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ],
+    "Family": [
+      "Machinaria_Heartworks_Breakable"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Soft": {
+        "DropList": "Empty",
+        "IsWeaponBreakable": true
+      }
+    },
+    "DrawType": "Cube",
+    "Textures": [
+      {
+        "All": "BlockTextures/Machinaria/Heartworks/Hazards/Loose_Panel.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#4a2412",
+    "ParticleColor": "#6a3a1e",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Loose_Panel_Seep",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      }
+    ]
+  }
+}

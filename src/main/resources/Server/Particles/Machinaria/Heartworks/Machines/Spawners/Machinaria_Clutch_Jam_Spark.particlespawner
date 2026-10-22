@@ -1,0 +1,84 @@
+{
+  "$Comment": "Jammed clutch gear: bursts of sparks from the broken teeth.",
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "Billboard",
+  "LightInfluence": 0,
+  "MaxConcurrentParticles": 24,
+  "ParticleLifeSpan": {
+    "Min": 0.25,
+    "Max": 0.45
+  },
+  "SpawnRate": {
+    "Min": 18,
+    "Max": 24
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Spark.png",
+    "ScaleRatioConstraint": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 0.4,
+            "Max": 0.4
+          },
+          "Y": {
+            "Min": 0.4,
+            "Max": 0.4
+          }
+        },
+        "Color": "#ff6a2a"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.24,
+          "Max": 0.34
+        },
+        "Y": {
+          "Min": 0.24,
+          "Max": 0.34
+        }
+      },
+      "Opacity": 1,
+      "Color": "#ffd890"
+    }
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 1.8,
+      "Max": 2.3
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.3
+    }
+  },
+  "Attractors": [
+    {
+      "DampingMultiplier": {
+        "X": 0.85,
+        "Y": 0.85,
+        "Z": 0.85
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": -9,
+        "Z": 0
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 3,
+      "Max": 7
+    }
+  }
+}

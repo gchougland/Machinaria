@@ -1,0 +1,64 @@
+{
+  "Animations": {
+    "PunchLeft": {
+      "ThirdPerson": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Punch_Left.blockyanim",
+      "ThirdPersonMoving": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Punch_Left.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.2,
+      "Looping": false
+    },
+    "PunchRight": {
+      "ThirdPerson": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Punch_Right.blockyanim",
+      "ThirdPersonMoving": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Punch_Right.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.2,
+      "Looping": false
+    },
+    "Slam": {
+      "ThirdPerson": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Slam.blockyanim",
+      "ThirdPersonMoving": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Slam.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.2,
+      "Looping": false
+    },
+    "SteamVent": {
+      "ThirdPerson": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Steam_Vent.blockyanim",
+      "ThirdPersonMoving": "NPC/Gear/Clockwork_Golem/Animations/Attacks/Steam_Vent.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.2,
+      "Looping": false
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 25,
+        "Min": -25
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 40,
+        "Min": -40
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

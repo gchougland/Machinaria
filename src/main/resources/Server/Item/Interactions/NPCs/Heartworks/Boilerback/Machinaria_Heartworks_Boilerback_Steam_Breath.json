@@ -1,0 +1,72 @@
+{
+  "$Comment": "Steam Breath, one 0.4 s cycle (copied from vanilla Weapon_Flamethrower_Primary_Burn): the steam loop sound, the jet from the firebox mouth, and two beam hits (Stab, 0.25 to 6 blocks, 0.6 either side, line of sight). The role repeats it for 3 s after a 1 s tell (Machinaria_Heartworks_Boilerback_Template, .Breath).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Machinaria_Heartworks_Boilerback_Steam_Source"
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 0.4,
+          "Effects": {
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Boilerback_Steam_Breath",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Firebox",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0.2
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Repeat",
+          "Repeat": 2,
+          "ForkInteractions": {
+            "Interactions": [
+              {
+                "Type": "Selector",
+                "RunTime": 0.2,
+                "Selector": {
+                  "Id": "Stab",
+                  "TestLineOfSight": true,
+                  "ExtendTop": 0.6,
+                  "ExtendLeft": 0.6,
+                  "ExtendRight": 0.6,
+                  "ExtendBottom": 0.6,
+                  "StartDistance": 0.25,
+                  "EndDistance": 6
+                },
+                "HitEntity": {
+                  "Interactions": [
+                    {
+                      "Type": "Replace",
+                      "Var": "Steam_Breath_Damage",
+                      "DefaultValue": {
+                        "Interactions": [
+                          "Machinaria_Heartworks_Boilerback_Steam_Breath_Damage"
+                        ]
+                      },
+                      "DefaultOk": true
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

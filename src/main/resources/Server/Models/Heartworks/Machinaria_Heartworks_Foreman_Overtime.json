@@ -1,0 +1,254 @@
+{
+  "$Comment": "The Foreman in Overtime (phase 2): the coat-plate gone, his furnace chest bare. The stack blast comes from his Overtime effect.",
+  "Model": "NPC/Heartworks/Foreman/Models/Model_Overtime.blockymodel",
+  "Texture": "NPC/Heartworks/Foreman/Models/Texture.png",
+  "EyeHeight": 2.7,
+  "CrouchOffset": -0.3,
+  "MinScale": 1,
+  "MaxScale": 1,
+  "HitBox": {
+    "Max": {
+      "X": 0.7,
+      "Y": 3,
+      "Z": 0.7
+    },
+    "Min": {
+      "X": -0.7,
+      "Y": 0,
+      "Z": -0.7
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 20,
+        "Min": -20
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 40,
+        "Min": -40
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Foreman_Stack_Smoke",
+      "TargetNodeName": "Hat-Lip-A",
+      "PositionOffset": {
+        "Y": 0.05
+      }
+    }
+  ],
+  "Light": {
+    "Color": "#e74"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2,
+          "Speed": 0.8
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Run.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "FallFar": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Foreman_Alert"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Hurt.blockyanim",
+          "BlendingDuration": 0.08,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Foreman_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Death.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Foreman_Death"
+        }
+      ]
+    },
+    "Inspect": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Inspect.blockyanim",
+          "BlendingDuration": 0.3,
+          "Looping": false
+        }
+      ]
+    },
+    "Whistle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Whistle.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Call": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Call.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Overtime": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Overtime.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "OvertimeRoar": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/OvertimeRoar.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false
+        }
+      ]
+    },
+    "DashWindup": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/DashWindup.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Dash": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Dash.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "DashCrash": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Foreman/Animations/Hurt.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false,
+          "Speed": 0.5
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Repair_Machine.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Repair_Machine.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Repair_Machine.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#5a5446",
+    "TextureComputedColor": "#5a5446",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Repair_Machine.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Repair_Machine.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Repair_Machine_Broken.blockyanim",
+    "Looping": true,
+    "Light": {
+      "Color": "#076"
+    },
+    "AmbientSoundEventId": "SFX_GoblinLab_Broken_Device",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Repair_Sparks",
+        "TargetNodeName": "Socket",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0.15
+        }
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Repair_Machine",
+    "InteractionHint": "machinaria_hw_machines.hints.repair",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.25
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Broken": {
+          "InteractionHint": "machinaria_hw_machines.hints.repair",
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "Simple",
+                  "RunTime": 0.25
+                }
+              ]
+            }
+          }
+        },
+        "Repaired": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Repair_Machine_Repaired.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Repair_Machine_Repaired.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Repair_Machine_Repaired.blockyanim",
+          "Looping": true,
+          "Light": {
+            "Color": "#a60"
+          },
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A",
+          "Particles": [],
+          "InteractionHint": null,
+          "Interactions": {
+            "Use": null
+          }
+        }
+      }
+    }
+  }
+}

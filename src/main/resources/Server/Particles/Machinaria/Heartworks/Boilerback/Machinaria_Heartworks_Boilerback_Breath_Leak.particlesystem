@@ -1,0 +1,27 @@
+{
+  "$Comment": "The Steam Breath tell (1.0 s): steam squirting out round the clamped firebox doors and a hot glow pulsing inside. Attach at node Firebox.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Breath_Leak_Squirt",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0.1
+      },
+      "RotationOffset": {
+        "Yaw": 180
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Breath_Leak_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0.12
+      }
+    }
+  ],
+  "CullDistance": 96,
+  "LifeSpan": 1,
+  "BoundingRadius": 2
+}

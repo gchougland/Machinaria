@@ -1,0 +1,59 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_pumpworks.items.Machinaria_Pumpworks_Relay_Lamp.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Pumpworks_Relay_Lamp.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Pumpworks"
+    ]
+  },
+  "BlockType": {
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Group": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Machinaria_Pumpworks_Scrap_Salvage"
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Pumpworks/Relay_Lamp.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Pumpworks/Relay_Lamp.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Torch_Wall",
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#6a4a2a",
+    "ParticleColor": "#6a4a2a",
+    "State": {
+      "Definitions": {
+        "On": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Pumpworks/Relay_Lamp_On.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#e94",
+            "Radius": 6
+          }
+        }
+      }
+    }
+  }
+}

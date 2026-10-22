@@ -1,0 +1,142 @@
+{
+  "$Comment": "The Arc Tinker attack clips (DESIGN.md 6.2): Charge loops through the Spark Lob wind-up, Throw and Zap are one-shots. Each has a ThirdPersonMoving copy without the hips and legs, so it can throw while it kites. Camera and WiggleWeights as vanilla Golem_Crystal_Thunder_Default (the server requires WiggleWeights).",
+  "Animations": {
+    "Charge": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Charge.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Tinker/Animations/Charge_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.12
+    },
+    "Throw": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Throw.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Tinker/Animations/Throw_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.06
+    },
+    "Zap": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Zap.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Tinker/Animations/Zap_Moving.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.08
+    },
+    "Idle": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Idle.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Walk": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Walk.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "WalkBackward": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/WalkBackward.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Run": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Run.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "RunBackward": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/WalkBackward.blockyanim",
+      "Speed": 1.4,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Sprint": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Run.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.2
+    },
+    "Crouch": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Idle.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.15
+    },
+    "CrouchWalk": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Walk.blockyanim",
+      "Speed": 0.7,
+      "Looping": true,
+      "BlendingDuration": 0.15
+    },
+    "CrouchWalkBackward": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/WalkBackward.blockyanim",
+      "Speed": 0.7,
+      "Looping": true,
+      "BlendingDuration": 0.15
+    },
+    "Jump": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Jump.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "JumpWalk": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Jump.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "JumpRun": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Jump.blockyanim",
+      "Speed": 1,
+      "Looping": false,
+      "BlendingDuration": 0.1
+    },
+    "Fall": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Fall.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.3
+    },
+    "FallFar": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Tinker/Animations/Fall.blockyanim",
+      "Speed": 1,
+      "Looping": true,
+      "BlendingDuration": 0.3
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

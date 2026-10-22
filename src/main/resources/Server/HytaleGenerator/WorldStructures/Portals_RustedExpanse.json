@@ -1,19 +1,20 @@
 {
   "Type": "NoiseRange",
-  "Biomes": [{
-      "Biome" : "RustedExpanse",
-      "Min" : 0,
-      "Max" : 2
+  "Biomes": [
+    {
+      "Biome": "RustedExpanse",
+      "Min": 0,
+      "Max": 2
     },
     {
-      "Biome" : "Void_Buffer",
-      "Min" : -0.1,
-      "Max" : 0
+      "Biome": "Void_Buffer",
+      "Min": -0.1,
+      "Max": 0
     },
     {
-      "Biome" : "Void",
-      "Min" : -2,
-      "Max" : -0.1
+      "Biome": "Void",
+      "Min": -2,
+      "Max": -0.1
     }
   ],
   "DefaultBiome": "Void",
@@ -21,23 +22,91 @@
   "MaxBiomeEdgeDistance": 16,
   "Density": {
     "Type": "Imported",
-    "Name" : "Biome-Map-Portals"
+    "Name": "Biome-Map-Portals"
   },
-  "Framework" : [
+  "SpawnPositions": {
+    "Type": "Imported",
+    "Name": "Machinaria_RustedExpanse_Spawns"
+  },
+  "Framework": [
     {
-      "Type" : "DecimalConstants",
-      "Entries" : [
+      "Type": "Positions",
+      "Entries": [
         {
-          "Name" : "Base",
-          "Value" : 100
+          "Name": "Spawns",
+          "Positions": {
+            "Type": "List",
+            "ExportAs": "Machinaria_RustedExpanse_Spawns",
+            "Positions": [
+              {
+                "X": 8,
+                "Y": 112,
+                "Z": 8
+              },
+              {
+                "X": -40,
+                "Y": 112,
+                "Z": 8
+              },
+              {
+                "X": 56,
+                "Y": 112,
+                "Z": 8
+              },
+              {
+                "X": 8,
+                "Y": 112,
+                "Z": -40
+              },
+              {
+                "X": 8,
+                "Y": 112,
+                "Z": 56
+              },
+              {
+                "X": -40,
+                "Y": 112,
+                "Z": -40
+              },
+              {
+                "X": 56,
+                "Y": 112,
+                "Z": 56
+              },
+              {
+                "X": -40,
+                "Y": 112,
+                "Z": 56
+              },
+              {
+                "X": 56,
+                "Y": 112,
+                "Z": -40
+              },
+              {
+                "X": 104,
+                "Y": 112,
+                "Z": 8
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Type": "DecimalConstants",
+      "Entries": [
+        {
+          "Name": "Base",
+          "Value": 100
         },
         {
-          "Name" : "Water",
-          "Value" : 100
+          "Name": "Water",
+          "Value": 100
         },
         {
-          "Name" : "Bedrock",
-          "Value" : 0
+          "Name": "Bedrock",
+          "Value": 0
         }
       ]
     }

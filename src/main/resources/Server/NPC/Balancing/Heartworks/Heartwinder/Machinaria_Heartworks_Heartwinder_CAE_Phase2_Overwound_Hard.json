@@ -1,0 +1,159 @@
+{
+  "Type": "CombatActionEvaluator",
+  "$Comment": "Hard mode phase 2 from 50%, Overwound: fast jabs 1.0 to 1.4 s, slam with aftershock (every 9 s), Steam Charge chained twice (every 9 s), Spark Volley (every 10 s). It runs every 1.5 s.",
+  "EntityEffects": [
+    "Immunity_Slow",
+    "Immunity_Freeze",
+    "Immunity_Poison",
+    "Machinaria_Heartworks_Heartwinder_Hard_Mode"
+  ],
+  "TargetMemoryDuration": 30,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "Type": "Switch",
+          "SwitchPoint": 1.5
+        }
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "NoAimDefault": {
+        "Type": "State",
+        "Description": "Leave NoAim for Default",
+        "State": "Combat",
+        "SubState": "Default",
+        "Target": "Hostile",
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 0.1
+            }
+          }
+        ]
+      },
+      "SelectTarget": {
+        "Type": "SelectBasicAttackTarget",
+        "OffhandSlot": -1,
+        "Conditions": [
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "ResponseCurve": "SimpleDescendingLogistic",
+              "XRange": [
+                0,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "Slam": {
+        "Type": "Ability",
+        "Description": "Hammer Slam with its aftershock (hard): within 5, every 9 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Slam_Hard",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.6,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 9
+            }
+          }
+        ]
+      },
+      "Charge": {
+        "Type": "State",
+        "Description": "Steam Charge, chained twice (hard): a target 6 or more away, every 9 s",
+        "Target": "Hostile",
+        "State": "Combat",
+        "SubState": "Charge",
+        "PostExecuteDistanceRange": [
+          3,
+          3
+        ],
+        "WeightCoefficient": 1.4,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 9
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6
+            }
+          }
+        ]
+      },
+      "SparkVolley": {
+        "Type": "Ability",
+        "Description": "Spark Volley (hard: seven sparks each): every 10 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          30
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Spark_Volley",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.3,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 10
+            }
+          }
+        ]
+      }
+    },
+    "ActionSets": {
+      "Default": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Heartwinder_Jab_Fast"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 5,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1,
+            1.4
+          ]
+        },
+        "Actions": [
+          "Slam",
+          "Charge",
+          "SparkVolley",
+          "SelectTarget"
+        ]
+      },
+      "NoAim": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      }
+    }
+  }
+}

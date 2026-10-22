@@ -1,0 +1,34 @@
+{
+  "$Comment": "Raising the shield (vanilla Goblin_Guardian_Shield_Guard): needs 2 stamina and no Stamina_Broken, a 0.5 s raise with a clank, then the guard, which ends in the bash.",
+  "Type": "StatsCondition",
+  "Costs": {
+    "Stamina": 2
+  },
+  "Next": {
+    "Type": "EffectCondition",
+    "EntityEffectIds": [
+      "Stamina_Broken"
+    ],
+    "Match": "None",
+    "Next": {
+      "Type": "Simple",
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+        "ItemAnimationId": "GuardRaise",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Shield_Raise"
+      },
+      "RunTime": 0.5,
+      "Next": {
+        "Type": "Replace",
+        "DefaultValue": {
+          "Interactions": [
+            "Machinaria_Heartworks_Rivet_Guard_Shield_Wield_Bash"
+          ]
+        },
+        "Var": "Block_Damage",
+        "DefaultOk": true
+      }
+    }
+  },
+  "Failed": "Stamina_Bar_Flash"
+}

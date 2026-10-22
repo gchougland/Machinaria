@@ -1,0 +1,14 @@
+{
+  "$Comment": "One Rivet Guard. The Heartworks clock is paused, so SpawnAfterGameTime never passes and a destroyed guard stays down for the run (as the Cogling marker).",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Rivet_Guard",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 6,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

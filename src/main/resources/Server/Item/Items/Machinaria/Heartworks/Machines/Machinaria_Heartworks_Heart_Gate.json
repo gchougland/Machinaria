@@ -1,0 +1,111 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Heart_Gate.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Heart_Gate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Heart_Gate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#6a5030",
+    "TextureComputedColor": "#6a5030",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Heart_Gate.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Heart_Gate.png",
+        "Weight": 1
+      }
+    ],
+    "Light": {
+      "Color": "#500"
+    },
+    "HitboxType": "Machinaria_Heartworks_Heart_Gate",
+    "State": {
+      "Definitions": {
+        "Closed": {},
+        "One": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Heart_Gate_One.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#642"
+          }
+        },
+        "Two": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Heart_Gate_Two.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#753"
+          }
+        },
+        "Three": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Heart_Gate_Three.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Heart_Gate_Two.blockyanim",
+          "Looping": false,
+          "Light": {
+            "Color": "#853"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Heart_Gate_Steam",
+              "TargetNodeName": "Door"
+            }
+          ]
+        },
+        "Open": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Heart_Gate_Three.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Heart_Gate_Open.blockyanim",
+          "Looping": false,
+          "Light": {
+            "Color": "#853"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Heart_Gate_Open",
+              "TargetNodeName": "FootR"
+            }
+          ],
+          "HitboxType": "Machinaria_Heartworks_Heart_Gate_Open"
+        }
+      }
+    }
+  }
+}

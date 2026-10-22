@@ -4,6 +4,8 @@ import com.hexvane.machinaria.aetherhaven.AetherhavenIntegration;
 import com.hexvane.machinaria.aetherhaven.AetherhavenItemAnimations;
 import com.hexvane.machinaria.aetherhaven.RustyRobotOilImmersionSystem;
 import com.hexvane.machinaria.generated.HstatsBuildMetadata;
+import com.hexvane.machinaria.heartworks.MovingPlatformComponent;
+import com.hexvane.machinaria.heartworks.MovingPlatformSystem;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.farming.GrowthModifierAsset;
@@ -14,6 +16,8 @@ import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jspecify.annotations.NonNull;
+import com.hexvane.machinaria.command.MachinariaPrefabsCommand;
+import com.hexvane.machinaria.heartworks.PendulumPassthroughSystem;
 
 public class MachinariaPlugin extends JavaPlugin {
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
@@ -21,6 +25,7 @@ public class MachinariaPlugin extends JavaPlugin {
     private ComponentType<ChunkStore, TimeAccelerationOverlay> timeAccelerationOverlayComponentType;
     private ComponentType<EntityStore, PocketwatchStoredTimeComponent> pocketwatchStoredTimeComponentComponentType;
     private PocketwatchAccumulationSystem pocketwatchAccumulationSystem;
+    private ComponentType<EntityStore, MovingPlatformComponent> movingPlatformComponentType;
 
     public static MachinariaPlugin get() {
         return instance;
@@ -65,6 +70,15 @@ public class MachinariaPlugin extends JavaPlugin {
         );
         this.getChunkStoreRegistry().registerSystem(benchAccelerationSystem);
         this.getEntityStoreRegistry().registerSystem(new RustyRobotOilImmersionSystem());
+        // The Heartworks' moving platforms, lifts, turning cogs and pendulum (prop entities placed by prefabs).
+        movingPlatformComponentType = getEntityStoreRegistry().registerComponent(
+                MovingPlatformComponent.class,
+                "MachinariaMovingPlatform",
+                MovingPlatformComponent.CODEC);
+        this.getEntityStoreRegistry().registerSystem(new MovingPlatformSystem(movingPlatformComponentType));
+        this.getEntityStoreRegistry().registerSystem(new PendulumPassthroughSystem());
+        // /machinariaprefabs: the vanilla prefab editor on the Machinaria prefabs.
+        this.getCommandRegistry().registerCommand(new MachinariaPrefabsCommand());
         AetherhavenIntegration.setup();
         AetherhavenItemAnimations.register(this);
     }
@@ -105,5 +119,9 @@ public class MachinariaPlugin extends JavaPlugin {
                     + "or pass -Phstats_mod_uuid=... to Gradle."
             );
         }
+    }
+
+    public ComponentType<EntityStore, MovingPlatformComponent> getMovingPlatformComponentType() {
+        return movingPlatformComponentType;
     }
 }

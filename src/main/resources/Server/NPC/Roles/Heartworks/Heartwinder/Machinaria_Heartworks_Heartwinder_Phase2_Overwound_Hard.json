@@ -1,0 +1,14 @@
+{
+  "$Comment": "Hard mode phase 2 from 50%, Overwound (hard only): after a Pressure Spike it comes back faster and angrier, every move on a shorter cooldown; the encounter puts the Overwound effect on it (key glowing, 15% harder and faster).",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Heartwinder_Template",
+  "Modify": {
+    "MaxHealth": 9000,
+    "NameTranslationKey": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder_Hard.name",
+    "DropList": "Drop_Heartwinder_Hard",
+    "Appearance": "Machinaria_Heartworks_Heartwinder",
+    "MaxSpeed": 3.5,
+    "ChargeTwice": true,
+    "_CombatConfig": "Machinaria_Heartworks_Heartwinder_CAE_Phase2_Overwound_Hard"
+  }
+}

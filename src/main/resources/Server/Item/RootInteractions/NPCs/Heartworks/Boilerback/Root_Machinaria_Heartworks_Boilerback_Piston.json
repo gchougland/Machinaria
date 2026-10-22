@@ -1,0 +1,19 @@
+{
+  "$Comment": "The basic attack: piston 1 then piston 2 (a fixed rhythm the player learns); resets after 4 s.",
+  "Interactions": [
+    {
+      "Type": "Chaining",
+      "ChainId": "Machinaria_Heartworks_Boilerback_Piston",
+      "ChainingAllowance": 4,
+      "Next": [
+        "Machinaria_Heartworks_Boilerback_Piston_1",
+        "Machinaria_Heartworks_Boilerback_Piston_2"
+      ]
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

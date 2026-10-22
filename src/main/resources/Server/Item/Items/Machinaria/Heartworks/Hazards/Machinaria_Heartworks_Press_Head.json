@@ -1,0 +1,82 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Press_Head.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Press_Head.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Press_Head.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "IconProperties": {
+    "Scale": 0.2,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      10
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Press_Head.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Press_Head.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#5a6068",
+    "ParticleColor": "#5a6068",
+    "State": {
+      "Definitions": {
+        "Warn": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Press_Warn.blockyanim",
+          "Looping": false
+        },
+        "Slam": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Press_Slam.blockyanim",
+          "Looping": false,
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Press_Dust",
+              "PositionOffset": {
+                "X": 0,
+                "Y": -5.4,
+                "Z": 0
+              }
+            }
+          ]
+        },
+        "Raise": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Press_Raise.blockyanim",
+          "Looping": false
+        }
+      }
+    }
+  }
+}

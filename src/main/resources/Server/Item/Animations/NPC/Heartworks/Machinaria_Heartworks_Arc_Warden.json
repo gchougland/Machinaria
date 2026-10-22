@@ -1,0 +1,65 @@
+{
+  "$Comment": "The Arc Warden's attack clips (tools/models/heartworks/arc_warden.anims.mjs), as vanilla NPC sets: WiggleWeights and Camera included.",
+  "Animations": {
+    "Swipe1": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Warden/Animations/Swipe1.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Warden/Animations/Swipe1.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "Swipe2": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Warden/Animations/Swipe2.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Warden/Animations/Swipe2.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "RingCharge": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Warden/Animations/RingCharge.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Warden/Animations/RingCharge.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.25,
+      "Looping": true
+    },
+    "Ring": {
+      "ThirdPerson": "NPC/Heartworks/Arc_Warden/Animations/Ring.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Arc_Warden/Animations/Ring.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.04,
+      "Looping": false
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 10,
+        "Min": -10
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 20,
+        "Min": -20
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

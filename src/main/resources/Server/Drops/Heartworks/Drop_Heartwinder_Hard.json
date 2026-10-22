@@ -1,0 +1,66 @@
+{
+  "$Comment": "The hard Heartwinder's drops (notes/boss.md \"Hard mode\"): Drop_Heartwinder (one Overwind Rune, one Heartwinder's Mainspring, 2 to 3 Clockwork Hearts, 2 Rune Shards), plus a second Overwind Rune at 50%, a second Mainspring, one more heart, two more shards, and the Golden Mainspring trophy. Written by tools/models/heartworks/heartwinder.hard.items.mjs (role boss, by the coordinator's brief; the standard list is items-rewards').",
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rune_Overwind",
+          "QuantityMin": 1,
+          "QuantityMax": 1
+        }
+      },
+      {
+        "Type": "Single",
+        "Weight": 50,
+        "Item": {
+          "ItemId": "Rune_Overwind",
+          "QuantityMin": 1,
+          "QuantityMax": 1
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Heartwinder_Mainspring",
+          "QuantityMin": 2,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Clockwork_Heart",
+          "QuantityMin": 3,
+          "QuantityMax": 4
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Rune_Shard",
+          "QuantityMin": 4,
+          "QuantityMax": 4
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Machinaria_Heartworks_Heartwinder_Trophy",
+          "QuantityMin": 1,
+          "QuantityMax": 1
+        }
+      },
+      {
+        "Type": "Single",
+        "Weight": 70,
+        "Item": {
+          "ItemId": "Ingredient_Lightning_Essence",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      }
+    ]
+  }
+}

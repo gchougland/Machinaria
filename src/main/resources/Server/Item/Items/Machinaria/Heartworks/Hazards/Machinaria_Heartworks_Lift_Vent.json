@@ -1,0 +1,97 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Lift_Vent.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Lift_Vent.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Lift_Vent.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Cube",
+    "Textures": [
+      {
+        "Up": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent.png",
+        "Down": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Side.png",
+        "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Side.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#7a6234",
+    "ParticleColor": "#8a7240",
+    "Light": {
+      "Color": "#033"
+    },
+    "State": {
+      "Definitions": {
+        "Build": {
+          "Textures": [
+            {
+              "Up": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Build.png",
+              "Down": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Side.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Side.png",
+              "Weight": 1
+            }
+          ],
+          "CubeShadingMode": "Fullbright",
+          "Light": {
+            "Color": "#777"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Lift_Vent_Build",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 0.5,
+                "Z": 0
+              }
+            }
+          ]
+        },
+        "Launch": {
+          "Textures": [
+            {
+              "Up": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Launch.png",
+              "Down": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Side.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Lift_Vent_Side.png",
+              "Weight": 1
+            }
+          ],
+          "CubeShadingMode": "Fullbright",
+          "Light": {
+            "Color": "#aaa"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Lift_Vent_Plume",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 0.5,
+                "Z": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

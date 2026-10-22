@@ -1,0 +1,15 @@
+{
+  "$Comment": "Arc Tinker of the Expanse surface (world spawn, notes/world-spawns.md): the Arc Tinker's template (kites, spark lob, zap, rally) and model, weaker than the Heartworks one (120 HP): 80 HP. Attacks stay the template's. Surface drop list: scrap, bolts, sometimes copper or lightning essence, no staff (a Heartworks reward). There is no rusted Arc Tinker model yet; when pumpworks makes one, set Appearance to it.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Arc_Tinker_Template",
+  "Modify": {
+    "DropList": "Machinaria_RustedExpanse_Drop_Arc_Tinker",
+    "MaxHealth": 80,
+    "MaxSpeed": 5,
+    "NameTranslationKey": "machinaria_rusted_expanse.npcRoles.Machinaria_RustedExpanse_Arc_Tinker.name",
+    "CombatMessageTargetGroups": [
+      "Machinaria_Heartworks_Robots",
+      "Machinaria_RustedExpanse_Robots"
+    ]
+  }
+}

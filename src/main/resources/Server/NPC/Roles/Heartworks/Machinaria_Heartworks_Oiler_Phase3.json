@@ -1,0 +1,20 @@
+{
+  "$Comment": "The phase 3 Oiler (DESIGN.md 7.4: Oilers every 15 s for +200). Same can, richer oil.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Oiler_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Oiler",
+    "DropList": "Machinaria_Heartworks_Oiler_Drops",
+    "OilEffect": "Machinaria_Heartworks_Oiler_Heal_Phase3",
+    "OilFlourish": "Machinaria_Heartworks_Oiler_Sheen",
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Oiler.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

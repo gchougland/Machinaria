@@ -1,0 +1,96 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Clutch_Lever.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Clutch_Lever.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Clutch_Lever.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Clutch/Out.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Clutch/Out.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Plant_Large",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.clutch.in",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "In": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Clutch/In.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Clutch/In.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.clutch.out"
+        },
+        "Jammed": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Clutch/Jammed.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Clutch/Jammed.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.clutch.check",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Sparks",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 0.5
+              },
+              "Scale": 0.6
+            }
+          ]
+        }
+      }
+    }
+  }
+}

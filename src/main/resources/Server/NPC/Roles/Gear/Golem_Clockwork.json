@@ -11,15 +11,15 @@
     "MaxSpeed": 7,
     "ViewRange": 10,
     "WakingIdleBehaviorComponent": "Component_Instruction_Stationary_Idle",
-    "Attack": "Root_NPC_Golem_Crystal_Attack",
+    "Attack": "Root_NPC_Golem_Clockwork_Attack",
     "AttackDistance": 3,
     "BlockProbability": 0,
     "DesiredAttackDistanceRange": [
       2,
-      2.6
+      2.8
     ],
     "CombatAttackPostDelay": [
-      1.0,
+      1,
       1.2
     ],
     "CombatBackOffAfterAttack": false,
@@ -31,7 +31,14 @@
     "MemoriesCategory": "Elemental",
     "NameTranslationKey": {
       "Compute": "NameTranslationKey"
-    }
+    },
+    "WakingPeriod": [
+      5.5,
+      21.5
+    ],
+    "BedBlockSet": "",
+    "HearingRange": 6,
+    "DeathParticles": "Golem_Clockwork_Steam_Burst"
   },
   "Parameters": {
     "NameTranslationKey": {

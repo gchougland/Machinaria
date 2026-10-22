@@ -1,0 +1,26 @@
+{
+  "$Comment": "Crashed into a wall or a boiler: 4 s with -50% physical resistance (DESIGN.md 6.2). Copied from vanilla Goblin_Feastmaster_Stunned (5 s).",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Self",
+        "TargetNodeName": "StackCap",
+        "PositionOffset": {
+          "Y": 0.4
+        }
+      }
+    ]
+  },
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.5
+      }
+    ]
+  },
+  "OverlapBehavior": "Overwrite",
+  "Infinite": false,
+  "Duration": 4
+}

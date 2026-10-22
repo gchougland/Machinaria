@@ -1,0 +1,25 @@
+{
+  "$Comment": "The shield charge, run by the role from 5 to 10 blocks (round 5 note 7). Not while hit-stunned; protected as the mace chain.",
+  "Interactions": [
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Hit_Interrupt_Stunned"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Serial",
+        "Interactions": [
+          "Hit_Interrupt_Begin_Protected_Attack",
+          "Machinaria_Heartworks_Rivet_Guard_Shield_Charge"
+        ]
+      }
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$Comment": "Ground Ring (DESIGN.md 6.2): within 6, every 12 s. 1.4 s wind-up standing still (the staff raised and crackling, a warning ring at its feet), then the staff is planted and a ring a block high races out to radius 10 over 1.0 s (30 and a knock-up; jump it), then 1.0 s to straighten: the punish window. Analogue: Dungeon_Goblin_Mace_Slam (1.9 s, a Donut selector growing to 11.5 over 1.1 s).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.4,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Arc_Warden",
+            "ItemAnimationId": "RingCharge",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Warden_Ring_Charge",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Arc_Warden_Ring_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "DetachedFromModel": true,
+                "Scale": 10
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Staff-Yoke",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Selector",
+            "RunTime": 1,
+            "Effects": {
+              "ItemPlayerAnimationsId": "Machinaria_Heartworks_Arc_Warden",
+              "ItemAnimationId": "Ring",
+              "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Warden_Ring",
+              "Particles": [
+                {
+                  "SystemId": "Machinaria_Heartworks_Arc_Warden_Ring_Wave",
+                  "TargetEntityPart": "Entity",
+                  "TargetNodeName": "Origin",
+                  "DetachedFromModel": true
+                }
+              ]
+            },
+            "Selector": {
+              "Id": "Donut",
+              "Height": 1,
+              "Width": 0.75,
+              "MaxRadius": 10
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Ring_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Arc_Warden_Ring_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 3.4,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

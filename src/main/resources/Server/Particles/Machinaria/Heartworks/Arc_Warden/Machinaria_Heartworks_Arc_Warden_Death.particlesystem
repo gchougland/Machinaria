@@ -1,0 +1,75 @@
+{
+  "$Comment": "The Arc Warden dies: blue arcs crawl over it and fade, the cyan core dies, cream ceramic shards and iron bits fall, smoke rises, 2 s. Attach at Origin.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Flash",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 2.3,
+        "Z": 0.2
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Arcs",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.9,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Arcs_Fading",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.9,
+        "Z": 0
+      },
+      "StartDelay": 0.7
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Core",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 2.3,
+        "Z": 0.3
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Shards",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.9,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Iron",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.9,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Sparks",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.9,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Death_Smoke",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 1.9,
+        "Z": 0
+      },
+      "StartDelay": 0.15
+    }
+  ],
+  "LifeSpan": 2,
+  "BoundingRadius": 7,
+  "CullDistance": 96,
+  "IsImportant": true
+}

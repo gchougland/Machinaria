@@ -1,0 +1,67 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Iron_Crate.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Iron_Crate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Iron_Crate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Iron_Crate/Full.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Iron_Crate/Full.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Chest_Small",
+    "VariantRotation": "NESW",
+    "State": {
+      "Definitions": {
+        "Small": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Iron_Crate/Small.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Iron_Crate/Small.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Plant_Large"
+        },
+        "Open": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Iron_Crate/Open.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Iron_Crate/Open.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

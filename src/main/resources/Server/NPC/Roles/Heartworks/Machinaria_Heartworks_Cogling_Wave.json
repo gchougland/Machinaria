@@ -1,0 +1,40 @@
+{
+  "$Comment": "Cogling (wave): the Cogling that a coupling room's hatches send up (W3, E4, N5; kit/machines.mjs coglingHatch). It is the same beetle, but it notices the players at once (round 6, Gibson note 6: wave Coglings sat in the corners until you came close; the room is 25 blocks across and the base Cogling sees 12 and hears 8). This is the pattern of the Feastmaster's arena adds (Dungeon_Feastmaster_Scrapper: 'detects all round', ViewRange 30, ViewSector 360, AlertedRange 60): it sees 40 all round and hears 24, and once alerted it keeps its target to 60. Everything else is the Cogling's.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Cogling_Wave_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Cogling",
+    "DropList": "Machinaria_Heartworks_Drop_Cogling",
+    "AttackDistance": 1.6,
+    "Attack": "Machinaria_Heartworks_Cogling_Nip",
+    "PounceAttack": "Machinaria_Heartworks_Cogling_Pounce",
+    "AttitudeGroup": "Machinaria_Robots",
+    "FlockArray": [
+      "Machinaria_Heartworks_Cogling_Wave",
+      "Machinaria_Heartworks_Cogling"
+    ],
+    "MaxHealth": 50,
+    "MaxSpeed": 9,
+    "ViewRange": 40,
+    "ViewSector": 360,
+    "HearingRange": 24,
+    "AlertedRange": 60,
+    "WanderRadius": 2,
+    "_CombatConfig": {
+      "EntityEffects": [
+        "Immunity_Environmental",
+        "Immunity_Poison"
+      ]
+    },
+    "IsMemory": false,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Cogling.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

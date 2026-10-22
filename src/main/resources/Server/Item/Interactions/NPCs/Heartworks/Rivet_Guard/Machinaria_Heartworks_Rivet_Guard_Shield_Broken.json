@@ -1,0 +1,39 @@
+{
+  "$Comment": "Plate Buckled (DESIGN.md 6.2): when blocking takes stamina below zero, a 1.2 s stagger with a bang. The role then drops the shield from the off hand (Inventory EquipOffHand -1, as vanilla Dungeon_Goblin_Guardian) and applies Machinaria_Heartworks_Rivet_Guard_Buckled (sparks from the torn mount). As vanilla Goblin_Guardian_Shield_Guard_Broken_Effects.",
+  "Type": "StatsCondition",
+  "OnItemChangeBehavior": "Ignore",
+  "Lenient": true,
+  "Costs": {
+    "Stamina": 0
+  },
+  "Failed": {
+    "Type": "ChangeStat",
+    "Behaviour": "Add",
+    "StatModifiers": {
+      "StaminaRegenDelay": -1
+    },
+    "OnItemChangeBehavior": "Ignore",
+    "RunTime": 1.2,
+    "Effects": {
+      "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+      "ItemAnimationId": "GuardBroken",
+      "ClearAnimationOnFinish": true,
+      "WorldSoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Guard_Break",
+      "MovementEffects": {
+        "DisableAll": true
+      },
+      "Particles": [
+        {
+          "SystemId": "Machinaria_Heartworks_Rivet_Guard_Buckle_Burst",
+          "TargetEntityPart": "Entity",
+          "TargetNodeName": "L-Hand",
+          "PositionOffset": {
+            "X": 0,
+            "Y": 0,
+            "Z": 0.15
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Wood_Gear_Fence.name"
+  },
+  "Parent": "Wood_Softwood_Fence",
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Fence.png",
+  "Set": "Wood_Gear_Planks",
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_Gear",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Builders",
+        "Type": "StructuralCrafting",
+        "Categories": [
+          "Wall"
+        ]
+      }
+    ],
+    "OutputQuantity": 2
+  },
+  "BlockType": {
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Structures/Fence.png",
+        "Weight": 1
+      }
+    ],
+    "Gathering": {
+      "Breaking": {
+        "ItemId": "Wood_Gear_Fence",
+        "GatherType": "Woods"
+      }
+    },
+    "ParticleColor": "#4a2418",
+    "State": {
+      "Definitions": {
+        "Corner": {
+          "HitboxType": "Fence_Corner_Thin",
+          "FlipType": "OrthogonalInverse"
+        },
+        "T": {
+          "FlipType": "Symmetric"
+        },
+        "Cross": {}
+      }
+    },
+    "ConnectedBlockRuleSet": {
+      "Type": "CustomTemplate",
+      "TemplateShapeBlockPatterns": {
+        "Straight": "Wood_Gear_Fence",
+        "Corner": "*Wood_Gear_Fence_State_Definitions_Corner",
+        "Gate": "Wood_Gear_Fence_Gate",
+        "T_Junction": "*Wood_Gear_Fence_State_Definitions_T",
+        "Cross_Junction": "*Wood_Gear_Fence_State_Definitions_Cross"
+      },
+      "TemplateShapeAssetId": "WallConnectedBlockTemplate"
+    },
+    "TextureComputedColor": "#55271B"
+  },
+  "Tags": {
+    "Type": [
+      "Wood"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Categories": [
+    "Blocks.Wood",
+    "Machinaria.Content"
+  ]
+}

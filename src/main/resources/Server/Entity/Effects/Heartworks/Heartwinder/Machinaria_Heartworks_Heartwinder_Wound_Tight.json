@@ -1,0 +1,35 @@
+{
+  "$Comment": "Wind Up done (DESIGN.md 7.5): Wound Tight for 10 s. The design asks for x1.3 attack speed; an NPC has no attack speed stat, so it hits 30% harder and moves 30% faster, the key glowing all the while.",
+  "Duration": 10,
+  "OverlapBehavior": "Overwrite",
+  "OutgoingDamage": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.3
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.3
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.3
+      }
+    ]
+  },
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 1.3,
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Key"
+      }
+    ]
+  }
+}

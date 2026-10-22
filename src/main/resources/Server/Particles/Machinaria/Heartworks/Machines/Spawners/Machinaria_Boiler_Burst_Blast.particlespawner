@@ -1,0 +1,91 @@
+{
+  "$Comment": "Boiler burst: one blast of steam, 28 puffs thrown out fast.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "LightInfluence": 1,
+  "MaxConcurrentParticles": 28,
+  "ParticleLifeSpan": {
+    "Min": 0.8,
+    "Max": 1.4
+  },
+  "SpawnRate": {
+    "Min": 28,
+    "Max": 28
+  },
+  "TotalParticles": {
+    "Min": 28,
+    "Max": 28
+  },
+  "SpawnBurst": true,
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "ScaleRatioConstraint": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 0.2
+      },
+      "10": {
+        "Opacity": 0.9
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 3,
+            "Max": 3
+          },
+          "Y": {
+            "Min": 3,
+            "Max": 3
+          }
+        },
+        "Color": "#b8b3aa"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.4,
+          "Max": 0.6
+        },
+        "Y": {
+          "Min": 0.4,
+          "Max": 0.6
+        }
+      },
+      "Opacity": 1,
+      "Color": "#f4f1ea",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      }
+    },
+    "UVOption": "RandomFlipUV"
+  },
+  "Shape": "Sphere",
+  "Attractors": [
+    {
+      "DampingMultiplier": {
+        "X": 0.75,
+        "Y": 0.75,
+        "Z": 0.75
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": 1.5,
+        "Z": 0
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 4,
+      "Max": 8
+    }
+  }
+}

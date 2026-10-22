@@ -1,0 +1,138 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Wood_Gear_Roof_Hollow.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Roof_Hollow.png",
+  "Categories": [
+    "Blocks.Wood",
+    "Machinaria.Content"
+  ],
+  "SubCategory": "BlockSets",
+  "Set": "Wood_Gear_Planks",
+  "BlockType": {
+    "CustomModel": "Blocks/Structures/Roofs/Slope_Hollow.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+        "Weight": 1
+      }
+    ],
+    "Gathering": {
+      "Breaking": {
+        "ItemId": "Wood_Gear_Roof",
+        "GatherType": "Woods"
+      }
+    },
+    "ParticleColor": "#4a2418",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "State": {
+      "Definitions": {
+        "Corner_Right": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Hollow_Right.blockymodel",
+          "HitboxType": "Stairs_Thin_Corner_Right",
+          "FlipType": "OrthogonalInverse",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+              "Weight": 1
+            }
+          ],
+          "InteractionHitboxType": "Roof_Corner_Right"
+        },
+        "Corner_Left": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Hollow_Left.blockymodel",
+          "HitboxType": "Stairs_Thin_Corner_Left",
+          "FlipType": "Orthogonal",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+              "Weight": 1
+            }
+          ],
+          "InteractionHitboxType": "Roof_Corner_Left"
+        },
+        "Inverted_Corner_Right": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Inverted_Hollow_Right.blockymodel",
+          "HitboxType": "Stairs_Inverted_Corner_Right",
+          "FlipType": "OrthogonalInverse",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+              "Weight": 1
+            }
+          ],
+          "InteractionHitboxType": "Stairs_Inverted_Corner_Right"
+        },
+        "Inverted_Corner_Left": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Inverted_Hollow_Left.blockymodel",
+          "HitboxType": "Stairs_Inverted_Corner_Left",
+          "FlipType": "Orthogonal",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+              "Weight": 1
+            }
+          ],
+          "InteractionHitboxType": "Stairs_Inverted_Corner_Left"
+        }
+      }
+    },
+    "ConnectedBlockRuleSet": {
+      "Type": "Roof",
+      "Regular": {
+        "Straight": {
+          "State": "default",
+          "Block": "Wood_Gear_Roof"
+        },
+        "Corner_Right": {
+          "State": "Corner_Right",
+          "Block": "Wood_Gear_Roof"
+        },
+        "Corner_Left": {
+          "State": "Corner_Left",
+          "Block": "Wood_Gear_Roof"
+        },
+        "Inverted_Corner_Right": {
+          "State": "Inverted_Corner_Right",
+          "Block": "Wood_Gear_Roof"
+        },
+        "Inverted_Corner_Left": {
+          "State": "Inverted_Corner_Left",
+          "Block": "Wood_Gear_Roof"
+        }
+      },
+      "Hollow": {
+        "Straight": {
+          "State": "default"
+        },
+        "Corner_Right": {
+          "State": "Corner_Right"
+        },
+        "Corner_Left": {
+          "State": "Corner_Left"
+        },
+        "Inverted_Corner_Right": {
+          "State": "Inverted_Corner_Right"
+        },
+        "Inverted_Corner_Left": {
+          "State": "Inverted_Corner_Left"
+        }
+      },
+      "MaterialName": "Roof"
+    },
+    "Supporting": {},
+    "InteractionHitboxType": "Stairs",
+    "TextureComputedColor": "#55271B"
+  },
+  "Tags": {
+    "Type": [
+      "Wood"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Parent": "Wood_Softwood_Roof_Hollow",
+  "Variant": true
+}

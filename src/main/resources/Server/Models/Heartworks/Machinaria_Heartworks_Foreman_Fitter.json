@@ -1,0 +1,17 @@
+{
+  "$Comment": "A Fitter (the Foreman's Work Order, round 6): the Oiler's model, clips and hitbox (Parent Machinaria_Heartworks_Oiler) with an amber work lamp over its head, so players pick out the cans to stop.",
+  "Parent": "Machinaria_Heartworks_Oiler",
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Oiler_Drip",
+      "TargetNodeName": "NozzleTip"
+    },
+    {
+      "SystemId": "Machinaria_Heartworks_Foreman_Fitter_Lamp",
+      "TargetNodeName": "Head",
+      "PositionOffset": {
+        "Y": 0.45
+      }
+    }
+  ]
+}

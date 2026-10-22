@@ -1,0 +1,42 @@
+{
+  "$Comment": "An arc from the bolt: 16 Lightning (about two thirds of the strike), a bolt of lightning drops on the target.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Lightning": 16
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Force",
+      "VelocityConfig": {
+        "AirResistance": 0.97,
+        "AirResistanceMax": 0.96,
+        "GroundResistance": 0.94,
+        "GroundResistanceMax": 0.3,
+        "Threshold": 3,
+        "Style": "Exp"
+      },
+      "Direction": {
+        "X": 0,
+        "Y": 2,
+        "Z": -1
+      },
+      "Force": 6,
+      "VelocityType": "Set"
+    },
+    "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Zap",
+    "LocalSoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Zap",
+    "WorldParticles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Tinker_Zap_Hit"
+      },
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt",
+        "Scale": 0.6
+      }
+    ]
+  }
+}

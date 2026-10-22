@@ -1,0 +1,122 @@
+{
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "LinearFiltering": true,
+  "LightInfluence": 0,
+  "MaxConcurrentParticles": 22,
+  "ParticleLifeSpan": {
+    "Min": 0.6,
+    "Max": 1
+  },
+  "SpawnRate": {
+    "Min": 22,
+    "Max": 22
+  },
+  "SpawnBurst": true,
+  "TotalParticles": {
+    "Min": 22,
+    "Max": 22
+  },
+  "Shape": "Cube",
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 2.4
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.1
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 1.4
+    }
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 2.5,
+      "Max": 4.5
+    },
+    "Pitch": {
+      "Min": 0,
+      "Max": 15
+    },
+    "Yaw": {
+      "Min": 0,
+      "Max": 360
+    }
+  },
+  "Attractors": [
+    {
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": 0.4,
+        "Z": 0
+      },
+      "DampingMultiplier": {
+        "X": 0.75,
+        "Y": 0.75,
+        "Z": 0.75
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false,
+  "TrailSpawnerPositionMultiplier": 1,
+  "TrailSpawnerRotationMultiplier": 0,
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "UVOption": "RandomFlipUV",
+    "ScaleRatioConstraint": "OneToOne",
+    "SoftParticles": "Enable",
+    "InitialAnimationFrame": {
+      "Opacity": 0.85,
+      "Scale": {
+        "X": {
+          "Min": 0.4,
+          "Max": 0.6
+        },
+        "Y": {
+          "Min": 0.4,
+          "Max": 0.6
+        }
+      },
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      },
+      "Rotation": {
+        "Z": {
+          "Min": 0,
+          "Max": 360
+        }
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0,
+        "Color": "#b8ab98"
+      },
+      "15": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 2.2,
+            "Max": 2.2
+          },
+          "Y": {
+            "Min": 2.2,
+            "Max": 2.2
+          }
+        },
+        "Color": "#7a7064"
+      }
+    }
+  }
+}

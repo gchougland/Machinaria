@@ -1,0 +1,89 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Sparking_Machine.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Sparking_Machine.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Sparking_Machine.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Sparking_Machine_Junction.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Sparking_Machine_Junction.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Sparking_Junction.blockyanim",
+    "Looping": true,
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#5a5a5a",
+    "ParticleColor": "#6a6a6a",
+    "Light": {
+      "Color": "#145"
+    },
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A_Electric_Sparks_Steam_Bursts_Winding",
+    "Interactions": {
+      "Collision": "Environmental_Block_Damage"
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Machine_Sparks",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0.6,
+          "Z": 0.2
+        }
+      }
+    ],
+    "State": {
+      "Definitions": {
+        "Dynamo": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Sparking_Machine_Dynamo.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Sparking_Machine_Dynamo.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Sparking_Dynamo.blockyanim",
+          "Looping": true
+        },
+        "Panel": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Sparking_Machine_Panel.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Sparking_Machine_Panel.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Sparking_Panel.blockyanim",
+          "Looping": true
+        }
+      }
+    }
+  }
+}

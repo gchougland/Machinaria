@@ -1,0 +1,1817 @@
+{
+  "Type": "Abstract",
+  "$Comment": "Rivet Guard (DESIGN.md 6.1, 6.2): a shield bearer, copied from vanilla Template_Dungeon_Goblin_Guardian and changed as tools/models/heartworks/rivet_guard.role.mjs explains. Trash mob of the Heartworks: stands sentry until aggroed, rallies robots within 5 blocks.",
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "ApplySeparation": true,
+  "AttitudeGroup": "Machinaria_Robots",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [
+    "Machinaria_Heartworks_Robots"
+  ],
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "HotbarItems": [
+    "Machinaria_Heartworks_Rivet_Guard_Mace_NPC"
+  ],
+  "OffHandItems": [
+    "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+  ],
+  "OffHandSlots": 1,
+  "DefaultOffHandSlot": 0,
+  "IsMemory": {
+    "Compute": "IsMemory"
+  },
+  "KnockbackScale": {
+    "Compute": "KnockbackScale"
+  },
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "MemoriesNameOverride": {
+    "Compute": "MemoriesNameOverride"
+  },
+  "MemoriesUnlockedBy": {
+    "Compute": "MemoriesUnlockedBy"
+  },
+  "MemoriesKillRange": {
+    "Compute": "MemoriesKillRange"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "DeathAnimationTime": {
+    "Compute": "DeathAnimationTime"
+  },
+  "DeathParticles": {
+    "Compute": "DeathParticles"
+  },
+  "SeparationDistance": 2,
+  "SeparationMode": "Push",
+  "StartState": "Idle",
+  "Instructions": [
+    {
+      "Reference": "Component_Instruction_Hit_Interrupt"
+    },
+    {
+      "$Comment": "Scale health to the party size on first aggro (the dungeon goblins' tiers: x1.55, x2.1, x2.65).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Not",
+        "Sensor": {
+          "Type": "State",
+          "State": "Idle"
+        }
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Round 5: reset the charge timer and the latches between fights (vanilla Template_Dungeon_Goblin_Mace resets its slam the same way).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Flag",
+            "Name": "Charge_Armed",
+            "Set": true
+          },
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Charge_Armed",
+              "SetTo": false
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Charge_Active",
+              "SetTo": false
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Call_Active",
+              "SetTo": false
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Called",
+              "SetTo": false
+            },
+            {
+              "Type": "TimerStop",
+              "Name": "Charge_Ready"
+            }
+          ]
+        },
+        {
+          "$Comment": "Aggro on any attacker, at any range or without line of sight.",
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Damage",
+                  "Friendly": true
+                }
+              },
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat.Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Standard detection: hear the robots' rally beacon, see or hear nearby hostiles. Crouching players are not heard.",
+          "Reference": "Component_Instruction_Generic_Detection",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat.Default",
+              "Combat.Default",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "BeaconMessage": "Machinaria_Robot_Attack",
+            "Attitudes": [
+              "Hostile"
+            ]
+          }
+        },
+        {
+          "$Comment": "Stand sentry until aggroed. Every 6 to 14 s: look about, polish the shield, or vent the stack.",
+          "Sensor": {
+            "Type": "Any"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                6,
+                14
+              ]
+            },
+            {
+              "Type": "Random",
+              "Actions": [
+                {
+                  "Weight": 3,
+                  "Action": {
+                    "Type": "Sequence",
+                    "Blocking": true,
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status",
+                        "Animation": "Sentry"
+                      },
+                      {
+                        "Type": "PlaySound",
+                        "SoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Idle"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Weight": 3,
+                  "Action": {
+                    "Type": "Sequence",
+                    "Blocking": true,
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status",
+                        "Animation": "Polish"
+                      },
+                      {
+                        "Type": "PlaySound",
+                        "SoundEventId": "SFX_Drag_Weapons_Shield_Metal"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Weight": 2,
+                  "Action": {
+                    "Type": "Sequence",
+                    "Blocking": true,
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status",
+                        "Animation": "Vent"
+                      },
+                      {
+                        "Type": "Timeout",
+                        "Delay": [
+                          0.5,
+                          0.5
+                        ]
+                      },
+                      {
+                        "Type": "SpawnParticles",
+                        "ParticleSystem": "Machinaria_Heartworks_Rivet_Guard_Stack_Puff",
+                        "TargetNodeName": "Stack-Cap"
+                      },
+                      {
+                        "Type": "PlaySound",
+                        "SoundEventId": "SFX_Golem_Clockwork_Steam_Vent"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                3,
+                3.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Alerted"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Alerted clip: the head snaps up, the shield comes up.",
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Alerted"
+            }
+          ],
+          "ActionsBlocking": true,
+          "Continue": true
+        },
+        {
+          "$Comment": "Switch to combat if attacked.",
+          "Sensor": {
+            "Type": "Damage"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Combat.Message"
+            }
+          ]
+        },
+        {
+          "$Comment": "Watch the target and switch to combat after a moment.",
+          "Sensor": {
+            "Type": "Target",
+            "Range": {
+              "Compute": "AlertedRange"
+            }
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "AlertedTimeout"
+              },
+              "Action": {
+                "Type": "State",
+                "State": "Combat.Message"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "No target: back to standing sentry.",
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ],
+              "Action": {
+                "Type": "State",
+                "State": "Idle"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Combat"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Soft_Leash",
+          "Modify": {
+            "_ExportStates": [
+              "ReturnHome"
+            ],
+            "LeashDistance": {
+              "Compute": "LeashDistance"
+            },
+            "LeashMinPlayerDistance": {
+              "Compute": "LeashMinPlayerDistance"
+            },
+            "LeashTimer": {
+              "Compute": "LeashTimer"
+            },
+            "HardLeashDistance": {
+              "Compute": "HardLeashDistance"
+            }
+          }
+        },
+        {
+          "$Comment": "Swap to a closer target when there is one.",
+          "Reference": "Component_Instruction_Combat_Target_Swap",
+          "Modify": {
+            "TargetRange": {
+              "Compute": "AttackDistance"
+            },
+            "NextTargetRangeView": {
+              "Compute": "ViewRange"
+            },
+            "NextTargetRangeHearing": {
+              "Compute": "HearingRange"
+            }
+          }
+        },
+        {
+          "$Comment": "Watch the target when detected; turn slowly behind the shield, quickly without it.",
+          "Continue": true,
+          "Sensor": {
+            "Reference": "Component_Sensor_Target_Sight_Or_Sound",
+            "Modify": {
+              "HearingRange": {
+                "Compute": "HearingRange"
+              },
+              "ViewRange": {
+                "Compute": "ViewRange"
+              },
+              "ViewSector": {
+                "Compute": "ViewSector"
+              }
+            }
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Filters": []
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "HeadMotion": {
+                "Type": "Watch",
+                "RelativeTurnSpeed": 0.3
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Filters": []
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Self",
+                      "Filters": [
+                        {
+                          "Type": "ItemInHand",
+                          "Items": [
+                            "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                          ],
+                          "Hand": "OffHand"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Arm the shield-charge timer once per fight (a flag, not Once: state changes clear Once sensors). First charge 2 s in, then every ChargeCooldownRange. As vanilla Template_Dungeon_Goblin_Mace arms its slam.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Flag",
+            "Name": "Charge_Armed",
+            "Set": false
+          },
+          "Actions": [
+            {
+              "Type": "TimerStart",
+              "Name": "Charge_Ready",
+              "StartValueRange": {
+                "Compute": "ChargeCooldownRange"
+              },
+              "RestartValueRange": {
+                "Compute": "ChargeCooldownRange"
+              },
+              "Repeating": false
+            },
+            {
+              "Type": "TimerRestart",
+              "Name": "Charge_Ready"
+            },
+            {
+              "$Comment": "Pin the first charge delay (TimerRestart rolls the cooldown range).",
+              "Type": "TimerModify",
+              "Name": "Charge_Ready",
+              "SetValue": 2
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Charge_Armed",
+              "SetTo": true
+            }
+          ]
+        },
+        {
+          "$Comment": "Call the robots: once a fight, when its shield breaks or it falls below 60% health, it vents its stack and whistles. Coglings within CallRange that hear the Flock_Attack beacon come running at its target; other robots get the rally. Latched by Call_Active so the blocking list survives its own sensor changing.",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Call_Active",
+                "Set": true
+              },
+              {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Flag",
+                    "Name": "Called",
+                    "Set": false
+                  },
+                  {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "Not",
+                        "Sensor": {
+                          "Type": "Self",
+                          "Filters": [
+                            {
+                              "Type": "ItemInHand",
+                              "Items": [
+                                "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                              ],
+                              "Hand": "OffHand"
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "Type": "Self",
+                        "Filters": [
+                          {
+                            "Type": "Stat",
+                            "RelativeTo": "Health",
+                            "RelativeToTarget": "Max",
+                            "Stat": "Health",
+                            "StatTarget": "Value",
+                            "ValueRange": {
+                              "Compute": "CallHealthRange"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Target",
+                    "Filters": []
+                  },
+                  {
+                    "Type": "Mob",
+                    "ExcludeOwnType": false,
+                    "Range": {
+                      "Compute": "CallRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": {
+                          "Compute": "CombatMessageTargetGroups"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Call_Active",
+              "SetTo": true
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Called",
+              "SetTo": true
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Vent"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.4,
+                0.4
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Rivet_Guard_Stack_Puff",
+              "TargetNodeName": "Stack-Cap"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Foreman_Whistle"
+            },
+            {
+              "Type": "Beacon",
+              "Message": "Flock_Attack",
+              "TargetGroups": {
+                "Compute": "CombatMessageTargetGroups"
+              },
+              "SendTargetSlot": "LockedTarget",
+              "Range": {
+                "Compute": "CallRange"
+              }
+            },
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Robot_Attack",
+              "TargetGroups": {
+                "Compute": "CombatMessageTargetGroups"
+              },
+              "SendTargetSlot": "LockedTarget",
+              "Range": {
+                "Compute": "CallRange"
+              }
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.8,
+                0.8
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Call_Active",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "Shield charge: with the shield up and the target 5 to 10 blocks off in sight, it closes the distance (Root_Machinaria_Heartworks_Rivet_Guard_Shield_Charge: 0.7 s wind-up, dash, 0.7 s recovery). Every ChargeCooldownRange. Latched by Charge_Active, as vanilla Template_Dungeon_Goblin_Mace latches its slam.",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Charge_Active",
+                "Set": true
+              },
+              {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "Charge_Ready",
+                    "State": "Stopped"
+                  },
+                  {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Target",
+                        "Range": {
+                          "Compute": "ChargeDistance"
+                        },
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Not",
+                        "Sensor": {
+                          "Type": "Target",
+                          "Range": {
+                            "Compute": "ChargeMinDistance"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Charge_Active",
+              "SetTo": true
+            },
+            {
+              "Type": "Attack",
+              "Attack": {
+                "Compute": "ShieldChargeAttack"
+              },
+              "AvoidFriendlyFire": false
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ]
+            },
+            {
+              "Type": "TimerRestart",
+              "Name": "Charge_Ready"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Charge_Active",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": ".Default"
+          },
+          "Instructions": [
+            {
+              "$Comment": "Start the guard cycle timer: guard first, then a mace window after each guard.",
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "TimerStart",
+                  "Name": "ShieldGuardCooldownTimer",
+                  "RestartValueRange": {
+                    "Compute": "ShieldGuardCooldownRange"
+                  },
+                  "StartValueRange": [
+                    0.1,
+                    0.1
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Hold shield distance while ready to guard, circling the target behind the shield (round 5 note 7).",
+              "Continue": true,
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Stopped"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "MaintainDistance",
+                "DesiredDistanceRange": {
+                  "Compute": "makeRange(BlockDistance - 1)"
+                },
+                "RelativeBackwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                },
+                "RelativeForwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                },
+                "MoveThreshold": 0.5,
+                "StrafingDurationRange": {
+                  "Compute": "StrafingDurationRange"
+                },
+                "StrafingFrequencyRange": {
+                  "Compute": "StrafingFrequencyRange"
+                }
+              }
+            },
+            {
+              "$Comment": "Close to mace distance in the mace window.",
+              "Continue": true,
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Running"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "MaintainDistance",
+                "DesiredDistanceRange": {
+                  "Compute": "makeRange(AttackDistance - 1)"
+                },
+                "RelativeBackwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                },
+                "RelativeForwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                }
+              }
+            },
+            {
+              "$Comment": "Mace distance once buckled.",
+              "Continue": true,
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Self",
+                      "Filters": [
+                        {
+                          "Type": "ItemInHand",
+                          "Items": [
+                            "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                          ],
+                          "Hand": "OffHand"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "MaintainDistance",
+                "DesiredDistanceRange": {
+                  "Compute": "makeRange(AttackDistance - 1)"
+                },
+                "RelativeBackwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                },
+                "RelativeForwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                }
+              }
+            },
+            {
+              "$Comment": "Plate Buckled: stamina broken while the shield is still in the off hand (vanilla Dungeon_Goblin_Guardian: \"Remove the off-hand shield when stamina is broken\"). The shield leaves the hand for good and the Buckled effect adds sparks; the guard interaction plays the 1.2 s stagger. All in one tick, not blocking: unequipping ends its own sensor.",
+              "Sensor": {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "And",
+                    "Filters": [
+                      {
+                        "Type": "EntityEffect",
+                        "EffectId": "Stamina_Broken"
+                      },
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "Actions": [
+                {
+                  "Type": "Inventory",
+                  "Operation": "EquipOffHand",
+                  "UseTarget": false,
+                  "Slot": -1
+                },
+                {
+                  "Type": "ApplyEntityEffect",
+                  "EntityEffect": "Machinaria_Heartworks_Rivet_Guard_Buckled",
+                  "UseTarget": false
+                }
+              ]
+            },
+            {
+              "$Comment": "Hit while ready (an arrow from afar, a blow from close): guard at once.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Damage"
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Stopped"
+                  }
+                ]
+              },
+              "ActionsAtomic": true,
+              "Actions": [
+                {
+                  "Type": "Random",
+                  "Actions": [
+                    {
+                      "Weight": 1,
+                      "Action": {
+                        "Type": "Attack",
+                        "Attack": {
+                          "Compute": "Block"
+                        },
+                        "AttackType": "Secondary",
+                        "ChargeDistance": {
+                          "Compute": "BlockDistance"
+                        },
+                        "ChargeFor": 1
+                      }
+                    },
+                    {
+                      "Weight": 1,
+                      "Action": {
+                        "Type": "Attack",
+                        "Attack": {
+                          "Compute": "Block"
+                        },
+                        "AttackType": "Secondary",
+                        "ChargeDistance": {
+                          "Compute": "BlockDistance"
+                        },
+                        "ChargeFor": 1.5
+                      }
+                    },
+                    {
+                      "Weight": 1,
+                      "Action": {
+                        "Type": "Attack",
+                        "Attack": {
+                          "Compute": "Block"
+                        },
+                        "AttackType": "Secondary",
+                        "ChargeDistance": {
+                          "Compute": "BlockDistance"
+                        },
+                        "ChargeFor": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "ShieldGuardCooldownTimer"
+                }
+              ]
+            },
+            {
+              "$Comment": "Guard at medium range when ready: 1, 1.5 or 2 s behind the shield, the bash, then the mace window.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "BlockDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Stopped"
+                  }
+                ]
+              },
+              "ActionsAtomic": true,
+              "Actions": [
+                {
+                  "Type": "Random",
+                  "Actions": [
+                    {
+                      "Weight": 1,
+                      "Action": {
+                        "Type": "Attack",
+                        "Attack": {
+                          "Compute": "Block"
+                        },
+                        "AttackType": "Secondary",
+                        "ChargeDistance": {
+                          "Compute": "BlockDistance"
+                        },
+                        "ChargeFor": 1
+                      }
+                    },
+                    {
+                      "Weight": 1,
+                      "Action": {
+                        "Type": "Attack",
+                        "Attack": {
+                          "Compute": "Block"
+                        },
+                        "AttackType": "Secondary",
+                        "ChargeDistance": {
+                          "Compute": "BlockDistance"
+                        },
+                        "ChargeFor": 1.5
+                      }
+                    },
+                    {
+                      "Weight": 1,
+                      "Action": {
+                        "Type": "Attack",
+                        "Attack": {
+                          "Compute": "Block"
+                        },
+                        "AttackType": "Secondary",
+                        "ChargeDistance": {
+                          "Compute": "BlockDistance"
+                        },
+                        "ChargeFor": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "ShieldGuardCooldownTimer"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Reference": "Component_Sensor_Hit_Interrupted"
+              },
+              "Actions": [
+                {
+                  "Type": "Nothing"
+                }
+              ]
+            },
+            {
+              "$Comment": "The mace window with the shield up: the two-hit chain.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AttackDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Running"
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "Attack",
+                  "Attack": {
+                    "Compute": "MaceAttack"
+                  },
+                  "AttackPauseRange": {
+                    "Compute": "MaceAttackPauseRange"
+                  }
+                }
+              ]
+            },
+            {
+              "$Comment": "Buckled: the mace alone, faster.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AttackDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Self",
+                      "Filters": [
+                        {
+                          "Type": "ItemInHand",
+                          "Items": [
+                            "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                          ],
+                          "Hand": "OffHand"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "Attack",
+                  "Attack": {
+                    "Compute": "MaceAttack"
+                  },
+                  "AttackPauseRange": {
+                    "Compute": "BuckledMaceAttackPauseRange"
+                  }
+                }
+              ]
+            },
+            {
+              "$Comment": "Otherwise chase (target loss is handled there).",
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Chase"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Rally every robot within 5 blocks with the locked target, then fight.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Message"
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Damage"
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Mob",
+                "ExcludeOwnType": false,
+                "Range": {
+                  "Compute": "CombatMessageRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": {
+                      "Compute": "CombatMessageTargetGroups"
+                    }
+                  }
+                ]
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Beacon",
+                  "Message": "Machinaria_Robot_Attack",
+                  "TargetGroups": {
+                    "Compute": "CombatMessageTargetGroups"
+                  },
+                  "SendTargetSlot": "LockedTarget",
+                  "Range": {
+                    "Compute": "CombatMessageRange"
+                  }
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Chase the target.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Chase"
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "BlockDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Stopped"
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AttackDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "ItemInHand",
+                        "Items": [
+                          "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                        ],
+                        "Hand": "OffHand"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Timer",
+                    "Name": "ShieldGuardCooldownTimer",
+                    "State": "Running"
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AttackDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Self",
+                      "Filters": [
+                        {
+                          "Type": "ItemInHand",
+                          "Items": [
+                            "Machinaria_Heartworks_Rivet_Guard_Shield_NPC"
+                          ],
+                          "Hand": "OffHand"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Reference": "Component_Instruction_Intelligent_Chase",
+              "Modify": {
+                "_ExportStates": [
+                  "Search",
+                  "Search",
+                  "Idle"
+                ],
+                "ViewRange": {
+                  "Compute": "AlertedRange"
+                },
+                "HearingRange": {
+                  "Compute": "HearingRange"
+                },
+                "SlowDownDistance": 1,
+                "StopDistance": 0.5,
+                "RelativeSpeed": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Search"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Generic_Search",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat",
+              "Combat.Message",
+              "Idle",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "ConfusedTimeRange": {
+              "Compute": "ConfusedTimeRange"
+            },
+            "SearchTimeRange": {
+              "Compute": "SearchTimeRange"
+            },
+            "SearchRadius": {
+              "Compute": "WanderRadius"
+            },
+            "ConfusedSoundEventId": "SFX_Golem_Earth_Alerted",
+            "Attitudes": [
+              "Hostile",
+              "Neutral"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "ReturnHome"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              },
+              {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": {
+                  "Compute": "AbsoluteDetectionRange"
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 2
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "RelativeSpeed": 1.5,
+            "UsePathfinder": true
+          }
+        },
+        {
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Idle"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "StateTransitions": [
+    {
+      "States": [
+        {
+          "From": [
+            "Combat"
+          ],
+          "To": [
+            "Idle"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "ReleaseTarget"
+        }
+      ]
+    }
+  ],
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "Acceleration": 8,
+      "MaxRotationSpeed": 90,
+      "Gravity": 10,
+      "MaxFallSpeed": 8,
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "RunThreshold": 0.75
+    }
+  ],
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_robots.npcRoles.Machinaria_Heartworks_Rivet_Guard.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Rivet_Guard",
+      "Description": "Model to be used"
+    },
+    "MaxHealth": {
+      "Value": 220,
+      "Description": "Max health for the NPC (round 2 note 22: tankier than the goblins; the Deepworks Dungeon_Goblin_Guardian has 90, the Dungeon_Goblin_Mace 160)"
+    },
+    "MaxSpeed": {
+      "Value": 4.5,
+      "Description": "The NPC's max speed"
+    },
+    "DropList": {
+      "Value": "Machinaria_Heartworks_Rivet_Guard_Drops",
+      "Description": "Drop list"
+    },
+    "KnockbackScale": {
+      "Value": 0.2,
+      "Description": "How far hits push it"
+    },
+    "DeathAnimationTime": {
+      "Value": 2.2,
+      "Description": "Seconds the felled guard lies before it goes"
+    },
+    "DeathParticles": {
+      "Value": "Machinaria_Heartworks_Rivet_Guard_Death",
+      "Description": "Particles when the corpse goes"
+    },
+    "LeashDistance": {
+      "Value": 30,
+      "Description": "Distance from the leash point before the NPC wants to return home"
+    },
+    "LeashMinPlayerDistance": {
+      "Value": 6,
+      "Description": "The NPC will not give up the chase while the player is closer than this"
+    },
+    "LeashTimer": {
+      "Value": [
+        4,
+        4
+      ],
+      "Description": "Seconds beyond leash range, without damage or a close player, before the NPC returns home"
+    },
+    "HardLeashDistance": {
+      "Value": 60,
+      "Description": "Absolute maximum distance from the leash point before the NPC returns home unconditionally"
+    },
+    "ViewRange": {
+      "Value": 10,
+      "Description": "The view range of the NPC"
+    },
+    "ViewSector": {
+      "Value": 150,
+      "Description": "The view sector of the NPC"
+    },
+    "HearingRange": {
+      "Value": 8,
+      "Description": "The hearing range of the NPC"
+    },
+    "AbsoluteDetectionRange": {
+      "Value": 2,
+      "Description": "The range at which an entity is guaranteed to be detected"
+    },
+    "WanderRadius": {
+      "Value": 5,
+      "Description": "The search radius of the NPC"
+    },
+    "AlertedRange": {
+      "Value": 25,
+      "Description": "The alerted range of the NPC"
+    },
+    "AlertedTimeout": {
+      "Value": [
+        0.8,
+        1.2
+      ],
+      "Description": "The time range after which an NPC will transition from alerted to combat"
+    },
+    "CombatMessageRange": {
+      "Value": 5,
+      "Description": "The range at which the NPC will send combat messages"
+    },
+    "CombatMessageTargetGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "The NPC groups the rally is sent to"
+    },
+    "MaceAttack": {
+      "Value": "Root_Machinaria_Heartworks_Rivet_Guard_Mace",
+      "Description": "The mace chain (two hits)"
+    },
+    "AttackDistance": {
+      "Value": 2.5,
+      "Description": "The distance the NPC keeps to the target and swings from"
+    },
+    "ShieldGuardCooldownRange": {
+      "Value": [
+        6,
+        7.5
+      ],
+      "Description": "From the start of a guard to the next: the guard and bash (about 2.5 to 3.5 s), then a 3 to 4 s mace window (DESIGN.md 6.2)"
+    },
+    "MaceAttackPauseRange": {
+      "Value": [
+        3.3,
+        3.85
+      ],
+      "Description": "Pause between mace chains with the shield up, counted from the start of the 1.85 s chain (1.5 to 2 s idle)"
+    },
+    "BuckledMaceAttackPauseRange": {
+      "Value": [
+        2.6,
+        2.85
+      ],
+      "Description": "Pause between mace chains once buckled, counted from the start (0.75 to 1 s idle)"
+    },
+    "Block": {
+      "Value": "Root_Machinaria_Heartworks_Rivet_Guard_Guard",
+      "Description": "The guard, which ends in the shield bash"
+    },
+    "BlockDistance": {
+      "Value": 4,
+      "Description": "The distance at which the NPC raises its shield"
+    },
+    "ShieldChargeAttack": {
+      "Value": "Root_Machinaria_Heartworks_Rivet_Guard_Shield_Charge",
+      "Description": "Round 5: the shield charge that closes the distance"
+    },
+    "ChargeMinDistance": {
+      "Value": 5,
+      "Description": "Round 5: the shield charge starts only beyond this distance"
+    },
+    "ChargeDistance": {
+      "Value": 10,
+      "Description": "Round 5: and within this distance (in sight)"
+    },
+    "ChargeCooldownRange": {
+      "Value": [
+        9,
+        12
+      ],
+      "Description": "Round 5: seconds between shield charges (the first comes 2 s into the fight)"
+    },
+    "CallRange": {
+      "Value": 14,
+      "Description": "Round 5: how far its whistle reaches the Coglings and other robots"
+    },
+    "CallHealthRange": {
+      "Value": [
+        0,
+        0.6
+      ],
+      "Description": "Round 5: health fraction at which it calls the robots (or when its shield breaks), once a fight"
+    },
+    "StrafingDurationRange": {
+      "Value": [
+        1,
+        2
+      ],
+      "Description": "Round 5: how long each circling step behind the shield lasts"
+    },
+    "StrafingFrequencyRange": {
+      "Value": [
+        2,
+        3
+      ],
+      "Description": "Round 5: how often it circles while holding shield distance"
+    },
+    "CombatMovingRelativeSpeed": {
+      "Value": 0.7,
+      "Description": "The combat speed as relative to max speed"
+    },
+    "ConfusedTimeRange": {
+      "Value": [
+        1,
+        2
+      ],
+      "Description": "The time during which the NPC will be confused"
+    },
+    "SearchTimeRange": {
+      "Value": [
+        10,
+        14
+      ],
+      "Description": "The time during which the NPC will search for a target"
+    },
+    "IsMemory": {
+      "Value": false,
+      "Description": "Parameter IsMemory"
+    },
+    "MemoriesNameOverride": {
+      "Value": "",
+      "Description": "Parameter MemoriesNameOverride"
+    },
+    "MemoriesUnlockedBy": {
+      "Value": "Kill",
+      "Description": "How the player records the memory, either Proximity or Kill."
+    },
+    "MemoriesKillRange": {
+      "Value": 0,
+      "Description": "Radius in blocks in which the memory is recorded when the NPC dies. 0 uses the server default."
+    }
+  }
+}

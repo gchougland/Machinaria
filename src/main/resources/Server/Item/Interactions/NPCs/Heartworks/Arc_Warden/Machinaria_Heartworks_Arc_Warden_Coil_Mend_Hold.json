@@ -1,0 +1,15 @@
+{
+  "$Comment": "How long the mending arc shows, with the whine of the coil and a spark at the coil.",
+  "Type": "Simple",
+  "RunTime": 1.2,
+  "Effects": {
+    "WorldSoundEventId": "SFX_Machinaria_HW_Coil_Whine",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+        "TargetEntityPart": "Entity",
+        "DetachedFromModel": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$Comment": "The fresh oil on the Heartwinder after a clean Oiler oils it (Gibson round 2 note 27: make it plain): a green oil sheen over the whole body for 1.5 s and the glints. Cosmetic; the heal is Machinaria_Heartworks_Oiler_Heal.",
+  "OverlapBehavior": "Overwrite",
+  "Duration": 1.5,
+  "ApplicationEffects": {
+    "EntityTopTint": "#1F4A14",
+    "EntityBottomTint": "#0E260A",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Oiler_Heal",
+        "TargetEntityPart": "Entity"
+      }
+    ]
+  }
+}

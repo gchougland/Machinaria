@@ -1,0 +1,2412 @@
+{
+  "Type": "Abstract",
+  "$Comment": "The Foreman (DESIGN.md 6.1 to 6.4), the Heartworks' first elite (A4). Built from the Boilerback's template (from vanilla Template_Goblin_Glutton): evaluator-driven melee, leashes, the robots' rally and party health scaling. Added: idle life on his office (he inspects the line, blows his whistle at nobody); the Whistle (vanilla Template_Dungeon_Goblin_Scrapper's pack enrage: 1.2 s, then his Coglings within 12 are Overdriven for 8 s; every 18 s); Call the Line at 75% and 50% (vanilla Template_Trork_Chieftain's backup, here a signal to the room's Cogling hatches); Overtime at 50% (vanilla Skeleton_Elite's phase change, done in the role: 2 s invulnerable while he throws off his coat-plate, an Appearance swap, then faster attacks and the Steam Dash). Built by tools/models/heartworks/foreman.data.mjs.",
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_heavy.npcRoles.Machinaria_Heartworks_Foreman.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Foreman",
+      "Description": "Model to be used (in his coat-plate)"
+    },
+    "OvertimeAppearance": {
+      "Value": "Machinaria_Heartworks_Foreman_Overtime",
+      "Description": "Model after Overtime (without the coat-plate)"
+    },
+    "MaxHealth": {
+      "Value": 900,
+      "Description": "Max health (before party scaling)"
+    },
+    "MaxSpeed": {
+      "Value": 5,
+      "Description": "The NPC's max speed",
+      "TypeHint": "Double"
+    },
+    "ViewRange": {
+      "Value": 22,
+      "Description": "The view range of the NPC",
+      "TypeHint": "Double"
+    },
+    "ViewSector": {
+      "Value": 180,
+      "Description": "The view sector of the NPC",
+      "TypeHint": "Double"
+    },
+    "HearingRange": {
+      "Value": 14,
+      "Description": "The hearing range of the NPC",
+      "TypeHint": "Double"
+    },
+    "AbsoluteDetectionRange": {
+      "Value": 5,
+      "Description": "The range at which an entity is guaranteed to be detected",
+      "TypeHint": "Double"
+    },
+    "AlertedRange": {
+      "Value": 28,
+      "Description": "Range to keep a target and to call robots for help",
+      "TypeHint": "Double"
+    },
+    "AlertedTimeout": {
+      "Value": [
+        1.1,
+        1.1
+      ],
+      "Description": "Seconds in Alerted (his whistle) before he fights"
+    },
+    "CombatMessageTargetGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups that hear his call for help"
+    },
+    "CombatMaintainDistanceMelee": {
+      "Value": 2.6,
+      "Description": "Distance he keeps from his target in melee"
+    },
+    "CombatHeightTolerance": {
+      "Value": [
+        -3,
+        3
+      ],
+      "Description": "Height difference within which he fights or dashes"
+    },
+    "WhistleRange": {
+      "Value": 12,
+      "Description": "Coglings within this range are overdriven by his whistle",
+      "TypeHint": "Double"
+    },
+    "WhistleCooldown": {
+      "Value": [
+        18,
+        18
+      ],
+      "Description": "Seconds between whistles"
+    },
+    "WhistleEffect": {
+      "Value": "Machinaria_Heartworks_Foreman_Overdriven",
+      "Description": "Effect his whistle gives his Coglings"
+    },
+    "HatchTag": {
+      "Value": "Machinaria_HW_Hatch=A4",
+      "Description": "Trigger volumes his Call the Line signals (kit-machines coglingHatch(), group A4): open=call"
+    },
+    "HatchRadius": {
+      "Value": 40,
+      "Description": "How far the call reaches",
+      "TypeHint": "Double"
+    },
+    "SpawnCrewOnCall": {
+      "Value": false,
+      "Description": "Test only: also spawn three Coglings beside him when he calls (no hatches in a test arena)"
+    },
+    "OvertimeEffect": {
+      "Value": "Machinaria_Heartworks_Foreman_Overtime",
+      "Description": "His phase 2 effect"
+    },
+    "OrderedEffect": {
+      "Value": "Machinaria_Heartworks_Foreman_Ordered",
+      "Description": "Marker: his first Work Order (85%) is given"
+    },
+    "OrderedLateEffect": {
+      "Value": "Machinaria_Heartworks_Foreman_Ordered_Late",
+      "Description": "Marker: his second Work Order (30%) is given"
+    },
+    "CalledEffect": {
+      "Value": "Machinaria_Heartworks_Foreman_Called",
+      "Description": "Marker: he has called the line"
+    },
+    "DashDistance": {
+      "Value": [
+        10,
+        10
+      ],
+      "Description": "How far the Steam Dash runs"
+    },
+    "DashSpeed": {
+      "Value": 20,
+      "Description": "Steam Dash speed, blocks a second",
+      "TypeHint": "Double"
+    },
+    "DashLockOn": {
+      "Value": [
+        0.3,
+        0.3
+      ],
+      "Description": "Seconds he locks on before the wind-up"
+    },
+    "DashWindup": {
+      "Value": [
+        1,
+        1
+      ],
+      "Description": "Steam Dash wind-up (unblockable), seconds"
+    },
+    "DashIgnoredBlockSet": {
+      "Value": "Machinaria_Heartworks_Foreman_Dash",
+      "Description": "Blocks the dash smashes through instead of stopping"
+    },
+    "DashHitEntityInteraction": {
+      "Value": "Root_Machinaria_Heartworks_Foreman_Dash_HitEntity",
+      "Description": "Root run on whoever the dash hits"
+    },
+    "DashHitBlockInteraction": {
+      "Value": "Root_Machinaria_Heartworks_Foreman_Dash_HitBlock",
+      "Description": "Root run on blocks the dash smashes through"
+    },
+    "CrashTime": {
+      "Value": [
+        1,
+        1
+      ],
+      "Description": "Seconds he staggers after dashing into a wall"
+    },
+    "LeashDistance": {
+      "Value": 22,
+      "Description": "Distance from the leash point before the NPC wants to return home"
+    },
+    "LeashMinPlayerDistance": {
+      "Value": 6,
+      "Description": "The NPC will not give up the chase while the player is closer than this"
+    },
+    "LeashTimer": {
+      "Value": [
+        4,
+        4
+      ],
+      "Description": "Seconds beyond leash range, without damage or a close player, before the NPC returns home"
+    },
+    "HardLeashDistance": {
+      "Value": 36,
+      "Description": "Absolute maximum distance from the leash point before the NPC returns home"
+    },
+    "ConfusedTimeRange": {
+      "Value": [
+        1,
+        2
+      ],
+      "Description": "Seconds confused after losing its target"
+    },
+    "SearchTimeRange": {
+      "Value": [
+        8,
+        12
+      ],
+      "Description": "Seconds it searches"
+    },
+    "KnockbackScale": {
+      "Value": 0.2,
+      "Description": "How much he is knocked back"
+    },
+    "DeathAnimationTime": {
+      "Value": 3,
+      "Description": "Seconds the corpse stays"
+    },
+    "DeathParticles": {
+      "Value": "Machinaria_Heartworks_Foreman_Death",
+      "Description": "Particles when the corpse goes"
+    },
+    "DropList": {
+      "Value": "Drop_Heartworks_Foreman",
+      "Description": "Drops (items-rewards' elite list)"
+    },
+    "AttitudeGroup": {
+      "Value": "Machinaria_Robots",
+      "Description": "Attitude group"
+    },
+    "DisableDamageGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups whose damage he ignores (the robots')"
+    }
+  },
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "ApplySeparation": true,
+  "AttitudeGroup": {
+    "Compute": "AttitudeGroup"
+  },
+  "CombatConfig": "CAE_Machinaria_Heartworks_Foreman",
+  "DeathAnimationTime": {
+    "Compute": "DeathAnimationTime"
+  },
+  "DeathParticles": {
+    "Compute": "DeathParticles"
+  },
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": {
+    "Compute": "DisableDamageGroups"
+  },
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "IsMemory": false,
+  "KnockbackScale": {
+    "Compute": "KnockbackScale"
+  },
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "SeparationMode": "Push",
+  "StartState": "Idle",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "Acceleration": 10,
+      "Gravity": 10,
+      "MaxClimbHeight": 1.2,
+      "MaxFallSpeed": 12,
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "RunThreshold": 0.6
+    }
+  ],
+  "StateTransitions": [
+    {
+      "States": [
+        {
+          "From": [
+            "Combat"
+          ],
+          "To": [
+            "Search"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Status"
+        },
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Action"
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "From": [
+            "Search"
+          ],
+          "To": [
+            "Idle"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "ReleaseTarget"
+        }
+      ]
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "Scale health to the party size on first aggro (the dungeon goblins' tiers: x1.55, x2.1, x2.65).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Not",
+        "Sensor": {
+          "Type": "State",
+          "State": "Idle"
+        }
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Standard detection: the robots' rally beacon, sight and sound (crouching players are not heard).",
+          "Reference": "Component_Instruction_Generic_Detection",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat.Default",
+              "Combat.Default",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "BeaconMessage": "Machinaria_Robot_Attack",
+            "Attitudes": [
+              "Hostile"
+            ]
+          }
+        },
+        {
+          "$Comment": "Idle life (DESIGN.md 6.3: the Foreman inspects the line and blows his whistle at nobody), on his office.",
+          "Type": "Random",
+          "ExecuteFor": [
+            10,
+            16
+          ],
+          "Instructions": [
+            {
+              "$Comment": "Inspect the line",
+              "Weight": 3,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    2,
+                    4
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Inspect"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    3,
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Blow his whistle at nobody",
+              "Weight": 1,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    3,
+                    6
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Whistle"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Foreman_Whistle"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.4,
+                    0.4
+                  ]
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+                  "TargetNodeName": "Whistle-Mouth",
+                  "Offset": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1.1,
+                    1.1
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    7
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Stand and watch",
+              "Weight": 2,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    6,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Pace his office",
+              "Weight": 2,
+              "BodyMotion": {
+                "Type": "Sequence",
+                "Looped": true,
+                "Motions": [
+                  {
+                    "Type": "Timer",
+                    "Time": [
+                      3,
+                      5
+                    ],
+                    "Motion": {
+                      "Type": "WanderInCircle",
+                      "Radius": 3
+                    }
+                  },
+                  {
+                    "Type": "Timer",
+                    "Time": [
+                      3,
+                      5
+                    ],
+                    "Motion": {
+                      "Type": "Nothing"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Alerted"
+      },
+      "Instructions": [
+        {
+          "$Comment": "A short blast on his whistle",
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "ActionsBlocking": true,
+          "Continue": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Alerted"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.2,
+                0.2
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Switch to combat if attacked",
+          "Sensor": {
+            "Type": "Damage"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Combat.Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Watch the intruder, call the robots, then come down off the office",
+          "Sensor": {
+            "Type": "Target",
+            "Range": {
+              "Compute": "AlertedRange"
+            }
+          },
+          "HeadMotion": {
+            "Type": "Aim"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Robot_Attack",
+              "TargetGroups": {
+                "Compute": "CombatMessageTargetGroups"
+              },
+              "SendTargetSlot": "LockedTarget",
+              "Range": {
+                "Compute": "AlertedRange"
+              }
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "AlertedTimeout"
+              },
+              "Action": {
+                "Type": "State",
+                "State": "Combat.Default"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "No target, go back to idling",
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ],
+              "Action": {
+                "Type": "State",
+                "State": "Idle"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Combat: the evaluator (CAE_Machinaria_Heartworks_Foreman) runs the wrench and the throw; his lanes run the whistle, the calls and Overtime.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Combat"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Hard leash first and ungated (from the Glutton).",
+          "Sensor": {
+            "Type": "Leash",
+            "Range": {
+              "Compute": "HardLeashDistance"
+            }
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "ReturnHome"
+            }
+          ]
+        },
+        {
+          "$Comment": "The soft leash must not interrupt the dash or Overtime.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Or",
+              "Sensors": [
+                {
+                  "Type": "State",
+                  "State": ".Dash"
+                },
+                {
+                  "Type": "State",
+                  "State": ".DashEnd"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Crash"
+                },
+                {
+                  "Type": "Flag",
+                  "Name": "Overtime_Casting"
+                }
+              ]
+            }
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Soft_Leash",
+              "Modify": {
+                "_ExportStates": [
+                  "ReturnHome"
+                ],
+                "LeashDistance": {
+                  "Compute": "LeashDistance"
+                },
+                "LeashMinPlayerDistance": {
+                  "Compute": "LeashMinPlayerDistance"
+                },
+                "LeashTimer": {
+                  "Compute": "LeashTimer"
+                },
+                "HardLeashDistance": {
+                  "Compute": "HardLeashDistance"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "OVERTIME at 50% (once): invulnerable 2.1 s, he heaves at his coat-plate and flings it off (the Appearance swaps to the coat-less model under a burst of plates and steam), roars, calls the line again; then the Overtime action set. Latched by a flag so the blocking lane survives its own state change (as vanilla scrappers do).",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Overtime_Casting"
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Stat",
+                    "StatTarget": "Value",
+                    "Stat": "Health",
+                    "RelativeTo": "Health",
+                    "RelativeToTarget": "Max",
+                    "ValueRange": [
+                      0,
+                      0.5
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Foreman_Overtime"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Overtime_Casting"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "OvertimeEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "CalledEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "SetInvulnerable",
+              "Invulnerable": true
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Overtime"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Foreman_Overtime"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Overtime_Vent",
+              "TargetNodeName": "Origin",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1.4,
+                1.4
+              ]
+            },
+            {
+              "Type": "Appearance",
+              "Appearance": "Machinaria_Heartworks_Foreman_Overtime"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Coat_Burst",
+              "TargetNodeName": "Origin",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "OvertimeRoar"
+            },
+            {
+              "Type": "SignalTaggedVolumes",
+              "MatchTag": {
+                "Compute": "HatchTag"
+              },
+              "Radius": {
+                "Compute": "HatchRadius"
+              },
+              "SignalKey": "open",
+              "SignalValue": "call",
+              "PositionSource": "Self"
+            },
+            {
+              "$Comment": "Test role only (no hatches there): three Coglings come running from beside him.",
+              "Type": "Spawn",
+              "Kind": "Machinaria_Heartworks_Cogling",
+              "CountRange": [
+                3,
+                3
+              ],
+              "DistanceRange": [
+                3,
+                5
+              ],
+              "SpawnAngle": 360,
+              "FanOut": true,
+              "Enabled": {
+                "Compute": "SpawnCrewOnCall"
+              }
+            },
+            {
+              "$Comment": "Round 6: he calls his Rivet Guard (Gibson: phase 2 summons a Rivet Guard).",
+              "Type": "Spawn",
+              "Kind": "Machinaria_Heartworks_Rivet_Guard",
+              "CountRange": [
+                1,
+                1
+              ],
+              "DistanceRange": [
+                4,
+                7
+              ],
+              "SpawnAngle": 360
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.7,
+                0.7
+              ]
+            },
+            {
+              "Type": "SetInvulnerable",
+              "Invulnerable": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Overtime_Casting",
+              "SetTo": false
+            },
+            {
+              "Type": "State",
+              "State": ".Overtime"
+            }
+          ]
+        },
+        {
+          "$Comment": "CALL THE LINE at 75% (once): two long blasts, the hatches open (3 Coglings each).",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Call_Casting"
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Stat",
+                    "StatTarget": "Value",
+                    "Stat": "Health",
+                    "RelativeTo": "Health",
+                    "RelativeToTarget": "Max",
+                    "ValueRange": [
+                      0,
+                      0.75
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Foreman_Called"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Call_Casting"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "CalledEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Call"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Foreman_Call"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.3,
+                0.3
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.8,
+                0.8
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.4,
+                0.4
+              ]
+            },
+            {
+              "Type": "SignalTaggedVolumes",
+              "MatchTag": {
+                "Compute": "HatchTag"
+              },
+              "Radius": {
+                "Compute": "HatchRadius"
+              },
+              "SignalKey": "open",
+              "SignalValue": "call",
+              "PositionSource": "Self"
+            },
+            {
+              "$Comment": "Test role only (no hatches there): three Coglings come running from beside him.",
+              "Type": "Spawn",
+              "Kind": "Machinaria_Heartworks_Cogling",
+              "CountRange": [
+                3,
+                3
+              ],
+              "DistanceRange": [
+                3,
+                5
+              ],
+              "SpawnAngle": 360,
+              "FanOut": true,
+              "Enabled": {
+                "Compute": "SpawnCrewOnCall"
+              }
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Call_Casting",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "WORK ORDER at 85% (round 6, once): three short blasts and a wave of the wrench, and two Fitters (oil cans with an amber lamp) turn up 9 to 12 blocks off and walk to him; each that reaches him pumps 1.5 s and refits him +90. Kill them on the way.",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Order_Casting"
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Stat",
+                    "StatTarget": "Value",
+                    "Stat": "Health",
+                    "RelativeTo": "Health",
+                    "RelativeToTarget": "Max",
+                    "ValueRange": [
+                      0,
+                      0.85
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Foreman_Ordered"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Order_Casting"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "OrderedEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Call"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Foreman_Whistle"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.25,
+                0.25
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.35,
+                0.35
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.35,
+                0.35
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.3,
+                0.3
+              ]
+            },
+            {
+              "$Comment": "Round 6: two Fitters turn up 9 to 12 blocks off and walk to him.",
+              "Type": "Spawn",
+              "Kind": "Machinaria_Heartworks_Foreman_Fitter",
+              "CountRange": [
+                2,
+                2
+              ],
+              "DistanceRange": [
+                9,
+                12
+              ],
+              "SpawnAngle": 360,
+              "FanOut": true
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Order_Casting",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "WORK ORDER at 30% (round 6, once, in Overtime): the same, his last two Fitters.",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Order_Late_Casting"
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Stat",
+                    "StatTarget": "Value",
+                    "Stat": "Health",
+                    "RelativeTo": "Health",
+                    "RelativeToTarget": "Max",
+                    "ValueRange": [
+                      0,
+                      0.3
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Foreman_Ordered_Late"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Order_Late_Casting"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "OrderedLateEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Call"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Foreman_Whistle"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.25,
+                0.25
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.35,
+                0.35
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.35,
+                0.35
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.3,
+                0.3
+              ]
+            },
+            {
+              "$Comment": "Round 6: two Fitters turn up 9 to 12 blocks off and walk to him.",
+              "Type": "Spawn",
+              "Kind": "Machinaria_Heartworks_Foreman_Fitter",
+              "CountRange": [
+                2,
+                2
+              ],
+              "DistanceRange": [
+                9,
+                12
+              ],
+              "SpawnAngle": 360,
+              "FanOut": true
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Order_Late_Casting",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "THE WHISTLE: every 18 s while any of his Coglings is within 12: 1.2 s raising the whistle, a shrill blast, then they are Overdriven (+25% damage, x1.25 speed, 8 s). From vanilla Template_Dungeon_Goblin_Scrapper's pack enrage.",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Whistle_Casting"
+              },
+              {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Timer",
+                    "Name": "Whistle_Ready",
+                    "State": "Stopped"
+                  },
+                  {
+                    "Type": "Mob",
+                    "Range": {
+                      "Compute": "WhistleRange"
+                    },
+                    "ExcludeOwnType": false,
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Foreman_Crew"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Whistle_Casting"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Whistle"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Foreman_Whistle"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.6,
+                0.6
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Foreman_Whistle_Blast",
+              "TargetNodeName": "Whistle-Mouth",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.6,
+                0.6
+              ]
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Whistle_Pulse"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "TimerStart",
+              "Name": "Whistle_Ready",
+              "StartValueRange": {
+                "Compute": "WhistleCooldown"
+              },
+              "RestartValueRange": {
+                "Compute": "WhistleCooldown"
+              },
+              "Repeating": false
+            },
+            {
+              "Type": "TimerRestart",
+              "Name": "Whistle_Ready"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Whistle_Casting",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "The blast lands: every Cogling of his within 12 is Overdriven.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Whistle_Pulse"
+              },
+              {
+                "Type": "Mob",
+                "Range": {
+                  "Compute": "WhistleRange"
+                },
+                "MultiTarget": true,
+                "ExcludeOwnType": false,
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": [
+                      "Machinaria_Heartworks_Foreman_Crew"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "ForEach",
+              "Actions": [
+                {
+                  "Type": "ApplyEntityEffect",
+                  "EntityEffect": {
+                    "Compute": "WhistleEffect"
+                  },
+                  "UseTarget": true
+                }
+              ]
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Whistle_Pulse",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "No Cogling left in range when it landed: drop the pulse.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Flag",
+            "Name": "Whistle_Pulse"
+          },
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Whistle_Pulse",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "Dashed into a wall: a short stagger (1 s), then on.",
+          "Sensor": {
+            "Type": "State",
+            "IgnoreMissingSetState": true,
+            "State": ".Crash"
+          },
+          "Instructions": [
+            {
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "DashCrash"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Boilerback_Charge_Crash"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": {
+                    "Compute": "CrashTime"
+                  }
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Collect any potential targets into the evaluator (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Standard_Detection",
+                "Modify": {
+                  "ViewRange": {
+                    "Compute": "AlertedRange"
+                  },
+                  "ViewSector": {
+                    "Compute": "ViewSector"
+                  },
+                  "HearingRange": {
+                    "Compute": "HearingRange"
+                  },
+                  "AbsoluteDetectionRange": {
+                    "Compute": "AbsoluteDetectionRange"
+                  },
+                  "Attitudes": [
+                    "Hostile"
+                  ]
+                }
+              },
+              {
+                "Type": "Damage",
+                "Combat": true
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            }
+          ]
+        },
+        {
+          "$Comment": "Store the evaluator's target in the marked target slot (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "CombatActionEvaluator",
+                "TargetInRange": true
+              },
+              {
+                "Type": "CombatActionEvaluator",
+                "TargetInRange": false
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "SetMarkedTarget"
+            }
+          ]
+        },
+        {
+          "$Comment": "Combat behaviour (controlled by the evaluator)",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Target_Sight_Or_Sound",
+                "Modify": {
+                  "ViewRange": {
+                    "Compute": "AlertedRange"
+                  },
+                  "ViewSector": {
+                    "Compute": "ViewSector"
+                  },
+                  "HearingRange": {
+                    "Compute": "HearingRange"
+                  }
+                }
+              },
+              {
+                "Type": "HasHostileTargetMemory"
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "$Comment": "After a dash that hit or missed: 1 s to recover",
+              "Sensor": {
+                "Type": "State",
+                "State": ".DashEnd"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target"
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim"
+                  }
+                },
+                {
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        1,
+                        1
+                      ]
+                    },
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Seek the target until it is in sight again (from the Glutton)",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Seek"
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": 3,
+                    "StopDistance": 3
+                  },
+                  "HeadMotion": {
+                    "Type": "Watch"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        3,
+                        3
+                      ]
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    }
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": {
+                      "Compute": "CombatMaintainDistanceMelee"
+                    },
+                    "StopDistance": {
+                      "Compute": "CombatMaintainDistanceMelee"
+                    }
+                  }
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "The Steam Dash (Overtime; the Gobliterator's charge): lock on, a 1 s unblockable wind-up (a shriek, a red line on the floor), 10 blocks at 20 a second. A wall stops it: a 1 s stagger.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Dash",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": true
+                      },
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": false
+                      }
+                    ]
+                  },
+                  "Instructions": [
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "Target"
+                      },
+                      "BodyMotion": {
+                        "Type": "Charge",
+                        "BlockCollisionInteraction": "",
+                        "ChargeAbsoluteSpeed": {
+                          "Compute": "DashSpeed"
+                        },
+                        "ChargeAccelerationDistance": 1.5,
+                        "ChargeDecelerationDistance": 0,
+                        "ChargeDistanceRange": {
+                          "Compute": "DashDistance"
+                        },
+                        "ChargeRelativeSpeed": 0,
+                        "ClearOnceOnStateChange": true,
+                        "ClimbSlope": 2,
+                        "DropSlope": 2,
+                        "EntityStopsCharge": false,
+                        "HorizontalSkipGapWidth": 2,
+                        "IgnoredBlockSet": {
+                          "Compute": "DashIgnoredBlockSet"
+                        },
+                        "IgnoredBlockSetTriggers": false,
+                        "KnockbackThreshold": 10,
+                        "LockedOnDurationRange": {
+                          "Compute": "DashLockOn"
+                        },
+                        "LockedOnToleranceAngle": 15,
+                        "NPCCollisionInteraction": {
+                          "Compute": "DashHitEntityInteraction"
+                        },
+                        "PlayerCollisionInteraction": {
+                          "Compute": "DashHitEntityInteraction"
+                        },
+                        "PostChargeDurationRange": [
+                          0,
+                          0
+                        ],
+                        "RelativeTurnSpeed": 1,
+                        "WindingUpDurationRange": {
+                          "Compute": "DashWindup"
+                        },
+                        "WindingUpRelativeTurnSpeed": 1,
+                        "WindingUpUninterruptable": true
+                      },
+                      "HeadMotion": {
+                        "Type": "Aim",
+                        "RelativeTurnSpeed": 0.6
+                      }
+                    },
+                    {
+                      "$Comment": "Give up the dash if the target is within melee range",
+                      "TreeMode": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming",
+                          "LockedOn",
+                          "WindingUp"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Target",
+                            "Range": {
+                              "Compute": "CombatMaintainDistanceMelee"
+                            }
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Status"
+                            },
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Action"
+                            },
+                            {
+                              "Type": "State",
+                              "State": ".Default"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Give up if the target is too far above or below",
+                      "TreeMode": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Target",
+                            "Filters": [
+                              {
+                                "Type": "Not",
+                                "Filter": {
+                                  "Type": "HeightDifference",
+                                  "HeightDifference": {
+                                    "Compute": "CombatHeightTolerance"
+                                  },
+                                  "UseEyePosition": false
+                                }
+                              }
+                            ]
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Status"
+                            },
+                            {
+                              "Type": "State",
+                              "State": ".Default"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "LostTarget",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "LostTarget"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Aiming too long: seek instead",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming"
+                        ]
+                      },
+                      "ActionsBlocking": true,
+                      "Actions": [
+                        {
+                          "Type": "Timeout",
+                          "Delay": [
+                            3,
+                            3
+                          ]
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".Seek"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "LockedOn",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "LockedOn"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Winding up: crouched, the wrench levelled, the shriek, the line on the floor, unblockable",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "WindingUp"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Any",
+                            "Once": true
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Action",
+                              "Animation": "DashWindup"
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "ParticleSystem": "Machinaria_Heartworks_Foreman_Dash_Line",
+                              "TargetNodeName": "Origin",
+                              "Offset": [
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "Type": "PlaySound",
+                              "SoundEventId": "SFX_Machinaria_HW_Foreman_Dash_Windup"
+                            },
+                            {
+                              "Type": "ApplyEntityEffect",
+                              "UseTarget": false,
+                              "EntityEffect": "Unblockable"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Launch",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Launch"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Dashing",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Charging"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "PlayAnimation",
+                          "Slot": "Action",
+                          "Animation": "Dash"
+                        },
+                        {
+                          "Type": "PlaySound",
+                          "SoundEventId": "SFX_Machinaria_HW_Foreman_Dash"
+                        },
+                        {
+                          "Type": "SpawnParticles",
+                          "ParticleSystem": "Machinaria_Heartworks_Foreman_Dash_Trail",
+                          "TargetNodeName": "Origin",
+                          "Offset": [
+                            0,
+                            0,
+                            0
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Obstructed: a short stagger",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Obstructed"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "State",
+                          "State": ".Crash"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Hit a player: run down, stop",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeEntityCollisions",
+                        "GetNPCs": false,
+                        "GetPlayers": true
+                      },
+                      "Actions": [
+                        {
+                          "Type": "EntityHitInteraction",
+                          "Interaction": {
+                            "Compute": "DashHitEntityInteraction"
+                          }
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".DashEnd"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Hit an NPC: knocked aside (robots ignore it: DisableDamageGroups)",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeEntityCollisions",
+                        "GetNPCs": true,
+                        "GetPlayers": false
+                      },
+                      "Actions": [
+                        {
+                          "Type": "EntityHitInteraction",
+                          "Interaction": {
+                            "Compute": "DashHitEntityInteraction"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Smash through plants and rubble",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeBlockCollisions"
+                      },
+                      "Actions": [
+                        {
+                          "Type": "BlockHitInteraction",
+                          "Interaction": {
+                            "Compute": "DashHitBlockInteraction"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Missed: skid to a stop",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Finished"
+                        ]
+                      },
+                      "ActionsBlocking": true,
+                      "Actions": [
+                        {
+                          "Type": "PlayAnimation",
+                          "Slot": "Action"
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".DashEnd"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Lost sight of the target for 4 s: seek it (from the Glutton)",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "AlertedRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "LineOfSight"
+                    }
+                  }
+                ]
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "Type": "State",
+                  "State": ".Seek"
+                }
+              ]
+            },
+            {
+              "$Comment": "In Overtime his default is .Overtime (the evaluator's faster action set, with the dash).",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "State",
+                    "State": ".Default",
+                    "IgnoreMissingSetState": true
+                  },
+                  {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "EntityEffect",
+                        "EffectId": "Machinaria_Heartworks_Foreman_Overtime"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Overtime"
+                }
+              ]
+            },
+            {
+              "$Comment": "Default (and Overtime): close to melee range; the evaluator picks the moves",
+              "Sensor": {
+                "Type": "Or",
+                "Sensors": [
+                  {
+                    "Type": "State",
+                    "State": ".Default",
+                    "IgnoreMissingSetState": true
+                  },
+                  {
+                    "Type": "State",
+                    "State": ".Overtime",
+                    "IgnoreMissingSetState": true
+                  }
+                ]
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          },
+                          {
+                            "Type": "HeightDifference",
+                            "HeightDifference": {
+                              "Compute": "CombatHeightTolerance"
+                            },
+                            "UseEyePosition": false
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "MaintainDistance",
+                        "DesiredDistanceRange": {
+                          "Compute": "makeRange(CombatMaintainDistanceMelee)"
+                        }
+                      }
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "Seek",
+                        "SlowDownDistance": 1,
+                        "StopDistance": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": true
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "HitProbability": 1
+                  },
+                  "Actions": [
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": false
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Lost the target: clear the clips and search",
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Target"
+            }
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "Timeout"
+            },
+            {
+              "Type": "State",
+              "State": "Search"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Search"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Generic_Search",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat",
+              "Combat",
+              "ReturnHome",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "ConfusedTimeRange": {
+              "Compute": "ConfusedTimeRange"
+            },
+            "SearchTimeRange": {
+              "Compute": "SearchTimeRange"
+            },
+            "SearchRadius": 8
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Back to his office (up the steps).",
+      "Sensor": {
+        "Type": "State",
+        "State": "ReturnHome"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              },
+              {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": {
+                  "Compute": "AbsoluteDetectionRange"
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 2
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "RelativeSpeed": 1.2,
+            "UsePathfinder": true
+          }
+        },
+        {
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Idle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

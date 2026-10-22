@@ -1,0 +1,108 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Tesla_Coil.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Tesla_Coil.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Tesla_Coil.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "IconProperties": {
+    "Scale": 0.3,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -18
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Tesla_Coil.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Tesla_Coil.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Tesla_Coil",
+    "TextureComputedColor": "#7a5038",
+    "ParticleColor": "#9a5a36",
+    "Light": {
+      "Color": "#2bd"
+    },
+    "AmbientSoundEventId": "SFX_GoblinLab_Fence",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Coil_Crackle",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 4.1,
+          "Z": 0
+        }
+      }
+    ],
+    "State": {
+      "Definitions": {
+        "Live": {},
+        "Charge": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Tesla_Coil_Charge.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#f42"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Coil_Glow",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 4.1,
+                "Z": 0
+              }
+            }
+          ]
+        },
+        "Dark": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Hazards/Tesla_Coil_Dark.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "Particles": [],
+          "AmbientSoundEventId": null
+        }
+      }
+    }
+  }
+}

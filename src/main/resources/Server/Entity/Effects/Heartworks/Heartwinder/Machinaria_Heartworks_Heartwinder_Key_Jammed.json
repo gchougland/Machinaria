@@ -1,0 +1,20 @@
+{
+  "$Comment": "Its key was struck while it wound: a 2 s stagger, no buff.",
+  "Duration": 2,
+  "OverlapBehavior": "Overwrite",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Head",
+        "PositionOffset": {
+          "Y": 0.8
+        }
+      }
+    ],
+    "MovementEffects": {
+      "DisableAll": true
+    }
+  }
+}

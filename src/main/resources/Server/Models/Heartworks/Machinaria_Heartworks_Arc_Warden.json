@@ -1,0 +1,210 @@
+{
+  "$Comment": "The Arc Warden: arcs between its staff prongs, sparks on its terminal ring, a cold cyan light.",
+  "Model": "NPC/Heartworks/Arc_Warden/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Arc_Warden/Models/Texture.png",
+  "EyeHeight": 2.9,
+  "CrouchOffset": -0.3,
+  "MinScale": 1,
+  "MaxScale": 1,
+  "HitBox": {
+    "Max": {
+      "X": 0.7,
+      "Y": 3.2,
+      "Z": 0.7
+    },
+    "Min": {
+      "X": -0.7,
+      "Y": 0,
+      "Z": -0.7
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 20,
+        "Min": -20
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 40,
+        "Min": -40
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Arc_Warden_Staff_Arc",
+      "TargetNodeName": "Staff-Yoke"
+    },
+    {
+      "SystemId": "Machinaria_Heartworks_Arc_Warden_Terminal_Crackle",
+      "TargetNodeName": "Spine-Hub"
+    }
+  ],
+  "Light": {
+    "Color": "#3ce"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2,
+          "Speed": 0.8
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Run.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "FallFar": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Alert"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Hurt.blockyanim",
+          "BlendingDuration": 0.08,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Death.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Death"
+        }
+      ]
+    },
+    "ArcLink": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/ArcLink.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "Grounded": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Grounded.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Overload": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Warden/Animations/Overload.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

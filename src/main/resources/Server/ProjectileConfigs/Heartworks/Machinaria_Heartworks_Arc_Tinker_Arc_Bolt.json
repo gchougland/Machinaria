@@ -1,0 +1,147 @@
+{
+  "$Comment": "The Arc Bolt (round 4 note 30): a crackling spark, fast and nearly flat (vanilla Projectile_Config_Ice_Ball's flight). On a hit it strikes (24) and arcs to up to 2 more within 6 (16 each); on a miss it still arcs from where it lands, so a near miss in a crowd is not wasted.",
+  "Model": "Machinaria_Heartworks_Arc_Tinker_Arc_Bolt",
+  "LaunchForce": 32,
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 3,
+    "TerminalVelocityAir": 42.5,
+    "TerminalVelocityWater": 15,
+    "RotationMode": "VelocityDamped",
+    "Bounciness": 0,
+    "SticksVertically": true
+  },
+  "LaunchWorldSoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Throw",
+  "ProjectileSoundEventId": "SFX_Machinaria_HW_Sparks_Loop",
+  "Interactions": {
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        "Machinaria_Heartworks_Arc_Tinker_Arc_Bolt_Damage",
+        {
+          "Type": "ApplyEffect",
+          "EffectId": "Machinaria_Heartworks_Arc_Tinker_Arc_Struck",
+          "Entity": "Target"
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 0.15,
+          "Effects": {}
+        },
+        {
+          "Type": "Selector",
+          "$Comment": "The arcs: up to 2 entities within 6 of the bolt, not the caster, not one struck in the last half second.",
+          "RunTime": 0.1,
+          "IgnoreOwner": true,
+          "MaxTargets": 2,
+          "Selector": {
+            "Id": "AOECircle",
+            "Range": 6
+          },
+          "HitEntity": {
+            "Interactions": [
+              {
+                "Type": "EffectCondition",
+                "Entity": "Target",
+                "EntityEffectIds": [
+                  "Machinaria_Heartworks_Arc_Tinker_Arc_Struck"
+                ],
+                "Match": "None",
+                "Next": {
+                  "Type": "Serial",
+                  "Interactions": [
+                    {
+                      "Type": "ApplyEffect",
+                      "EffectId": "Machinaria_Heartworks_Arc_Tinker_Arc_Struck",
+                      "Entity": "Target"
+                    },
+                    "Machinaria_Heartworks_Arc_Tinker_Arc_Bolt_Arc_Damage",
+                    {
+                      "Type": "Simple",
+                      "RunTime": 0,
+                      "Effects": {
+                        "WorldSoundEventId": "SFX_Machinaria_HW_Galvanized_Zap"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Galvanized_Zap",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Arc_Tinker_Zap_Hit",
+                "TargetEntityPart": "Entity",
+                "DetachedFromModel": true
+              }
+            ]
+          }
+        },
+        {
+          "Type": "Selector",
+          "$Comment": "The arcs: up to 2 entities within 6 of the bolt, not the caster, not one struck in the last half second.",
+          "RunTime": 0.1,
+          "IgnoreOwner": true,
+          "MaxTargets": 2,
+          "Selector": {
+            "Id": "AOECircle",
+            "Range": 6
+          },
+          "HitEntity": {
+            "Interactions": [
+              {
+                "Type": "EffectCondition",
+                "Entity": "Target",
+                "EntityEffectIds": [
+                  "Machinaria_Heartworks_Arc_Tinker_Arc_Struck"
+                ],
+                "Match": "None",
+                "Next": {
+                  "Type": "Serial",
+                  "Interactions": [
+                    {
+                      "Type": "ApplyEffect",
+                      "EffectId": "Machinaria_Heartworks_Arc_Tinker_Arc_Struck",
+                      "Entity": "Target"
+                    },
+                    "Machinaria_Heartworks_Arc_Tinker_Arc_Bolt_Arc_Damage",
+                    {
+                      "Type": "Simple",
+                      "RunTime": 0,
+                      "Effects": {
+                        "WorldSoundEventId": "SFX_Machinaria_HW_Galvanized_Zap"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  }
+}

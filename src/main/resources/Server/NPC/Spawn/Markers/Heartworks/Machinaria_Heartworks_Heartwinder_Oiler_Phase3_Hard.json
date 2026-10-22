@@ -1,0 +1,20 @@
+{
+  "$Comment": "Hard mode: an oil feed's Oiler, phase 3 (+200). The hard encounter fires both feeds' markers at once; one in eight is a Grit Oiler (standard: one in four).",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Oiler_Phase3",
+      "Weight": 7,
+      "SpawnAfterGameTime": "PT1S"
+    },
+    {
+      "Name": "Machinaria_Heartworks_Oiler_Grit",
+      "Weight": 1,
+      "SpawnAfterGameTime": "PT1S"
+    }
+  ],
+  "ManualTrigger": true,
+  "ExclusionRadius": 0,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 150
+}

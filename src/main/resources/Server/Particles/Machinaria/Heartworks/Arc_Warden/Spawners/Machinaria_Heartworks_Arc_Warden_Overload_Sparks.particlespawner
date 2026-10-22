@@ -1,0 +1,94 @@
+{
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "BillboardVelocity",
+  "LinearFiltering": true,
+  "LightInfluence": 0,
+  "ParticleRotateWithSpawner": false,
+  "MaxConcurrentParticles": 46,
+  "ParticleLifeSpan": {
+    "Min": 0.35,
+    "Max": 0.6
+  },
+  "SpawnRate": {
+    "Min": 46,
+    "Max": 46
+  },
+  "TotalParticles": {
+    "Min": 46,
+    "Max": 46
+  },
+  "SpawnBurst": true,
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0.4,
+      "Max": 0.7
+    },
+    "Y": {
+      "Min": 0.8,
+      "Max": 1.4
+    },
+    "Z": {
+      "Min": 0.4,
+      "Max": 0.7
+    }
+  },
+  "UseEmitDirection": true,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 6,
+      "Max": 12
+    }
+  },
+  "Attractors": [
+    {
+      "Position": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": -10,
+        "Z": 0
+      },
+      "DampingMultiplier": {
+        "X": 0.65,
+        "Y": 0.65,
+        "Z": 0.65
+      }
+    }
+  ],
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Spark_Direction.png",
+    "ScaleRatioConstraint": "None",
+    "UVOption": "None",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.13,
+          "Max": 0.13
+        },
+        "Y": {
+          "Min": 0.18,
+          "Max": 0.32
+        }
+      },
+      "Opacity": 1,
+      "Color": "#eafcff"
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 1
+      },
+      "45": {
+        "Opacity": 1,
+        "Color": "#a8eeff"
+      },
+      "100": {
+        "Opacity": 0,
+        "Color": "#3a8cff"
+      }
+    }
+  }
+}

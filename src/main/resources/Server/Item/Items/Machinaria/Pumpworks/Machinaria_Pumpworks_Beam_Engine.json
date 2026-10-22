@@ -1,0 +1,46 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_pumpworks.items.Machinaria_Pumpworks_Beam_Engine.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Pumpworks_Beam_Engine.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Pumpworks"
+    ]
+  },
+  "BlockType": {
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Group": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Machinaria_Pumpworks_Scrap_Salvage"
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Pumpworks/Beam_Engine.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Pumpworks/Beam_Engine.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "CustomModelAnimation": "Blocks/Machinaria/Pumpworks/Beam_Engine_Nod.blockyanim",
+    "Looping": true,
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A_Steam_Bursts_Winding",
+    "TextureComputedColor": "#3e3f44",
+    "ParticleColor": "#4a4f58"
+  }
+}

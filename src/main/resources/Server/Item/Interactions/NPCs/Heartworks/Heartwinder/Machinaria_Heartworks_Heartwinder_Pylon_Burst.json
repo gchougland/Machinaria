@@ -1,0 +1,30 @@
+{
+  "$Comment": "Run by a primed pylon's volume on the NPC inside it. Only a charging Heartwinder bursts it: Scalded Gears on the boss and a signal to the pylon (key Machinaria_HW_Charge), which shows the burst and re-arms after 30 s.",
+  "Type": "EffectCondition",
+  "Entity": "User",
+  "EntityEffectIds": [
+    "Machinaria_Heartworks_Heartwinder_Charging"
+  ],
+  "Match": "All",
+  "Next": {
+    "Type": "Serial",
+    "Interactions": [
+      {
+        "Type": "ApplyEffect",
+        "EffectId": "Machinaria_Heartworks_Heartwinder_Scalded_Gears",
+        "Entity": "User"
+      },
+      {
+        "Type": "SignalNearbyVolumes",
+        "MatchKey": "Machinaria_HW_Pylon",
+        "Radius": 4,
+        "SignalKeys": [
+          "Machinaria_HW_Charge"
+        ],
+        "SignalValues": [
+          "true"
+        ]
+      }
+    ]
+  }
+}

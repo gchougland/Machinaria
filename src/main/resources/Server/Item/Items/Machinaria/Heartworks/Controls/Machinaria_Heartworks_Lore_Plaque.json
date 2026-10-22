@@ -1,0 +1,72 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Lore_Plaque.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Lore_Plaque.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Lore_Plaque.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ],
+    "Family": [
+      "Lore_Note",
+      "Machinaria_Heartworks_Breakable"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "SoftBlocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Lore_Plaque/Plaque.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Lore_Plaque/Plaque.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Painting",
+    "VariantRotation": "NESW",
+    "InteractionHint": "machinaria_hw_controls.hints.read",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "OpenCustomUI",
+            "Page": {
+              "Id": "BlockLore",
+              "TextAlignment": "Left"
+            }
+          }
+        ]
+      }
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Plaque_Glint",
+        "TargetEntityPart": "Self",
+        "PositionOffset": {
+          "Y": 0.5,
+          "Z": -0.36
+        }
+      }
+    ]
+  },
+  "MaxStack": 1
+}

@@ -1,0 +1,65 @@
+{
+  "$Comment": "The Arc Bolt strikes: a bright lightning column about 6.5 blocks tall at the target, a flash and sparks on the floor, 0.4 s. Spawn on the floor at the target, Scale 1.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Bolt",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 3.3,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Core",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 3.4,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Floor",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.03,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Ring",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.04,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.6,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Sparks",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.1,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt_Smoke",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.2,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 0.4,
+  "BoundingRadius": 7,
+  "CullDistance": 128,
+  "IsImportant": true
+}

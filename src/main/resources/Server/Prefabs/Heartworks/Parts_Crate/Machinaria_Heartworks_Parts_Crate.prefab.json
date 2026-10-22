@@ -1,0 +1,183 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": 0,
+      "y": 2,
+      "z": 0,
+      "name": "Empty"
+    }
+  ],
+  "entities": [
+    {
+      "Components": {
+        "UtilityInventory": {
+          "Inventory": {
+            "Id": "Empty"
+          },
+          "ActiveSlot": -1
+        },
+        "EffectController": {},
+        "UIComponentList": {},
+        "HotbarInventory": {
+          "Inventory": {
+            "Id": "Simple",
+            "Capacity": 3,
+            "Items": {}
+          },
+          "ActiveSlot": 0
+        },
+        "MarkedEntitySupport": {},
+        "Transform": {
+          "Position": {
+            "X": 0.5,
+            "Y": 0,
+            "Z": 0.5
+          },
+          "Rotation": {
+            "Pitch": 0,
+            "Yaw": 0,
+            "Roll": 0
+          }
+        },
+        "ModelRotateBoundingBox": {
+          "EnableRotation": false
+        },
+        "StorageInventory": {
+          "Inventory": {
+            "Id": "Empty"
+          }
+        },
+        "Velocity": {
+          "Velocity": {
+            "X": 0,
+            "Y": 0,
+            "Z": 0
+          }
+        },
+        "PrefabCopyable": {},
+        "Invulnerable": {},
+        "HitboxCollision": {
+          "Version": 1,
+          "HitboxCollisionConfigId": "HardCollision"
+        },
+        "Model": {
+          "Model": {
+            "Id": "Machinaria_Heartworks_Parts_Crate",
+            "Scale": 1,
+            "Static": false
+          }
+        },
+        "UUID": {
+          "UUID": {
+            "$binary": "RVJ3SbeuQZGX9o0uGw69lg==",
+            "$type": "04"
+          }
+        },
+        "EntityStats": {
+          "Version": 5,
+          "Stats": {
+            "Oxygen": {
+              "Id": "Oxygen",
+              "Value": 100
+            },
+            "Mana": {
+              "Id": "Mana",
+              "Value": 0
+            },
+            "Health": {
+              "Id": "Health",
+              "Value": 100,
+              "Modifiers": {
+                "NPC_Max": {
+                  "Id": "Static",
+                  "CalculationType": "Additive",
+                  "Amount": 0
+                }
+              }
+            },
+            "GlidingActive": {
+              "Id": "GlidingActive",
+              "Value": 0
+            },
+            "Immunity": {
+              "Id": "Immunity",
+              "Value": 0
+            },
+            "SignatureCharges": {
+              "Id": "SignatureCharges",
+              "Value": 0
+            },
+            "Stamina": {
+              "Id": "Stamina",
+              "Value": 10
+            },
+            "Ammo": {
+              "Id": "Ammo",
+              "Value": 0
+            },
+            "Unknown": {
+              "Id": "Unknown",
+              "Value": 0
+            },
+            "SignatureEnergy": {
+              "Id": "SignatureEnergy",
+              "Value": 0
+            },
+            "DeployablePreview": {
+              "Id": "DeployablePreview",
+              "Value": 0
+            },
+            "StaminaRegenDelay": {
+              "Id": "StaminaRegenDelay",
+              "Value": 0
+            },
+            "MagicCharges": {
+              "Id": "MagicCharges",
+              "Value": 0
+            }
+          }
+        },
+        "NPC": {
+          "Version": 5,
+          "UUID": {
+            "$binary": "NWjPkQooQuOi2cOTqjEDVQ==",
+            "$type": "04"
+          },
+          "Inventory": {
+            "Version": 4,
+            "ActiveHotbarSlot": 0,
+            "ActiveToolsSlot": -1,
+            "ActiveUtilitySlot": -1
+          },
+          "HvrPhs": 0,
+          "HvrHght": 0,
+          "MdlScl": 1,
+          "SpawnInstant": "0002-06-16T12:00:00Z",
+          "WorldgenId": 0,
+          "PathManager": {},
+          "RoleName": "Machinaria_Heartworks_Parts_Crate",
+          "ActiveMC": "Walk"
+        },
+        "ArmorInventory": {
+          "Inventory": {
+            "Id": "Simple",
+            "Capacity": 4,
+            "Items": {}
+          }
+        },
+        "HeadRotation": {
+          "Rotation": {
+            "Pitch": 0,
+            "Yaw": 0,
+            "Roll": 0
+          }
+        }
+      }
+    }
+  ]
+}

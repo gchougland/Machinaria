@@ -1,0 +1,372 @@
+{
+  "$Comment": "Between vanilla Weapon_Sword_Cobalt (35) and _Adamantite (40), at 38. Swings wind the target; the third hit within 4 s releases for +6 and a shove. Built by tools/items/weapons.build.mjs.",
+  "Parent": "Template_Weapon_Sword",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_items.items.Machinaria_Heartworks_Cogblade.name",
+    "Description": "machinaria_hw_items.items.Machinaria_Heartworks_Cogblade.description"
+  },
+  "Model": "Items/Machinaria/Heartworks/Items/Cogblade.blockymodel",
+  "Texture": "Items/Machinaria/Heartworks/Items/Cogblade.png",
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Cogblade.png",
+  "Categories": [
+    "Items.Weapons",
+    "Machinaria.Content"
+  ],
+  "Quality": "Rare",
+  "ItemLevel": 38,
+  "Recipe": {
+    "TimeSeconds": 5,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Heartwinder_Mainspring",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Bronze",
+        "Quantity": 7
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Leather_Heavy",
+        "Quantity": 3
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Weapons"
+        ],
+        "Id": "MechanicsBench"
+      }
+    ]
+  },
+  "InteractionVars": {
+    "Swing_Left_Damage": {
+      "Interactions": [
+        {
+          "Type": "EffectCondition",
+          "EntityEffectIds": [
+            "Machinaria_Cogblade_Wind_2"
+          ],
+          "Match": "All",
+          "Entity": "Target",
+          "Next": {
+            "Parent": "Weapon_Sword_Primary_Swing_Left_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 18
+              }
+            },
+            "DamageEffects": {
+              "WorldSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+              "LocalSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+              "Knockback": {
+                "Force": 9,
+                "VelocityType": "Set"
+              },
+              "WorldParticles": [
+                {
+                  "SystemId": "Impact_Dagger_Stab_Charged"
+                }
+              ]
+            },
+            "Next": {
+              "Type": "ClearEntityEffect",
+              "Entity": "Target",
+              "EntityEffectId": "Machinaria_Cogblade_Wind_1",
+              "Next": {
+                "Type": "ClearEntityEffect",
+                "Entity": "Target",
+                "EntityEffectId": "Machinaria_Cogblade_Wind_2"
+              }
+            }
+          },
+          "Failed": {
+            "Type": "EffectCondition",
+            "EntityEffectIds": [
+              "Machinaria_Cogblade_Wind_1"
+            ],
+            "Match": "All",
+            "Entity": "Target",
+            "Next": {
+              "Type": "ApplyEffect",
+              "Entity": "Target",
+              "EffectId": "Machinaria_Cogblade_Wind_2",
+              "Next": {
+                "Parent": "Weapon_Sword_Primary_Swing_Left_Damage",
+                "DamageCalculator": {
+                  "BaseDamage": {
+                    "Physical": 12
+                  }
+                },
+                "DamageEffects": {
+                  "WorldSoundEventId": "SFX_Sword_T2_Impact",
+                  "LocalSoundEventId": "SFX_Sword_T2_Impact"
+                }
+              }
+            },
+            "Failed": {
+              "Type": "ApplyEffect",
+              "Entity": "Target",
+              "EffectId": "Machinaria_Cogblade_Wind_1",
+              "Next": {
+                "Parent": "Weapon_Sword_Primary_Swing_Left_Damage",
+                "DamageCalculator": {
+                  "BaseDamage": {
+                    "Physical": 12
+                  }
+                },
+                "DamageEffects": {
+                  "WorldSoundEventId": "SFX_Sword_T2_Impact",
+                  "LocalSoundEventId": "SFX_Sword_T2_Impact"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Swing_Right_Damage": {
+      "Interactions": [
+        {
+          "Type": "EffectCondition",
+          "EntityEffectIds": [
+            "Machinaria_Cogblade_Wind_2"
+          ],
+          "Match": "All",
+          "Entity": "Target",
+          "Next": {
+            "Parent": "Weapon_Sword_Primary_Swing_Right_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 18
+              }
+            },
+            "DamageEffects": {
+              "WorldSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+              "LocalSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+              "Knockback": {
+                "Force": 9,
+                "VelocityType": "Set"
+              },
+              "WorldParticles": [
+                {
+                  "SystemId": "Impact_Dagger_Stab_Charged"
+                }
+              ]
+            },
+            "Next": {
+              "Type": "ClearEntityEffect",
+              "Entity": "Target",
+              "EntityEffectId": "Machinaria_Cogblade_Wind_1",
+              "Next": {
+                "Type": "ClearEntityEffect",
+                "Entity": "Target",
+                "EntityEffectId": "Machinaria_Cogblade_Wind_2"
+              }
+            }
+          },
+          "Failed": {
+            "Type": "EffectCondition",
+            "EntityEffectIds": [
+              "Machinaria_Cogblade_Wind_1"
+            ],
+            "Match": "All",
+            "Entity": "Target",
+            "Next": {
+              "Type": "ApplyEffect",
+              "Entity": "Target",
+              "EffectId": "Machinaria_Cogblade_Wind_2",
+              "Next": {
+                "Parent": "Weapon_Sword_Primary_Swing_Right_Damage",
+                "DamageCalculator": {
+                  "BaseDamage": {
+                    "Physical": 12
+                  }
+                },
+                "DamageEffects": {
+                  "WorldSoundEventId": "SFX_Sword_T2_Impact",
+                  "LocalSoundEventId": "SFX_Sword_T2_Impact"
+                }
+              }
+            },
+            "Failed": {
+              "Type": "ApplyEffect",
+              "Entity": "Target",
+              "EffectId": "Machinaria_Cogblade_Wind_1",
+              "Next": {
+                "Parent": "Weapon_Sword_Primary_Swing_Right_Damage",
+                "DamageCalculator": {
+                  "BaseDamage": {
+                    "Physical": 12
+                  }
+                },
+                "DamageEffects": {
+                  "WorldSoundEventId": "SFX_Sword_T2_Impact",
+                  "LocalSoundEventId": "SFX_Sword_T2_Impact"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Swing_Down_Damage": {
+      "Interactions": [
+        {
+          "Type": "EffectCondition",
+          "EntityEffectIds": [
+            "Machinaria_Cogblade_Wind_2"
+          ],
+          "Match": "All",
+          "Entity": "Target",
+          "Next": {
+            "Parent": "Weapon_Sword_Primary_Swing_Down_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 32
+              }
+            },
+            "DamageEffects": {
+              "WorldSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+              "LocalSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+              "Knockback": {
+                "Force": 9,
+                "VelocityType": "Set"
+              },
+              "WorldParticles": [
+                {
+                  "SystemId": "Impact_Dagger_Stab_Charged"
+                }
+              ]
+            },
+            "Next": {
+              "Type": "ClearEntityEffect",
+              "Entity": "Target",
+              "EntityEffectId": "Machinaria_Cogblade_Wind_1",
+              "Next": {
+                "Type": "ClearEntityEffect",
+                "Entity": "Target",
+                "EntityEffectId": "Machinaria_Cogblade_Wind_2"
+              }
+            }
+          },
+          "Failed": {
+            "Type": "EffectCondition",
+            "EntityEffectIds": [
+              "Machinaria_Cogblade_Wind_1"
+            ],
+            "Match": "All",
+            "Entity": "Target",
+            "Next": {
+              "Type": "ApplyEffect",
+              "Entity": "Target",
+              "EffectId": "Machinaria_Cogblade_Wind_2",
+              "Next": {
+                "Parent": "Weapon_Sword_Primary_Swing_Down_Damage",
+                "DamageCalculator": {
+                  "BaseDamage": {
+                    "Physical": 26
+                  }
+                },
+                "DamageEffects": {
+                  "WorldSoundEventId": "SFX_Sword_T2_Impact",
+                  "LocalSoundEventId": "SFX_Sword_T2_Impact"
+                }
+              }
+            },
+            "Failed": {
+              "Type": "ApplyEffect",
+              "Entity": "Target",
+              "EffectId": "Machinaria_Cogblade_Wind_1",
+              "Next": {
+                "Parent": "Weapon_Sword_Primary_Swing_Down_Damage",
+                "DamageCalculator": {
+                  "BaseDamage": {
+                    "Physical": 26
+                  }
+                },
+                "DamageEffects": {
+                  "WorldSoundEventId": "SFX_Sword_T2_Impact",
+                  "LocalSoundEventId": "SFX_Sword_T2_Impact"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Thrust_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Sword_Primary_Thrust_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 38
+            }
+          },
+          "EntityStatsOnHit": [
+            {
+              "EntityStatId": "SignatureEnergy",
+              "Amount": 3
+            }
+          ],
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Sword_T2_Impact",
+            "LocalSoundEventId": "SFX_Sword_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Vortexstrike_Spin_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Sword_Signature_Vortexstrike_Spin_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 27
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Sword_T2_Impact",
+            "LocalSoundEventId": "SFX_Sword_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Vortexstrike_Stab_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Sword_Signature_Vortexstrike_Stab_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 82
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Sword_T2_Impact",
+            "LocalSoundEventId": "SFX_Sword_T2_Impact"
+          }
+        }
+      ]
+    },
+    "Guard_Wield": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Sword_Secondary_Guard_Wield",
+          "StaminaCost": {
+            "Value": 14.5,
+            "CostType": "Damage"
+          }
+        }
+      ]
+    }
+  },
+  "MaxDurability": 450,
+  "DurabilityLossOnHit": 0.13
+}

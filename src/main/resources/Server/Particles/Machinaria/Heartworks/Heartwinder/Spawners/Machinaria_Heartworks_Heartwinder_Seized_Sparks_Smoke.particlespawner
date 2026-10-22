@@ -1,0 +1,134 @@
+{
+  "RenderMode": "BlendLinear",
+  "SpawnRate": {
+    "Min": 6,
+    "Max": 6
+  },
+  "MaxConcurrentParticles": 10,
+  "ParticleLifeSpan": {
+    "Min": 1,
+    "Max": 1.4
+  },
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 0.4
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.4
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.4
+    }
+  },
+  "ParticleRotationInfluence": "Billboard",
+  "LinearFiltering": true,
+  "LightInfluence": 1,
+  "ParticleRotateWithSpawner": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 0.6,
+      "Max": 1
+    },
+    "Yaw": {
+      "Min": 0,
+      "Max": 360
+    },
+    "Pitch": {
+      "Min": 70,
+      "Max": 90
+    }
+  },
+  "Attractors": [
+    {
+      "Position": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "RadialAxis": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "Radius": 0,
+      "RadialAcceleration": 0,
+      "RadialTangentAcceleration": 0,
+      "DampingMultiplier": {
+        "X": 0.85,
+        "Y": 0.9,
+        "Z": 0.85
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": 0.8,
+        "Z": 0
+      }
+    }
+  ],
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Smooth2.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "ScaleRatioConstraint": "None",
+    "UVOption": "RandomFlipU",
+    "InitialAnimationFrame": {
+      "Rotation": {
+        "X": {
+          "Min": 0,
+          "Max": 0
+        },
+        "Y": {
+          "Min": 0,
+          "Max": 0
+        },
+        "Z": {
+          "Min": 0,
+          "Max": 360
+        }
+      },
+      "Scale": {
+        "X": {
+          "Min": 0.25,
+          "Max": 0.35
+        },
+        "Y": {
+          "Min": 0.25,
+          "Max": 0.35
+        }
+      },
+      "Opacity": 0.7,
+      "Color": "#4a4648",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 0
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 1
+      },
+      "35": {
+        "Opacity": 0.85
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 2.7,
+            "Max": 3.3000000000000003
+          },
+          "Y": {
+            "Min": 2.7,
+            "Max": 3.3000000000000003
+          }
+        },
+        "Color": "#7a7678"
+      }
+    }
+  }
+}

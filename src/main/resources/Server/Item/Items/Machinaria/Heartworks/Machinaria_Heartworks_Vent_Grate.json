@@ -1,0 +1,76 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Machinaria_Heartworks_Vent_Grate.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Vent_Grate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Cube",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "Textures": [
+      {
+        "Up": "BlockTextures/Machinaria/Heartworks/Vent_Grate_Top.png",
+        "Down": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+        "Sides": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#3a3f48",
+    "ParticleColor": "#4a505a",
+    "State": {
+      "Definitions": {
+        "Warn": {
+          "Textures": [
+            {
+              "Up": "BlockTextures/Machinaria/Heartworks/Vent_Grate_Top_Warn.png",
+              "Down": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a20"
+          }
+        },
+        "Burst": {
+          "Textures": [
+            {
+              "Up": "BlockTextures/Machinaria/Heartworks/Vent_Grate_Top_Burst.png",
+              "Down": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Machine_Side.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#c74"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Vent_Steam_Burst",
+              "TargetEntityPart": "Self"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

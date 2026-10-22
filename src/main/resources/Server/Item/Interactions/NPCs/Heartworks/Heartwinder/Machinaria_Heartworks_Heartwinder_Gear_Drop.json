@@ -1,0 +1,28 @@
+{
+  "$Comment": "One falling gear, spawned by the encounter at a player: a decal at once (1.5 s), the gear projectile 0.4 s later from 14 blocks up, landing about 1.1 s after (vanilla stalactite pattern).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 0.4,
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Rattle",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Gear_Mark",
+            "TargetEntityPart": "Entity",
+            "Scale": 2.55,
+            "PositionOffset": {
+              "Y": 0.05
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Projectile",
+      "Config": "Machinaria_Heartworks_Heartwinder_Gear_Rain",
+      "RunTime": 2
+    }
+  ]
+}

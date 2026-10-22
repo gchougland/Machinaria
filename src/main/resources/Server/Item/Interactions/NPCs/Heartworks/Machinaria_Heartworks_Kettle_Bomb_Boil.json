@@ -1,0 +1,132 @@
+{
+  "$Comment": "Boil Over (DESIGN.md 6.2; parts from the goblin Lobber's BlowingUp state and the Gobliterator barrel's fuse). It plants (0.5 s) and boils (2.5 s) standing still: a three-second pie timer over it and a ground ring of the blast's radius from the moment it plants, steam hissing from the lid, the whistle screaming. Then it swells and bursts (0.25 s): 28 to everything within 3.5, robots too, knocked 10 away. It is removed: a kettle that bursts drops nothing.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Parallel",
+      "Interactions": [
+        {
+          "Interactions": [
+            {
+              "Type": "Simple",
+              "RunTime": 3,
+              "Effects": {
+                "MovementEffects": {
+                  "DisableAll": true
+                },
+                "Particles": [
+                  {
+                    "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Timer",
+                    "TargetEntityPart": "Entity",
+                    "PositionOffset": {
+                      "Y": 1.45
+                    }
+                  },
+                  {
+                    "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Ring",
+                    "TargetEntityPart": "Entity",
+                    "DetachedFromModel": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Interactions": [
+            {
+              "Type": "Serial",
+              "Interactions": [
+                {
+                  "Type": "Simple",
+                  "RunTime": 0.5,
+                  "Effects": {
+                    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Kettle_Bomb",
+                    "ItemAnimationId": "Plant",
+                    "WorldSoundEventId": "SFX_Golem_Earth_Stomp",
+                    "MovementEffects": {
+                      "DisableAll": true
+                    }
+                  }
+                },
+                {
+                  "Type": "Simple",
+                  "RunTime": 2.5,
+                  "Effects": {
+                    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Kettle_Bomb",
+                    "ItemAnimationId": "Boil",
+                    "WorldSoundEventId": "SFX_Bomb_Fuse",
+                    "ClearSoundEventOnFinish": true,
+                    "MovementEffects": {
+                      "DisableAll": true
+                    },
+                    "Particles": [
+                      {
+                        "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Jet",
+                        "TargetEntityPart": "Entity",
+                        "TargetNodeName": "WhistlePoint"
+                      },
+                      {
+                        "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Steam",
+                        "TargetEntityPart": "Entity",
+                        "TargetNodeName": "Lid"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.25,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Kettle_Bomb",
+        "ItemAnimationId": "Burst",
+        "WorldSoundEventId": "SFX_Arrow_Whistle",
+        "MovementEffects": {
+          "DisableAll": true
+        }
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.1,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 3.5
+      },
+      "Effects": {
+        "WorldSoundEventId": "SFX_Goblin_Lobber_Bomb_Death",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Burst",
+            "TargetEntityPart": "Entity",
+            "DetachedFromModel": true
+          }
+        ]
+      },
+      "HitEntity": {
+        "Interactions": [
+          {
+            "Type": "Replace",
+            "Var": "Burst_Damage",
+            "DefaultOk": true,
+            "DefaultValue": {
+              "Interactions": [
+                "Machinaria_Heartworks_Kettle_Bomb_Burst_Damage"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "RemoveEntity",
+      "Entity": "User"
+    }
+  ]
+}

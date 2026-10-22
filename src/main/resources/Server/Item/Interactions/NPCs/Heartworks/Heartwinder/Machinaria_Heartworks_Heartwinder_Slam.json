@@ -1,0 +1,126 @@
+{
+  "$Comment": "Hammer Slam (DESIGN.md 7.5): 1.3 s standing still (the key spins fast, the hammer rises, a radius 5 decal), a circle 5 for 0.1 s, 60 Crush and knock-up 8; then 1.2 s with the hammer stuck in the floor (the punish window) and 0.4 s pulling it free. Analogue: the Feastmaster slam (1.167 s, r5, Crush 65).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.3,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+            "ItemAnimationId": "SlamCharge",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Mark",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "DetachedFromModel": true,
+                "Scale": 5.05,
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Key",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Selector",
+            "RunTime": 0.1,
+            "Selector": {
+              "Id": "AOECircle",
+              "Range": 5
+            },
+            "HitEntityRules": [
+              {
+                "Matchers": [
+                  {
+                    "Type": "Player"
+                  }
+                ],
+                "Next": {
+                  "Interactions": [
+                    {
+                      "Type": "Replace",
+                      "Var": "Slam_Damage",
+                      "DefaultValue": {
+                        "Interactions": [
+                          "Machinaria_Heartworks_Heartwinder_Slam_Damage"
+                        ]
+                      },
+                      "DefaultOk": true
+                    }
+                  ]
+                }
+              }
+            ],
+            "Effects": {
+              "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+              "ItemAnimationId": "Slam",
+              "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Slam",
+              "Particles": [
+                {
+                  "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Impact",
+                  "TargetEntityPart": "Entity",
+                  "TargetNodeName": "Origin",
+                  "DetachedFromModel": true,
+                  "Scale": 5,
+                  "PositionOffset": {
+                    "X": 0,
+                    "Y": 0.05,
+                    "Z": 0
+                  }
+                }
+              ],
+              "CameraEffect": "Impact_Strong"
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 1.6,
+              "$Comment": "Stuck in the floor 1.2 s, then pulled free.",
+              "Effects": {
+                "Particles": [
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Chest",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0,
+                      "Z": 0
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 3,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

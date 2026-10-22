@@ -1,0 +1,14 @@
+{
+  "$Comment": "Natural ground of the Rusted Expanse surface for world spawns: the biome's soils (grass, dry and burnt grass, burnt dirt, red gravel, red and brick clay) and red sandstone and its cobble (vanilla Soil set plus the biome's rock). Not red sandstone brick, metal or planks, so nothing spawns on the floors of ruins, repair bays or the Pumpworks buildings.",
+  "IncludeBlockTypes": [
+    "Soil_*",
+    "Plant_*",
+    "Rock_Sandstone_Red",
+    "Rock_Sandstone_Red_Cobble"
+  ],
+  "ExcludeBlockTypes": [
+    "Plant_Leaves*",
+    "*Water*",
+    "*Mud"
+  ]
+}

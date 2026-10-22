@@ -1,0 +1,152 @@
+{
+  "Model": "NPC/Heartworks/Rivet_Turret/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Rivet_Turret/Models/Texture.png",
+  "EyeHeight": 1.2,
+  "CrouchOffset": 0,
+  "HitBox": {
+    "Max": {
+      "X": 0.45,
+      "Y": 1.35,
+      "Z": 0.45
+    },
+    "Min": {
+      "X": -0.45,
+      "Y": 0,
+      "Z": -0.45
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 30,
+        "Min": -30
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 180,
+        "Min": -180
+      },
+      "TargetNodes": [
+        "Belly"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Goblin_Decorative_Steam",
+      "TargetNodeName": "ExhaustCap",
+      "PositionOffset": {
+        "Y": 0.05
+      },
+      "Scale": 0.45
+    }
+  ],
+  "Light": {
+    "Color": "#640"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/PowerUp.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Hand_Crossbow_T2_Reload_Start"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Hurt.blockyanim",
+          "Looping": false,
+          "SoundEventId": "SFX_Metal_Hit"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Death.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Brazier_Metal_Break"
+        }
+      ]
+    },
+    "Aim": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Aim.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Fire": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Fire.blockyanim",
+          "Looping": false
+        }
+      ]
+    },
+    "PowerDown": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/PowerDown.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "Off": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/Off.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "PowerUp": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Turret/Animations/PowerUp.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

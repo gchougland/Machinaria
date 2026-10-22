@@ -1,0 +1,52 @@
+{
+  "$Comment": "Pop (DESIGN.md 6.2): killed before it boils over, the kettle gives a falling whistle and a small ring for half a second, then pops: 18 within 2.5, robots too. Run by the role's DeathInstruction, so it never explodes without a warning (unlike the vanilla Burner's death blast).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 0.5,
+      "Effects": {
+        "WorldSoundEventId": "SFX_Stalactite_Falling_Whistle",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Pop_Ring",
+            "TargetEntityPart": "Entity",
+            "DetachedFromModel": true
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.1,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 2.5
+      },
+      "Effects": {
+        "WorldSoundEventId": "SFX_Goblin_Lobber_Bomb_Death",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Kettle_Bomb_Pop",
+            "TargetEntityPart": "Entity",
+            "DetachedFromModel": true
+          }
+        ]
+      },
+      "HitEntity": {
+        "Interactions": [
+          {
+            "Type": "Replace",
+            "Var": "Pop_Damage",
+            "DefaultOk": true,
+            "DefaultValue": {
+              "Interactions": [
+                "Machinaria_Heartworks_Kettle_Bomb_Pop_Damage"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

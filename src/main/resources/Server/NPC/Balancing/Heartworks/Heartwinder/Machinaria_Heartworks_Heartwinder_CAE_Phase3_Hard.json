@@ -1,0 +1,192 @@
+{
+  "Type": "CombatActionEvaluator",
+  "$Comment": "Hard mode phase 3: the three-band Lash (every 15 s, weighted first), Gear Rain (every 16 s; the hard encounter drops five waves), two-cone Overpressure (every 15 s), Heart Burst (within 5, every 5 s), Cradle Vents (within 6, every 6 s).",
+  "EntityEffects": [
+    "Immunity_Slow",
+    "Immunity_Freeze",
+    "Immunity_Poison",
+    "Machinaria_Heartworks_Heartwinder_Hard_Mode"
+  ],
+  "TargetMemoryDuration": 30,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "Type": "Switch",
+          "SwitchPoint": 2
+        }
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "NoAimDefault": {
+        "Type": "State",
+        "Description": "Leave NoAim for Default",
+        "State": "Combat",
+        "SubState": "Default",
+        "Target": "Hostile",
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 0.1
+            }
+          }
+        ]
+      },
+      "Lash": {
+        "Type": "Ability",
+        "Description": "Mainspring Lash, three bands (hard): every 15 s, weighted first",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          30
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Lash_Hard",
+        "SubState": "Lash",
+        "RequireAiming": false,
+        "WeightCoefficient": 3.5,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 15
+            }
+          }
+        ]
+      },
+      "GearRain": {
+        "Type": "Ability",
+        "Description": "Gear Rain (hard): every 16 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          30
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Gear_Rain",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.3,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 16
+            }
+          }
+        ]
+      },
+      "Overpressure": {
+        "Type": "Ability",
+        "Description": "Overpressure, ahead and behind (hard): every 15 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          22
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Overpressure_Hard",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.4,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 15
+            }
+          }
+        ]
+      },
+      "HeartBurst": {
+        "Type": "Ability",
+        "Description": "Heart Burst (hard): a player within 5, every 5 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Heart_Burst",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 3,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 5
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 5,
+              "InitialState": 1,
+              "FinalState": 0
+            }
+          }
+        ]
+      },
+      "CradleVent": {
+        "Type": "Ability",
+        "Description": "Cradle Vents (hard): a player within 6, every 6 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          6
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Cradle_Vent",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 2.6,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6,
+              "InitialState": 1,
+              "FinalState": 0
+            }
+          }
+        ]
+      }
+    },
+    "ActionSets": {
+      "Default": {
+        "Actions": [
+          "HeartBurst",
+          "CradleVent",
+          "Lash",
+          "Overpressure",
+          "GearRain"
+        ]
+      },
+      "NoAim": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      },
+      "Lash": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      }
+    }
+  }
+}

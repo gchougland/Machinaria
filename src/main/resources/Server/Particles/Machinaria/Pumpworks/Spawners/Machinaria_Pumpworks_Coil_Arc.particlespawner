@@ -1,0 +1,130 @@
+{
+  "RenderMode": "Erosion",
+  "ParticleRotationInfluence": "Velocity",
+  "LinearFiltering": false,
+  "LightInfluence": 0,
+  "ParticleLifeSpan": {
+    "Min": 0.6,
+    "Max": 1
+  },
+  "ParticleRotateWithSpawner": true,
+  "MaxConcurrentParticles": 4,
+  "SpawnRate": {
+    "Min": 1,
+    "Max": 3
+  },
+  "Attractors": [
+    {
+      "DampingMultiplier": {
+        "X": 0.53,
+        "Y": 0.53,
+        "Z": 0.53
+      },
+      "RadialImpulse": 0.1
+    }
+  ],
+  "Particle": {
+    "Texture": "Particles/Textures/Rnd/LightningArch.png",
+    "UVOption": "RandomFlipU",
+    "FrameSize": {
+      "Width": 128,
+      "Height": 128
+    },
+    "ScaleRatioConstraint": "None",
+    "InitialAnimationFrame": {
+      "Opacity": 1,
+      "Color": "#9fe0ff",
+      "Scale": {
+        "X": {
+          "Min": 0.18,
+          "Max": 0.25
+        },
+        "Y": {
+          "Min": 0.12,
+          "Max": 0.16
+        }
+      },
+      "Rotation": {
+        "Y": {
+          "Min": 90,
+          "Max": 90
+        },
+        "X": {
+          "Min": -60,
+          "Max": 60
+        }
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 1,
+        "FrameIndex": {
+          "Min": 0,
+          "Max": 2
+        },
+        "Scale": {
+          "X": {
+            "Min": 0.6,
+            "Max": 0.6
+          },
+          "Y": {
+            "Min": 0.2,
+            "Max": 0.2
+          }
+        }
+      },
+      "15": {
+        "Opacity": 0.8,
+        "FrameIndex": {
+          "Max": 2
+        },
+        "Scale": {
+          "X": {
+            "Min": 1,
+            "Max": 1
+          },
+          "Y": {
+            "Min": 1,
+            "Max": 1
+          }
+        }
+      },
+      "40": {
+        "Opacity": 0.3,
+        "FrameIndex": {
+          "Max": 2
+        },
+        "Scale": {
+          "X": {
+            "Min": 1.2,
+            "Max": 1.2
+          },
+          "Y": {
+            "Min": 1.2,
+            "Max": 1.2
+          }
+        }
+      },
+      "70": {
+        "Opacity": 0
+      },
+      "100": {
+        "Opacity": 0
+      }
+    }
+  },
+  "EmitOffset": {
+    "X": {
+      "Min": 0.2,
+      "Max": 0.32
+    },
+    "Y": {
+      "Min": -0.22,
+      "Max": 0.22
+    },
+    "Z": {
+      "Min": -0.15,
+      "Max": 0.15
+    }
+  }
+}

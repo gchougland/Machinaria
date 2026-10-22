@@ -1,0 +1,43 @@
+{
+  "$Comment": "The Oiler.s oiling clip (WiggleWeights included: the server requires them). Copied in shape from the Cogling's set (vanilla Scarak_Louse_Default).",
+  "Animations": {
+    "Oil": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Heartworks/Oiler/Animations/Oil.blockyanim",
+      "BlendingDuration": 0.15
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 12,
+        "Min": -12
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 15,
+        "Min": -15
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 0.5,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 0.5,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

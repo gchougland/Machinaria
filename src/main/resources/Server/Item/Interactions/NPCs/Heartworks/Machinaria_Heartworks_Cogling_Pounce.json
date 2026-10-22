@@ -1,0 +1,75 @@
+{
+  "$Comment": "The Cogling's pounce (DESIGN.md 6.2, analogue: the Skeleton Elite's downstrike leap). 0.5 s crouch with a chirp, standing still (the telegraph); a short leap (ApplyForce: the role's KnockbackScale 0.5 halves Force, so 17 is about 8.5 blocks a second, roughly 4 blocks of travel); the bite lands for 0.2 s on landing. The role then tips it over for 0.5 s.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 0.5,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Cogling",
+        "ItemAnimationId": "PounceWindup",
+        "WorldSoundEventId": "SFX_Spider_Alerted",
+        "MovementEffects": {
+          "DisableAll": true
+        }
+      }
+    },
+    {
+      "Type": "ApplyForce",
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Cogling",
+        "ItemAnimationId": "Pounce",
+        "WorldSoundEventId": "SFX_Tool_Goblin_Rocket_Boots_Jump",
+        "MovementEffects": {
+          "DisableAll": false
+        }
+      },
+      "WaitForGround": true,
+      "Force": 17,
+      "Direction": {
+        "X": 0,
+        "Y": 0.4,
+        "Z": -1
+      },
+      "ChangeVelocityType": "Set",
+      "VelocityConfig": {
+        "AirResistance": 0.99,
+        "AirResistanceMax": 0.91,
+        "GroundResistance": 0.8,
+        "GroundResistanceMax": 0.65,
+        "Threshold": 0.1,
+        "Style": "Linear"
+      },
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.2,
+        "Selector": {
+          "Id": "Horizontal",
+          "Direction": "ToLeft",
+          "TestLineOfSight": true,
+          "ExtendTop": 0.6,
+          "ExtendBottom": 0.5,
+          "StartDistance": 0,
+          "EndDistance": 1.9,
+          "Length": 90,
+          "RollOffset": -90,
+          "YawStartOffset": -45
+        },
+        "HitEntity": {
+          "Interactions": [
+            {
+              "Type": "Replace",
+              "Var": "Pounce_Damage",
+              "DefaultOk": true,
+              "DefaultValue": {
+                "Interactions": [
+                  "Machinaria_Heartworks_Cogling_Pounce_Damage"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

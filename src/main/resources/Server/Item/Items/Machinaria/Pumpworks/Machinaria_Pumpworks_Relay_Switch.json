@@ -1,0 +1,81 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_pumpworks.items.Machinaria_Pumpworks_Relay_Switch.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Pumpworks_Relay_Switch.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Pumpworks"
+    ]
+  },
+  "BlockType": {
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Group": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Machinaria_Pumpworks_Scrap_Salvage"
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Pumpworks/Relay_Switch_Off.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Pumpworks/Relay_Switch_Off.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Sign_Wall",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#076",
+      "Radius": 4
+    },
+    "InteractionHint": "machinaria_pumpworks.hints.throwRelay",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "Effects": {
+              "WorldSoundEventId": "SFX_Lever_Metal_On"
+            }
+          }
+        ]
+      }
+    },
+    "TextureComputedColor": "#454a52",
+    "ParticleColor": "#454a52",
+    "State": {
+      "Definitions": {
+        "On": {
+          "CustomModel": "Blocks/Machinaria/Pumpworks/Relay_Switch_On.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Pumpworks/Relay_Switch_On.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a60",
+            "Radius": 4
+          },
+          "InteractionHint": null,
+          "Interactions": {
+            "Use": null
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$Comment": "The Kettle Bomb's attack clips (WiggleWeights included: the server requires them). Copied in shape from the Cogling's set (vanilla Scarak_Louse_Default).",
+  "Animations": {
+    "Plant": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Heartworks/Kettle_Bomb/Animations/Plant.blockyanim",
+      "BlendingDuration": 0.08
+    },
+    "Boil": {
+      "Speed": 1,
+      "Looping": true,
+      "ThirdPerson": "NPC/Heartworks/Kettle_Bomb/Animations/Boil.blockyanim",
+      "BlendingDuration": 0.05
+    },
+    "Burst": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Heartworks/Kettle_Bomb/Animations/Burst.blockyanim",
+      "BlendingDuration": 0.03
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

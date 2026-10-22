@@ -1,0 +1,121 @@
+{
+  "$Comment": "What the robot holds (round 4 notes 25 and 26): Machinaria_Heartworks_Rivet_Guard_Mace with the robot's own animation set (Machinaria_Heartworks_Rivet_Guard) as its PlayerAnimationsId, as vanilla Weapon_Mace_Scrap_NPC is for the goblins. Not for players: no recipe, not in the creative tab.",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_robots.items.Machinaria_Heartworks_Rivet_Guard_Mace.name",
+    "Description": "machinaria_hw_robots.items.Machinaria_Heartworks_Rivet_Guard_Mace.description"
+  },
+  "Categories": [
+    "Items.Weapons"
+  ],
+  "Quality": "Developer",
+  "ItemLevel": 38,
+  "PlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+  "Utility": {
+    "Compatible": true
+  },
+  "Interactions": {
+    "Primary": "Club_Attack"
+  },
+  "InteractionVars": {
+    "Club_Swing_Left_Effect": {
+      "Interactions": [
+        {
+          "Parent": "Club_Swing_Left_Effect",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Club_Special_Swing"
+          }
+        }
+      ]
+    },
+    "Club_Swing_Left_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Club_Swing_Left_Damage",
+          "DamageCalculator": {
+            "Type": "Absolute",
+            "BaseDamage": {
+              "Physical": 45
+            },
+            "RandomPercentageModifier": 0.1
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Club_Swing_Right_Effect": {
+      "Interactions": [
+        {
+          "Parent": "Club_Swing_Right_Effect",
+          "Effects": {
+            "WorldSoundEventId": "SFX_Club_Special_Swing"
+          }
+        }
+      ]
+    },
+    "Club_Swing_Right_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Club_Swing_Right_Damage",
+          "DamageCalculator": {
+            "Type": "Absolute",
+            "BaseDamage": {
+              "Physical": 45
+            },
+            "RandomPercentageModifier": 0.1
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Club_Swing_Down_Charged_Effect": "Club_Swing_Down_Charged_Effect",
+    "Club_Swing_Down_Charged_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Club_Swing_Down_Charged_Damage",
+          "DamageCalculator": {
+            "Type": "Absolute",
+            "BaseDamage": {
+              "Physical": 90
+            },
+            "RandomPercentageModifier": 0.1
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    }
+  },
+  "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
+  "Model": "NPC/Heartworks/Rivet_Guard/Models/Mace.blockymodel",
+  "Texture": "NPC/Heartworks/Rivet_Guard/Models/Mace_Texture.png",
+  "IconProperties": {
+    "Scale": 0.37,
+    "Translation": [
+      -32,
+      -32
+    ],
+    "Rotation": [
+      45,
+      90,
+      0
+    ]
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Rivet_Guard_Mace.png",
+  "Tags": {
+    "Type": [
+      "Weapon"
+    ],
+    "Family": [
+      "Club"
+    ]
+  },
+  "MaxDurability": 145,
+  "DurabilityLossOnHit": 0.5,
+  "Weapon": {},
+  "ItemSoundSetId": "ISS_Weapons_Blunt_Small"
+}

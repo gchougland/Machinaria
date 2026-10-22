@@ -1,0 +1,33 @@
+{
+  "$Comment": "The Wrench Throw telegraph: a red-orange ground line 12 blocks long and 1 wide, pointing forward from his feet, for 1.0 s; the fill runs out to the end as the throw nears, then flashes. Attach at Origin, Scale 1, not detached: it follows and turns with him.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Throw_Line_Edge",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.02,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Throw_Line_Fill",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.025,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Throw_Line_Lane",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.03,
+        "Z": 6
+      }
+    }
+  ],
+  "LifeSpan": 1,
+  "BoundingRadius": 13,
+  "CullDistance": 128,
+  "IsImportant": true
+}

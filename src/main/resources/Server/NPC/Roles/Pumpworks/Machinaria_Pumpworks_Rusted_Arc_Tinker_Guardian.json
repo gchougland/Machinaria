@@ -1,0 +1,26 @@
+{
+  "$Comment": "Vault guardian of the Signal Mast: a Rusted Arc Tinker (the template of enemies-robots: kites, spark lob, zap, rally), 90 HP (the Heartworks one 120, the Expanse surface one 80), zap 14. Always drops the Tarnished Mainspring (Machinaria_Pumpworks_Drop_Guardian).",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Arc_Tinker_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Pumpworks_Rusted_Arc_Tinker",
+    "DropList": "Machinaria_Pumpworks_Drop_Guardian",
+    "MaxHealth": 90,
+    "MaxSpeed": 5,
+    "NameTranslationKey": "machinaria_pumpworks.npcRoles.Machinaria_Pumpworks_Rusted_Arc_Tinker_Guardian.name",
+    "_InteractionVars": {
+      "Arc_Tinker_Zap_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Arc_Tinker_Zap_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Lightning": 14
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

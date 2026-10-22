@@ -1,0 +1,15 @@
+{
+  "$Comment": "Adds 1,200 max health for the third player in the arena (DESIGN.md 7.1). Copied from vanilla Gobliterator_Scale_Health_P3; the encounter applies it at the intro.",
+  "RawStatModifiers": {
+    "Health": [
+      {
+        "Amount": 1200,
+        "CalculationType": "Additive",
+        "Target": "Max"
+      }
+    ]
+  },
+  "OverlapBehavior": "Ignore",
+  "Infinite": true,
+  "RemovalBehavior": "Infinite"
+}

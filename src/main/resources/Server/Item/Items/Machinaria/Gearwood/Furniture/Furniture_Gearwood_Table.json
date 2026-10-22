@@ -1,0 +1,99 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Furniture_Gearwood_Table.name",
+    "Description": "machinaria_gearwood.items.Furniture_Gearwood_Table.description"
+  },
+  "PlayerAnimationsId": "Block",
+  "Categories": [
+    "Furniture.Furniture",
+    "Machinaria.Content"
+  ],
+  "Set": "Furniture_Gearwood",
+  "Icon": "Icons/ItemsGenerated/Furniture_Gearwood_Table.png",
+  "IconProperties": {
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Scale": 0.32,
+    "Translation": [
+      -22,
+      -20
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 1.5,
+    "Input": [
+      {
+        "ItemId": "Wood_Gear_Planks",
+        "Quantity": 4
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "MechanicsBench",
+        "Categories": [
+          "Mechanics_Furniture"
+        ]
+      }
+    ]
+  },
+  "BlockType": {
+    "BlockParticleSetId": "Wood",
+    "CustomModel": "Blocks/Machinaria/Gearwood/Table.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Table_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Woods"
+      }
+    },
+    "Group": "Wood",
+    "HitboxType": "Table",
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "ParticleColor": "#4a2418",
+    "Supporting": {
+      "Up": [
+        {}
+      ]
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#4E2519"
+  },
+  "ResourceTypes": [
+    {
+      "Id": "Fuel"
+    },
+    {
+      "Id": "Charcoal"
+    }
+  ],
+  "Tags": {
+    "Type": [
+      "Furniture"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Scale": 0.6,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

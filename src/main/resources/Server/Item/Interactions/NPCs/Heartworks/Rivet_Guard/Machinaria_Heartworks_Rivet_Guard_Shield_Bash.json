@@ -1,0 +1,76 @@
+{
+  "$Comment": "Shield bash after a guard (DESIGN.md 6.2): 0.35 s wind-up while steam hisses from the shield vents, a 0.12 s shove (a stab from 0 to 3), 0.5 s recovery to punish. 14 damage, knocked about 6 away. Shaped like vanilla Goblin_Guardian_Shield_Bash.",
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+    "ItemAnimationId": "Bash",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Bash_Hiss",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Rivet_Guard_Vent_Hiss",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "L-Hand",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0.24,
+          "Z": 0.2
+        }
+      }
+    ]
+  },
+  "RunTime": 0.35,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "$Comment": "Active frames",
+            "RunTime": 0.12,
+            "Selector": {
+              "Id": "Stab",
+              "TestLineOfSight": true,
+              "ExtendTop": 0.5,
+              "ExtendLeft": 0.6,
+              "ExtendRight": 0.6,
+              "ExtendBottom": 0.5,
+              "StartDistance": 0.1,
+              "EndDistance": 3
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Rivet_Guard_Shield_Bash_Damage"
+                    ]
+                  },
+                  "Var": "Rivet_Guard_Bash_Damage",
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "$Comment": "Recovery: the punish window",
+              "RunTime": 0.5
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.2,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Shield_T2_Swing"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

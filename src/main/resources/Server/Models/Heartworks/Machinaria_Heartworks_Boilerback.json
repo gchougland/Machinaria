@@ -1,0 +1,254 @@
+{
+  "Model": "NPC/Heartworks/Boilerback/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Boilerback/Models/Texture.png",
+  "EyeHeight": 2,
+  "CrouchOffset": -0.3,
+  "HitBox": {
+    "Max": {
+      "X": 1.2,
+      "Y": 3,
+      "Z": 1.2
+    },
+    "Min": {
+      "X": -1.2,
+      "Y": 0,
+      "Z": -1.2
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Boilerback_Stack_Smoke",
+      "TargetNodeName": "StackCap",
+      "PositionOffset": {
+        "Y": 0.12
+      }
+    }
+  ],
+  "Light": {
+    "Color": "#d63"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2,
+          "Speed": 0.8
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Run.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Run.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "FallFar": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Boilerback_Alert"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Hurt.blockyanim",
+          "BlendingDuration": 0.08,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Boilerback_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Death.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Boilerback_Death"
+        }
+      ]
+    },
+    "Shovel": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Shovel.blockyanim",
+          "BlendingDuration": 0.3,
+          "Looping": false
+        }
+      ]
+    },
+    "Vent": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/VentBurst.blockyanim",
+          "BlendingDuration": 0.2,
+          "Looping": false
+        }
+      ]
+    },
+    "ChargeWindup": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/ChargeWindup.blockyanim",
+          "BlendingDuration": 0.25
+        }
+      ]
+    },
+    "Charge": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Charge.blockyanim",
+          "BlendingDuration": 0.15
+        }
+      ]
+    },
+    "BreathWindup": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/BreathWindup.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Breath": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Breath.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "BreathEnd": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/BreathEnd.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    },
+    "ChargeHit": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/ChargeHit.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false
+        }
+      ]
+    },
+    "ChargeMiss": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/ChargeMiss.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "Crash": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/Crash.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false
+        }
+      ]
+    },
+    "CrashStun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Boilerback/Animations/CrashStun.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    }
+  }
+}

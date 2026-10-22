@@ -1,0 +1,119 @@
+{
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "LinearFiltering": true,
+  "LightInfluence": 1,
+  "ParticleRotateWithSpawner": false,
+  "MaxConcurrentParticles": 24,
+  "ParticleLifeSpan": {
+    "Min": 1.3,
+    "Max": 1.7
+  },
+  "SpawnRate": {
+    "Min": 24,
+    "Max": 24
+  },
+  "TotalParticles": {
+    "Min": 22,
+    "Max": 22
+  },
+  "LifeSpan": 0.9,
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 0.4
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.3
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.4
+    }
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 2,
+      "Max": 3.2
+    },
+    "Yaw": {
+      "Min": 0,
+      "Max": 360
+    },
+    "Pitch": {
+      "Min": 65,
+      "Max": 90
+    }
+  },
+  "Attractors": [
+    {
+      "Position": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": 1.4,
+        "Z": 0
+      },
+      "DampingMultiplier": {
+        "X": 0.84,
+        "Y": 0.84,
+        "Z": 0.84
+      }
+    }
+  ],
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "RandomFlipUV",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.4,
+          "Max": 0.55
+        }
+      },
+      "Rotation": {
+        "Z": {
+          "Min": -180,
+          "Max": 180
+        }
+      },
+      "Opacity": 0.95,
+      "Color": "#2a2628",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0.35
+      },
+      "12": {
+        "Opacity": 1
+      },
+      "45": {
+        "Opacity": 0.8
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 2.34,
+            "Max": 2.86
+          }
+        },
+        "Color": "#4e4a4c"
+      }
+    }
+  }
+}

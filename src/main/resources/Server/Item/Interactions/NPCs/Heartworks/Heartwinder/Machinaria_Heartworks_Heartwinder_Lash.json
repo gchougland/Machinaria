@@ -1,0 +1,82 @@
+{
+  "$Comment": "Mainspring Lash (DESIGN.md 7.5): 3.0 s charging with two ground lines where the bands lie and the spring coils glowing, then two steel bands lie flat out to each side (2 to 20, 0.75 high) while the boss turns 25 degrees a second for 6 s (its .Lash sub state turns it): 30 ticks of 0.2 s, 20 a touch, knocked 6. Jump them. 1.0 s recovery. Analogue: the Gobliterator Flamethrower (3.6 s charge, four beams turning 20 degrees a second for 7 s).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 3,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "LashCharge",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Lash_Charge",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            },
+            "RotationOffset": {
+              "Yaw": 90
+            },
+            "DetachedFromModel": true
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            },
+            "RotationOffset": {
+              "Yaw": -90
+            },
+            "DetachedFromModel": true
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Glow",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Heart",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.01,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "Lash",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Lash_Loop"
+      }
+    },
+    {
+      "Type": "Repeat",
+      "Repeat": 30,
+      "ForkInteractions": {
+        "Interactions": [
+          "Machinaria_Heartworks_Heartwinder_Lash_Tick"
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 1,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "LashCharge",
+        "ClearAnimationOnFinish": true
+      }
+    }
+  ]
+}

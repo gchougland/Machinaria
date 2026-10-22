@@ -1,0 +1,44 @@
+{
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Golem_Clockwork_Default",
+    "ItemAnimationId": "SteamVent"
+  },
+  "$Comment": "Draw pressure",
+  "RunTime": 0.4,
+  "Next": {
+    "Type": "Selector",
+    "$Comment": "Vent",
+    "RunTime": 0.15,
+    "Effects": {
+      "WorldSoundEventId": "SFX_Golem_Clockwork_Steam_Vent",
+      "Particles": [
+        {
+          "SystemId": "Golem_Clockwork_Steam_Burst"
+        }
+      ]
+    },
+    "Selector": {
+      "Id": "AOECircle",
+      "Range": 3.5
+    },
+    "HitEntity": {
+      "Interactions": [
+        {
+          "Type": "Replace",
+          "DefaultValue": {
+            "Interactions": [
+              "Golem_Clockwork_Steam_Vent_Damage"
+            ]
+          },
+          "Var": "Steam_Vent_Damage"
+        }
+      ]
+    },
+    "Next": {
+      "Type": "Simple",
+      "$Comment": "Recover",
+      "RunTime": 0.7
+    }
+  }
+}

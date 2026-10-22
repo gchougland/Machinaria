@@ -1,0 +1,14 @@
+{
+  "$Comment": "The Arc Warden, among the coils of E2 (the plan's E, facing west to the door the party enters by). The Heartworks' clock is paused, so SpawnAfterGameTime never passes and a killed Warden stays dead for the run.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Arc_Warden",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 8,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

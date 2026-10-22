@@ -1,0 +1,1458 @@
+{
+  "$Comment": "One full swing of a great pendulum's hits (8 s, out and back), matching the PendulumSwing clip the role loops on the Status slot: a radius 1.7 sphere at the blade every 0.25 s, the tick at each end, the whoosh as it passes the bottom.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -7.46
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ],
+        "Effects": {
+          "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Pendulum_Tick"
+        }
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -7.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -6.61
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -5.8
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -4.76
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -3.54
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -2.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ],
+        "Effects": {
+          "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Pendulum_Swing"
+        }
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -0.74
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 0.74
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 2.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 3.54
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 4.76
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 5.8
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 6.61
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 7.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 7.46
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 7.46
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ],
+        "Effects": {
+          "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Pendulum_Tick"
+        }
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 7.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 6.61
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 5.8
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 4.76
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 3.54
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 2.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ],
+        "Effects": {
+          "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Pendulum_Swing"
+        }
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": 0.74
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -0.74
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -2.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -3.54
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -4.76
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -5.8
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -6.61
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -7.18
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    },
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Selector",
+        "RunTime": 0.25,
+        "Selector": {
+          "Id": "AOECircle",
+          "Range": 1.7,
+          "Offset": {
+            "X": 0,
+            "Y": 1.2,
+            "Z": -7.46
+          }
+        },
+        "HitEntityRules": [
+          {
+            "Matchers": [
+              {
+                "Type": "Player"
+              }
+            ],
+            "Next": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Pendulum_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Heartwinder_Pendulum_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Failed": "Machinaria_Heartworks_Heartwinder_Pendulum_Stop"
+    }
+  ]
+}

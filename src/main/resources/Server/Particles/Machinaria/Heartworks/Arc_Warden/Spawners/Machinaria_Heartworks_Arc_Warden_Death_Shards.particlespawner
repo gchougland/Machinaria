@@ -1,0 +1,125 @@
+{
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "LinearFiltering": false,
+  "LightInfluence": 1,
+  "ParticleRotateWithSpawner": false,
+  "MaxConcurrentParticles": 22,
+  "ParticleLifeSpan": {
+    "Min": 1,
+    "Max": 1.4
+  },
+  "SpawnRate": {
+    "Min": 22,
+    "Max": 22
+  },
+  "TotalParticles": {
+    "Min": 22,
+    "Max": 22
+  },
+  "SpawnBurst": true,
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0.4,
+      "Max": 0.6
+    },
+    "Y": {
+      "Min": 0.8,
+      "Max": 1.2
+    },
+    "Z": {
+      "Min": 0.3,
+      "Max": 0.5
+    }
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 3.5,
+      "Max": 6.5
+    },
+    "Yaw": {
+      "Min": 0,
+      "Max": 360
+    },
+    "Pitch": {
+      "Min": 10,
+      "Max": 70
+    }
+  },
+  "Attractors": [
+    {
+      "Position": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": -14,
+        "Z": 0
+      },
+      "DampingMultiplier": {
+        "X": 0.92,
+        "Y": 0.92,
+        "Z": 0.92
+      }
+    }
+  ],
+  "ParticleCollision": {
+    "BlockType": "Solid",
+    "Action": "Linger"
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Shapes/Fragment_GS.png",
+    "FrameSize": {
+      "Width": 32,
+      "Height": 32
+    },
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "RandomFlipUV",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.38,
+          "Max": 0.56
+        }
+      },
+      "Rotation": {
+        "Z": {
+          "Min": -180,
+          "Max": 180
+        }
+      },
+      "Opacity": 1,
+      "Color": "#efe4c8",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 1,
+        "Rotation": {
+          "Z": {
+            "Min": 0,
+            "Max": 0
+          }
+        }
+      },
+      "80": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0,
+        "Rotation": {
+          "Z": {
+            "Min": -540,
+            "Max": 540
+          }
+        }
+      }
+    }
+  }
+}

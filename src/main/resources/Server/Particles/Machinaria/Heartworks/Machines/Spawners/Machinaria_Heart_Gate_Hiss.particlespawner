@@ -1,0 +1,91 @@
+{
+  "$Comment": "Heart Gate unlocking: thin steam streams round the door edge.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "LightInfluence": 1,
+  "MaxConcurrentParticles": 30,
+  "ParticleLifeSpan": {
+    "Min": 0.6,
+    "Max": 1
+  },
+  "SpawnRate": {
+    "Min": 20,
+    "Max": 24
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "ScaleRatioConstraint": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 0
+      },
+      "20": {
+        "Opacity": 0.7
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 2.2,
+            "Max": 2.2
+          },
+          "Y": {
+            "Min": 2.2,
+            "Max": 2.2
+          }
+        },
+        "Color": "#bab5ac"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.3,
+          "Max": 0.45
+        },
+        "Y": {
+          "Min": 0.3,
+          "Max": 0.45
+        }
+      },
+      "Opacity": 1,
+      "Color": "#f0ece4",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      }
+    },
+    "UVOption": "RandomFlipUV"
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 2.3,
+      "Max": 2.5
+    },
+    "Y": {
+      "Min": 2.3,
+      "Max": 2.5
+    }
+  },
+  "Attractors": [
+    {
+      "DampingMultiplier": {
+        "X": 0.85,
+        "Y": 0.85,
+        "Z": 0.85
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 1.5,
+      "Max": 3
+    }
+  }
+}

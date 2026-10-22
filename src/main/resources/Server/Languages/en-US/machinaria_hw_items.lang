@@ -1,0 +1,32 @@
+# items-rewards (wave A): the Heartworks Shard, the mainsprings, the repair parts, the runes, the vault chest.
+# Keys are read as machinaria_hw_items.<key>. English only; plain and short.
+items.PortalKey_The_Heartworks.name=Heartworks Shard
+items.PortalKey_The_Heartworks.description=<msg key="server.items.PortalKey.usage"/>\n\n<i>A brass heart wound with a clockwork heart. It still keeps the time of the foundry below the rust.</i>
+items.Ingredient_Tarnished_Mainspring.name=Tarnished Mainspring
+items.Ingredient_Tarnished_Mainspring.description=A dull old spring from a Sunken Pumpworks vault. It still ticks in time with the Heartworks. Wind it with a Clockwork Heart at a Mechanic's Workstation.
+items.Ingredient_Heartwinder_Mainspring.name=Heartwinder's Mainspring
+items.Ingredient_Heartwinder_Mainspring.description=The great spring that wound the Heartwinder. Its ruby heart still glows, but it no longer ticks.
+items.Machinaria_Heartworks_Valve_Wheel.name=Valve Wheel
+items.Machinaria_Heartworks_Valve_Wheel.description=A spare handwheel for the Heartworks' steam valves.
+items.Machinaria_Heartworks_Escapement_Gear.name=Escapement Gear
+items.Machinaria_Heartworks_Escapement_Gear.description=A spare escapement gear for the Heartworks' winches and clocks.
+items.Machinaria_Heartworks_Dynamo_Fuse.name=Dynamo Fuse
+items.Machinaria_Heartworks_Dynamo_Fuse.description=A heavy fuse for the Heartworks' breaker boxes. It hums in your hand.
+items.Machinaria_Heartworks_Vault_Chest.name=Heartworks Strongbox
+items.Rune_Overwind.name=Overwind
+items.Rune_Overwind.description=Wind yourself up for 1 second, then move 20% faster and deal 30% more physical, elemental, and projectile damage for 8 seconds. Then you run down and move 30% slower for 2 seconds.
+items.Rune_Galvanic.name=Galvanic
+items.Rune_Galvanic.description=Hits from a supported ability apply Galvanized for 3 seconds. Galvanized enemies take 3 lightning damage every second and move 15% slower.
+deathCause.galvanized=You were galvanized!
+entityEffects.Rune_Overwind_Windup=Winding Up
+entityEffects.Rune_Overwind_Overwound=Overwound
+entityEffects.Rune_Overwind_Unwound=Unwound
+entityEffects.Machinaria_Galvanized=Galvanized
+# Round 4: the Heartwinder's Mainspring weapons, and the bench's weapon category (until server.lang has one).
+benchCategories.mechanics.weapons=Weapons
+items.Machinaria_Heartworks_Steam_Hammer.name=Steam Hammer
+items.Machinaria_Heartworks_Steam_Hammer.description=A boiler drum on an iron haft, wound by the Heartwinder's own mainspring. Its leaping strike lands in a burst of steam that scalds: 2 fire damage a second for 3 seconds and 20% slower.
+items.Machinaria_Heartworks_Cogblade.name=Cogblade
+items.Machinaria_Heartworks_Cogblade.description=A sawback blade with a brass gear for a guard. Each swing winds the foe up. The third hit in a row lets the spring go for 6 more damage and a hard shove.
+entityEffects.Machinaria_Scalded=Scalded
+deathCause.scalded=You were scalded!

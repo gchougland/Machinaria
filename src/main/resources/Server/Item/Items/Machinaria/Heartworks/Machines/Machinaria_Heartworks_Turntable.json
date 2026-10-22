@@ -1,0 +1,52 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Turntable.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Turntable.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Turntable.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#4a4a48",
+    "TextureComputedColor": "#4a4a48",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Turntable.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Turntable.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Turntable",
+    "State": {
+      "Definitions": {
+        "Still": {},
+        "Turning": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Turntable_Turning.blockyanim",
+          "Looping": true,
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_Drone_B"
+        }
+      }
+    }
+  }
+}

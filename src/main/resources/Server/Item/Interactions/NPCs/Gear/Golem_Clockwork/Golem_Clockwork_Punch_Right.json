@@ -1,0 +1,64 @@
+{
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Golem_Clockwork_Default",
+    "ItemAnimationId": "PunchRight"
+  },
+  "$Comment": "Wind up",
+  "RunTime": 0.3,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "$Comment": "The fist travels",
+            "RunTime": 0.15,
+            "Selector": {
+              "Id": "Horizontal",
+              "Direction": "ToLeft",
+              "TestLineOfSight": true,
+              "ExtendTop": 0.5,
+              "ExtendBottom": 1.5,
+              "StartDistance": 0.5,
+              "EndDistance": 3.25,
+              "Length": 70,
+              "RollOffset": 0,
+              "YawStartOffset": 35
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Golem_Clockwork_Punch_Damage"
+                    ]
+                  },
+                  "Var": "Punch_Damage"
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "$Comment": "Recover",
+              "RunTime": 0.3
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.15,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Golem_Earth_Swing"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

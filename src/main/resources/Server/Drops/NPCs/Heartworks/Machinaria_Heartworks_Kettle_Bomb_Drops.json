@@ -1,0 +1,72 @@
+{
+  "$Comment": "A Kettle Bomb killed before it boils over (one that bursts removes itself and drops nothing): scrap, sometimes a copper bar from its pot.",
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rubble_ScrapMetal",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 70
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Ingredient_Bar_Copper",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 30
+          }
+        ]
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 75
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Weapon_Bolt",
+              "QuantityMin": 2,
+              "QuantityMax": 3
+            },
+            "Weight": 25
+          }
+        ]
+      },
+      {
+        "Type": "Single",
+        "Weight": 12,
+        "Item": {
+          "ItemId": "Ingredient_Bar_Bronze",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Single",
+        "Weight": 5,
+        "Item": {
+          "ItemId": "Ingredient_Lightning_Essence",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      }
+    ]
+  }
+}

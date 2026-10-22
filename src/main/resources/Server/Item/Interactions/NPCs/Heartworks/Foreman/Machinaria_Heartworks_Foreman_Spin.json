@@ -1,0 +1,411 @@
+{
+  "$Comment": "Wrench Spin (round 6): a target within 3.5, every 12 s (9 in Overtime). 1.0 s tell standing still: he twists round with the wrench hauled up at his shoulder and a red disc of radius 3.25 pulses on the floor. Then 2.5 s of spinning (ten 360 degree sweeps, 0.5 to 3.25 blocks, 8 Physical and a shove each) while he drifts after you at half speed: back off. Then 1.8 s Dizzy, rooted, -25% physical resistance: the punish window. Analogue: vanilla Golem_Firesteel_Spin_Heavy (1 s, ten 0.25 s sweeps of 5).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Foreman",
+            "ItemAnimationId": "SpinWindup",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Foreman_Wrench_Swing",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Foreman_Spin_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin"
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Foreman_Wrench_Glint",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Wrench-Head",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.2,
+                  "Z": 0
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Parallel",
+            "Interactions": [
+              {
+                "Interactions": [
+                  {
+                    "Type": "ApplyEffect",
+                    "EffectId": "Machinaria_Heartworks_Foreman_Spinning",
+                    "Next": {
+                      "Type": "Selector",
+                      "RunTime": 0.25,
+                      "Selector": {
+                        "Id": "Horizontal",
+                        "Direction": "ToLeft",
+                        "TestLineOfSight": true,
+                        "ExtendTop": 0.5,
+                        "ExtendBottom": 2,
+                        "StartDistance": 0.5,
+                        "EndDistance": 3.25,
+                        "Length": 360,
+                        "RollOffset": 0,
+                        "YawStartOffset": -90
+                      },
+                      "HitEntity": {
+                        "Interactions": [
+                          {
+                            "Type": "Replace",
+                            "Var": "Spin_Damage",
+                            "DefaultValue": {
+                              "Interactions": [
+                                "Machinaria_Heartworks_Foreman_Spin_Damage"
+                              ]
+                            },
+                            "DefaultOk": true
+                          }
+                        ]
+                      },
+                      "Next": {
+                        "Type": "Selector",
+                        "RunTime": 0.25,
+                        "Selector": {
+                          "Id": "Horizontal",
+                          "Direction": "ToLeft",
+                          "TestLineOfSight": true,
+                          "ExtendTop": 0.5,
+                          "ExtendBottom": 2,
+                          "StartDistance": 0.5,
+                          "EndDistance": 3.25,
+                          "Length": 360,
+                          "RollOffset": 0,
+                          "YawStartOffset": -90
+                        },
+                        "HitEntity": {
+                          "Interactions": [
+                            {
+                              "Type": "Replace",
+                              "Var": "Spin_Damage",
+                              "DefaultValue": {
+                                "Interactions": [
+                                  "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                ]
+                              },
+                              "DefaultOk": true
+                            }
+                          ]
+                        },
+                        "Next": {
+                          "Type": "Selector",
+                          "RunTime": 0.25,
+                          "Selector": {
+                            "Id": "Horizontal",
+                            "Direction": "ToLeft",
+                            "TestLineOfSight": true,
+                            "ExtendTop": 0.5,
+                            "ExtendBottom": 2,
+                            "StartDistance": 0.5,
+                            "EndDistance": 3.25,
+                            "Length": 360,
+                            "RollOffset": 0,
+                            "YawStartOffset": -90
+                          },
+                          "HitEntity": {
+                            "Interactions": [
+                              {
+                                "Type": "Replace",
+                                "Var": "Spin_Damage",
+                                "DefaultValue": {
+                                  "Interactions": [
+                                    "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                  ]
+                                },
+                                "DefaultOk": true
+                              }
+                            ]
+                          },
+                          "Next": {
+                            "Type": "Selector",
+                            "RunTime": 0.25,
+                            "Selector": {
+                              "Id": "Horizontal",
+                              "Direction": "ToLeft",
+                              "TestLineOfSight": true,
+                              "ExtendTop": 0.5,
+                              "ExtendBottom": 2,
+                              "StartDistance": 0.5,
+                              "EndDistance": 3.25,
+                              "Length": 360,
+                              "RollOffset": 0,
+                              "YawStartOffset": -90
+                            },
+                            "HitEntity": {
+                              "Interactions": [
+                                {
+                                  "Type": "Replace",
+                                  "Var": "Spin_Damage",
+                                  "DefaultValue": {
+                                    "Interactions": [
+                                      "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                    ]
+                                  },
+                                  "DefaultOk": true
+                                }
+                              ]
+                            },
+                            "Next": {
+                              "Type": "Selector",
+                              "RunTime": 0.25,
+                              "Selector": {
+                                "Id": "Horizontal",
+                                "Direction": "ToLeft",
+                                "TestLineOfSight": true,
+                                "ExtendTop": 0.5,
+                                "ExtendBottom": 2,
+                                "StartDistance": 0.5,
+                                "EndDistance": 3.25,
+                                "Length": 360,
+                                "RollOffset": 0,
+                                "YawStartOffset": -90
+                              },
+                              "HitEntity": {
+                                "Interactions": [
+                                  {
+                                    "Type": "Replace",
+                                    "Var": "Spin_Damage",
+                                    "DefaultValue": {
+                                      "Interactions": [
+                                        "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                      ]
+                                    },
+                                    "DefaultOk": true
+                                  }
+                                ]
+                              },
+                              "Next": {
+                                "Type": "Selector",
+                                "RunTime": 0.25,
+                                "Selector": {
+                                  "Id": "Horizontal",
+                                  "Direction": "ToLeft",
+                                  "TestLineOfSight": true,
+                                  "ExtendTop": 0.5,
+                                  "ExtendBottom": 2,
+                                  "StartDistance": 0.5,
+                                  "EndDistance": 3.25,
+                                  "Length": 360,
+                                  "RollOffset": 0,
+                                  "YawStartOffset": -90
+                                },
+                                "HitEntity": {
+                                  "Interactions": [
+                                    {
+                                      "Type": "Replace",
+                                      "Var": "Spin_Damage",
+                                      "DefaultValue": {
+                                        "Interactions": [
+                                          "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                        ]
+                                      },
+                                      "DefaultOk": true
+                                    }
+                                  ]
+                                },
+                                "Next": {
+                                  "Type": "Selector",
+                                  "RunTime": 0.25,
+                                  "Selector": {
+                                    "Id": "Horizontal",
+                                    "Direction": "ToLeft",
+                                    "TestLineOfSight": true,
+                                    "ExtendTop": 0.5,
+                                    "ExtendBottom": 2,
+                                    "StartDistance": 0.5,
+                                    "EndDistance": 3.25,
+                                    "Length": 360,
+                                    "RollOffset": 0,
+                                    "YawStartOffset": -90
+                                  },
+                                  "HitEntity": {
+                                    "Interactions": [
+                                      {
+                                        "Type": "Replace",
+                                        "Var": "Spin_Damage",
+                                        "DefaultValue": {
+                                          "Interactions": [
+                                            "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                          ]
+                                        },
+                                        "DefaultOk": true
+                                      }
+                                    ]
+                                  },
+                                  "Next": {
+                                    "Type": "Selector",
+                                    "RunTime": 0.25,
+                                    "Selector": {
+                                      "Id": "Horizontal",
+                                      "Direction": "ToLeft",
+                                      "TestLineOfSight": true,
+                                      "ExtendTop": 0.5,
+                                      "ExtendBottom": 2,
+                                      "StartDistance": 0.5,
+                                      "EndDistance": 3.25,
+                                      "Length": 360,
+                                      "RollOffset": 0,
+                                      "YawStartOffset": -90
+                                    },
+                                    "HitEntity": {
+                                      "Interactions": [
+                                        {
+                                          "Type": "Replace",
+                                          "Var": "Spin_Damage",
+                                          "DefaultValue": {
+                                            "Interactions": [
+                                              "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                            ]
+                                          },
+                                          "DefaultOk": true
+                                        }
+                                      ]
+                                    },
+                                    "Next": {
+                                      "Type": "Selector",
+                                      "RunTime": 0.25,
+                                      "Selector": {
+                                        "Id": "Horizontal",
+                                        "Direction": "ToLeft",
+                                        "TestLineOfSight": true,
+                                        "ExtendTop": 0.5,
+                                        "ExtendBottom": 2,
+                                        "StartDistance": 0.5,
+                                        "EndDistance": 3.25,
+                                        "Length": 360,
+                                        "RollOffset": 0,
+                                        "YawStartOffset": -90
+                                      },
+                                      "HitEntity": {
+                                        "Interactions": [
+                                          {
+                                            "Type": "Replace",
+                                            "Var": "Spin_Damage",
+                                            "DefaultValue": {
+                                              "Interactions": [
+                                                "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                              ]
+                                            },
+                                            "DefaultOk": true
+                                          }
+                                        ]
+                                      },
+                                      "Next": {
+                                        "Type": "Selector",
+                                        "RunTime": 0.25,
+                                        "Selector": {
+                                          "Id": "Horizontal",
+                                          "Direction": "ToLeft",
+                                          "TestLineOfSight": true,
+                                          "ExtendTop": 0.5,
+                                          "ExtendBottom": 2,
+                                          "StartDistance": 0.5,
+                                          "EndDistance": 3.25,
+                                          "Length": 360,
+                                          "RollOffset": 0,
+                                          "YawStartOffset": -90
+                                        },
+                                        "HitEntity": {
+                                          "Interactions": [
+                                            {
+                                              "Type": "Replace",
+                                              "Var": "Spin_Damage",
+                                              "DefaultValue": {
+                                                "Interactions": [
+                                                  "Machinaria_Heartworks_Foreman_Spin_Damage"
+                                                ]
+                                              },
+                                              "DefaultOk": true
+                                            }
+                                          ]
+                                        },
+                                        "Next": {
+                                          "Type": "ApplyEffect",
+                                          "EffectId": "Machinaria_Heartworks_Foreman_Dizzy",
+                                          "Next": {
+                                            "Type": "Simple",
+                                            "$Comment": "Dizzy: the punish window.",
+                                            "RunTime": 1.8,
+                                            "Effects": {
+                                              "ItemPlayerAnimationsId": "Machinaria_Heartworks_Foreman",
+                                              "ItemAnimationId": "Dizzy",
+                                              "ClearAnimationOnFinish": true,
+                                              "WorldSoundEventId": "SFX_Machinaria_HW_Boilerback_Charge_Crash"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "Interactions": [
+                  {
+                    "Type": "Simple",
+                    "RunTime": 2.5,
+                    "Effects": {
+                      "ItemPlayerAnimationsId": "Machinaria_Heartworks_Foreman",
+                      "ItemAnimationId": "Spin",
+                      "WorldSoundEventId": "SFX_Golem_Earth_Swing",
+                      "Particles": [
+                        {
+                          "SystemId": "Machinaria_Heartworks_Foreman_Spin_Steam",
+                          "TargetEntityPart": "Entity",
+                          "TargetNodeName": "Origin"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "Rooted through the tell, free while spinning (at half speed), rooted while Dizzy.",
+          "RunTime": 1,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          },
+          "Next": {
+            "Type": "Simple",
+            "RunTime": 2.5,
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 1.8,
+              "Effects": {
+                "MovementEffects": {
+                  "DisableAll": true
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

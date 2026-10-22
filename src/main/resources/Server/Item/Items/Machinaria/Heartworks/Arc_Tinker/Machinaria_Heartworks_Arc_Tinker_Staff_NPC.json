@@ -1,0 +1,62 @@
+{
+  "$Comment": "What the robot holds (round 4 notes 25 and 26): Machinaria_Heartworks_Arc_Tinker_Staff with the robot's own animation set (Machinaria_Heartworks_Arc_Tinker) as its PlayerAnimationsId, as vanilla Weapon_Mace_Scrap_NPC is for the goblins. Not for players: no recipe, not in the creative tab.",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_robots.items.Machinaria_Heartworks_Arc_Tinker_Staff.name",
+    "Description": "machinaria_hw_robots.items.Machinaria_Heartworks_Arc_Tinker_Staff.description"
+  },
+  "Categories": [
+    "Items.Weapons"
+  ],
+  "Quality": "Developer",
+  "ItemLevel": 38,
+  "Model": "NPC/Heartworks/Arc_Tinker/Models/Staff.blockymodel",
+  "Texture": "NPC/Heartworks/Arc_Tinker/Models/Staff_Texture.png",
+  "PlayerAnimationsId": "Machinaria_Heartworks_Arc_Tinker",
+  "Interactions": {
+    "Primary": "Staff_Primary",
+    "Secondary": "Staff_Primary"
+  },
+  "InteractionVars": {
+    "Staff_Cast_Summon_Cost": {
+      "Interactions": [
+        {
+          "Parent": "Staff_Cast_Cost",
+          "StatModifiers": {
+            "Mana": -50
+          }
+        }
+      ]
+    },
+    "Staff_Cast_Summon_Launch": "Machinaria_Heartworks_Arc_Tinker_Staff_Launch",
+    "Staff_Cast_Summon_Effect": "Machinaria_Heartworks_Arc_Tinker_Staff_Cast_Effect",
+    "Staff_Cast_Summon_Fail": "Staff_Cast_Fail",
+    "Spear_Swing_Left_Damage": "Spear_Swing_Left_Damage",
+    "Spear_Swing_Right_Damage": "Spear_Swing_Right_Damage",
+    "Spear_Swing_Left_Effect": "Spear_Swing_Left_Effect",
+    "Spear_Swing_Right_Effect": "Spear_Swing_Right_Effect"
+  },
+  "IconProperties": {
+    "Scale": 0.3,
+    "Translation": [
+      -45,
+      -45
+    ],
+    "Rotation": [
+      45,
+      90,
+      0
+    ]
+  },
+  "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Arc_Tinker_Staff.png",
+  "Tags": {
+    "Type": [
+      "Weapon"
+    ],
+    "Family": [
+      "Staff"
+    ]
+  },
+  "Weapon": {},
+  "ItemSoundSetId": "ISS_Weapons_Wood"
+}

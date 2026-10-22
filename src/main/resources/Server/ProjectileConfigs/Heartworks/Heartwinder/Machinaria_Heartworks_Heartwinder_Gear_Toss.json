@@ -1,0 +1,67 @@
+{
+  "$Comment": "A tossed gear rolling along the ground, the middle one of the fan. Shaped like vanilla Projectile_Config_Sawblade (the Gobliterator): it hits for itself (35, knocked 8) and is removed. SticksVertically: a side hit on a wall comes to rest and runs ProjectileMiss (StandardPhysicsTickSystem rests and fires the impact only when SticksVertically or the floor was hit; without it the gear stopped against the wall and stayed, Gibson round 2 note 26), so it clatters, sparks and is removed.",
+  "Model": "Machinaria_Heartworks_Heartwinder_Gear",
+  "SpawnRotationOffset": {
+    "Pitch": 0,
+    "Roll": 0
+  },
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 0,
+    "TerminalVelocityAir": 30,
+    "TerminalVelocityWater": 10,
+    "RotationMode": "None",
+    "Bounciness": 0,
+    "BounceCount": 0,
+    "SticksVertically": true
+  },
+  "LaunchForce": 14,
+  "SpawnOffset": {
+    "Y": -3.9,
+    "Z": 1.5
+  },
+  "UseModelScale": true,
+  "Interactions": {
+    "ProjectileHit": {
+      "Interactions": [
+        "Machinaria_Heartworks_Heartwinder_Gear_Toss_Damage",
+        {
+          "Type": "Simple",
+          "RunTime": 0.05,
+          "Effects": {
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Gear_Impact",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.07,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Impact",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Gear_Impact",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity"
+        }
+      ]
+    }
+  },
+  "ProjectileSoundEventId": "SFX_Machinaria_HW_Gear_Grind_Loop"
+}

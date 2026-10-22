@@ -1,0 +1,44 @@
+{
+  "$Comment": "The Heartworks: a void world whose rooms are pasted by world generation (Machinaria_Heartworks). No Seed, so every run is fresh.",
+  "RequiredPlugins": {},
+  "ChunkStorage": {
+    "Type": "Hytale"
+  },
+  "GameMode": "Adventure",
+  "SpawnProvider": {
+    "Id": "Global",
+    "SpawnPoint": {
+      "X": 0.5,
+      "Y": 160.0,
+      "Z": 89.5,
+      "Pitch": 0.0,
+      "Yaw": 0.0,
+      "Roll": 0.0
+    }
+  },
+  "IsPvpEnabled": false,
+  "IsSpawningNPC": true,
+  "IsSpawnMarkersEnabled": true,
+  "IsBlockSpawnersEnabled": true,
+  "GameTime": "0001-01-08T12:00:00Z",
+  "IsGameTimePaused": true,
+  "UUID": {
+    "$binary": "HHmLpDSjQ3mV7z1HCWXHqw==",
+    "$type": "04"
+  },
+  "GameplayConfig": "MachinariaHeartworks",
+  "WorldMap": {
+    "Type": "Disabled"
+  },
+  "IsCompassUpdating": true,
+  "IsTicking": true,
+  "IsObjectiveMarkersEnabled": false,
+  "IsAllNPCFrozen": false,
+  "IsSavingPlayers": true,
+  "WorldGen": {
+    "Type": "HytaleGenerator",
+    "WorldStructure": "Machinaria_Heartworks"
+  },
+  "DeleteOnRemove": true,
+  "Version": 2
+}

@@ -1,0 +1,11 @@
+{
+  "$Comment": "Kettle Bomb of the Expanse surface (world spawn, notes/world-spawns.md): the Kettle Bomb's template and model (wanders, runs whistling at a player, plants, boils, bursts; pops if killed first), 50 HP so it can be shot down before it boils (the Heartworks one: 85). Burst and pop damage stay the template's. Surface drop list: scrap, sometimes copper or bolts.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Kettle_Bomb_Template",
+  "Modify": {
+    "DropList": "Machinaria_RustedExpanse_Drop_Kettle_Bomb",
+    "MaxHealth": 50,
+    "MaxSpeed": 7.5,
+    "NameTranslationKey": "machinaria_rusted_expanse.npcRoles.Machinaria_RustedExpanse_Kettle_Bomb.name"
+  }
+}

@@ -1,0 +1,1700 @@
+{
+  "Type": "Abstract",
+  "$Comment": "The Arc Warden (DESIGN.md 6.1 to 6.4), the Heartworks' second elite (E2 Coil Hall). Built from the Boilerback's template (from vanilla Template_Goblin_Glutton): evaluator-driven melee (staff swipes, the Ground Ring), leashes (it keeps to its coils), the robots' rally and party health scaling. Added: the coils, read as blocks: a blue shell while any coil is live (the damage cut is the room's), an 8 s Grounded stagger when the last goes dark, Arc Link while one is live (vanilla Template_Dungeon_Goblin_Scrapper's lane pattern; the Voidtaken's marked strike), and Overload at 50% (once). Built by tools/models/heartworks/arc_warden.data.mjs.",
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_heavy.npcRoles.Machinaria_Heartworks_Arc_Warden.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Arc_Warden",
+      "Description": "Model to be used"
+    },
+    "MaxHealth": {
+      "Value": 1000,
+      "Description": "Max health (before party scaling)"
+    },
+    "MaxSpeed": {
+      "Value": 4.5,
+      "Description": "The NPC's max speed",
+      "TypeHint": "Double"
+    },
+    "ViewRange": {
+      "Value": 22,
+      "Description": "The view range of the NPC",
+      "TypeHint": "Double"
+    },
+    "ViewSector": {
+      "Value": 200,
+      "Description": "The view sector of the NPC",
+      "TypeHint": "Double"
+    },
+    "HearingRange": {
+      "Value": 14,
+      "Description": "The hearing range of the NPC",
+      "TypeHint": "Double"
+    },
+    "AbsoluteDetectionRange": {
+      "Value": 5,
+      "Description": "The range at which an entity is guaranteed to be detected",
+      "TypeHint": "Double"
+    },
+    "AlertedRange": {
+      "Value": 26,
+      "Description": "Range to keep a target and to call robots for help",
+      "TypeHint": "Double"
+    },
+    "AlertedTimeout": {
+      "Value": [
+        1,
+        1
+      ],
+      "Description": "Seconds in Alerted (the staff raised) before it fights"
+    },
+    "CombatMessageTargetGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups that hear its call for help"
+    },
+    "CombatMaintainDistanceMelee": {
+      "Value": 2.8,
+      "Description": "Distance it keeps from its target in melee"
+    },
+    "CombatHeightTolerance": {
+      "Value": [
+        -3,
+        3
+      ],
+      "Description": "Height difference within which it fights"
+    },
+    "LiveCoils": {
+      "Value": "Machinaria_Heartworks_Arc_Warden_Live_Coils",
+      "Description": "Block set of live Tesla coils"
+    },
+    "CoilRange": {
+      "Value": 19,
+      "Description": "How far it reads the coils (they stand 6 to 9 from its marker; it leashes within 10)",
+      "TypeHint": "Double"
+    },
+    "CoilTag": {
+      "Value": "Machinaria_HW_Group=E2",
+      "Description": "The coils' trigger volumes (rooms-east): Machinaria_HW_ArcLink and Machinaria_HW_Overload go to them"
+    },
+    "CoilSignalRadius": {
+      "Value": 30,
+      "Description": "How far its signals to the coils reach",
+      "TypeHint": "Double"
+    },
+    "ShellEffect": {
+      "Value": "Machinaria_Heartworks_Arc_Warden_Shell",
+      "Description": "The blue shell (look only)"
+    },
+    "GroundedEffect": {
+      "Value": "Machinaria_Heartworks_Arc_Warden_Grounded",
+      "Description": "The Grounded sputter"
+    },
+    "GroundedTime": {
+      "Value": [
+        8,
+        8
+      ],
+      "Description": "Seconds it staggers when the last coil goes dark (round 2, Gibson: longer; was 3)"
+    },
+    "OverloadedEffect": {
+      "Value": "Machinaria_Heartworks_Arc_Warden_Overloaded",
+      "Description": "Its phase 2 effect"
+    },
+    "MendHeal": {
+      "Value": 20,
+      "Description": "Health a live coil gives back at each mend (round 4 note 27: the visible heal that replaces the engine regeneration)",
+      "TypeHint": "Double"
+    },
+    "MendEvery": {
+      "Value": [
+        3,
+        3
+      ],
+      "Description": "Seconds between mends while a coil is live and it is hurt"
+    },
+    "ArenaTag": {
+      "Value": "Machinaria_HW_Room=E2_Arena",
+      "Description": "The arena volume (rooms-east): Machinaria_HW_Mend goes to it, and it tells the players once"
+    },
+    "ArcLinkRange": {
+      "Value": 20,
+      "Description": "Arc Link reaches a target this far",
+      "TypeHint": "Double"
+    },
+    "ArcLinkCooldown": {
+      "Value": [
+        10,
+        10
+      ],
+      "Description": "Seconds between Arc Links"
+    },
+    "ArcLinkWithCoils": {
+      "Value": true,
+      "Description": "Arc Link only while a coil is live (the real Warden)"
+    },
+    "ArcLinkWithoutCoils": {
+      "Value": false,
+      "Description": "Test only: Arc Link without coils"
+    },
+    "LeashDistance": {
+      "Value": 10,
+      "Description": "Distance from the leash point before the NPC wants to return home (it keeps to its coils)"
+    },
+    "LeashMinPlayerDistance": {
+      "Value": 4,
+      "Description": "The NPC will not give up the chase while the player is closer than this"
+    },
+    "LeashTimer": {
+      "Value": [
+        3,
+        3
+      ],
+      "Description": "Seconds beyond leash range, without damage or a close player, before the NPC returns home"
+    },
+    "HardLeashDistance": {
+      "Value": 15,
+      "Description": "Absolute maximum distance from the leash point before the NPC returns home"
+    },
+    "ConfusedTimeRange": {
+      "Value": [
+        1,
+        2
+      ],
+      "Description": "Seconds confused after losing its target"
+    },
+    "SearchTimeRange": {
+      "Value": [
+        6,
+        10
+      ],
+      "Description": "Seconds it searches"
+    },
+    "KnockbackScale": {
+      "Value": 0.1,
+      "Description": "How much it is knocked back"
+    },
+    "DeathAnimationTime": {
+      "Value": 3,
+      "Description": "Seconds the corpse stays"
+    },
+    "DeathParticles": {
+      "Value": "Machinaria_Heartworks_Arc_Warden_Death",
+      "Description": "Particles when the corpse goes"
+    },
+    "DropList": {
+      "Value": "Drop_Heartworks_Arc_Warden",
+      "Description": "Drops (items-rewards' elite list)"
+    },
+    "AttitudeGroup": {
+      "Value": "Machinaria_Robots",
+      "Description": "Attitude group"
+    },
+    "DisableDamageGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups whose damage it ignores (the robots')"
+    }
+  },
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "ApplySeparation": true,
+  "AttitudeGroup": {
+    "Compute": "AttitudeGroup"
+  },
+  "CombatConfig": "CAE_Machinaria_Heartworks_Arc_Warden",
+  "DeathAnimationTime": {
+    "Compute": "DeathAnimationTime"
+  },
+  "DeathParticles": {
+    "Compute": "DeathParticles"
+  },
+  "DeathInstruction": {
+    "Instructions": [
+      {
+        "Sensor": {
+          "Type": "Flag",
+          "Name": "Death_Signalled",
+          "Set": false
+        },
+        "ActionsBlocking": true,
+        "Actions": [
+          {
+            "Type": "SetFlag",
+            "Name": "Death_Signalled"
+          },
+          {
+            "Type": "SignalTaggedVolumes",
+            "MatchTag": {
+              "Compute": "CoilTag"
+            },
+            "Radius": {
+              "Compute": "CoilSignalRadius"
+            },
+            "SignalKey": "Machinaria_HW_Stop",
+            "SignalValue": "true",
+            "PositionSource": "Self"
+          }
+        ]
+      }
+    ]
+  },
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": {
+    "Compute": "DisableDamageGroups"
+  },
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "IsMemory": false,
+  "KnockbackScale": {
+    "Compute": "KnockbackScale"
+  },
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "SeparationMode": "Push",
+  "StartState": "Idle",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "Acceleration": 8,
+      "Gravity": 10,
+      "MaxClimbHeight": 1.2,
+      "MaxFallSpeed": 10,
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "RunThreshold": 0.7
+    }
+  ],
+  "StateTransitions": [
+    {
+      "States": [
+        {
+          "From": [
+            "Combat"
+          ],
+          "To": [
+            "Search"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Status"
+        },
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Action"
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "From": [
+            "Search"
+          ],
+          "To": [
+            "Idle"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "ReleaseTarget"
+        }
+      ]
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "Scale health to the party size on first aggro (the dungeon goblins' tiers: x1.55, x2.1, x2.65).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Not",
+        "Sensor": {
+          "Type": "State",
+          "State": "Idle"
+        }
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health"
+        }
+      ]
+    },
+    {
+      "$Comment": "No hidden healing (round 4 note 27): the engine regenerates an NPC 10% a second after 15 s without damage; vanilla bosses switch it off (Template_Boss_Goblin_Gobliterator). Its coils mend it instead, visibly (the next instruction).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetHealthRegen",
+          "EnableRegen": false
+        }
+      ]
+    },
+    {
+      "$Comment": "COIL MEND (round 4 note 27): while hurt and not Grounded, every MendEvery s a live coil within reach mends it: a blue arc from that coil to its spine (Root_..._Coil_Mend, spawned at the coil the Block sensor found), a zap and a spark at the spine, MendHeal health, and the arena is told (it says once what is happening). Pulling every breaker stops it.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "And",
+        "Sensors": [
+          {
+            "Type": "Timer",
+            "Name": "Mend_Ready",
+            "State": "Stopped"
+          },
+          {
+            "Type": "Self",
+            "Filters": [
+              {
+                "Type": "Stat",
+                "StatTarget": "Value",
+                "Stat": "Health",
+                "RelativeTo": "Health",
+                "RelativeToTarget": "Max",
+                "ValueRange": [
+                  0,
+                  0.995
+                ]
+              }
+            ]
+          },
+          {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Flag",
+              "Name": "Grounding"
+            }
+          }
+        ]
+      },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": {
+            "Type": "Block",
+            "Range": {
+              "Compute": "CoilRange"
+            },
+            "MaxHeight": 8,
+            "Blocks": {
+              "Compute": "LiveCoils"
+            }
+          },
+          "Actions": [
+            {
+              "Type": "SpawnInteraction",
+              "Interaction": "Root_Machinaria_Heartworks_Arc_Warden_Coil_Mend",
+              "PositionSource": "Sensor",
+              "Ttl": 3
+            },
+            {
+              "Type": "SetStat",
+              "Stat": "Health",
+              "Value": {
+                "Compute": "MendHeal"
+              },
+              "Add": true
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+              "TargetNodeName": "Spine-Hub",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Galvanized_Zap"
+            },
+            {
+              "Type": "SignalTaggedVolumes",
+              "MatchTag": {
+                "Compute": "ArenaTag"
+              },
+              "Radius": {
+                "Compute": "CoilSignalRadius"
+              },
+              "SignalKey": "Machinaria_HW_Mend",
+              "SignalValue": "true",
+              "PositionSource": "Self"
+            },
+            {
+              "Type": "TimerStart",
+              "Name": "Mend_Ready",
+              "StartValueRange": {
+                "Compute": "MendEvery"
+              },
+              "RestartValueRange": {
+                "Compute": "MendEvery"
+              },
+              "Repeating": false
+            },
+            {
+              "Type": "TimerRestart",
+              "Name": "Mend_Ready"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "The shell: while any coil within 19 is live, re-applied every tick (it lapses 0.4 s after the last goes dark). In every state, so it shows before the fight too.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Block",
+        "Range": {
+          "Compute": "CoilRange"
+        },
+        "MaxHeight": 8,
+        "Blocks": {
+          "Compute": "LiveCoils"
+        }
+      },
+      "Actions": [
+        {
+          "Type": "ApplyEntityEffect",
+          "EntityEffect": {
+            "Compute": "ShellEffect"
+          },
+          "UseTarget": false
+        },
+        {
+          "Type": "SetFlag",
+          "Name": "Shielded"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Standard detection: the robots' rally beacon, sight and sound (crouching players are not heard).",
+          "Reference": "Component_Instruction_Generic_Detection",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat.Default",
+              "Combat.Default",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "BeaconMessage": "Machinaria_Robot_Attack",
+            "Attitudes": [
+              "Hostile"
+            ]
+          }
+        },
+        {
+          "$Comment": "Idle life (DESIGN.md 6.3: the Arc Warden stands in its coils humming): it stands, turns, and now and then raises its staff to the coils.",
+          "Type": "Random",
+          "ExecuteFor": [
+            10,
+            16
+          ],
+          "Instructions": [
+            {
+              "$Comment": "Stand humming",
+              "Weight": 4,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    6,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Raise the staff to the coils",
+              "Weight": 1,
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    3,
+                    6
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Alerted"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+                  "TargetNodeName": "Staff-Yoke",
+                  "Offset": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    7
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Turn about its post",
+              "Weight": 2,
+              "BodyMotion": {
+                "Type": "Sequence",
+                "Looped": true,
+                "Motions": [
+                  {
+                    "Type": "Timer",
+                    "Time": [
+                      3,
+                      5
+                    ],
+                    "Motion": {
+                      "Type": "WanderInCircle",
+                      "Radius": 2
+                    }
+                  },
+                  {
+                    "Type": "Timer",
+                    "Time": [
+                      4,
+                      6
+                    ],
+                    "Motion": {
+                      "Type": "Nothing"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Alerted"
+      },
+      "Instructions": [
+        {
+          "$Comment": "The staff raised, crackling",
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "ActionsBlocking": true,
+          "Continue": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Alerted"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+              "TargetNodeName": "Staff-Yoke",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Switch to combat if attacked",
+          "Sensor": {
+            "Type": "Damage"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Combat.Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Watch the intruder, call the robots, then fight",
+          "Sensor": {
+            "Type": "Target",
+            "Range": {
+              "Compute": "AlertedRange"
+            }
+          },
+          "HeadMotion": {
+            "Type": "Aim"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Robot_Attack",
+              "TargetGroups": {
+                "Compute": "CombatMessageTargetGroups"
+              },
+              "SendTargetSlot": "LockedTarget",
+              "Range": {
+                "Compute": "AlertedRange"
+              }
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "AlertedTimeout"
+              },
+              "Action": {
+                "Type": "State",
+                "State": "Combat.Default"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "No target, go back to idling",
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ],
+              "Action": {
+                "Type": "State",
+                "State": "Idle"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Combat: the evaluator (CAE_Machinaria_Heartworks_Arc_Warden) runs the swipes and the ring; its lanes run Grounded, Overload and Arc Link.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Combat"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Hard leash first and ungated (from the Glutton).",
+          "Sensor": {
+            "Type": "Leash",
+            "Range": {
+              "Compute": "HardLeashDistance"
+            }
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "ReturnHome"
+            }
+          ]
+        },
+        {
+          "$Comment": "The soft leash: it keeps to its coils.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Or",
+              "Sensors": [
+                {
+                  "Type": "Flag",
+                  "Name": "Grounding"
+                },
+                {
+                  "Type": "Flag",
+                  "Name": "Overload_Casting"
+                },
+                {
+                  "Type": "Flag",
+                  "Name": "ArcLink_Casting"
+                }
+              ]
+            }
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Soft_Leash",
+              "Modify": {
+                "_ExportStates": [
+                  "ReturnHome"
+                ],
+                "LeashDistance": {
+                  "Compute": "LeashDistance"
+                },
+                "LeashMinPlayerDistance": {
+                  "Compute": "LeashMinPlayerDistance"
+                },
+                "LeashTimer": {
+                  "Compute": "LeashTimer"
+                },
+                "HardLeashDistance": {
+                  "Compute": "HardLeashDistance"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "GROUNDED: it was shielded and no coil within 19 is live any more: the shell shatters and it staggers 8 s (the punish window; round 2, was 3), then fights on unshielded until a coil recharges.",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Grounding"
+              },
+              {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Flag",
+                    "Name": "Shielded"
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Block",
+                      "Range": {
+                        "Compute": "CoilRange"
+                      },
+                      "MaxHeight": 8,
+                      "Blocks": {
+                        "Compute": "LiveCoils"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Grounding"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Shielded",
+              "SetTo": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Grounded"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Grounded"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Shell_Break",
+              "TargetNodeName": "Origin",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "GroundedEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "GroundedTime"
+              }
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Grounding",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "OVERLOAD at 50% (once): arms flung wide, the spine roars; the coils are told to recharge faster (30 s instead of 50, the room's).",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Overload_Casting"
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Stat",
+                    "StatTarget": "Value",
+                    "Stat": "Health",
+                    "RelativeTo": "Health",
+                    "RelativeToTarget": "Max",
+                    "ValueRange": [
+                      0,
+                      0.5
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Arc_Warden_Overloaded"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Overload_Casting"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": {
+                "Compute": "OverloadedEffect"
+              },
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Overload"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Overload"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Overload",
+              "TargetNodeName": "Origin",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "SignalTaggedVolumes",
+              "MatchTag": {
+                "Compute": "CoilTag"
+              },
+              "Radius": {
+                "Compute": "CoilSignalRadius"
+              },
+              "SignalKey": "Machinaria_HW_Overload",
+              "SignalValue": "true",
+              "PositionSource": "Self"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1.5,
+                1.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Overload_Casting",
+              "SetTo": false
+            }
+          ]
+        },
+        {
+          "$Comment": "ARC LINK (every 10 s, only while a coil is live): arms and staff raised, the coils told to strike (each live coil charges and strikes the players near it: one strike per live coil), and a mark under its target that strikes in 1.2 s.",
+          "Enabled": {
+            "Compute": "ArcLinkWithCoils"
+          },
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "ArcLink_Casting"
+              },
+              {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Timer",
+                    "Name": "ArcLink_Ready",
+                    "State": "Stopped"
+                  },
+                  {
+                    "Type": "Flag",
+                    "Name": "Shielded"
+                  }
+                ]
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "ArcLinkRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "HeadMotion": {
+                "Type": "Aim"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "SetFlag",
+                  "Name": "ArcLink_Casting"
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "ArcLink"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Arc_Link"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+                  "TargetNodeName": "Staff-Yoke",
+                  "Offset": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": {
+                    "Compute": "CoilTag"
+                  },
+                  "Radius": {
+                    "Compute": "CoilSignalRadius"
+                  },
+                  "SignalKey": "Machinaria_HW_ArcLink",
+                  "SignalValue": "true",
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "SpawnInteraction",
+                  "Interaction": "Root_Machinaria_Heartworks_Arc_Warden_Arc_Link_Strike",
+                  "PositionSource": "Sensor",
+                  "Ttl": 3
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1.8,
+                    1.8
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action"
+                },
+                {
+                  "Type": "TimerStart",
+                  "Name": "ArcLink_Ready",
+                  "StartValueRange": {
+                    "Compute": "ArcLinkCooldown"
+                  },
+                  "RestartValueRange": {
+                    "Compute": "ArcLinkCooldown"
+                  },
+                  "Repeating": false
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "ArcLink_Ready"
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "ArcLink_Casting",
+                  "SetTo": false
+                }
+              ]
+            },
+            {
+              "$Comment": "No target in sight: let go of the cast.",
+              "Actions": [
+                {
+                  "Type": "SetFlag",
+                  "Name": "ArcLink_Casting",
+                  "SetTo": false
+                },
+                {
+                  "Type": "TimerStart",
+                  "Name": "ArcLink_Ready",
+                  "StartValueRange": [
+                    2,
+                    2
+                  ],
+                  "RestartValueRange": [
+                    2,
+                    2
+                  ],
+                  "Repeating": false
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "ArcLink_Ready"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "ARC LINK without coils (the test role only: a test arena has no coils).",
+          "Enabled": {
+            "Compute": "ArcLinkWithoutCoils"
+          },
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "ArcLink_Casting"
+              },
+              {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Timer",
+                    "Name": "ArcLink_Ready",
+                    "State": "Stopped"
+                  }
+                ]
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "ArcLinkRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "HeadMotion": {
+                "Type": "Aim"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "SetFlag",
+                  "Name": "ArcLink_Casting"
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "ArcLink"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Arc_Warden_Arc_Link"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Arc_Warden_Arc_Charge",
+                  "TargetNodeName": "Staff-Yoke",
+                  "Offset": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": {
+                    "Compute": "CoilTag"
+                  },
+                  "Radius": {
+                    "Compute": "CoilSignalRadius"
+                  },
+                  "SignalKey": "Machinaria_HW_ArcLink",
+                  "SignalValue": "true",
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "SpawnInteraction",
+                  "Interaction": "Root_Machinaria_Heartworks_Arc_Warden_Arc_Link_Strike",
+                  "PositionSource": "Sensor",
+                  "Ttl": 3
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1.8,
+                    1.8
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action"
+                },
+                {
+                  "Type": "TimerStart",
+                  "Name": "ArcLink_Ready",
+                  "StartValueRange": {
+                    "Compute": "ArcLinkCooldown"
+                  },
+                  "RestartValueRange": {
+                    "Compute": "ArcLinkCooldown"
+                  },
+                  "Repeating": false
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "ArcLink_Ready"
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "ArcLink_Casting",
+                  "SetTo": false
+                }
+              ]
+            },
+            {
+              "$Comment": "No target in sight: let go of the cast.",
+              "Actions": [
+                {
+                  "Type": "SetFlag",
+                  "Name": "ArcLink_Casting",
+                  "SetTo": false
+                },
+                {
+                  "Type": "TimerStart",
+                  "Name": "ArcLink_Ready",
+                  "StartValueRange": [
+                    2,
+                    2
+                  ],
+                  "RestartValueRange": [
+                    2,
+                    2
+                  ],
+                  "Repeating": false
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "ArcLink_Ready"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Collect any potential targets into the evaluator (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Standard_Detection",
+                "Modify": {
+                  "ViewRange": {
+                    "Compute": "AlertedRange"
+                  },
+                  "ViewSector": {
+                    "Compute": "ViewSector"
+                  },
+                  "HearingRange": {
+                    "Compute": "HearingRange"
+                  },
+                  "AbsoluteDetectionRange": {
+                    "Compute": "AbsoluteDetectionRange"
+                  },
+                  "Attitudes": [
+                    "Hostile"
+                  ]
+                }
+              },
+              {
+                "Type": "Damage",
+                "Combat": true
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            }
+          ]
+        },
+        {
+          "$Comment": "Store the evaluator's target in the marked target slot (from the Glutton).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "CombatActionEvaluator",
+                "TargetInRange": true
+              },
+              {
+                "Type": "CombatActionEvaluator",
+                "TargetInRange": false
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "SetMarkedTarget"
+            }
+          ]
+        },
+        {
+          "$Comment": "Combat behaviour (controlled by the evaluator)",
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Target_Sight_Or_Sound",
+                "Modify": {
+                  "ViewRange": {
+                    "Compute": "AlertedRange"
+                  },
+                  "ViewSector": {
+                    "Compute": "ViewSector"
+                  },
+                  "HearingRange": {
+                    "Compute": "HearingRange"
+                  }
+                }
+              },
+              {
+                "Type": "HasHostileTargetMemory"
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "$Comment": "Seek the target until it is in sight again (from the Glutton)",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Seek"
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": 3,
+                    "StopDistance": 3
+                  },
+                  "HeadMotion": {
+                    "Type": "Watch"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        3,
+                        3
+                      ]
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    }
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": {
+                      "Compute": "CombatMaintainDistanceMelee"
+                    },
+                    "StopDistance": {
+                      "Compute": "CombatMaintainDistanceMelee"
+                    }
+                  }
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Lost sight of the target for 4 s: seek it (from the Glutton)",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "AlertedRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "LineOfSight"
+                    }
+                  }
+                ]
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "Type": "State",
+                  "State": ".Seek"
+                }
+              ]
+            },
+            {
+              "$Comment": "Default: close to melee range; the evaluator picks the moves",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Default",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          },
+                          {
+                            "Type": "HeightDifference",
+                            "HeightDifference": {
+                              "Compute": "CombatHeightTolerance"
+                            },
+                            "UseEyePosition": false
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "MaintainDistance",
+                        "DesiredDistanceRange": {
+                          "Compute": "makeRange(CombatMaintainDistanceMelee)"
+                        }
+                      }
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "Seek",
+                        "SlowDownDistance": 1,
+                        "StopDistance": 1
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": true
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "HitProbability": 1
+                  },
+                  "Actions": [
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": false
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Lost the target: clear the clips and search",
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "Target"
+            }
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "Timeout"
+            },
+            {
+              "Type": "State",
+              "State": "Search"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Search"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Generic_Search",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat",
+              "Combat",
+              "ReturnHome",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "ConfusedTimeRange": {
+              "Compute": "ConfusedTimeRange"
+            },
+            "SearchTimeRange": {
+              "Compute": "SearchTimeRange"
+            },
+            "SearchRadius": 6
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Back to its post among the coils.",
+      "Sensor": {
+        "Type": "State",
+        "State": "ReturnHome"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              },
+              {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": {
+                  "Compute": "AbsoluteDetectionRange"
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 1.5
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "RelativeSpeed": 1.2,
+            "UsePathfinder": true
+          }
+        },
+        {
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Idle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

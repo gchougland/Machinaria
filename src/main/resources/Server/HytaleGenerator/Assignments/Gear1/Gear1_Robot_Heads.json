@@ -4,7 +4,8 @@
 	"ExportAs":	"Gear1_Robot_Heads",
 	"SkipChance":	0,
 	"Seed":	"A",
-	"WeightedAssignments":	[{
+	"WeightedAssignments":	[
+		{
 			"$NodeId":	"Weight.Weighted.Assignments-e34c3ddd-3f03-424f-9497-f396f871849a",
 			"Weight":	5,
 			"Assignments":	{
@@ -14,11 +15,13 @@
 					"$NodeId":	"Prefab.Prop-fab3ad61-47e1-4c36-bb6e-b685f81fea8c",
 					"Type":	"Prefab",
 					"Skip":	false,
-					"WeightedPrefabPaths":	[{
+					"WeightedPrefabPaths":	[
+						{
 							"$NodeId":	"WeightedPath.Prefab.Prop-335e1bbd-19b5-48c5-95a5-1445609b8122",
 							"Path":	"RobotHead/",
 							"Weight":	10
-						}],
+						}
+					],
 					"LegacyPath":	false,
 					"LoadEntities":	true,
 					"Directionality":	{
@@ -26,27 +29,98 @@
 						"Type":	"Random",
 						"Seed":	"A",
 						"Pattern":	{
-							"$NodeId":	"Floor.Pattern-16e5f390-9b06-409b-8f79-a9aa40e7ced4",
-							"Type":	"Floor",
-							"Skip":	false,
-							"Origin":	{
-								"$NodeId":	"BlockType.Pattern-1fe869e1-e6a3-4101-932c-aebede6d2e3a",
-								"Type":	"BlockType",
-								"Skip":	false,
-								"Material":	{
-									"$NodeId":	"Material-7a19eb21-deb5-48a6-b727-26d793be7c23",
-									"Solid":	"Empty"
+							"Type":	"And",
+							"Patterns":	[
+								{
+									"$NodeId":	"Floor.Pattern-16e5f390-9b06-409b-8f79-a9aa40e7ced4",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-1fe869e1-e6a3-4101-932c-aebede6d2e3a",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-7a19eb21-deb5-48a6-b727-26d793be7c23",
+											"Solid":	"Empty"
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-5c5e2ee2-e22b-4d1d-870e-d0d1df3785dc",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-7fa8819e-67bd-4f33-b78b-dc3a3ed3e087",
+											"Solid":	"Soil_Grass"
+										}
+									}
+								},
+								{
+									"Type":	"Cuboid",
+									"$Comment":	"Machinaria clearance",
+									"SubPattern":	{
+										"Type":	"BlockSet",
+										"BlockSet":	{
+											"Inclusive":	true,
+											"Materials":	[
+												{
+													"Solid":	"Empty",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Grass",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Grass_Dry",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Grass_Burnt",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Gravel_Sand_Red",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Rock_Sandstone_Red",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Rock_Sandstone_Red_Cobble",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Dirt_Burnt",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Clay_Brick",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Clay_Smooth_Red",
+													"SolidBottomUp":	false
+												},
+												{
+													"Solid":	"Soil_Clay_Red",
+													"SolidBottomUp":	false
+												}
+											]
+										}
+									},
+									"Min":	{
+										"X":	-16,
+										"Y":	4,
+										"Z":	-16
+									},
+									"Max":	{
+										"X":	16,
+										"Y":	28,
+										"Z":	16
+									}
 								}
-							},
-							"Floor":	{
-								"$NodeId":	"BlockType.Pattern-5c5e2ee2-e22b-4d1d-870e-d0d1df3785dc",
-								"Type":	"BlockType",
-								"Skip":	false,
-								"Material":	{
-									"$NodeId":	"Material-7fa8819e-67bd-4f33-b78b-dc3a3ed3e087",
-									"Solid":	"Soil_Grass"
-								}
-							}
+							]
 						}
 					},
 					"Scanner":	{
@@ -64,7 +138,8 @@
 					"MoldingChildren":	false
 				}
 			}
-		}],
+		}
+	],
 	"$NodeEditorMetadata":	{
 		"$Nodes":	{
 			"Weighted.Assignments-b55f1878-5d69-4a57-bda3-0a0af691736f":	{
@@ -142,8 +217,7 @@
 			}
 		},
 		"$FloatingNodes":	[],
-		"$Links":	{
-		},
+		"$Links":	{},
 		"$Groups":	[],
 		"$Comments":	[],
 		"$WorkspaceID":	"HytaleGenerator - Assignments"

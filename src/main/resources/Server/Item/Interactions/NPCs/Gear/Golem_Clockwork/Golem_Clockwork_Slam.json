@@ -1,0 +1,45 @@
+{
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Golem_Clockwork_Default",
+    "ItemAnimationId": "Slam",
+    "WorldSoundEventId": "SFX_Golem_Earth_Slam"
+  },
+  "$Comment": "Fists overhead",
+  "RunTime": 0.55,
+  "Next": {
+    "Type": "Selector",
+    "$Comment": "Impact",
+    "RunTime": 0.1,
+    "Effects": {
+      "WorldSoundEventId": "SFX_Golem_Earth_Slam_Impact",
+      "Particles": [
+        {
+          "SystemId": "Mace_Signature_Ground_Hit"
+        }
+      ]
+    },
+    "Selector": {
+      "Id": "AOECircle",
+      "Range": 4
+    },
+    "HitEntity": {
+      "Interactions": [
+        {
+          "Type": "Replace",
+          "DefaultValue": {
+            "Interactions": [
+              "Golem_Clockwork_Slam_Damage"
+            ]
+          },
+          "Var": "Slam_Damage"
+        }
+      ]
+    },
+    "Next": {
+      "Type": "Simple",
+      "$Comment": "Recover",
+      "RunTime": 0.45
+    }
+  }
+}

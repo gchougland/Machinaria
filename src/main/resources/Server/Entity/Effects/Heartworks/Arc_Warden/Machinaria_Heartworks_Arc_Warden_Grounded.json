@@ -1,0 +1,25 @@
+{
+  "$Comment": "Grounded (DESIGN.md 6.2): the last coil went dark; 8 s (round 2; was 3) of sputtering sparks while it staggers (the stagger itself is the role's). It also takes more physical damage while it lasts.",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Grounded_Sputter",
+        "TargetEntityPart": "Self",
+        "TargetNodeName": "Spine-Hub"
+      }
+    ]
+  },
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.25
+      }
+    ]
+  },
+  "Duration": 8,
+  "OverlapBehavior": "Overwrite",
+  "Infinite": false,
+  "RemovalBehavior": "Duration",
+  "Debuff": true
+}

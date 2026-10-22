@@ -1,0 +1,58 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Hazard_Plate.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Hazard_Plate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Hazard_Plate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Cube",
+    "Textures": [
+      {
+        "UpDown": "BlockTextures/Machinaria/Heartworks/Hazards/Hazard_Plate.png",
+        "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Hazard_Plate_Side.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#7a6a36",
+    "ParticleColor": "#8a7a3a",
+    "State": {
+      "Definitions": {
+        "Warn": {
+          "Textures": [
+            {
+              "UpDown": "BlockTextures/Machinaria/Heartworks/Hazards/Hazard_Plate_Warn.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Hazard_Plate_Side_Warn.png",
+              "Weight": 1
+            }
+          ],
+          "CubeShadingMode": "Fullbright",
+          "Light": {
+            "Color": "#a21"
+          }
+        }
+      }
+    }
+  }
+}

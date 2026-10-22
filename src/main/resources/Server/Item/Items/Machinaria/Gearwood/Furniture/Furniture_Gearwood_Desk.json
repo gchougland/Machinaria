@@ -1,0 +1,113 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Furniture_Gearwood_Desk.name",
+    "Description": "machinaria_gearwood.items.Furniture_Gearwood_Desk.description"
+  },
+  "PlayerAnimationsId": "Block",
+  "Categories": [
+    "Furniture.Furniture",
+    "Machinaria.Content"
+  ],
+  "Set": "Furniture_Gearwood",
+  "IconProperties": {
+    "Rotation": [
+      23.625,
+      45,
+      22.5
+    ],
+    "Scale": 0.35,
+    "Translation": [
+      10.8,
+      -9.6
+    ]
+  },
+  "BlockType": {
+    "BlockParticleSetId": "Wood",
+    "CustomModel": "Blocks/Machinaria/Gearwood/Desk.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Desk_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Woods"
+      }
+    },
+    "Group": "Wood",
+    "HitboxType": "Desk",
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "Supporting": {
+      "Up": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "ParticleColor": "#4a2418",
+    "TextureComputedColor": "#4E2519",
+    "Light": {
+      "Color": "#653",
+      "Radius": 0
+    }
+  },
+  "ResourceTypes": [
+    {
+      "Id": "Fuel"
+    },
+    {
+      "Id": "Charcoal"
+    }
+  ],
+  "Icon": "Icons/ItemsGenerated/Furniture_Gearwood_Desk.png",
+  "Tags": {
+    "Type": [
+      "Furniture"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Wood",
+  "Recipe": {
+    "TimeSeconds": 3,
+    "KnowledgeRequired": true,
+    "Input": [
+      {
+        "ItemId": "Wood_Gear_Planks",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Bar_Iron",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Bronze",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "MechanicsBench",
+        "Categories": [
+          "Mechanics_Furniture"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,655 @@
+{
+	"$NodeId":	"Weighted.Assignments-08422ba9-8af6-4244-b649-c3f3153019ae",
+	"Type":	"Weighted",
+	"ExportAs":	"Gear1_Golem_Repair_Bays",
+	"Skip":	false,
+	"SkipChance":	0,
+	"Seed":	"C",
+	"WeightedAssignments":	[
+		{
+			"$NodeId":	"Weight.Weighted.Assignments-0f529c1b-4f73-4501-9166-2ec8e404c5e8",
+			"Weight":	5,
+			"Assignments":	{
+				"$NodeId":	"Constant.Assignments-c44dd61f-81e5-4bfb-90a5-27a9e02e3e47",
+				"Type":	"Constant",
+				"Skip":	false,
+				"Prop":	{
+					"$NodeId":	"Union.Prop-c03cc455-772b-49cf-953a-831c6a12847a",
+					"Type":	"Union",
+					"Skip":	false,
+					"Props":	[
+						{
+							"$NodeId":	"Prefab.Prop-02332f7e-9c09-41b3-a98b-3ad534748f41",
+							"Type":	"Prefab",
+							"Skip":	false,
+							"WeightedPrefabPaths":	[
+								{
+									"$NodeId":	"WeightedPath.Prefab.Prop-c10b5a48-7d5c-4ad7-853f-702346f78cfe",
+									"Path":	"RepairBay_Ground/Golem_Repair_Bay_Guarded_Ground.prefab.json",
+									"Weight":	1
+								}
+							],
+							"LegacyPath":	false,
+							"LoadEntities":	true,
+							"Directionality":	{
+								"$NodeId":	"Random.Directionality-06280286-fce7-4682-99df-c3ecb32c177f",
+								"Type":	"Random",
+								"Seed":	"C",
+								"Pattern":	{
+									"$NodeId":	"Floor.Pattern-4231cbbe-7e38-4dfe-97fc-b7317ec8e3eb",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-5a3067ac-ec88-4312-93c6-99a0606edf1a",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-b01eabfb-a6f3-47ae-adb2-604a4ba05ddf",
+											"Solid":	"Empty",
+											"SolidBottomUp":	false
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-5b866e6b-8c76-458d-a5dc-cb8b34fc349a",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-7923b385-59ab-464b-9e0e-db9805f764ab",
+											"Solid":	"Soil_Grass",
+											"SolidBottomUp":	false
+										}
+									}
+								}
+							},
+							"Scanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-f313564e-4b28-43ab-86e6-924bebab46b3",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	30,
+								"MinY":	-20,
+								"RelativeToPosition":	false,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingDirection":	"DOWN",
+							"MoldingChildren":	false,
+							"MoldingScanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-127f2d83-8e64-429e-bf2f-69325692ace8",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	5,
+								"MinY":	-5,
+								"RelativeToPosition":	true,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingPattern":	{
+								"$NodeId":	"Floor.Pattern-b02c14fb-1ceb-44ca-b4f6-5137f99c6485",
+								"Type":	"Floor",
+								"Skip":	false,
+								"Origin":	{
+									"$NodeId":	"BlockType.Pattern-9b030e54-8cbb-4a0b-96a6-7fc2db321b18",
+									"Type":	"BlockType",
+									"Skip":	false,
+									"Material":	{
+										"$NodeId":	"Material-58dd47b9-c68f-439e-be48-d6b2e62f6fcb",
+										"Solid":	"Empty",
+										"SolidBottomUp":	false
+									}
+								},
+								"Floor":	{
+									"$NodeId":	"BlockSet.Pattern-b129a2c5-4c7d-4c11-b15e-fd3036506537",
+									"Type":	"BlockSet",
+									"Skip":	false,
+									"BlockSet":	{
+										"$NodeId":	"BlockSet.BlockMask-950ef896-d381-4086-ad47-efe92358d7dd",
+										"Inclusive":	true,
+										"Materials":	[
+											{
+												"Solid":	"Soil_Grass",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Grass_Dry",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Grass_Burnt",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Gravel_Sand_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Sandstone_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Sandstone_Red_Cobble",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Dirt_Burnt",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Brick",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Smooth_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Rusty_Metal",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Dark_Rusty_Metal",
+												"SolidBottomUp":	false
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"$NodeId":	"Prefab.Prop-203840a4-c5db-4b80-9b63-a2c570fcb108",
+							"Type":	"Prefab",
+							"Skip":	false,
+							"WeightedPrefabPaths":	[
+								{
+									"$NodeId":	"WeightedPath.Prefab.Prop-805a749a-6e7f-4106-b869-4c951b640c85",
+									"Path":	"RepairBay/Golem_Repair_Bay_Guarded.prefab.json",
+									"Weight":	1
+								}
+							],
+							"LegacyPath":	false,
+							"LoadEntities":	true,
+							"Directionality":	{
+								"$NodeId":	"Random.Directionality-703e0940-e052-4fce-a4c9-fe582d77fbdc",
+								"Type":	"Random",
+								"Seed":	"C",
+								"Pattern":	{
+									"$NodeId":	"Floor.Pattern-a8c47525-29c2-4171-99c2-b79ca9c23e7a",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-2857cd1a-da82-4948-8d7e-d93e8a96b486",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-205f46be-2143-4ae1-92ec-2cec798e8c52",
+											"Solid":	"Empty",
+											"SolidBottomUp":	false
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-c36fde8a-7e12-4c43-877d-c62518177d8a",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-12b6b0f5-3c76-465b-9e51-589507b4be2c",
+											"Solid":	"Soil_Grass",
+											"SolidBottomUp":	false
+										}
+									}
+								}
+							},
+							"Scanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-72047557-2489-44cc-8f23-885b71ba5e19",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	30,
+								"MinY":	-20,
+								"RelativeToPosition":	false,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingDirection":	"NONE",
+							"MoldingChildren":	false
+						}
+					]
+				}
+			}
+		},
+		{
+			"$NodeId":	"Weight.Weighted.Assignments-dab7925a-3247-4f05-ab72-b84db7c8c627",
+			"Weight":	3,
+			"Assignments":	{
+				"$NodeId":	"Constant.Assignments-4eba4d23-5d67-4000-bd81-13f8b1f71457",
+				"Type":	"Constant",
+				"Skip":	false,
+				"Prop":	{
+					"$NodeId":	"Union.Prop-421e0ad7-771f-4844-a573-dbea6e72dc5b",
+					"Type":	"Union",
+					"Skip":	false,
+					"Props":	[
+						{
+							"$NodeId":	"Prefab.Prop-1b7f9ec3-8b81-45cb-9860-73d605ec0bf4",
+							"Type":	"Prefab",
+							"Skip":	false,
+							"WeightedPrefabPaths":	[
+								{
+									"$NodeId":	"WeightedPath.Prefab.Prop-fd148f74-d690-4d7c-ada1-24ccf0c14fe8",
+									"Path":	"RepairBay_Ground/Golem_Repair_Bay_Abandoned_Ground.prefab.json",
+									"Weight":	1
+								}
+							],
+							"LegacyPath":	false,
+							"LoadEntities":	true,
+							"Directionality":	{
+								"$NodeId":	"Random.Directionality-410756ac-05b0-4834-beda-82f40b8d3ea1",
+								"Type":	"Random",
+								"Seed":	"C",
+								"Pattern":	{
+									"$NodeId":	"Floor.Pattern-f269b84c-fd25-4d14-a5f5-5605d6857e1c",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-7e85a93e-377f-4a5a-964f-b21cb90fbe10",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-d44a0e98-8ae6-4153-b959-b7f7776e2d1c",
+											"Solid":	"Empty",
+											"SolidBottomUp":	false
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-bc5a5c3b-eec4-4299-8376-ec588b3d1d39",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-5d5f83dd-61c7-4b15-98c4-1e3cff233f16",
+											"Solid":	"Soil_Grass",
+											"SolidBottomUp":	false
+										}
+									}
+								}
+							},
+							"Scanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-380a4dc8-acb3-4f2b-9831-3660440eef2e",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	30,
+								"MinY":	-20,
+								"RelativeToPosition":	false,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingDirection":	"DOWN",
+							"MoldingChildren":	false,
+							"MoldingScanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-10962dc1-4115-4386-8ccc-c2cb683a4bf6",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	5,
+								"MinY":	-5,
+								"RelativeToPosition":	true,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingPattern":	{
+								"$NodeId":	"Floor.Pattern-b1d9c762-615e-4ca9-853f-045600ba5cb6",
+								"Type":	"Floor",
+								"Skip":	false,
+								"Origin":	{
+									"$NodeId":	"BlockType.Pattern-448e0716-ca1e-4492-bbed-570bc4a95f92",
+									"Type":	"BlockType",
+									"Skip":	false,
+									"Material":	{
+										"$NodeId":	"Material-104fe032-1807-4c24-b0c3-73172e476350",
+										"Solid":	"Empty",
+										"SolidBottomUp":	false
+									}
+								},
+								"Floor":	{
+									"$NodeId":	"BlockSet.Pattern-9e91f233-e328-49ce-84b4-cb829d6a345d",
+									"Type":	"BlockSet",
+									"Skip":	false,
+									"BlockSet":	{
+										"$NodeId":	"BlockSet.BlockMask-117c3006-f0b2-4a68-bab5-cf01d7fa8436",
+										"Inclusive":	true,
+										"Materials":	[
+											{
+												"Solid":	"Soil_Grass",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Grass_Dry",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Grass_Burnt",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Gravel_Sand_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Sandstone_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Sandstone_Red_Cobble",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Dirt_Burnt",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Brick",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Smooth_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Rusty_Metal",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Dark_Rusty_Metal",
+												"SolidBottomUp":	false
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"$NodeId":	"Prefab.Prop-0d9a1f8c-7992-40ab-8407-e655e072cec0",
+							"Type":	"Prefab",
+							"Skip":	false,
+							"WeightedPrefabPaths":	[
+								{
+									"$NodeId":	"WeightedPath.Prefab.Prop-f93ab630-bd99-49e0-b8c7-0bfcb7022c0c",
+									"Path":	"RepairBay/Golem_Repair_Bay_Abandoned.prefab.json",
+									"Weight":	1
+								}
+							],
+							"LegacyPath":	false,
+							"LoadEntities":	true,
+							"Directionality":	{
+								"$NodeId":	"Random.Directionality-ea9aece1-02c8-4b27-a9cc-22a0e93cc1e0",
+								"Type":	"Random",
+								"Seed":	"C",
+								"Pattern":	{
+									"$NodeId":	"Floor.Pattern-8a621b4a-ff64-471a-b856-0f4a57bc8354",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-e1d08474-e6ad-4849-a8df-0dba3353e667",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-c3fae6bd-1985-45af-9fb9-77f94953cbdb",
+											"Solid":	"Empty",
+											"SolidBottomUp":	false
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-c5486cdd-d056-4f54-8b79-9ea6d50a2d82",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-5e91eb0e-57a9-4636-bc8d-c09dfd50d1d3",
+											"Solid":	"Soil_Grass",
+											"SolidBottomUp":	false
+										}
+									}
+								}
+							},
+							"Scanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-f8a9bbab-6976-4650-a900-56e6e3495da9",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	30,
+								"MinY":	-20,
+								"RelativeToPosition":	false,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingDirection":	"NONE",
+							"MoldingChildren":	false
+						}
+					]
+				}
+			}
+		},
+		{
+			"$NodeId":	"Weight.Weighted.Assignments-4b0b1f2a-1096-4ea8-b9df-0e686ec2e2a8",
+			"Weight":	2,
+			"Assignments":	{
+				"$NodeId":	"Constant.Assignments-849c9a00-1683-4cf2-a5bd-f7f1281f1423",
+				"Type":	"Constant",
+				"Skip":	false,
+				"Prop":	{
+					"$NodeId":	"Union.Prop-b6c2d60d-0f54-4f04-b703-1397e60abf4a",
+					"Type":	"Union",
+					"Skip":	false,
+					"Props":	[
+						{
+							"$NodeId":	"Prefab.Prop-ef9176f9-23d2-4e36-838d-7ebc5b17cdd0",
+							"Type":	"Prefab",
+							"Skip":	false,
+							"WeightedPrefabPaths":	[
+								{
+									"$NodeId":	"WeightedPath.Prefab.Prop-ea811467-9a13-49b5-bef2-ad80c0b1a238",
+									"Path":	"RepairBay_Ground/Golem_Repair_Bay_Collapsed_Ground.prefab.json",
+									"Weight":	1
+								}
+							],
+							"LegacyPath":	false,
+							"LoadEntities":	true,
+							"Directionality":	{
+								"$NodeId":	"Random.Directionality-f680a724-7693-4a1f-a634-3dc32bb10660",
+								"Type":	"Random",
+								"Seed":	"C",
+								"Pattern":	{
+									"$NodeId":	"Floor.Pattern-3b2b13e8-132b-4184-8798-6d1f96da73e5",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-a07eccd7-6494-414a-893b-c0543627c8e9",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-fc2fe0ee-ea35-43d8-8f53-e18e21469eba",
+											"Solid":	"Empty",
+											"SolidBottomUp":	false
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-86ca9cb0-6fcf-4da4-b70b-9448546ede20",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-a1e89ebd-3c76-44e4-b515-fd0d04e850d0",
+											"Solid":	"Soil_Grass",
+											"SolidBottomUp":	false
+										}
+									}
+								}
+							},
+							"Scanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-1a110a77-8c00-4a14-8a5e-d5ce0e4b135f",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	30,
+								"MinY":	-20,
+								"RelativeToPosition":	false,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingDirection":	"DOWN",
+							"MoldingChildren":	false,
+							"MoldingScanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-9f0b6ef6-9dd7-4c3f-9068-ad37ba2626d6",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	5,
+								"MinY":	-5,
+								"RelativeToPosition":	true,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingPattern":	{
+								"$NodeId":	"Floor.Pattern-94f63a41-ef2b-4766-9363-556016019a62",
+								"Type":	"Floor",
+								"Skip":	false,
+								"Origin":	{
+									"$NodeId":	"BlockType.Pattern-82dc8719-987c-4598-847b-22eb8bef4ed5",
+									"Type":	"BlockType",
+									"Skip":	false,
+									"Material":	{
+										"$NodeId":	"Material-5e0cdc5e-e0d2-4445-af32-a35c4a0afe62",
+										"Solid":	"Empty",
+										"SolidBottomUp":	false
+									}
+								},
+								"Floor":	{
+									"$NodeId":	"BlockSet.Pattern-00c34b9b-aa82-4921-86b6-e6a1e484c2cd",
+									"Type":	"BlockSet",
+									"Skip":	false,
+									"BlockSet":	{
+										"$NodeId":	"BlockSet.BlockMask-672ad8a6-d714-4e37-8a49-3758556c16fd",
+										"Inclusive":	true,
+										"Materials":	[
+											{
+												"Solid":	"Soil_Grass",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Grass_Dry",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Grass_Burnt",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Gravel_Sand_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Sandstone_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Sandstone_Red_Cobble",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Dirt_Burnt",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Brick",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Smooth_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Soil_Clay_Red",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Rusty_Metal",
+												"SolidBottomUp":	false
+											},
+											{
+												"Solid":	"Rock_Dark_Rusty_Metal",
+												"SolidBottomUp":	false
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"$NodeId":	"Prefab.Prop-b7e39d9f-f4ef-4668-872c-456d831115dc",
+							"Type":	"Prefab",
+							"Skip":	false,
+							"WeightedPrefabPaths":	[
+								{
+									"$NodeId":	"WeightedPath.Prefab.Prop-24155a34-1bfe-4955-b997-ad4e8720a934",
+									"Path":	"RepairBay/Golem_Repair_Bay_Collapsed.prefab.json",
+									"Weight":	1
+								}
+							],
+							"LegacyPath":	false,
+							"LoadEntities":	true,
+							"Directionality":	{
+								"$NodeId":	"Random.Directionality-abbb56e8-dc71-4bc2-9a7d-a2fd195547a0",
+								"Type":	"Random",
+								"Seed":	"C",
+								"Pattern":	{
+									"$NodeId":	"Floor.Pattern-5d4657ad-6227-4842-930b-2d8c0c5620d5",
+									"Type":	"Floor",
+									"Skip":	false,
+									"Origin":	{
+										"$NodeId":	"BlockType.Pattern-c96fbb35-701d-47b5-8f75-9cb63bb82c12",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-bd5502c6-e029-43f6-b922-240e4cd74cf4",
+											"Solid":	"Empty",
+											"SolidBottomUp":	false
+										}
+									},
+									"Floor":	{
+										"$NodeId":	"BlockType.Pattern-bcb5e7b9-a681-4a18-a300-14f70212e263",
+										"Type":	"BlockType",
+										"Skip":	false,
+										"Material":	{
+											"$NodeId":	"Material-f5d58abe-4179-4e77-8ae5-f7a5c2cb45a0",
+											"Solid":	"Soil_Grass",
+											"SolidBottomUp":	false
+										}
+									}
+								}
+							},
+							"Scanner":	{
+								"$NodeId":	"ColumnLinear.Scanner-437ccf85-4aa8-41fb-8973-5861dcc8fd21",
+								"Type":	"ColumnLinear",
+								"Skip":	false,
+								"MaxY":	30,
+								"MinY":	-20,
+								"RelativeToPosition":	false,
+								"BaseHeightName":	"Base",
+								"TopDownOrder":	true,
+								"ResultCap":	1
+							},
+							"MoldingDirection":	"NONE",
+							"MoldingChildren":	false
+						}
+					]
+				}
+			}
+		}
+	]
+}

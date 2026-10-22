@@ -1,0 +1,75 @@
+{
+  "$Comment": "Riposte shove (round 5 note 7): the bash, quicker (0.3 s wind-up, 0.15 s recovery) because the block already warned. Same damage variable as the bash (Rivet_Guard_Bash_Damage, 20).",
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard",
+    "ItemAnimationId": "Bash",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Bash_Hiss",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Rivet_Guard_Vent_Hiss",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "L-Hand",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0.24,
+          "Z": 0.2
+        }
+      }
+    ]
+  },
+  "RunTime": 0.3,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "$Comment": "Active frames",
+            "RunTime": 0.12,
+            "Selector": {
+              "Id": "Stab",
+              "TestLineOfSight": true,
+              "ExtendTop": 0.5,
+              "ExtendLeft": 0.6,
+              "ExtendRight": 0.6,
+              "ExtendBottom": 0.5,
+              "StartDistance": 0.1,
+              "EndDistance": 3
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Rivet_Guard_Shield_Bash_Damage"
+                    ]
+                  },
+                  "Var": "Rivet_Guard_Bash_Damage",
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.15
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.2,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Shield_T2_Swing"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$Comment": "A killed Oiler (clean or gritty): a little scrap, sometimes a copper bar from its bands.",
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rubble_ScrapMetal",
+          "QuantityMin": 1,
+          "QuantityMax": 1
+        }
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 80
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Ingredient_Bar_Copper",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 20
+          }
+        ]
+      },
+      {
+        "Type": "Single",
+        "Weight": 12,
+        "Item": {
+          "ItemId": "Ingredient_Bar_Bronze",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Single",
+        "Weight": 6,
+        "Item": {
+          "ItemId": "Ingredient_Lightning_Essence",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      }
+    ]
+  }
+}

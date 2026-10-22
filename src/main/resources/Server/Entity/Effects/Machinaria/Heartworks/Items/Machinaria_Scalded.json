@@ -1,0 +1,31 @@
+{
+  "$Comment": "Steam Hammer: the Downstrike scalds what it hits. 3 s, 2 fire damage a second, 20% slower, steam on the chest. Built by tools/items/weapons.build.mjs.",
+  "Name": "machinaria_hw_items.entityEffects.Machinaria_Scalded",
+  "Duration": 3,
+  "OverlapBehavior": "Overwrite",
+  "Debuff": true,
+  "StatusEffectIcon": "Icons/ItemsGenerated/Machinaria_Heartworks_Steam_Hammer.png",
+  "DamageCalculatorCooldown": 1,
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Fire": 2
+    }
+  },
+  "DamageEffects": {
+    "WorldSoundEventId": "SFX_Machinaria_HW_Steam_Puff"
+  },
+  "DeathMessageKey": "machinaria_hw_items.deathCause.scalded",
+  "ApplicationEffects": {
+    "EntityTopTint": "#f4e8d8",
+    "EntityBottomTint": "#8a3a22",
+    "HorizontalSpeedMultiplier": 0.8,
+    "WorldSoundEventId": "SFX_Machinaria_HW_Steam_Release",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Emitter_Steam_Puff",
+        "TargetNodeName": "Chest",
+        "Scale": 0.5
+      }
+    ]
+  }
+}

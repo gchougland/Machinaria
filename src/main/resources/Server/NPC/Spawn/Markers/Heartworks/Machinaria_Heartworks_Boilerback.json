@@ -1,0 +1,14 @@
+{
+  "$Comment": "One Boilerback. The Heartworks' clock is paused, so SpawnAfterGameTime never passes and a killed Boilerback stays dead for the run.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Boilerback",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 8,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

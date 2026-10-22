@@ -1,0 +1,34 @@
+{
+  "$Comment": "Cogling: the Heartworks' swarmer, a brass beetle with a wind-up key (DESIGN.md 6.1 to 6.3). 50 HP, speed 9, brave only in a flock of its own kind (round 2: above the Deepworks Scrapper, 45 HP, swings 12 and 16). Nip 13 every 1 to 1.8 s; Pounce 20 from 3 to 5 blocks every 8 s, then tipped over for 0.5 s; every 20 s of chasing it rewinds its key for 1.5 s. Its brain is Machinaria_Heartworks_Cogling_Template.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Cogling_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Cogling",
+    "DropList": "Machinaria_Heartworks_Drop_Cogling",
+    "AttackDistance": 1.6,
+    "Attack": "Machinaria_Heartworks_Cogling_Nip",
+    "PounceAttack": "Machinaria_Heartworks_Cogling_Pounce",
+    "AttitudeGroup": "Machinaria_Robots",
+    "FlockArray": [
+      "Machinaria_Heartworks_Cogling"
+    ],
+    "MaxHealth": 50,
+    "MaxSpeed": 9,
+    "_CombatConfig": {
+      "EntityEffects": [
+        "Immunity_Environmental",
+        "Immunity_Poison"
+      ]
+    },
+    "IsMemory": false,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Cogling.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

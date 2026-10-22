@@ -1,0 +1,80 @@
+{
+  "$Comment": "The Winding Chamber's tick: an invisible emitter (kit-controls' VFX emitter pattern) playing the audio role's ticking boss bed. When the Heartwinder dies the arena's win volume swaps it to Stopped, which keeps only the hum: the tick stops and the room goes quiet (DESIGN.md 7.3).",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_boss.items.Machinaria_Heartworks_Heartwinder_Tick.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Emitter_Firework_Mix.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "PlayerAnimationsId": "Item",
+  "BlockType": {
+    "DrawType": "Model",
+    "Group": "Wood",
+    "Flags": {},
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "Opacity": "Transparent",
+    "CubeShadingMode": "Standard",
+    "VariantRotation": "NESW",
+    "Material": "Empty",
+    "CustomModel": "Blocks/_Debug/Model.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/_Debug/TextureEmpty.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Rubble",
+    "AmbientSoundEventId": "SFX_Machinaria_HW_Amb_Boss",
+    "Support": {},
+    "SupportDropType": "Destroy",
+    "State": {
+      "Definitions": {
+        "Stopped": {
+          "DrawType": "Model",
+          "Group": "Wood",
+          "Flags": {},
+          "BlockParticleSetId": "Stone",
+          "BlockSoundSetId": "Stone",
+          "PhysicalMaterialId": "Stone",
+          "Opacity": "Transparent",
+          "CubeShadingMode": "Standard",
+          "VariantRotation": "NESW",
+          "Material": "Empty",
+          "CustomModel": "Blocks/_Debug/Model.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/_Debug/TextureEmpty.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Rubble",
+          "AmbientSoundEventId": "SFX_Machinaria_HW_Amb_Boss_Bed",
+          "Support": {},
+          "SupportDropType": "Destroy"
+        }
+      }
+    }
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Wood",
+  "SubCategory": "VFX Spawners",
+  "Quality": "Developer",
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "Condition",
+          "RequiredGameMode": "Adventure",
+          "Failed": "Block_Secondary"
+        }
+      ]
+    }
+  }
+}

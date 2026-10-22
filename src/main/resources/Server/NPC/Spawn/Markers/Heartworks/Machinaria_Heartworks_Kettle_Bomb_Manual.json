@@ -1,0 +1,15 @@
+{
+  "$Comment": "A Kettle Bomb on a cue (the Press Line ambush, the couplings' waves, the boss's phase 2 adds): fired by TriggerSpawners, a trigger volume or TriggerSpawnMarkers.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Kettle_Bomb",
+      "Weight": 100,
+      "SpawnAfterGameTime": "PT1S"
+    }
+  ],
+  "ManualTrigger": true,
+  "ExclusionRadius": 0,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 150
+}

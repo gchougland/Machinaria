@@ -1,0 +1,145 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Wood_Gear_Roof_Shallow.name"
+  },
+  "Set": "Wood_Gear_Planks",
+  "BlockType": {
+    "CustomModel": "Blocks/Structures/Roofs/Slope_Shallow.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+        "Weight": 1
+      }
+    ],
+    "Gathering": {
+      "Breaking": {
+        "ItemId": "Wood_Gear_Roof_Shallow",
+        "GatherType": "Woods"
+      }
+    },
+    "ParticleColor": "#4a2418",
+    "State": {
+      "Definitions": {
+        "Corner_Right": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Shallow_Right.blockymodel",
+          "HitboxType": "Roof_Corner_Shallow_Right",
+          "FlipType": "OrthogonalInverse",
+          "Supporting": {
+            "Down": [
+              {}
+            ]
+          },
+          "Gathering": {
+            "Breaking": {
+              "GatherType": "Woods",
+              "Quantity": 2
+            }
+          }
+        },
+        "Corner_Left": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Shallow_Left.blockymodel",
+          "HitboxType": "Roof_Corner_Shallow_Left",
+          "FlipType": "Orthogonal",
+          "Supporting": {
+            "Down": [
+              {}
+            ]
+          },
+          "Gathering": {
+            "Breaking": {
+              "GatherType": "Woods",
+              "Quantity": 2
+            }
+          }
+        },
+        "Inverted_Corner_Right": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Inverted_Shallow_Right.blockymodel",
+          "HitboxType": "Roof_Corner_Shallow_Inverted_Right",
+          "FlipType": "OrthogonalInverse",
+          "Supporting": {
+            "Down": [
+              {}
+            ]
+          },
+          "Gathering": {
+            "Breaking": {
+              "GatherType": "Woods",
+              "Quantity": 2
+            }
+          }
+        },
+        "Inverted_Corner_Left": {
+          "CustomModel": "Blocks/Structures/Roofs/Corner_Inverted_Shallow_Left.blockymodel",
+          "HitboxType": "Roof_Corner_Shallow_Inverted_Left",
+          "FlipType": "Orthogonal",
+          "Supporting": {
+            "Down": [
+              {}
+            ]
+          },
+          "Gathering": {
+            "Breaking": {
+              "GatherType": "Woods",
+              "Quantity": 2
+            }
+          }
+        }
+      }
+    },
+    "ConnectedBlockRuleSet": {
+      "Type": "Roof",
+      "Width": 2,
+      "Regular": {
+        "Straight": {
+          "State": "default"
+        },
+        "Corner_Right": {
+          "State": "Corner_Right"
+        },
+        "Corner_Left": {
+          "State": "Corner_Left"
+        },
+        "Inverted_Corner_Right": {
+          "State": "Inverted_Corner_Right"
+        },
+        "Inverted_Corner_Left": {
+          "State": "Inverted_Corner_Left"
+        }
+      },
+      "MaterialName": "Roof_Shallow"
+    },
+    "TextureComputedColor": "#55271B"
+  },
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Roof_Shallow.png",
+  "Tags": {
+    "Type": [
+      "Wood"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Parent": "Wood_Softwood_Roof_Shallow",
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_Gear",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Builders",
+        "Type": "StructuralCrafting",
+        "Categories": [
+          "Roof"
+        ]
+      }
+    ],
+    "OutputQuantity": 1
+  },
+  "Categories": [
+    "Blocks.Wood",
+    "Machinaria.Content"
+  ]
+}

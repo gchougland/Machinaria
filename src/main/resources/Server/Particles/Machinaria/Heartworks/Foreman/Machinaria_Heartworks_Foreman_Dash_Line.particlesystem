@@ -1,0 +1,41 @@
+{
+  "$Comment": "The Steam Dash telegraph: a red ground line 10 blocks long and 1.5 wide, pointing forward, for 1.0 s, and steam puffing at his feet. Attach at Origin, Scale 1, not detached: it follows and turns with him.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Dash_Line_Edge",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.02,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Dash_Line_Fill",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.025,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Dash_Line_Lane",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.03,
+        "Z": 5
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Dash_Line_Feet",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.15,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 1,
+  "BoundingRadius": 11,
+  "CullDistance": 128,
+  "IsImportant": true
+}

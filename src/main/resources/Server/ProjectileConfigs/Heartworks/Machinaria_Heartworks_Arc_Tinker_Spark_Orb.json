@@ -1,0 +1,127 @@
+{
+  "$Comment": "The spark orb: lobbed in a short arc (Physics as vanilla Projectile_Config_Goblin_Lobber_Bomb), it sticks where it lands, sits 1 s in its warning ring, bursts (30 Lightning, radius 3) and leaves a live puddle for 3 s. Landing on someone does the same. A 6 s safety fuse removes a lost orb.",
+  "Model": "Machinaria_Heartworks_Arc_Tinker_Spark_Orb",
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 30,
+    "TerminalVelocityAir": 20,
+    "TerminalVelocityWater": 15,
+    "RotationMode": "None",
+    "SticksVertically": true
+  },
+  "LaunchForce": 20,
+  "SpawnOffset": {
+    "X": 0.3,
+    "Y": 0.2,
+    "Z": 0
+  },
+  "Interactions": {
+    "ProjectileSpawn": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 6
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Rules": {
+        "Interrupting": [
+          "ProjectileSpawn"
+        ]
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "The orb sits for 1 s, crackling inside a ring of radius 3: step out now.",
+          "RunTime": 1,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Spark_Orb_Crackle",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Arc_Tinker_Ring",
+                "TargetEntityPart": "Entity",
+                "DetachedFromModel": true
+              }
+            ]
+          }
+        },
+        "Machinaria_Heartworks_Arc_Tinker_Spark_Orb_Burst",
+        {
+          "Type": "SpawnTriggerVolume",
+          "EffectAsset": "Machinaria_Heartworks_Arc_Tinker_Puddle",
+          "Shape": {
+            "Type": "Cylinder",
+            "Radius": 3,
+            "Height": 1,
+            "Center": {
+              "Y": -0.2
+            }
+          },
+          "LifetimeS": 3,
+          "RequireHitLocation": false
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Rules": {
+        "Interrupting": [
+          "ProjectileSpawn"
+        ]
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "$Comment": "The orb sits for 1 s, crackling inside a ring of radius 3: step out now.",
+          "RunTime": 1,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Spark_Orb_Crackle",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Arc_Tinker_Ring",
+                "TargetEntityPart": "Entity",
+                "DetachedFromModel": true
+              }
+            ]
+          }
+        },
+        "Machinaria_Heartworks_Arc_Tinker_Spark_Orb_Burst",
+        {
+          "Type": "SpawnTriggerVolume",
+          "EffectAsset": "Machinaria_Heartworks_Arc_Tinker_Puddle",
+          "Shape": {
+            "Type": "Cylinder",
+            "Radius": 3,
+            "Height": 1,
+            "Center": {
+              "Y": -0.2
+            }
+          },
+          "LifetimeS": 3,
+          "RequireHitLocation": false
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  }
+}

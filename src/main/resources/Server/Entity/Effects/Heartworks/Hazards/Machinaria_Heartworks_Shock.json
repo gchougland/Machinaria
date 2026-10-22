@@ -1,0 +1,45 @@
+{
+  "$Comment": "A shock from a live rail or a coil: vanilla Hazard_Electric_Stun, shorter and in the Heartworks' electric cyan. Round 4 note 28: named Electrified, with its own status icon (tools/models/heartworks/arc_tinker.effect_icon.py).",
+  "Name": "machinaria_hw_robots.entityEffects.Machinaria_Heartworks_Shock",
+  "StatusEffectIcon": "UI/StatusEffects/Machinaria/Heartworks/Electrified.png",
+  "Duration": 0.75,
+  "ApplicationEffects": {
+    "EntityBottomTint": "#1a6a7a",
+    "EntityTopTint": "#5fe0f0",
+    "ScreenEffect": "ScreenEffects/Sand.png",
+    "Particles": [
+      {
+        "SystemId": "Hazard_Electric_Stun",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Chest",
+        "Scale": 1
+      }
+    ],
+    "MovementEffects": {
+      "DisableAll": true
+    },
+    "AbilityEffects": {
+      "Disabled": [
+        "Primary",
+        "Secondary",
+        "Ability1",
+        "Ability3"
+      ]
+    },
+    "ModelVFXId": "Hazard_Electric_Stun",
+    "FirstPersonParticles": [
+      {
+        "SystemId": "Hazard_Electric_Stun_FirstPerson",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Chest",
+        "Scale": 1,
+        "PositionOffset": {
+          "Z": 0.1,
+          "Y": 0.4
+        }
+      }
+    ]
+  },
+  "OverlapBehavior": "Overwrite",
+  "Debuff": true
+}

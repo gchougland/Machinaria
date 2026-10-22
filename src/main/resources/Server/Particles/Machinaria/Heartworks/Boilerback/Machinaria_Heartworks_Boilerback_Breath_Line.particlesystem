@@ -1,0 +1,25 @@
+{
+  "$Comment": "The Steam Breath ground telegraph (1.0 s): a scald-orange lane 6 blocks long and 1.6 wide pointing forward, flashing pale just before the jet. Attach at Origin, not detached: it turns as the Boilerback aims.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Breath_Line_Edge",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.02,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Breath_Line_Lane",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.03,
+        "Z": 3
+      }
+    }
+  ],
+  "CullDistance": 128,
+  "LifeSpan": 1,
+  "BoundingRadius": 7,
+  "IsImportant": true
+}

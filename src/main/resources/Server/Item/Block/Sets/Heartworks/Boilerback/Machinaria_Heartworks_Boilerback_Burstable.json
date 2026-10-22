@@ -1,0 +1,10 @@
+{
+  "$Comment": "The great boilers of the Boiler Hall (kit-machines' Machinaria_Heartworks_Boiler and its parts, with the Running state a reset swaps back in; state ids start with an asterisk, so the glob misses them): a charge that crashes within 3.5 of one bursts it. A burst state is left out.",
+  "IncludeBlockTypes": [
+    "Machinaria_Heartworks_Boiler*",
+    "*Machinaria_Heartworks_Boiler_State_Definitions_Running"
+  ],
+  "ExcludeBlockTypes": [
+    "*Burst*"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$Comment": "TEST ONLY: a stand-in master for the Oilers until the Heartwinder exists (wave C). A Clockwork Golem that stands still, never fights and has the boss's 4,500 health, in the group Machinaria_Heartworks_Oiler_Targets. Hit it, then watch Oilers heal it. Remove it (and its group entry) when the boss lands.",
+  "Type": "Generic",
+  "Appearance": "Golem_Clockwork",
+  "MaxHealth": 4500,
+  "NameTranslationKey": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Oiler_Dummy.name",
+  "AttitudeGroup": "Machinaria_Robots",
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [
+    "Self"
+  ],
+  "KnockbackScale": 0,
+  "IsMemory": false,
+  "StartState": "Idle",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 1,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 90,
+      "Acceleration": 10
+    }
+  ],
+  "Instructions": [
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "BodyMotion": {
+        "Type": "Nothing"
+      },
+      "HeadMotion": {
+        "Type": "Observe",
+        "AngleRange": [
+          -40,
+          40
+        ],
+        "PauseTimeRange": [
+          2,
+          4
+        ]
+      }
+    }
+  ]
+}

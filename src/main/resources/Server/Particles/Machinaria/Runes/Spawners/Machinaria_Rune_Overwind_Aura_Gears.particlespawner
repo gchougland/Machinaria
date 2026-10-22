@@ -1,0 +1,84 @@
+{
+  "$Comment": "Brass gears rising round an Overwound player.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "SpawnRate": {
+    "Min": 3,
+    "Max": 4
+  },
+  "MaxConcurrentParticles": 10,
+  "ParticleLifeSpan": {
+    "Min": 1.1,
+    "Max": 1.6
+  },
+  "Particle": {
+    "Texture": "Particles/Machinaria/Runes/Gear.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.22,
+          "Max": 0.32
+        },
+        "Y": {
+          "Min": 0.22,
+          "Max": 0.32
+        }
+      },
+      "Opacity": 1,
+      "Rotation": {
+        "Z": {
+          "Min": -180,
+          "Max": 180
+        }
+      }
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0
+      },
+      "15": {
+        "Opacity": 1
+      },
+      "75": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0,
+        "Rotation": {
+          "Z": {
+            "Min": 240,
+            "Max": 360
+          }
+        }
+      }
+    }
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0.45,
+      "Max": 0.6
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.5
+    },
+    "Z": {
+      "Min": 0.45,
+      "Max": 0.6
+    }
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 0.5,
+      "Max": 0.9
+    },
+    "Pitch": {
+      "Min": 80,
+      "Max": 90
+    }
+  },
+  "ParticleRotateWithSpawner": false,
+  "LinearFiltering": false
+}

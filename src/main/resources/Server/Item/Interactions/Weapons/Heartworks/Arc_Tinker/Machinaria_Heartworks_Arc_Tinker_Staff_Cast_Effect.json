@@ -1,0 +1,15 @@
+{
+  "$Comment": "The cast's sound and a spark at the staff's fork (vanilla Staff_Cast_Effect plays the ice shot sound for every staff).",
+  "Type": "Simple",
+  "RunTime": 0.5,
+  "Effects": {
+    "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Zap",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Tinker_Zap_Tip",
+        "TargetEntityPart": "PrimaryItem",
+        "TargetNodeName": "Staff-Tip"
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$Comment": "A Rusted Rivet Guard of the Expanse: scrap, bolts, sometimes iron studs or a bronze bar. No mace or shield (Heartworks rewards), no repair parts.",
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rubble_ScrapMetal",
+          "QuantityMin": 1,
+          "QuantityMax": 3
+        }
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 40
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Weapon_Bolt",
+              "QuantityMin": 2,
+              "QuantityMax": 4
+            },
+            "Weight": 60
+          }
+        ]
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 90
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Ingredient_Stud_Iron",
+              "QuantityMin": 2,
+              "QuantityMax": 3
+            },
+            "Weight": 10
+          }
+        ]
+      },
+      {
+        "Type": "Single",
+        "Weight": 15,
+        "Item": {
+          "ItemId": "Ingredient_Bar_Bronze",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Single",
+        "Weight": 10,
+        "Item": {
+          "ItemId": "Ingredient_Lightning_Essence",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      }
+    ]
+  }
+}

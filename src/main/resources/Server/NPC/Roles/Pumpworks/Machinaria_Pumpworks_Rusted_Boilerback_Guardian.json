@@ -1,0 +1,13 @@
+{
+  "$Comment": "Vault guardian of the Pump House: a Rusted Boilerback (the template of enemies-heavy, DESIGN.md 9.4: 260 HP, no Steam Charge, through CAE_Machinaria_Heartworks_Boilerback_No_Charge). Always drops the Tarnished Mainspring (Machinaria_Pumpworks_Drop_Guardian).",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Boilerback_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Pumpworks_Rusted_Boilerback",
+    "DropList": "Machinaria_Pumpworks_Drop_Guardian",
+    "MaxHealth": 260,
+    "MaxSpeed": 3,
+    "_CombatConfig": "CAE_Machinaria_Heartworks_Boilerback_No_Charge",
+    "NameTranslationKey": "machinaria_pumpworks.npcRoles.Machinaria_Pumpworks_Rusted_Boilerback_Guardian.name"
+  }
+}

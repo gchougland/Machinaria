@@ -1,0 +1,20 @@
+{
+  "$Comment": "A Rivet Turret that starts powered down, for a room whose lever starts off: the beacon Machinaria_Heartworks_Turret_On wakes it. Unkillable, as the powered one.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Rivet_Turret_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Rivet_Turret",
+    "DropList": "Machinaria_Heartworks_Rivet_Turret_Drops",
+    "MaxHealth": 140,
+    "StartPowered": false,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Rivet_Turret.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

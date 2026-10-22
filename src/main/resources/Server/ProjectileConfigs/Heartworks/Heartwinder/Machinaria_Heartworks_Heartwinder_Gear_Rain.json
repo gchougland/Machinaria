@@ -1,0 +1,119 @@
+{
+  "$Comment": "A gear falling from the dome (Gear Rain). Copied from vanilla Projectile_Config_Stalactite: spawned 14 up, falling at 13 a second, a radius 2.5 hit for players when it lands.",
+  "Model": "Machinaria_Heartworks_Heartwinder_Gear",
+  "SpawnRotationOffset": {
+    "Pitch": -90,
+    "Roll": 0
+  },
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 0,
+    "TerminalVelocityAir": 50,
+    "TerminalVelocityWater": 15,
+    "RotationMode": "VelocityDamped",
+    "Bounciness": 0,
+    "SticksVertically": true
+  },
+  "LaunchForce": 13,
+  "SpawnOffset": {
+    "Z": 14
+  },
+  "UseModelScale": true,
+  "Interactions": {
+    "ProjectileHit": {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.05,
+          "Selector": {
+            "Id": "AOECircle",
+            "Range": 2.5
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "Replace",
+                    "Var": "Gear_Rain_Damage",
+                    "DefaultValue": {
+                      "Interactions": [
+                        "Machinaria_Heartworks_Heartwinder_Gear_Rain_Damage"
+                      ]
+                    },
+                    "DefaultOk": true
+                  }
+                ]
+              }
+            }
+          ],
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Impact",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Gear_Impact",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Interactions": [
+        {
+          "Type": "Selector",
+          "RunTime": 0.05,
+          "Selector": {
+            "Id": "AOECircle",
+            "Range": 2.5
+          },
+          "HitEntityRules": [
+            {
+              "Matchers": [
+                {
+                  "Type": "Player"
+                }
+              ],
+              "Next": {
+                "Interactions": [
+                  {
+                    "Type": "Replace",
+                    "Var": "Gear_Rain_Damage",
+                    "DefaultValue": {
+                      "Interactions": [
+                        "Machinaria_Heartworks_Heartwinder_Gear_Rain_Damage"
+                      ]
+                    },
+                    "DefaultOk": true
+                  }
+                ]
+              }
+            }
+          ],
+          "Effects": {
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Impact",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Gear_Impact",
+                "TargetEntityPart": "Entity"
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity"
+        }
+      ]
+    }
+  },
+  "ProjectileSoundEventId": "SFX_Stalactite_Falling_Whistle"
+}

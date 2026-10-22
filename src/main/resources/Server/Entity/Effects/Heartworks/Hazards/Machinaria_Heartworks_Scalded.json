@@ -1,0 +1,19 @@
+{
+  "$Comment": "A scald from a steam vent: steam on the body and a reddened tint for a second, no fire. The vent's volume deals the damage.",
+  "Duration": 1,
+  "ApplicationEffects": {
+    "EntityBottomTint": "#3a1a12",
+    "EntityTopTint": "#e8735a",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Scald_Hit",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Chest",
+        "Scale": 1
+      }
+    ]
+  },
+  "OverlapBehavior": "Overwrite",
+  "Debuff": true,
+  "StatusEffectIcon": "UI/StatusEffects/Burn.png"
+}

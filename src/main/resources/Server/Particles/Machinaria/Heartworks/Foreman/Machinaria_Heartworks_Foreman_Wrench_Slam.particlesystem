@@ -1,0 +1,49 @@
+{
+  "$Comment": "The overhead swing hits the floor: dust, sparks and a dust ring, 0.5 s. Spawn it on the floor where the wrench head lands (DetachedFromModel), about 1.8 blocks in front of him.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Wrench_Slam_Dust",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.15,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Wrench_Slam_Sparks",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.1,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Wrench_Slam_Ring",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.04,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Wrench_Slam_Flash",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.2,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Wrench_Slam_Chips",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.1,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 0.5,
+  "BoundingRadius": 4,
+  "CullDistance": 96,
+  "IsImportant": true
+}

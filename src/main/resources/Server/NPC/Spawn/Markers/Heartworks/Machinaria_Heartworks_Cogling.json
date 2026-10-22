@@ -1,0 +1,14 @@
+{
+  "$Comment": "One Cogling. The Heartworks' clock is paused, so SpawnAfterGameTime never passes and a killed Cogling stays dead for the run.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Cogling",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 6,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

@@ -1,0 +1,24 @@
+{
+  "$Comment": "The Heartworks' exploration music, in any environment tagged Machinaria_Heartworks (Env_Machinaria_Heartworks) unless also tagged No_Music; copied from vanilla Mus_Dungeon_Goblin. The boss encounter's StartEncounterMusic overrides it during the fight.",
+  "Conditions": {
+    "EnvironmentTagPattern": {
+      "Op": "And",
+      "Patterns": [
+        {
+          "Op": "Equals",
+          "Tag": "Machinaria_Heartworks"
+        },
+        {
+          "Op": "Not",
+          "Pattern": {
+            "Op": "Equals",
+            "Tag": "No_Music"
+          }
+        }
+      ]
+    }
+  },
+  "Priority": 150,
+  "AudioCategory": "AudioCat_Music",
+  "MusicContainer": "Track_Machinaria_Heartworks_Explore"
+}

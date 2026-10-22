@@ -1,0 +1,67 @@
+{
+  "Type": "StatsCondition",
+  "UseAbilityCost": true,
+  "Failed": "Ability_Cast_Fail",
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "ApplyEffect",
+            "EffectId": "Rune_Overwind_Windup",
+            "Duration": 1
+          },
+          {
+            "Type": "Simple",
+            "RunTime": 1,
+            "HorizontalSpeedMultiplier": 0.7,
+            "OnItemChangeBehavior": "Ignore",
+            "Effects": {
+              "ItemPlayerAnimationsId": "Sword",
+              "ItemAnimationId": "CastEnrage",
+              "CameraEffect": "Ability_Cast_Generic",
+              "WorldSoundEventId": "SFX_Machinaria_HW_Overwind_Windup",
+              "LocalSoundEventId": "SFX_Machinaria_HW_Overwind_Windup"
+            }
+          },
+          {
+            "Type": "ApplyEffect",
+            "EffectId": "Rune_Overwind_Overwound",
+            "Duration": 8,
+            "DurationAttribute": "Duration"
+          },
+          {
+            "Type": "Simple",
+            "RunTime": 0.1,
+            "OnItemChangeBehavior": "Ignore"
+          },
+          {
+            "Type": "ChangeStat",
+            "Behaviour": "Set",
+            "ValueType": "Absolute",
+            "StatModifiers": {
+              "Machinaria_Overwind_Tension": 100
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "TriggerCooldown",
+            "UseAbilityCooldown": true
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "ChangeStat",
+            "UseAbilityCost": true
+          }
+        ]
+      }
+    ]
+  }
+}

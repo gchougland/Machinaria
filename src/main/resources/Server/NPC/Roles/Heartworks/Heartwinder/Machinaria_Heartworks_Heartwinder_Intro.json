@@ -1,0 +1,303 @@
+{
+  "$Comment": "The Heartwinder before the fight and its intro (DESIGN.md 7.3): dormant in its cradle with its key still; a player within 15 wakes it (the key starts turning, steam, the eyes light); it steps forward and slams (radius 5, 40), then tells the encounter, which swaps it to phase 1. Invulnerable throughout. Shaped like vanilla Goblin_Gobliterator_Intro.",
+  "Type": "Generic",
+  "Appearance": "Machinaria_Heartworks_Heartwinder",
+  "KnockbackScale": 0,
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "AttitudeGroup": "Machinaria_Robots",
+  "DisableDamageGroups": [
+    "Self",
+    "Player",
+    "Machinaria_Heartworks_Robots"
+  ],
+  "MaxHealth": 4500,
+  "NameTranslationKey": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name",
+  "IsMemory": false,
+  "StartState": "Dormant",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 2,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 120,
+      "Acceleration": 4
+    }
+  ],
+  "Instructions": [
+    {
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetHealthRegen",
+          "EnableRegen": false
+        },
+        {
+          "Type": "SetInvulnerable",
+          "Invulnerable": true
+        }
+      ]
+    },
+    {
+      "$Comment": "Dormant: slumped, key still; a player stepping onto the inner floor wakes it.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Dormant"
+      },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Dormant"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Player",
+            "Range": 15
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Wake"
+            }
+          ]
+        },
+        {
+          "BodyMotion": {
+            "Type": "Nothing"
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Wake: the key starts to turn with a loud ratchet, steam bursts from the cradle, the eyes light; the encounter seals the doors and shows the bar.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Wake"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Player",
+            "Range": 40
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Wake"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Wake"
+            },
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Heartworks_Heartwinder_Woke",
+              "Range": 60,
+              "ExpirationTime": 5,
+              "TargetGroups": [
+                "Machinaria_Heartworks_Heartwinder_Group"
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+              "TargetNodeName": "Chest",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+              "TargetNodeName": "Key",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                3,
+                3
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "StepDown"
+            },
+            {
+              "Type": "State",
+              "State": "Advance"
+            }
+          ]
+        },
+        {
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                3,
+                3
+              ]
+            },
+            {
+              "Type": "State",
+              "State": "Advance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Advance: a heavy step towards the nearest player.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Advance"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Player",
+            "Range": 40
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 4,
+            "StopDistance": 4
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1.5,
+                1.5
+              ]
+            },
+            {
+              "Type": "State",
+              "State": "Slam"
+            }
+          ]
+        },
+        {
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1.5,
+                1.5
+              ]
+            },
+            {
+              "Type": "State",
+              "State": "Slam"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "The intro slam, then tell the encounter until it swaps the role.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Slam"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Flag",
+            "Name": "Intro_Slammed",
+            "Set": false
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Attack",
+              "Attack": "Root_Machinaria_Heartworks_Heartwinder_Intro_Slam",
+              "SkipAiming": true,
+              "LineOfSight": false,
+              "AvoidFriendlyFire": false
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2.5,
+                2.5
+              ]
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Intro_Slammed"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Heartworks_Heartwinder_Intro_Finished",
+              "Range": 60,
+              "ExpirationTime": -1,
+              "TargetGroups": [
+                "Machinaria_Heartworks_Heartwinder_Group"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

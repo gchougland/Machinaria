@@ -1,0 +1,57 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Wood_Gear_Roof_Flat.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Roof_Flat.png",
+  "Set": "Wood_Gear_Planks",
+  "BlockType": {
+    "CustomModel": "Blocks/Structures/Roofs/Flat.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Structures/Roof.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Stairs_Flat",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Woods"
+      }
+    },
+    "ParticleColor": "#4a2418",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "TextureComputedColor": "#55271B"
+  },
+  "Tags": {
+    "Type": [
+      "Wood"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Parent": "Wood_Softwood_Roof_Flat",
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_Gear",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Builders",
+        "Type": "StructuralCrafting",
+        "Categories": [
+          "Roof"
+        ]
+      }
+    ],
+    "OutputQuantity": 1
+  },
+  "Categories": [
+    "Blocks.Wood",
+    "Machinaria.Content"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$Comment": "A surface Kettle Bomb shot down before it boils over (one that bursts drops nothing): scrap, sometimes a copper bar or bolts. Surface items only.",
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rubble_ScrapMetal",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 75
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Ingredient_Bar_Copper",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 25
+          }
+        ]
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 80
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Weapon_Bolt",
+              "QuantityMin": 1,
+              "QuantityMax": 3
+            },
+            "Weight": 20
+          }
+        ]
+      },
+      {
+        "Type": "Single",
+        "Weight": 12,
+        "Item": {
+          "ItemId": "Ingredient_Bar_Bronze",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      },
+      {
+        "Type": "Single",
+        "Weight": 5,
+        "Item": {
+          "ItemId": "Ingredient_Lightning_Essence",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      }
+    ]
+  }
+}

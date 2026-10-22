@@ -1,0 +1,57 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Gear_Wall_Plate.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Gear_Wall_Plate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Gear_Wall_Plate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Gear_Wall_Plate/Three.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Gear_Wall_Plate/Three.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Painting",
+    "VariantRotation": "NESW",
+    "RequiresAlphaBlending": true,
+    "State": {
+      "Definitions": {
+        "Single": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Gear_Wall_Plate/Single.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Gear_Wall_Plate/Single.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

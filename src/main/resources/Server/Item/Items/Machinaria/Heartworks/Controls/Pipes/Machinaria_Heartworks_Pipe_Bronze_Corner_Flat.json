@@ -1,0 +1,65 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_pipes.items.Machinaria_Heartworks_Pipe_Bronze_Corner_Flat.name"
+  },
+  "ItemLevel": 10,
+  "Quality": "Common",
+  "MaxStack": 50,
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Pipe_Bronze_Corner_Flat.png",
+  "Categories": [
+    "Blocks.Metal"
+  ],
+  "Set": "Metal_Bronze",
+  "PlayerAnimationsId": "Item",
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Block_Secondary"
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Pipes/Corner_Flat.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Structures/Tubes/Corner_Textures/Metal_Bronze.png",
+        "Weight": 1
+      }
+    ],
+    "Group": "Metal",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "VariantRotation": "All",
+    "BlockParticleSetId": "Metal",
+    "ParticleColor": "#f7b25b",
+    "BlockSoundSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "IgnoreSupportWhenPlaced": true,
+    "TextureComputedColor": "#D1A355"
+  },
+  "Tags": {
+    "Family": [
+      "Bronze"
+    ],
+    "Type": [
+      "Metal"
+    ]
+  },
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Metal"
+}

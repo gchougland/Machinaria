@@ -1,0 +1,98 @@
+{
+  "$Comment": "The Arc Tinker's lightning-rod staff. Between vanilla Weapon_Staff_Cobalt (35) and _Adamantite (40): level 38; tap for the spear swings, hold to cast. The cast is the Arc Bolt (round 4 note 30; arc_tinker.bolt.mjs): 24 Lightning to its target (the vanilla staff orb 25), then it arcs to up to two more enemies within 6 blocks for 16 each (its trait). 50 mana a cast, as vanilla. Crafted from a Heartwinder Mainspring and a Clockwork Heart.",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_robots.items.Machinaria_Heartworks_Arc_Tinker_Staff.name",
+    "Description": "machinaria_hw_robots.items.Machinaria_Heartworks_Arc_Tinker_Staff.description"
+  },
+  "Categories": [
+    "Items.Weapons",
+    "Machinaria.Content"
+  ],
+  "Quality": "Rare",
+  "ItemLevel": 38,
+  "Model": "NPC/Heartworks/Arc_Tinker/Models/Staff.blockymodel",
+  "Texture": "NPC/Heartworks/Arc_Tinker/Models/Staff_Texture.png",
+  "PlayerAnimationsId": "Staff",
+  "Recipe": {
+    "TimeSeconds": 5,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Heartwinder_Mainspring",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Clockwork_Heart",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Bronze",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Bar_Copper",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Lightning_Essence",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Weapons"
+        ],
+        "Id": "MechanicsBench"
+      }
+    ]
+  },
+  "Interactions": {
+    "Primary": "Staff_Primary",
+    "Secondary": "Staff_Primary"
+  },
+  "InteractionVars": {
+    "Staff_Cast_Summon_Cost": {
+      "Interactions": [
+        {
+          "Parent": "Staff_Cast_Cost",
+          "StatModifiers": {
+            "Mana": -50
+          }
+        }
+      ]
+    },
+    "Staff_Cast_Summon_Launch": "Machinaria_Heartworks_Arc_Tinker_Staff_Launch",
+    "Staff_Cast_Summon_Effect": "Machinaria_Heartworks_Arc_Tinker_Staff_Cast_Effect",
+    "Staff_Cast_Summon_Fail": "Staff_Cast_Fail",
+    "Spear_Swing_Left_Damage": "Spear_Swing_Left_Damage",
+    "Spear_Swing_Right_Damage": "Spear_Swing_Right_Damage",
+    "Spear_Swing_Left_Effect": "Spear_Swing_Left_Effect",
+    "Spear_Swing_Right_Effect": "Spear_Swing_Right_Effect"
+  },
+  "IconProperties": {
+    "Scale": 0.3,
+    "Translation": [
+      -45,
+      -45
+    ],
+    "Rotation": [
+      45,
+      90,
+      0
+    ]
+  },
+  "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Arc_Tinker_Staff.png",
+  "Tags": {
+    "Type": [
+      "Weapon"
+    ],
+    "Family": [
+      "Staff"
+    ]
+  },
+  "Weapon": {},
+  "ItemSoundSetId": "ISS_Weapons_Wood"
+}

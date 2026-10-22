@@ -1,0 +1,141 @@
+{
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rubble_ScrapMetal",
+          "QuantityMin": 10,
+          "QuantityMax": 16
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rock_Bronze_Metal",
+          "QuantityMin": 5,
+          "QuantityMax": 9
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Bar_Iron",
+          "QuantityMin": 2,
+          "QuantityMax": 3
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Weapon_Bolt",
+          "QuantityMin": 12,
+          "QuantityMax": 18
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Bar_Copper",
+          "QuantityMin": 2,
+          "QuantityMax": 3
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Potion_Health_Small",
+          "QuantityMin": 1,
+          "QuantityMax": 1
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Wood_Gear_Planks",
+          "QuantityMin": 6,
+          "QuantityMax": 10
+        }
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Bar_Bronze",
+          "QuantityMin": 1,
+          "QuantityMax": 3
+        },
+        "Weight": 60
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Rune_Shard",
+          "QuantityMin": 1,
+          "QuantityMax": 1
+        },
+        "Weight": 15
+      },
+      {
+        "Type": "Choice",
+        "Weight": 20,
+        "Containers": [
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Recipe_Furniture_Gearwood_Bookshelf",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 1
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Recipe_Furniture_Gearwood_Desk",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 1
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Recipe_Furniture_Gearwood_Lantern_Ceiling",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 1
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Recipe_Furniture_Gearwood_Wall_Clock",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 1
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Recipe_Furniture_Gearwood_Gauge_Panel",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            },
+            "Weight": 1
+          }
+        ]
+      },
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Ingredient_Lightning_Essence",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        },
+        "Weight": 12
+      }
+    ]
+  }
+}

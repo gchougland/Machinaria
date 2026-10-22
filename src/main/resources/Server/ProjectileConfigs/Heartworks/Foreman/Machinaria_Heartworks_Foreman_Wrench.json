@@ -1,0 +1,86 @@
+{
+  "$Comment": "The Foreman's thrown wrench: no gravity, so it flies a straight line; 24 blocks a second for 0.5 s is the design's 12-block line. It hits for 20 and is gone; on a wall it sparks and is gone (the role shows it back in his hand when he yanks the chain).",
+  "Model": "Machinaria_Heartworks_Foreman_Wrench",
+  "Physics": {
+    "Type": "Standard",
+    "Gravity": 0,
+    "TerminalVelocityAir": 30,
+    "TerminalVelocityWater": 15,
+    "RotationMode": "None",
+    "SticksVertically": false
+  },
+  "LaunchForce": 24,
+  "SpawnOffset": {
+    "X": -0.6,
+    "Y": 1.9,
+    "Z": 0.4
+  },
+  "Interactions": {
+    "ProjectileSpawn": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.55
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Rules": {
+        "Interrupting": [
+          "ProjectileSpawn"
+        ]
+      },
+      "Interactions": [
+        "Machinaria_Heartworks_Foreman_Wrench_Projectile_Damage",
+        {
+          "Type": "Simple",
+          "RunTime": 0.05
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Rules": {
+        "Interrupting": [
+          "ProjectileSpawn"
+        ]
+      },
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.05,
+          "Effects": {
+            "WorldSoundEventId": "SFX_Mace_T2_Impact",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Foreman_Wrench_Impact",
+                "TargetEntityPart": "Entity",
+                "DetachedFromModel": true
+              }
+            ]
+          }
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  }
+}

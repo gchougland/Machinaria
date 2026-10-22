@@ -1,0 +1,43 @@
+{
+  "$Comment": "The Heartworks: void everywhere, and one prop at (0, 160, 0) that pastes every room (Machinaria_Heartworks_Layout, written by tools/prefabs/heartworks/layout.build.mjs).",
+  "Name": "Machinaria_Heartworks",
+  "Terrain": {
+    "Type": "DAOTerrain"
+  },
+  "MaterialProvider": {
+    "Type": "Constant",
+    "Material": {
+      "Solid": "Empty"
+    }
+  },
+  "Props": [
+    {
+      "Skip": false,
+      "Runtime": 0,
+      "Positions": {
+        "Type": "List",
+        "Skip": false,
+        "Positions": [
+          {
+            "X": 0,
+            "Y": 160,
+            "Z": 0
+          }
+        ]
+      },
+      "Assignments": {
+        "Type": "Imported",
+        "Skip": false,
+        "Name": "Machinaria_Heartworks_Layout"
+      }
+    }
+  ],
+  "EnvironmentProvider": {
+    "Type": "Constant",
+    "Environment": "Env_Machinaria_Heartworks"
+  },
+  "TintProvider": {
+    "Type": "Constant",
+    "Color": "#8a6a3a"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$Comment": "Dizzy after the Wrench Spin (round 6): 1.8 s, -25% physical resistance, stars over his hat (vanilla Stunned particles, as the Boilerback stun). The punish window.",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Self",
+        "TargetNodeName": "Hat",
+        "PositionOffset": {
+          "Y": 0.6
+        }
+      }
+    ]
+  },
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.25
+      }
+    ]
+  },
+  "Duration": 1.8,
+  "OverlapBehavior": "Overwrite",
+  "Infinite": false,
+  "Debuff": true
+}

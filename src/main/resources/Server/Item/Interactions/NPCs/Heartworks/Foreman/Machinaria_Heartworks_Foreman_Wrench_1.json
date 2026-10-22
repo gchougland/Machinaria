@@ -1,0 +1,63 @@
+{
+  "$Comment": "Wrench 1 (DESIGN.md 6.2): 0.6 s wind-up, a 120 degree arc from 0.5 to 3.5 blocks for 0.12 s, 0.45 s recovery. Analogue: the Skeleton Elite's swings (0.833 / 0.133 / 0.533 for 36).",
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Foreman",
+    "ItemAnimationId": "Wrench1",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Foreman_Wrench_Swing"
+  },
+  "RunTime": 0.6,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "RunTime": 0.12,
+            "Selector": {
+              "Id": "Horizontal",
+              "Direction": "ToLeft",
+              "TestLineOfSight": true,
+              "ExtendTop": 1.5,
+              "ExtendBottom": 1,
+              "StartDistance": 0.5,
+              "EndDistance": 3.5,
+              "Length": 120,
+              "YawStartOffset": -60
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Wrench_1_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Foreman_Wrench_1_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.45
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.12,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Goblin_Feastmaster_Whoosh_Quick"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

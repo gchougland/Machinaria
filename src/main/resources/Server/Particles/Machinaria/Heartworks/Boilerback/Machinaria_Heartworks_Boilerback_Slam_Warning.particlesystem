@@ -1,0 +1,26 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Slam_Warning_Glow",
+      "PositionOffset": {
+        "Y": 0.02
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Slam_Warning_Fill",
+      "PositionOffset": {
+        "Y": 0.02
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Slam_Warning_Edge",
+      "PositionOffset": {
+        "Y": 0.015
+      }
+    }
+  ],
+  "CullDistance": 128,
+  "$Comment": "The Boiler Slam's floor warning, copied from vanilla Feastmaster_Slam_Warning with a 1.6 s life: red pulses through the 1.4 s wind-up, an orange flash just before the hit. Its radius in blocks is its Scale (the slam uses 4.55 for radius 4.5).",
+  "LifeSpan": 1.6,
+  "IsImportant": true
+}

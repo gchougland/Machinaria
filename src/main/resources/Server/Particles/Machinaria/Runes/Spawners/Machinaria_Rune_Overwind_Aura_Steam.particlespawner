@@ -1,0 +1,90 @@
+{
+  "$Comment": "Puffs of steam venting off an Overwound player.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "BillboardY",
+  "SpawnRate": {
+    "Min": 3,
+    "Max": 5
+  },
+  "MaxConcurrentParticles": 12,
+  "ParticleLifeSpan": {
+    "Min": 0.7,
+    "Max": 1.1
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "SoftParticles": "Enable",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.18,
+          "Max": 0.25
+        },
+        "Y": {
+          "Min": 0.18,
+          "Max": 0.25
+        }
+      },
+      "Opacity": 1,
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      },
+      "Color": "#f4f0e6"
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0
+      },
+      "20": {
+        "Opacity": 0.55
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 1.8,
+            "Max": 1.8
+          },
+          "Y": {
+            "Min": 1.8,
+            "Max": 1.8
+          }
+        },
+        "Color": "#cfc8bc"
+      }
+    },
+    "UVOption": "RandomFlipUV",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    }
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0.3,
+      "Max": 0.45
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.6
+    },
+    "Z": {
+      "Min": 0.3,
+      "Max": 0.45
+    }
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 0.6,
+      "Max": 1.2
+    },
+    "Pitch": {
+      "Min": 70,
+      "Max": 90
+    }
+  },
+  "ParticleRotateWithSpawner": false
+}

@@ -1,0 +1,39 @@
+{
+  "$Comment": "Overdriven by the Foreman's whistle (DESIGN.md 6.2): a Cogling within 12 deals +25% damage and runs x1.25 for 8 s, with a red glow. Copied from vanilla Dungeon_Goblin_Enraged (the scrapper pack enrage). No ModelVFXId: the client resets model VFX on any effect removal.",
+  "ApplicationEffects": {
+    "EntityTopTint": "#ff6a3c",
+    "EntityBottomTint": "#b3200f",
+    "HorizontalSpeedMultiplier": 1.25,
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Foreman_Overdriven",
+        "Scale": 1
+      }
+    ]
+  },
+  "OutgoingDamage": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.25
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.25
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": 0.25
+      }
+    ]
+  },
+  "Duration": 8,
+  "OverlapBehavior": "Overwrite",
+  "Infinite": false,
+  "RemovalBehavior": "Duration",
+  "Debuff": false
+}

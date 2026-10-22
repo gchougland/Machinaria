@@ -1,0 +1,91 @@
+{
+  "$Comment": "Heart Burst (DESIGN.md 7.5; round 4): 0.8 s with the heart flaring and a radius 5 ring on the floor, 0.15 s of a circle 5 for 35 Fire, knocked 14; 0.6 s recovery. Back off when the heart flares. Analogue: the Gobliterator anti-melee furnace burst.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 0.8,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "HeartBurst",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Heart_Flare",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Burst_Mark",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 5.05,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Flare",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Heart",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.15,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 5
+      },
+      "HitEntityRules": [
+        {
+          "Matchers": [
+            {
+              "Type": "Player"
+            }
+          ],
+          "Next": {
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "Heart_Burst_Damage",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Machinaria_Heartworks_Heartwinder_Heart_Burst_Damage"
+                  ]
+                },
+                "DefaultOk": true
+              }
+            ]
+          }
+        }
+      ],
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Heart_Burst",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Burst",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 5,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.6
+    }
+  ]
+}

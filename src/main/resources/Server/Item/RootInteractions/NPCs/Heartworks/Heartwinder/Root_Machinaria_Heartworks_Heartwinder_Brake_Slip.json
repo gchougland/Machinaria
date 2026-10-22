@@ -1,0 +1,14 @@
+{
+  "$Comment": "Hard climax: a brake valve was turned out of order. Tells the encounter, which lets every brake slip.",
+  "Interactions": [
+    {
+      "Type": "SendBeacon",
+      "Message": "Machinaria_Heartworks_Heartwinder_Brake_Slip",
+      "Range": 48,
+      "ExpirationTime": 5,
+      "TargetGroups": [
+        "Machinaria_Heartworks_Heartwinder_Group"
+      ]
+    }
+  ]
+}

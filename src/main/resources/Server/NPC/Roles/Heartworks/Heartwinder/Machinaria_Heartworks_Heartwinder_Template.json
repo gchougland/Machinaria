@@ -1,0 +1,1684 @@
+{
+  "Type": "Abstract",
+  "$Comment": "The Heartwinder's fighting phases (DESIGN.md 7). Copied from vanilla Template_Boss_Goblin_Gobliterator_Phase3 (the evaluator wiring, the NoAim and Flamethrower sub states, the death sequence) with the Glutton's Steam Charge as the Boilerback has it, and added: the Wind Up key check (.WindUp), the crash and Scalded Gears stuns, the Lash turn (.Lash), and the climax (.Overwind, .Seized, .Midnight) driven by the encounter's beacons. Built by tools/models/heartworks/heartwinder.npc.roles.mjs.",
+  "Parameters": {
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Heartwinder",
+      "Description": "Model to be used"
+    },
+    "MaxHealth": {
+      "Value": 4500,
+      "Description": "Max health; the same in every phase role so the boss bar never jumps (DESIGN.md 7.1)"
+    },
+    "MaxSpeed": {
+      "Value": 2.5,
+      "Description": "Walking speed",
+      "TypeHint": "Double"
+    },
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name",
+      "Description": "Translation key for the name"
+    },
+    "DropList": {
+      "Value": "Drop_Heartwinder",
+      "Description": "Drops when it dies (items-rewards)"
+    },
+    "AttitudeGroup": {
+      "Value": "Machinaria_Robots",
+      "Description": "Attitude group"
+    },
+    "DisableDamageGroups": {
+      "Value": [
+        "Self",
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "Groups it takes no damage from (its own adds)"
+    },
+    "Invulnerable": {
+      "Value": false,
+      "Description": "Whether it is invulnerable when this role starts and on each state entry"
+    },
+    "DetectRange": {
+      "Value": 40,
+      "Description": "Range at which it notices players (the whole arena)",
+      "TypeHint": "Double"
+    },
+    "MeleeDistance": {
+      "Value": 3.5,
+      "Description": "Distance it keeps from its target",
+      "TypeHint": "Double"
+    },
+    "ChargeSpeed": {
+      "Value": 20,
+      "Description": "Steam Charge speed, blocks a second",
+      "TypeHint": "Double"
+    },
+    "ChargeDistance": {
+      "Value": [
+        20,
+        24
+      ],
+      "Description": "How far the Steam Charge runs"
+    },
+    "ChargeLockOn": {
+      "Value": [
+        0.6,
+        0.6
+      ],
+      "Description": "Seconds it locks on before the wind-up"
+    },
+    "ChargeWindup": {
+      "Value": [
+        1.2,
+        1.2
+      ],
+      "Description": "Steam Charge wind-up (unblockable), seconds"
+    },
+    "StunHold": {
+      "Value": [
+        2.5,
+        2.5
+      ],
+      "Description": "Seconds stunned after a charge into a wall, after the 0.5 s crash (3 s in all)"
+    },
+    "ScaldHold": {
+      "Value": [
+        7.5,
+        7.5
+      ],
+      "Description": "Seconds stunned by Scalded Gears (a primed pylon), after the 0.5 s crash (8 s in all)"
+    },
+    "SeizeTime": {
+      "Value": [
+        12,
+        12
+      ],
+      "Description": "Seconds seized when all four brakes are on"
+    },
+    "Stationary": {
+      "Value": false,
+      "Description": "A turret (phase 3): it only turns to face its target, it never walks"
+    },
+    "LashChargeTime": {
+      "Value": [
+        3,
+        3
+      ],
+      "Description": "Mainspring Lash: seconds standing still before the bands sweep"
+    },
+    "LashSweepTime": {
+      "Value": [
+        6,
+        6
+      ],
+      "Description": "Mainspring Lash: seconds the bands sweep"
+    },
+    "LashTurnSpeed": {
+      "Value": 25,
+      "Description": "Mainspring Lash: degrees a second it turns",
+      "TypeHint": "Double"
+    },
+    "TossTrackTime": {
+      "Value": [
+        0.8,
+        0.8
+      ],
+      "Description": "Gear Toss: seconds it keeps turning to its target in the 1.0 s wind-up"
+    },
+    "ChargeTwice": {
+      "Value": false,
+      "Description": "Hard mode: every Steam Charge chains straight into a second one"
+    },
+    "TossTurnSpeed": {
+      "Value": 0.6,
+      "Description": "Gear Toss: relative turn speed while it tracks (a little slow, so a running player gains on it)",
+      "TypeHint": "Double"
+    }
+  },
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "AttitudeGroup": {
+    "Compute": "AttitudeGroup"
+  },
+  "BreathesInWater": false,
+  "BusyStates": [
+    "Combat"
+  ],
+  "DeathAnimationTime": 8,
+  "DefaultNPCAttitude": "Ignore",
+  "DefaultPlayerAttitude": "Hostile",
+  "DisableDamageGroups": {
+    "Compute": "DisableDamageGroups"
+  },
+  "DropDeathItemsInstantly": true,
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "Invulnerable": {
+    "Compute": "Invulnerable"
+  },
+  "IsMemory": false,
+  "KnockbackScale": 0,
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "StartState": "Idle",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 180,
+      "Acceleration": 6,
+      "RunThreshold": 1
+    }
+  ],
+  "StateTransitions": [
+    {
+      "$Comment": "Clear the action clip when a charge, a stun or the climax ends.",
+      "States": [
+        {
+          "From": [
+            "Combat"
+          ],
+          "To": [
+            "Idle"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Action"
+        },
+        {
+          "Type": "ReleaseTarget"
+        }
+      ]
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "No regeneration in the fight (vanilla bosses).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetHealthRegen",
+          "EnableRegen": false
+        }
+      ]
+    },
+    {
+      "$Comment": "Make it vulnerable on every state entry: a role swap keeps the encounter's invulnerability (READ RoleChangeSystem; DESIGN.md 13 R8). The Overwind sub state sets it again.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetInvulnerable",
+          "Invulnerable": {
+            "Compute": "Invulnerable"
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "The encounter starts the climax.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Beacon",
+        "Message": "Machinaria_Heartworks_Heartwinder_Overwind",
+        "Range": 60
+      },
+      "Actions": [
+        {
+          "Type": "State",
+          "State": "Combat.Overwind"
+        }
+      ]
+    },
+    {
+      "$Comment": "All four brakes are on.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Beacon",
+        "Message": "Machinaria_Heartworks_Heartwinder_Seize",
+        "Range": 60
+      },
+      "Actions": [
+        {
+          "Type": "State",
+          "State": "Combat.Seized"
+        }
+      ]
+    },
+    {
+      "$Comment": "The countdown ran out.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Beacon",
+        "Message": "Machinaria_Heartworks_Heartwinder_Midnight",
+        "Range": 60
+      },
+      "Actions": [
+        {
+          "Type": "State",
+          "State": "Combat.Midnight"
+        }
+      ]
+    },
+    {
+      "$Comment": "Idle: the whole arena is in sight; any player there is a target.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Player",
+            "Range": {
+              "Compute": "DetectRange"
+            }
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat.Default"
+            }
+          ]
+        },
+        {
+          "BodyMotion": {
+            "Type": "Nothing"
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Combat, run by the phase's evaluator (_CombatConfig).",
+      "Sensor": {
+        "Type": "State",
+        "State": "Combat"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Overwind (the climax): invulnerable, winding the countdown; the encounter runs the clock and the brakes.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Overwind"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] boss: Overwind"
+                },
+                {
+                  "Type": "SetInvulnerable",
+                  "Invulnerable": true
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "Overwind"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+                  "TargetNodeName": "Key",
+                  "Offset": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Heart_Flare",
+                  "TargetNodeName": "Heart",
+                  "Offset": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "HeadMotion": {
+                "Type": "Nothing"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+                  "TargetNodeName": "Chest",
+                  "Offset": [
+                    0,
+                    0.5,
+                    0
+                  ]
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Seized (four brakes): 12 s of double damage, then back to the fight.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Seized"
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Log",
+              "Message": "[Heartwinder] boss: Seized"
+            },
+            {
+              "Type": "SetInvulnerable",
+              "Invulnerable": false
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": "Machinaria_Heartworks_Heartwinder_Seized",
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Seized"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Seize"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "SeizeTime"
+              }
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Midnight (the brakes failed): the chime, then back to the fight.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Midnight"
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Log",
+              "Message": "[Heartwinder] boss: Midnight Chime"
+            },
+            {
+              "Type": "Attack",
+              "Attack": "Root_Machinaria_Heartworks_Heartwinder_Midnight_Chime",
+              "SkipAiming": true,
+              "LineOfSight": false,
+              "AvoidFriendlyFire": false
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2.7,
+                2.7
+              ]
+            },
+            {
+              "Type": "SetInvulnerable",
+              "Invulnerable": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Crashed into a wall: 3 s stunned.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Stunned"
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Log",
+              "Message": "[Heartwinder] boss: crashed into a wall"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": "Machinaria_Heartworks_Heartwinder_Charging",
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Crash"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Charge_Crash"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Stunned"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": "Machinaria_Heartworks_Heartwinder_Stunned",
+              "UseTarget": false
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "StunHold"
+              }
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Scalded Gears (a primed pylon burst on it): 8 s stunned at +50% damage taken (the effect).",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Scalded"
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Log",
+              "Message": "[Heartwinder] boss: Scalded Gears"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Crash"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Charge_Crash"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Column",
+              "TargetNodeName": "Stack",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Stunned"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "ScaldHold"
+              }
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "After a charge that hit or missed: 1 s to recover. Hard mode (ChargeTwice): the first charge chains straight into a second (.ChargeAgain); the flag is cleared when it is back in .Default.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".ChargeEnd"
+          },
+          "Instructions": [
+            {
+              "Enabled": {
+                "Compute": "ChargeTwice"
+              },
+              "Sensor": {
+                "Type": "Flag",
+                "Name": "Second_Charge",
+                "Set": false
+              },
+              "HeadMotion": {
+                "Type": "Nothing"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "Actions": [
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] boss: charge again"
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Second_Charge"
+                },
+                {
+                  "Type": "State",
+                  "State": ".ChargeAgain"
+                }
+              ]
+            },
+            {
+              "HeadMotion": {
+                "Type": "Nothing"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "ApplyEntityEffect",
+                  "EntityEffect": "Machinaria_Heartworks_Heartwinder_Charging",
+                  "UseTarget": false
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Hard mode: 0.8 s to turn on the spot with a fresh whistle, then a second Steam Charge (lock-on and wind-up again: the same tells).",
+          "Sensor": {
+            "Type": "State",
+            "State": ".ChargeAgain",
+            "IgnoreMissingSetState": true
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": "Machinaria_Heartworks_Heartwinder_Charging",
+              "UseTarget": false
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Charge_Windup"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+              "TargetNodeName": "Chest",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.8,
+                0.8
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".Charge"
+            }
+          ]
+        },
+        {
+          "$Comment": "A Grit Oiler got through (Gibson round 2 note 27): its jam marker is on the boss and it is not already jammed. Sensed after the climax and the stun sub states, so it never cuts a Scalded or Seized window short. Apply the 3 s Grit_Jammed at once (it also blocks a second start), then seize.",
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "EntityEffect",
+                    "EffectId": "Machinaria_Heartworks_Oiler_Grit_Jam"
+                  }
+                ]
+              },
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Self",
+                  "Filters": [
+                    {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Heartwinder_Grit_Jammed"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "Log",
+              "Message": "[Heartwinder] boss: grit in the gears"
+            },
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": "Machinaria_Heartworks_Heartwinder_Grit_Jammed",
+              "UseTarget": false
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".GritJam"
+            }
+          ]
+        },
+        {
+          "$Comment": "Grit in the gears: 3 s seized, the key jams with a grinding bang and sparks (the Key Jam clip, then the stun clip).",
+          "Sensor": {
+            "Type": "State",
+            "State": ".GritJam"
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "KeyJam"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Oiler_Grit"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Key_Jam"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Seized_Sparks",
+              "TargetNodeName": "Key",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Oiler_Grit_Burst",
+              "TargetNodeName": "Chest",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "Stunned"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1,
+                1
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": ".Default"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Type": "Player",
+                "Range": {
+                  "Compute": "DetectRange"
+                }
+              },
+              {
+                "Type": "HasHostileTargetMemory"
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "$Comment": "Keep every player in the arena in its memory.",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Player",
+                "Range": {
+                  "Compute": "DetectRange"
+                }
+              },
+              "Actions": [
+                {
+                  "Type": "AddToHostileTargetMemory"
+                }
+              ]
+            },
+            {
+              "$Comment": "Store the evaluator's target in the marked target slot (vanilla).",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Or",
+                "Sensors": [
+                  {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": true
+                  },
+                  {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": false
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "SetMarkedTarget"
+                }
+              ]
+            },
+            {
+              "$Comment": "The Steam Charge (the Glutton's, as the Boilerback has it): lock on 0.6 s, a 1.2 s unblockable wind-up, up to 24 blocks at 20 a second. A wall stops it (3 s stun); a primed pylon's volume scalds it (8 s).",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Charge",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "$Comment": "A primed pylon burst on it: Scalded Gears.",
+                  "Sensor": {
+                    "Type": "Self",
+                    "Filters": [
+                      {
+                        "Type": "EntityEffect",
+                        "EffectId": "Machinaria_Heartworks_Heartwinder_Scalded_Gears"
+                      }
+                    ]
+                  },
+                  "HeadMotion": {
+                    "Type": "Nothing"
+                  },
+                  "BodyMotion": {
+                    "Type": "Nothing"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Scalded"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "ApplyEntityEffect",
+                      "EntityEffect": "Machinaria_Heartworks_Heartwinder_Charging",
+                      "UseTarget": false
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": true
+                      },
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": false
+                      }
+                    ]
+                  },
+                  "Instructions": [
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "Target"
+                      },
+                      "BodyMotion": {
+                        "Type": "Charge",
+                        "BlockCollisionInteraction": "",
+                        "ChargeAbsoluteSpeed": {
+                          "Compute": "ChargeSpeed"
+                        },
+                        "ChargeAccelerationDistance": 2,
+                        "ChargeDecelerationDistance": 0,
+                        "ChargeDistanceRange": {
+                          "Compute": "ChargeDistance"
+                        },
+                        "ChargeRelativeSpeed": 0,
+                        "ClearOnceOnStateChange": true,
+                        "ClimbSlope": 1,
+                        "DropSlope": 1,
+                        "EntityStopsCharge": false,
+                        "HorizontalSkipGapWidth": 1,
+                        "IgnoredBlockSet": "Machinaria_Heartworks_Boilerback_Charge",
+                        "IgnoredBlockSetTriggers": false,
+                        "KnockbackThreshold": 10,
+                        "LockedOnDurationRange": {
+                          "Compute": "ChargeLockOn"
+                        },
+                        "LockedOnToleranceAngle": 20,
+                        "PlayerCollisionInteraction": "Root_Machinaria_Heartworks_Heartwinder_Charge_HitEntity",
+                        "PostChargeDurationRange": [
+                          0,
+                          0
+                        ],
+                        "RelativeTurnSpeed": 1,
+                        "WindingUpDurationRange": {
+                          "Compute": "ChargeWindup"
+                        },
+                        "WindingUpRelativeTurnSpeed": 1,
+                        "WindingUpUninterruptable": true
+                      },
+                      "HeadMotion": {
+                        "Type": "Aim",
+                        "RelativeTurnSpeed": 0.5
+                      }
+                    },
+                    {
+                      "$Comment": "Give up if the target is already in reach.",
+                      "TreeMode": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming",
+                          "LockedOn"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Target",
+                            "Range": 4
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Status"
+                            },
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Action"
+                            },
+                            {
+                              "Type": "State",
+                              "State": ".Default"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Aiming too long: give up.",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Aiming"
+                        ]
+                      },
+                      "ActionsBlocking": true,
+                      "Actions": [
+                        {
+                          "Type": "Timeout",
+                          "Delay": [
+                            3,
+                            3
+                          ]
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".Default"
+                        }
+                      ]
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "LostTarget"
+                        ]
+                      }
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "LockedOn"
+                        ]
+                      }
+                    },
+                    {
+                      "$Comment": "Winding up: the clip, steam jets, the whistle, the stampede line; unblockable.",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "WindingUp"
+                        ]
+                      },
+                      "Instructions": [
+                        {
+                          "Sensor": {
+                            "Type": "Any",
+                            "Once": true
+                          },
+                          "Actions": [
+                            {
+                              "Type": "PlayAnimation",
+                              "Slot": "Action",
+                              "Animation": "ChargeWindup"
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "ParticleSystem": "Goblin_Feastmaster_StampedePrepare"
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+                              "TargetNodeName": "Chest",
+                              "Offset": [
+                                0,
+                                0,
+                                0
+                              ]
+                            },
+                            {
+                              "Type": "PlaySound",
+                              "SoundEventId": "SFX_Machinaria_HW_Boss_Charge_Windup"
+                            },
+                            {
+                              "Type": "ApplyEntityEffect",
+                              "UseTarget": false,
+                              "EntityEffect": "Unblockable"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "States": [
+                          "Launch"
+                        ]
+                      }
+                    },
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Charging"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "PlayAnimation",
+                          "Slot": "Action",
+                          "Animation": "Charge"
+                        },
+                        {
+                          "Type": "SpawnParticles",
+                          "ParticleSystem": "Goblin_Feastmaster_Stampede"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "A wall: crash and stun.",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Obstructed"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "State",
+                          "State": ".Stunned"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Hit a player: barge, stop.",
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "ChargeEntityCollisions",
+                        "GetNPCs": false,
+                        "GetPlayers": true
+                      },
+                      "Actions": [
+                        {
+                          "Type": "EntityHitInteraction",
+                          "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Charge_HitEntity"
+                        },
+                        {
+                          "Type": "State",
+                          "State": ".ChargeEnd"
+                        }
+                      ]
+                    },
+                    {
+                      "$Comment": "Missed: skid to a stop.",
+                      "Sensor": {
+                        "Type": "ChargeState",
+                        "Once": true,
+                        "States": [
+                          "Finished"
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "State",
+                          "State": ".ChargeEnd"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "PlayAnimation",
+                      "Slot": "Action"
+                    },
+                    {
+                      "Type": "State",
+                      "State": ".Default"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "NoAim (vanilla): a rooted telegraph, the move and its recovery in one blocking sequence; the evaluator picks NoAimDefault after.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".NoAim",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "HeadMotion": {
+                    "Type": "Nothing"
+                  },
+                  "BodyMotion": {
+                    "Type": "Nothing"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.1,
+                        0.1
+                      ]
+                    },
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Wind Up: rooted for its 2.5 s; then the evaluator reads the damage it took meanwhile (RecentSustainedDamage: cleared when the evaluator last ran, which was when it chose the Wind Up) and picks Key_Jam or Wound_Tight.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".WindUp",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "HeadMotion": {
+                    "Type": "Nothing"
+                  },
+                  "BodyMotion": {
+                    "Type": "Nothing"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.1,
+                        0.1
+                      ]
+                    },
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Gear Toss (round 4, Gibson note 32): it keeps turning to its target for the first 0.8 s of the 1.0 s wind-up (body and head), then holds still so the last 0.2 s and the throw are fair to dodge; the lanes are attached and turn with it. An NPC Aim cannot lead a target without a ballistic weapon, so this is the tracking.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".GearToss",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": true
+                      },
+                      {
+                        "Type": "CombatActionEvaluator",
+                        "TargetInRange": false
+                      }
+                    ]
+                  },
+                  "HeadMotion": {
+                    "Type": "Sequence",
+                    "Looped": false,
+                    "RestartOnActivate": true,
+                    "Motions": [
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "TossTrackTime"
+                        },
+                        "Motion": {
+                          "Type": "Aim",
+                          "RelativeTurnSpeed": {
+                            "Compute": "TossTurnSpeed"
+                          },
+                          "HitProbability": 1,
+                          "Spread": 0
+                        }
+                      },
+                      {
+                        "Type": "Timer",
+                        "Time": [
+                          1.4,
+                          1.4
+                        ],
+                        "Motion": {
+                          "Type": "Nothing"
+                        }
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Sequence",
+                    "Looped": false,
+                    "RestartOnActivate": true,
+                    "Motions": [
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "TossTrackTime"
+                        },
+                        "Motion": {
+                          "Type": "MatchLook"
+                        }
+                      },
+                      {
+                        "Type": "Timer",
+                        "Time": [
+                          1.4,
+                          1.4
+                        ],
+                        "Motion": {
+                          "Type": "Nothing"
+                        }
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                },
+                {
+                  "HeadMotion": {
+                    "Type": "Nothing"
+                  },
+                  "BodyMotion": {
+                    "Type": "Nothing"
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.1,
+                        0.1
+                      ]
+                    },
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Mainspring Lash (the Gobliterator Flamethrower's turn): still for the charge, then it turns at a fixed rate while the bands sweep.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Lash",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "HeadMotion": {
+                    "Type": "Sequence",
+                    "Looped": false,
+                    "RestartOnActivate": true,
+                    "Motions": [
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "LashChargeTime"
+                        },
+                        "Motion": {
+                          "Type": "Nothing"
+                        }
+                      },
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "LashSweepTime"
+                        },
+                        "Motion": {
+                          "Type": "Rotate",
+                          "RotationSpeed": {
+                            "Compute": "LashTurnSpeed"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Sequence",
+                    "Looped": false,
+                    "RestartOnActivate": true,
+                    "Motions": [
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "LashChargeTime"
+                        },
+                        "Motion": {
+                          "Type": "Nothing"
+                        }
+                      },
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "LashSweepTime"
+                        },
+                        "Motion": {
+                          "Type": "MatchLook"
+                        }
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Default: walk into reach (a turret in phase 3, MaxSpeed 0.1); the evaluator picks the moves.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Default",
+                "IgnoreMissingSetState": true
+              },
+              "Instructions": [
+                {
+                  "$Comment": "Hard mode: the next Steam Charge may chain again.",
+                  "Enabled": {
+                    "Compute": "ChargeTwice"
+                  },
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any",
+                    "Once": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Second_Charge",
+                      "SetTo": false
+                    }
+                  ]
+                },
+                {
+                  "Enabled": {
+                    "Compute": "!Stationary"
+                  },
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "Instructions": [
+                    {
+                      "Sensor": {
+                        "Type": "Target",
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          }
+                        ]
+                      },
+                      "BodyMotion": {
+                        "Type": "MaintainDistance",
+                        "DesiredDistanceRange": {
+                          "Compute": "makeRange(MeleeDistance)"
+                        }
+                      }
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "Target"
+                      },
+                      "BodyMotion": {
+                        "Type": "Seek",
+                        "SlowDownDistance": 2,
+                        "StopDistance": 2
+                      }
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "A turret: turn the body to the aim, never walk.",
+                  "Enabled": {
+                    "Compute": "Stationary"
+                  },
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target"
+                  },
+                  "BodyMotion": {
+                    "Type": "MatchLook"
+                  }
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": true
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "RelativeTurnSpeed": 0.35,
+                    "HitProbability": 1
+                  },
+                  "Actions": [
+                    {
+                      "Type": "CombatAbility"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "CombatActionEvaluator",
+                    "TargetInRange": false
+                  },
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "RelativeTurnSpeed": 0.35
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "No target left: stand down.",
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "State",
+              "State": "Idle"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "DeathInstruction": {
+    "Instructions": [
+      {
+        "$Comment": "Run Down (DESIGN.md 7.3): the key stops, the heart dims, it sags; steam and a last tick. The encounter opens the vault when the slot empties.",
+        "Sensor": {
+          "Type": "Flag",
+          "Name": "RunDown_Done",
+          "Set": false
+        },
+        "ActionsBlocking": true,
+        "Actions": [
+          {
+            "Type": "SpawnParticles",
+            "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Run_Down",
+            "TargetNodeName": "Chest",
+            "Offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "Type": "PlaySound",
+            "SoundEventId": "SFX_Machinaria_HW_Boss_Run_Down"
+          },
+          {
+            "Type": "Timeout",
+            "Delay": [
+              3,
+              3
+            ]
+          },
+          {
+            "Type": "SpawnParticles",
+            "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Column",
+            "TargetNodeName": "Stack",
+            "Offset": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "Type": "PlaySound",
+            "SoundEventId": "SFX_Machinaria_HW_Boss_Steam_Column"
+          },
+          {
+            "Type": "SetFlag",
+            "Name": "RunDown_Done"
+          }
+        ]
+      }
+    ]
+  }
+}

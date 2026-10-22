@@ -1,0 +1,21 @@
+{
+  "$Comment": "A Grit Oiler's gritty oil hurts the Heartwinder (DESIGN.md 6.2, 7.6; raised from -100 for Gibson's round 2 note 27). Real damage now, a DamageCalculator fired once (vanilla Tests/Damage.json: no cooldown, one cycle), so the boss flinches and its bar drops; the old StatModifiers -100 was a silent stat change (ActiveEntityEffect.tickStatChanges) with no hurt and 2% of its health. The applier is not recorded (ActionApplyEntityEffect passes no owner), so the source is the effect itself: the boss's DisableDamageGroups (which name the robots) do not cancel it (NPCDamageSystems only filters EntitySource), and invulnerability still does. No combat numbers: the server only sends those to a player who dealt the hit (DamageSystems.EntityUIEvents), so the title says the number instead.",
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Physical": 300
+    }
+  },
+  "OverlapBehavior": "Overwrite",
+  "Duration": 0.1,
+  "ApplicationEffects": {
+    "EntityTopTint": "#3A2A12",
+    "EntityBottomTint": "#1E1408",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Oiler_Grit",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Oiler_Grit_Burst",
+        "TargetEntityPart": "Entity"
+      }
+    ]
+  }
+}

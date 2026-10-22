@@ -1,0 +1,21 @@
+{
+  "$Comment": "The Oiler tips forward and pumps oil onto its master for 1.5 s, standing still (DESIGN.md 6.2; analogue vanilla Dungeon_Food_Carrier_Throw). The role applies the heal only when this finishes, so killing it while it oils stops the heal.",
+  "Type": "Simple",
+  "RunTime": 1.5,
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Oiler",
+    "ItemAnimationId": "Oil",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Oiler_Pump",
+    "ClearSoundEventOnFinish": true,
+    "MovementEffects": {
+      "DisableAll": true
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Oiler_Stream",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "NozzleTip"
+      }
+    ]
+  }
+}

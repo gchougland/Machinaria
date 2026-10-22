@@ -1,0 +1,29 @@
+{
+  "$Comment": "The spark orb the Arc Tinker lobs: a white-hot core in a crackling blue glow, lighting what it passes.",
+  "Model": "NPC/Heartworks/Arc_Tinker/Models/Spark_Orb.blockymodel",
+  "Texture": "NPC/Heartworks/Arc_Tinker/Models/Spark_Orb.png",
+  "EyeHeight": 0.1,
+  "MinScale": 1,
+  "MaxScale": 1,
+  "HitBox": {
+    "Max": {
+      "X": 0.15,
+      "Y": 0.3,
+      "Z": 0.15
+    },
+    "Min": {
+      "X": -0.15,
+      "Y": 0,
+      "Z": -0.15
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Arc_Tinker_Orb",
+      "TargetNodeName": "Core"
+    }
+  ],
+  "Light": {
+    "Color": "#4be"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$Comment": "Piston Jab (DESIGN.md 7.5): 0.45 s wind-up (the key ticks, the piston draws back, a hiss), a 100 degree arc from 1 to 5 for 0.1 s, 0.27 s recovery. 30 each, knocked 4. Analogue: the Glutton's punches (0.35 / 0.083 / 0.167 for 55).",
+  "Type": "Simple",
+  "RunTime": 0.45,
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+    "ItemAnimationId": "Jab2Fast",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Jab"
+  },
+  "Next": {
+    "Type": "Selector",
+    "RunTime": 0.1,
+    "Selector": {
+      "Id": "Horizontal",
+      "Direction": "ToRight",
+      "TestLineOfSight": false,
+      "ExtendTop": 2,
+      "ExtendBottom": 2,
+      "StartDistance": 1,
+      "EndDistance": 5,
+      "Length": 100,
+      "YawStartOffset": -50,
+      "Anchor": "Feet"
+    },
+    "HitEntityRules": [
+      {
+        "Matchers": [
+          {
+            "Type": "Player"
+          }
+        ],
+        "Next": {
+          "Interactions": [
+            {
+              "Type": "Replace",
+              "Var": "Jab_Damage",
+              "DefaultValue": {
+                "Interactions": [
+                  "Machinaria_Heartworks_Heartwinder_Jab_Damage"
+                ]
+              },
+              "DefaultOk": true
+            }
+          ]
+        }
+      }
+    ],
+    "Effects": {
+      "WorldSoundEventId": "SFX_Goblin_Feastmaster_Whoosh_Quick"
+    },
+    "Next": {
+      "Type": "Simple",
+      "RunTime": 0.27
+    }
+  }
+}

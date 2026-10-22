@@ -1,0 +1,86 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Breaker.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Breaker.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Breaker.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Breaker/Off.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Breaker/Off.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Goblin_Button",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.breaker.on",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "On": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Breaker/On.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Breaker/On.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.breaker.off"
+        },
+        "Empty": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Breaker/Empty.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Breaker/Empty.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.breaker.fit"
+        }
+      }
+    }
+  }
+}

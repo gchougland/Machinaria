@@ -1,0 +1,48 @@
+{
+  "$Comment": "Hard mode's trophy (notes/boss.md \"Hard mode\"): the Golden Mainspring, dropped only by the hard Heartwinder (Drop_Heartwinder_Hard), as a cosmetic proof of the kill. A gold spring on a bronze plinth; a block to place. Built by tools/models/heartworks/heartwinder.hard.items.mjs.",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_boss.items.Machinaria_Heartworks_Heartwinder_Trophy.name",
+    "Description": "machinaria_hw_boss.items.Machinaria_Heartworks_Heartwinder_Trophy.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Heartwinder_Trophy.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Legendary",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "MaxStack": 1,
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Heartwinder/Trophy/Golden_Mainspring.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Heartwinder/Trophy/Golden_Mainspring.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Plant_Large",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#653"
+    }
+  }
+}

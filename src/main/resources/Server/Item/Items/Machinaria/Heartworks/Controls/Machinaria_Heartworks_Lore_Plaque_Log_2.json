@@ -1,0 +1,29 @@
+{
+  "Parent": "Machinaria_Heartworks_Lore_Plaque",
+  "Quality": "Common",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Lore_Plaque_Log_2.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Lore_Plaque_Log_2.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Lore_Plaque_Log_1.png",
+  "BlockType": {
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Lore_Plaque/Log_Recorder.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Lore_Plaque/Log_Recorder.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Plant_Large",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Plaque_Glint",
+        "TargetEntityPart": "Self",
+        "PositionOffset": {
+          "Y": 0.55,
+          "Z": 0.1
+        }
+      }
+    ]
+  }
+}

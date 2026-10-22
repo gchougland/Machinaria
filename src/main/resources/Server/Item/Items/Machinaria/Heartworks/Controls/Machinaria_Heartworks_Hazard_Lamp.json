@@ -1,0 +1,71 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Hazard_Lamp.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Hazard_Lamp.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Hazard_Lamp.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Hazard_Lamp/Off.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Hazard_Lamp/Off.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Torch_Wall",
+    "VariantRotation": "NESW",
+    "State": {
+      "Definitions": {
+        "Amber": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Hazard_Lamp/Amber.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Hazard_Lamp/Amber.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#c83"
+          }
+        },
+        "Red": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Hazard_Lamp/Red.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Hazard_Lamp/Red.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          }
+        }
+      }
+    }
+  }
+}

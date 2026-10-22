@@ -1,0 +1,26 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Slam_Impact_Dust",
+      "PositionOffset": {
+        "Y": 0.03
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Slam_Impact_Wave",
+      "PositionOffset": {
+        "Y": 0.04
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Slam_Impact_Puffs",
+      "PositionOffset": {
+        "Y": 0.1
+      }
+    }
+  ],
+  "CullDistance": 96,
+  "$Comment": "The Hammer Slam and the intro slam hit the floor: a dust ring out to radius 1 at Scale 1 (spawned at Scale 5: the circle 5 hit), a smoke disc and low puffs. Replaces vanilla Gobliterator_Slam, a 50-block shockwave that stood up on edge when it was attached to the turning hammer.",
+  "LifeSpan": 1.25,
+  "IsImportant": true
+}

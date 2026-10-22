@@ -1,0 +1,91 @@
+{
+  "$Comment": "Furnace grate: small orange embers rising and fading, unlit (they glow).",
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "Billboard",
+  "LightInfluence": 0,
+  "MaxConcurrentParticles": 12,
+  "ParticleLifeSpan": {
+    "Min": 1.2,
+    "Max": 2.2
+  },
+  "SpawnRate": {
+    "Min": 3,
+    "Max": 5
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Glow.png",
+    "ScaleRatioConstraint": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 0
+      },
+      "15": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 0.5,
+            "Max": 0.5
+          },
+          "Y": {
+            "Min": 0.5,
+            "Max": 0.5
+          }
+        },
+        "Color": "#ff5a1e"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.12,
+          "Max": 0.18
+        },
+        "Y": {
+          "Min": 0.12,
+          "Max": 0.18
+        }
+      },
+      "Opacity": 1,
+      "Color": "#ffb048"
+    }
+  },
+  "Shape": "Cube",
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 0.4
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.4
+    }
+  },
+  "Attractors": [
+    {
+      "DampingMultiplier": {
+        "X": 0.95,
+        "Y": 0.95,
+        "Z": 0.95
+      },
+      "LinearAcceleration": {
+        "X": 0,
+        "Y": 0.3,
+        "Z": 0
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 0.4,
+      "Max": 1
+    },
+    "Pitch": {
+      "Min": 70,
+      "Max": 90
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$Comment": "A Rivet Turret that can be destroyed (140 HP), for a room with no lever to turn it off. The ordinary turret is unkillable (round 2). Round 6 (Gibson: 'make sure the turrets have quite a large range'): it sees and fires 48 blocks (was 24) and keeps a target to 56, so it covers the rooms it stands in end to end (W2's boiler hall is two cells, about 50 long). Line of sight is still required to see and to fire. The rivet (launch 34, gravity 4) is aimed ballistically by the Attack action (its AimingReference), and its flat reach is far past 48.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Rivet_Turret_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Rivet_Turret",
+    "DropList": "Machinaria_Heartworks_Rivet_Turret_Drops",
+    "MaxHealth": 140,
+    "ViewRange": 48,
+    "AttackDistance": 48,
+    "AlertedRange": 56,
+    "Invulnerable": false,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Rivet_Turret.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

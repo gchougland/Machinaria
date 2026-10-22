@@ -1,0 +1,95 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_items.items.PortalKey_The_Heartworks.name",
+    "Description": "machinaria_hw_items.items.PortalKey_The_Heartworks.description"
+  },
+  "Icon": "Icons/ItemsGenerated/PortalKey_The_Heartworks.png",
+  "Categories": [
+    "Blocks.Portals",
+    "Machinaria.Content"
+  ],
+  "PortalKey": {
+    "PortalType": "The_Heartworks"
+  },
+  "Model": "Items/Machinaria/Heartworks/Items/Heartworks_Shard.blockymodel",
+  "Texture": "Items/Machinaria/Heartworks/Items/Heartworks_Shard.png",
+  "Animation": "Items/Machinaria/Heartworks/Items/Heartworks_Shard_Tick.blockyanim",
+  "BlockType": {
+    "DrawType": "Model",
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "CustomModel": "Items/Machinaria/Heartworks/Items/Heartworks_Shard.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Machinaria/Heartworks/Items/Heartworks_Shard.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelScale": 0.5,
+    "CustomModelAnimation": "Items/Machinaria/Heartworks/Items/Heartworks_Shard_Tick.blockyanim",
+    "Looping": true,
+    "TextureComputedColor": "#b8862e",
+    "AmbientSoundEventId": "SFX_Machinaria_HW_Shard_Tick_Loop",
+    "Light": {
+      "Color": "#741",
+      "Radius": 2
+    }
+  },
+  "Recipe": {
+    "TimeSeconds": 3,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Tarnished_Mainspring",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Clockwork_Heart",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Rubble_ScrapMetal",
+        "Quantity": 20
+      },
+      {
+        "ItemId": "Rock_Bronze_Metal",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "MechanicsBench",
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Portals"
+        ]
+      }
+    ]
+  },
+  "PlayerAnimationsId": "Item",
+  "Tags": {
+    "Type": [
+      "Portal",
+      "Temporary"
+    ]
+  },
+  "Quality": "Epic",
+  "ItemLevel": 56,
+  "IconProperties": {
+    "Scale": 0.6,
+    "Rotation": [
+      0,
+      20,
+      8
+    ],
+    "Translation": [
+      6,
+      -16
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Ingots",
+  "Light": {
+    "Color": "#741",
+    "Radius": 1
+  }
+}

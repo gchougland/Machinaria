@@ -1,0 +1,191 @@
+{
+  "Model": "NPC/Heartworks/Arc_Tinker/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Arc_Tinker/Models/Texture.png",
+  "EyeHeight": 1.6,
+  "CrouchOffset": -0.3,
+  "MinScale": 1,
+  "MaxScale": 1,
+  "HitBox": {
+    "Max": {
+      "X": 0.4,
+      "Y": 1.95,
+      "Z": 0.4
+    },
+    "Min": {
+      "X": -0.4,
+      "Y": 0,
+      "Z": -0.4
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 25,
+        "Min": -25
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 50,
+        "Min": -50
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Arc_Tinker_Coil_Glow",
+      "TargetNodeName": "Coil-Ball"
+    }
+  ],
+  "Light": {
+    "Color": "#38c"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/WalkBackward.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Run.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "RunBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/WalkBackward.blockyanim",
+          "BlendingDuration": 0.2,
+          "Speed": 1.4
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.15
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.15,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/WalkBackward.blockyanim",
+          "BlendingDuration": 0.15,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Fall.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Alert"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Hurt.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Death.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Death"
+        }
+      ]
+    },
+    "Fiddle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Arc_Tinker/Animations/Fiddle.blockyanim",
+          "BlendingDuration": 0.3,
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

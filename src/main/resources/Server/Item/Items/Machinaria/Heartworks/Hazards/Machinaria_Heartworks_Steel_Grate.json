@@ -1,0 +1,43 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Steel_Grate.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Steel_Grate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Steel_Grate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Cube",
+    "Opacity": "Transparent",
+    "RequiresAlphaBlending": true,
+    "Textures": [
+      {
+        "UpDown": "BlockTextures/Machinaria/Heartworks/Hazards/Steel_Grate.png",
+        "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Steel_Grate_Side.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#4c5868",
+    "ParticleColor": "#4c5868"
+  }
+}

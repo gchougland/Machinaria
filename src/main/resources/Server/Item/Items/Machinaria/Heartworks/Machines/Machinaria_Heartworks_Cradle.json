@@ -1,0 +1,51 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Cradle.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Cradle.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Cradle.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#7a5a30",
+    "TextureComputedColor": "#7a5a30",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Cradle.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Cradle.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Cradle",
+    "State": {
+      "Definitions": {
+        "Open": {},
+        "Clamped": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Cradle_Clamped.blockyanim",
+          "Looping": false
+        }
+      }
+    }
+  }
+}

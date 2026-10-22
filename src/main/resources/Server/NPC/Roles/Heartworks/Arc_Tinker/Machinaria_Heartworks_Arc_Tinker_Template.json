@@ -1,0 +1,1040 @@
+{
+  "Type": "Abstract",
+  "$Comment": "Arc Tinker (DESIGN.md 6.1, 6.2): a ranged spark thrower that kites, shaped on vanilla Template_Dungeon_Goblin_Lobber as tools/models/heartworks/arc_tinker.role.mjs explains.",
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "ApplySeparation": true,
+  "AttitudeGroup": "Machinaria_Robots",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [
+    "Machinaria_Heartworks_Robots"
+  ],
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "HotbarItems": [
+    "Machinaria_Heartworks_Arc_Tinker_Staff_NPC"
+  ],
+  "IsMemory": {
+    "Compute": "IsMemory"
+  },
+  "KnockbackScale": {
+    "Compute": "KnockbackScale"
+  },
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "MemoriesNameOverride": {
+    "Compute": "MemoriesNameOverride"
+  },
+  "MemoriesUnlockedBy": {
+    "Compute": "MemoriesUnlockedBy"
+  },
+  "MemoriesKillRange": {
+    "Compute": "MemoriesKillRange"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "DeathAnimationTime": {
+    "Compute": "DeathAnimationTime"
+  },
+  "DeathParticles": {
+    "Compute": "DeathParticles"
+  },
+  "SeparationDistance": 2,
+  "SeparationMode": "Push",
+  "StartState": "Idle",
+  "Instructions": [
+    {
+      "Reference": "Component_Instruction_Hit_Interrupt"
+    },
+    {
+      "$Comment": "Scale health to the party size on first aggro, on the dungeon goblins' lower tier for the ranged (x1.2, x1.4, x1.6).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Not",
+        "Sensor": {
+          "Type": "State",
+          "State": "Idle"
+        }
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health",
+          "Modify": {
+            "EffectP2": "Dungeon_Goblin_Scale_Health_Low_P2",
+            "EffectP3": "Dungeon_Goblin_Scale_Health_Low_P3",
+            "EffectP4": "Dungeon_Goblin_Scale_Health_Low_P4"
+          }
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Idle"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Aggro on any attacker, at any range or without line of sight.",
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Damage",
+                  "Friendly": true
+                }
+              },
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat.Default"
+            }
+          ]
+        },
+        {
+          "$Comment": "Standard detection: hear the robots' rally beacon, see or hear nearby hostiles. Crouching players are not heard.",
+          "Reference": "Component_Instruction_Generic_Detection",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat.Default",
+              "Combat.Default",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "BeaconMessage": "Machinaria_Robot_Attack",
+            "Attitudes": [
+              "Hostile"
+            ]
+          }
+        },
+        {
+          "$Comment": "Tinker until aggroed. Every 5 to 12 s: fiddle with the coil (a spark pops), spark the staff, or look about.",
+          "Sensor": {
+            "Type": "Any"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "HeadMotion": {
+            "Type": "Observe",
+            "AngleRange": [
+              -50,
+              50
+            ],
+            "PauseTimeRange": [
+              1.5,
+              3
+            ]
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                5,
+                12
+              ]
+            },
+            {
+              "Type": "Random",
+              "Actions": [
+                {
+                  "Weight": 4,
+                  "Action": {
+                    "Type": "Sequence",
+                    "Blocking": true,
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status",
+                        "Animation": "Fiddle"
+                      },
+                      {
+                        "Type": "Timeout",
+                        "Delay": [
+                          1.75,
+                          1.75
+                        ]
+                      },
+                      {
+                        "Type": "SpawnParticles",
+                        "ParticleSystem": "Machinaria_Heartworks_Arc_Tinker_Fiddle_Pop",
+                        "TargetNodeName": "Coil-Ball"
+                      },
+                      {
+                        "Type": "PlaySound",
+                        "SoundEventId": "SFX_Emit_Goblin_Electric_Fence_Zap"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Weight": 2,
+                  "Action": {
+                    "Type": "Sequence",
+                    "Blocking": true,
+                    "Actions": [
+                      {
+                        "Type": "SpawnParticles",
+                        "ParticleSystem": "Machinaria_Heartworks_Arc_Tinker_Zap_Tip",
+                        "TargetNodeName": "Staff-Spark"
+                      },
+                      {
+                        "Type": "PlaySound",
+                        "SoundEventId": "SFX_Emit_Goblin_Electric_Sparks"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Weight": 1,
+                  "Action": {
+                    "Type": "Sequence",
+                    "Blocking": true,
+                    "Actions": [
+                      {
+                        "Type": "PlaySound",
+                        "SoundEventId": "SFX_Machinaria_HW_Arc_Tinker_Idle"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Alerted"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Alerted clip: a jolt, the staff comes up.",
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "Alerted"
+            }
+          ],
+          "ActionsBlocking": true,
+          "Continue": true
+        },
+        {
+          "$Comment": "Switch to combat if attacked.",
+          "Sensor": {
+            "Type": "Damage"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Combat.Message"
+            }
+          ]
+        },
+        {
+          "$Comment": "Watch the target and switch to combat after a moment.",
+          "Sensor": {
+            "Type": "Target",
+            "Range": {
+              "Compute": "AlertedRange"
+            }
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": {
+                "Compute": "AlertedTimeout"
+              },
+              "Action": {
+                "Type": "State",
+                "State": "Combat.Message"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "No target: back to tinkering.",
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ],
+              "Action": {
+                "Type": "State",
+                "State": "Idle"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Combat"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Soft_Leash",
+          "Modify": {
+            "_ExportStates": [
+              "ReturnHome"
+            ],
+            "LeashDistance": {
+              "Compute": "LeashDistance"
+            },
+            "LeashMinPlayerDistance": {
+              "Compute": "LeashMinPlayerDistance"
+            },
+            "LeashTimer": {
+              "Compute": "LeashTimer"
+            },
+            "HardLeashDistance": {
+              "Compute": "HardLeashDistance"
+            }
+          }
+        },
+        {
+          "$Comment": "Swap to a closer target when there is one.",
+          "Reference": "Component_Instruction_Combat_Target_Swap",
+          "Modify": {
+            "TargetRange": {
+              "Compute": "ThrowRange"
+            },
+            "NextTargetRangeView": {
+              "Compute": "ViewRange"
+            },
+            "NextTargetRangeHearing": {
+              "Compute": "HearingRange"
+            }
+          }
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": ".Default"
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Spread_Out",
+              "Modify": {
+                "RelativeSpeed": 1
+              }
+            },
+            {
+              "$Comment": "Too close: run (DESIGN.md 6.2: it flees within 3 and stops throwing).",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "FleeRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "Flee",
+                "RelativeSpeed": 1,
+                "SlowDownDistance": {
+                  "Compute": "KiteDistance - 2"
+                },
+                "StopDistance": {
+                  "Compute": "KiteDistance"
+                }
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            },
+            {
+              "$Comment": "Keep its distance, strafing often.",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "AlertedRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "MaintainDistance",
+                "DesiredDistanceRange": {
+                  "Compute": "[KiteDistance - 1, KiteDistance + 1]"
+                },
+                "RelativeForwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                },
+                "RelativeBackwardsSpeed": {
+                  "Compute": "CombatMovingRelativeSpeed"
+                },
+                "StrafingDurationRange": {
+                  "Compute": "CombatStrafingDurationRange"
+                },
+                "StrafingFrequencyRange": {
+                  "Compute": "CombatStrafingFrequencyRange"
+                }
+              }
+            },
+            {
+              "Sensor": {
+                "Reference": "Component_Sensor_Hit_Interrupted"
+              },
+              "Actions": [
+                {
+                  "Type": "Nothing"
+                }
+              ]
+            },
+            {
+              "$Comment": "Cornered: zap with the staff when the attack pause allows.",
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "ZapDistance"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "HeadMotion": {
+                "Type": "Aim",
+                "HitProbability": 1,
+                "Spread": 0
+              },
+              "Actions": [
+                {
+                  "Type": "Attack",
+                  "Attack": {
+                    "Compute": "ZapAttack"
+                  },
+                  "AttackPauseRange": {
+                    "Compute": "ZapAttackPauseRange"
+                  }
+                }
+              ]
+            },
+            {
+              "$Comment": "Lob a spark at range, never inside 4.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "ThrowRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Target",
+                      "Range": {
+                        "Compute": "NoThrowRange"
+                      }
+                    }
+                  }
+                ]
+              },
+              "HeadMotion": {
+                "Type": "Aim",
+                "HitProbability": 1,
+                "Spread": 0
+              },
+              "Actions": [
+                {
+                  "Type": "Attack",
+                  "Attack": {
+                    "Compute": "Attack"
+                  },
+                  "AttackPauseRange": {
+                    "Compute": "AttackPauseRange"
+                  },
+                  "BallisticMode": "Short",
+                  "LineOfSight": true
+                }
+              ]
+            },
+            {
+              "$Comment": "Inside throwing range but too close to throw: just keep away.",
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "NoThrowRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "Actions": [
+                {
+                  "Type": "Nothing"
+                }
+              ]
+            },
+            {
+              "$Comment": "Otherwise chase (target loss is handled there).",
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Chase"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Watch the target when detected.",
+          "Continue": true,
+          "Sensor": {
+            "Reference": "Component_Sensor_Target_Sight_Or_Sound",
+            "Modify": {
+              "HearingRange": {
+                "Compute": "HearingRange"
+              },
+              "ViewRange": {
+                "Compute": "ViewRange"
+              },
+              "ViewSector": {
+                "Compute": "ViewSector"
+              }
+            }
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Filters": []
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            }
+          ]
+        },
+        {
+          "$Comment": "Rally every robot within 5 blocks with the locked target, then fight.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Message"
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Damage"
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Mob",
+                "ExcludeOwnType": false,
+                "Range": {
+                  "Compute": "CombatMessageRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": {
+                      "Compute": "CombatMessageTargetGroups"
+                    }
+                  }
+                ]
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Beacon",
+                  "Message": "Machinaria_Robot_Attack",
+                  "TargetGroups": {
+                    "Compute": "CombatMessageTargetGroups"
+                  },
+                  "SendTargetSlot": "LockedTarget",
+                  "Range": {
+                    "Compute": "CombatMessageRange"
+                  }
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Chase the target until it is in throwing range again.",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Chase"
+          },
+          "Instructions": [
+            {
+              "$Comment": "Remember where it was last seen (ranged NPCs often chase on lost line of sight).",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Once": true,
+                "Range": {
+                  "Compute": "AlertedRange"
+                }
+              },
+              "Actions": [
+                {
+                  "Type": "StorePosition",
+                  "Slot": "LastSeen"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "ThrowRange"
+                },
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "Reference": "Component_Instruction_Intelligent_Chase",
+              "Modify": {
+                "_ExportStates": [
+                  "Search",
+                  "Search",
+                  "Idle"
+                ],
+                "ViewRange": {
+                  "Compute": "AlertedRange"
+                },
+                "HearingRange": {
+                  "Compute": "HearingRange"
+                },
+                "SlowDownDistance": 2,
+                "StopDistance": 1,
+                "RelativeSpeed": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Search"
+      },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Generic_Search",
+          "Modify": {
+            "_ExportStates": [
+              "Alerted",
+              "Combat",
+              "Combat.Message",
+              "Idle",
+              "Search"
+            ],
+            "ViewRange": {
+              "Compute": "ViewRange"
+            },
+            "ViewSector": {
+              "Compute": "ViewSector"
+            },
+            "HearingRange": {
+              "Compute": "HearingRange"
+            },
+            "AbsoluteDetectionRange": {
+              "Compute": "AbsoluteDetectionRange"
+            },
+            "AlertedRange": {
+              "Compute": "AlertedRange"
+            },
+            "ConfusedTimeRange": {
+              "Compute": "ConfusedTimeRange"
+            },
+            "SearchTimeRange": {
+              "Compute": "SearchTimeRange"
+            },
+            "SearchRadius": {
+              "Compute": "WanderRadius"
+            },
+            "ConfusedSoundEventId": "SFX_Spark_Living_Alerted",
+            "Attitudes": [
+              "Hostile",
+              "Neutral"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "ReturnHome"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Damage",
+                "Combat": true,
+                "TargetSlot": "LockedTarget"
+              },
+              {
+                "Type": "Target",
+                "TargetSlot": "LockedTarget",
+                "Range": {
+                  "Compute": "AbsoluteDetectionRange"
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "AddToHostileTargetMemory"
+            },
+            {
+              "Type": "State",
+              "State": "Combat"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 2
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "RelativeSpeed": 1.5,
+            "UsePathfinder": true
+          }
+        },
+        {
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Idle"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "StateTransitions": [
+    {
+      "States": [
+        {
+          "From": [
+            "Combat"
+          ],
+          "To": [
+            "Idle"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "ReleaseTarget"
+        }
+      ]
+    }
+  ],
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "Acceleration": 12,
+      "MaxRotationSpeed": 140,
+      "Gravity": 10,
+      "MaxFallSpeed": 8,
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "RunThreshold": 0.75
+    }
+  ],
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_robots.npcRoles.Machinaria_Heartworks_Arc_Tinker.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Arc_Tinker",
+      "Description": "Model to be used"
+    },
+    "MaxHealth": {
+      "Value": 120,
+      "Description": "Max health for the NPC (round 2 note 22: tankier than the goblins; the Deepworks Lobber has 80)"
+    },
+    "MaxSpeed": {
+      "Value": 5,
+      "Description": "The NPC's max speed"
+    },
+    "DropList": {
+      "Value": "Machinaria_Heartworks_Arc_Tinker_Drops",
+      "Description": "Drop list"
+    },
+    "KnockbackScale": {
+      "Value": 0.5,
+      "Description": "How far hits push it (light, unlike the guard)"
+    },
+    "DeathAnimationTime": {
+      "Value": 2.2,
+      "Description": "Seconds the slumped tinker stays before it goes"
+    },
+    "DeathParticles": {
+      "Value": "Machinaria_Heartworks_Arc_Tinker_Death",
+      "Description": "Particles when the corpse goes"
+    },
+    "LeashDistance": {
+      "Value": 30,
+      "Description": "Distance from the leash point before the NPC wants to return home"
+    },
+    "LeashMinPlayerDistance": {
+      "Value": 8,
+      "Description": "The NPC will not give up the chase while the player is closer than this"
+    },
+    "LeashTimer": {
+      "Value": [
+        4,
+        4
+      ],
+      "Description": "Seconds beyond leash range, without damage or a close player, before the NPC returns home"
+    },
+    "HardLeashDistance": {
+      "Value": 60,
+      "Description": "Absolute maximum distance from the leash point before the NPC returns home unconditionally"
+    },
+    "ViewRange": {
+      "Value": 22,
+      "Description": "The view range of the NPC"
+    },
+    "ViewSector": {
+      "Value": 160,
+      "Description": "The view sector of the NPC"
+    },
+    "HearingRange": {
+      "Value": 8,
+      "Description": "The hearing range of the NPC"
+    },
+    "AbsoluteDetectionRange": {
+      "Value": 2,
+      "Description": "The range at which an entity is guaranteed to be detected"
+    },
+    "WanderRadius": {
+      "Value": 5,
+      "Description": "The search radius of the NPC"
+    },
+    "AlertedRange": {
+      "Value": 25,
+      "Description": "The alerted range of the NPC"
+    },
+    "AlertedTimeout": {
+      "Value": [
+        0.8,
+        1
+      ],
+      "Description": "The time range after which an NPC will transition from alerted to combat"
+    },
+    "CombatMessageRange": {
+      "Value": 5,
+      "Description": "The range at which the NPC will send combat messages"
+    },
+    "CombatMessageTargetGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Robots"
+      ],
+      "Description": "The NPC groups the rally is sent to"
+    },
+    "Attack": {
+      "Value": "Root_Machinaria_Heartworks_Arc_Tinker_Spark_Lob",
+      "Description": "The Spark Lob"
+    },
+    "AttackPauseRange": {
+      "Value": [
+        4.2,
+        5.6
+      ],
+      "Description": "Pause between lobs, counted from the start of the 1.9 s throw (2.3 to 3.7 s idle; DESIGN.md 6.2: 2.5 to 4)"
+    },
+    "ThrowRange": {
+      "Value": 16,
+      "Description": "The farthest it lobs from"
+    },
+    "NoThrowRange": {
+      "Value": 4,
+      "Description": "It does not throw at a target this close"
+    },
+    "KiteDistance": {
+      "Value": 10,
+      "Description": "The distance it keeps (DESIGN.md 6.2)"
+    },
+    "FleeRange": {
+      "Value": 3,
+      "Description": "It runs when a target comes this close (DESIGN.md 6.2)"
+    },
+    "ZapAttack": {
+      "Value": "Root_Machinaria_Heartworks_Arc_Tinker_Zap",
+      "Description": "The staff zap, its melee fallback"
+    },
+    "ZapDistance": {
+      "Value": 2.5,
+      "Description": "The reach of the zap"
+    },
+    "ZapAttackPauseRange": {
+      "Value": [
+        2.2,
+        2.6
+      ],
+      "Description": "Pause after a zap, counted from the start of the 0.9 s zap (about 1.3 to 1.7 s idle; DESIGN.md 6.2: cooldown 2)"
+    },
+    "CombatMovingRelativeSpeed": {
+      "Value": 0.8,
+      "Description": "The relative speed of combat movement"
+    },
+    "CombatStrafingDurationRange": {
+      "Value": [
+        1,
+        1.6
+      ],
+      "Description": "How long each strafe lasts"
+    },
+    "CombatStrafingFrequencyRange": {
+      "Value": [
+        2,
+        4
+      ],
+      "Description": "How often it strafes (more often than the Lobber: it never stands still for long)"
+    },
+    "ConfusedTimeRange": {
+      "Value": [
+        1,
+        2
+      ],
+      "Description": "The time during which the NPC will be confused"
+    },
+    "SearchTimeRange": {
+      "Value": [
+        12,
+        16
+      ],
+      "Description": "The time during which the NPC will search for a target"
+    },
+    "IsMemory": {
+      "Value": false,
+      "Description": "Parameter IsMemory"
+    },
+    "MemoriesNameOverride": {
+      "Value": "",
+      "Description": "Parameter MemoriesNameOverride"
+    },
+    "MemoriesUnlockedBy": {
+      "Value": "Kill",
+      "Description": "How the player records the memory, either Proximity or Kill."
+    },
+    "MemoriesKillRange": {
+      "Value": 0,
+      "Description": "Radius in blocks in which the memory is recorded when the NPC dies. 0 uses the server default."
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "Model": "NPC/Heartworks/Cogling/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Cogling/Models/Texture.png",
+  "EyeHeight": 0.3,
+  "CrouchOffset": -0.1,
+  "HitBox": {
+    "Max": {
+      "X": 0.4,
+      "Y": 0.6,
+      "Z": 0.45
+    },
+    "Min": {
+      "X": -0.4,
+      "Y": 0,
+      "Z": -0.4
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 5,
+        "Min": -5
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 15,
+        "Min": -15
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Walk.blockyanim"
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Walk.blockyanim"
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Run.blockyanim"
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Fall.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Larva_Alerted"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Hurt.blockyanim",
+          "Looping": false,
+          "SoundEventId": "SFX_Larva_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Death.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Sawblade_Bounce"
+        }
+      ]
+    },
+    "PounceWindup": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/PounceWindup.blockyanim",
+          "BlendingDuration": 0.08,
+          "Looping": false,
+          "SoundEventId": "SFX_Spider_Alerted"
+        }
+      ]
+    },
+    "Pounce": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Pounce.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false
+        }
+      ]
+    },
+    "Flipped": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Flipped.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Rewind": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Rewind.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false,
+          "SoundEventId": "SFX_Emit_Goblin_Winding"
+        }
+      ]
+    },
+    "Sort": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Cogling/Animations/Sort.blockyanim",
+          "BlendingDuration": 0.2,
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

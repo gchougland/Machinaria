@@ -1,0 +1,237 @@
+{
+  "$Comment": "The Rivet Club (round 4 note 29: a club, same model; round 5 note 4: charge and signature). Parent Template_Weapon_Mace: vanilla clubs have no charged attack or signature, the mace is the vanilla blunt weapon with the whole kit (hold to charge, guard, Groundslam on full SignatureEnergy). One-handed club animations (Machinaria_Heartworks_Rivet_Guard_Club) and Utility Compatible, so a shield works beside it. Level 38 between Cobalt (35) and Adamantite (40): swings 45, charged 90, Groundslam 140 (Adamantite mace 45 / 65 / 146). Crafted from a Heartwinder Mainspring and bronze bars (round 5 note 6). Built by tools/models/heartworks/rivet_guard.items.mjs.",
+  "Parent": "Template_Weapon_Mace",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_robots.items.Machinaria_Heartworks_Rivet_Guard_Mace.name",
+    "Description": "machinaria_hw_robots.items.Machinaria_Heartworks_Rivet_Guard_Mace.description"
+  },
+  "Categories": [
+    "Items.Weapons",
+    "Machinaria.Content"
+  ],
+  "Quality": "Rare",
+  "ItemLevel": 38,
+  "PlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard_Club",
+  "Utility": {
+    "Compatible": true
+  },
+  "Recipe": {
+    "TimeSeconds": 5,
+    "KnowledgeRequired": false,
+    "Input": [
+      {
+        "ItemId": "Ingredient_Heartwinder_Mainspring",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Bar_Bronze",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Rubble_ScrapMetal",
+        "Quantity": 6
+      },
+      {
+        "ItemId": "Ingredient_Leather_Heavy",
+        "Quantity": 3
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Mechanics_Weapons"
+        ],
+        "Id": "MechanicsBench"
+      }
+    ]
+  },
+  "Interactions": {
+    "Primary": "Root_Weapon_Mace_Primary",
+    "Secondary": "Root_Weapon_Mace_Secondary_Guard",
+    "Ability1": "Root_Weapon_Mace_Signature_Groundslam"
+  },
+  "InteractionVars": {
+    "Swing_Left_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Primary_Swing_Left_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 45
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Right_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Primary_Swing_Right_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 45
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Up_Left_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Primary_Swing_Up_Left_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 45
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Left_Charged_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Primary_Swing_Left_Charged_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 90
+            }
+          },
+          "EntityStatsOnHit": [
+            {
+              "EntityStatId": "SignatureEnergy",
+              "Amount": 2
+            }
+          ],
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Right_Charged_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Primary_Swing_Right_Charged_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 90
+            }
+          },
+          "EntityStatsOnHit": [
+            {
+              "EntityStatId": "SignatureEnergy",
+              "Amount": 2
+            }
+          ],
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Swing_Up_Left_Charged_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Primary_Swing_Up_Left_Charged_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 90
+            }
+          },
+          "EntityStatsOnHit": [
+            {
+              "EntityStatId": "SignatureEnergy",
+              "Amount": 2
+            }
+          ],
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Groundslam_Damage": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Signature_Groundslam_Damage",
+          "DamageCalculator": {
+            "BaseDamage": {
+              "Physical": 140
+            }
+          },
+          "DamageEffects": {
+            "WorldSoundEventId": "SFX_Club_Special_Impact",
+            "LocalSoundEventId": "SFX_Club_Special_Impact"
+          }
+        }
+      ]
+    },
+    "Guard_Wield": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Mace_Secondary_Guard_Wield",
+          "StaminaCost": {
+            "Value": 15.56,
+            "CostType": "Damage"
+          }
+        }
+      ]
+    }
+  },
+  "DroppedItemAnimation": "Items/Animations/Dropped/Dropped_Diagonal_Left.blockyanim",
+  "Model": "NPC/Heartworks/Rivet_Guard/Models/Mace.blockymodel",
+  "Texture": "NPC/Heartworks/Rivet_Guard/Models/Mace_Texture.png",
+  "IconProperties": {
+    "Scale": 0.37,
+    "Translation": [
+      -32,
+      -32
+    ],
+    "Rotation": [
+      45,
+      90,
+      0
+    ]
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Rivet_Guard_Mace.png",
+  "Tags": {
+    "Type": [
+      "Weapon"
+    ],
+    "Family": [
+      "Club"
+    ]
+  },
+  "MaxDurability": 145,
+  "DurabilityLossOnHit": 0.3,
+  "Weapon": {
+    "EntityStatsToClear": [
+      "SignatureEnergy"
+    ],
+    "StatModifiers": {
+      "SignatureEnergy": [
+        {
+          "Amount": 8,
+          "CalculationType": "Additive"
+        }
+      ]
+    }
+  },
+  "ItemSoundSetId": "ISS_Weapons_Blunt_Small"
+}

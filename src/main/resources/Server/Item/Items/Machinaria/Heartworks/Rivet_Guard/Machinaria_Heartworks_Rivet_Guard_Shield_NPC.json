@@ -1,0 +1,30 @@
+{
+  "$Comment": "What the robot holds (round 4 notes 25 and 26): Machinaria_Heartworks_Rivet_Guard_Shield with the robot's own animation set (Machinaria_Heartworks_Rivet_Guard) as its PlayerAnimationsId, as vanilla Weapon_Mace_Scrap_NPC is for the goblins. Not for players: no recipe, not in the creative tab.",
+  "Parent": "Template_Weapon_Shield",
+  "TranslationProperties": {
+    "Name": "machinaria_hw_robots.items.Machinaria_Heartworks_Rivet_Guard_Shield.name",
+    "Description": "machinaria_hw_robots.items.Machinaria_Heartworks_Rivet_Guard_Shield.description"
+  },
+  "Categories": [
+    "Items.Weapons"
+  ],
+  "Model": "NPC/Heartworks/Rivet_Guard/Models/Shield_Item.blockymodel",
+  "Texture": "NPC/Heartworks/Rivet_Guard/Models/Shield_Texture.png",
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Rivet_Guard_Shield.png",
+  "Quality": "Developer",
+  "ItemLevel": 38,
+  "InteractionVars": {
+    "Guard_Wield": {
+      "Interactions": [
+        {
+          "Parent": "Weapon_Shield_Secondary_Guard_Wield",
+          "StaminaCost": {
+            "Value": 19.9,
+            "CostType": "Damage"
+          }
+        }
+      ]
+    }
+  },
+  "PlayerAnimationsId": "Machinaria_Heartworks_Rivet_Guard"
+}

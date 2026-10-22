@@ -1,0 +1,80 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_End_Portal.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_End_Portal.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_End_Portal.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Portal"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Stone",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Unbreakable"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/End_Portal/Portal.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/End_Portal/Portal.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Dungeon_Portal",
+    "VariantRotation": "NESW",
+    "RequiresAlphaBlending": true,
+    "Light": {
+      "Color": "#c83"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.portal.home",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "OpenCustomUI",
+            "Page": {
+              "Id": "Confirmation",
+              "TitleKey": "machinaria_hw_controls.portal.end.title",
+              "MessageKey": "machinaria_hw_controls.portal.end.message",
+              "ConfirmKey": "server.portals.dungeon.leave",
+              "CancelKey": "server.portals.dungeon.stay",
+              "Success": {
+                "Interactions": [
+                  "Portal_Return"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Portal_End",
+        "TargetEntityPart": "Self",
+        "PositionOffset": {
+          "Y": 1.53
+        }
+      }
+    ],
+    "AmbientSoundEventId": "SFX_Portal_Neutral"
+  }
+}

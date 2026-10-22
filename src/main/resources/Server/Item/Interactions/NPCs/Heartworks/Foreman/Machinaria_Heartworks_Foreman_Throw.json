@@ -1,0 +1,68 @@
+{
+  "$Comment": "Wrench Throw (DESIGN.md 6.2): a target 6 to 12 away, every 10 s. 1.0 s wind-up (the wrench cocked back, a glint, a red line along the floor), the wrench flies a straight line of 12 blocks (20 Physical), then 0.8 s empty-handed: the opening. He stands still. Analogue: the Skeleton Elite downstrike (1.5 s charge).",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Foreman",
+            "ItemAnimationId": "Throw",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Foreman_Wrench_Swing",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Foreman_Throw_Line",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin"
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Foreman_Wrench_Glint",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Wrench-Head",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.2,
+                  "Z": 0
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Projectile",
+            "Config": "Machinaria_Heartworks_Foreman_Wrench",
+            "Tags": {
+              "AimingReference": []
+            },
+            "Effects": {
+              "WorldSoundEventId": "SFX_Machinaria_HW_Foreman_Wrench_Throw"
+            },
+            "Next": {
+              "Type": "Simple",
+              "$Comment": "Empty-handed: the opening.",
+              "RunTime": 0.8,
+              "Next": {
+                "Type": "Simple",
+                "RunTime": 0.2
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 2,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

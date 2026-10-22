@@ -1,0 +1,71 @@
+{
+  "$Comment": "Spark Volley (DESIGN.md 7.5): 1.5 s with the coil arm lifting and crackling, then it tells the encounter, which drops five sparks at each player 0.3 s apart (each sits 1.2 s on its decal, then strikes for 25 Lightning in radius 2.5: Root_..._Spark). 2.3 s more of the clip, then 0.8 s recovery. Analogue: the Gobliterator rocket barrage onto decals; the Voidtaken marker pattern.",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.5,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+            "ItemAnimationId": "SparkVolley",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Charge",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Coil_Crackle",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "CoilTip",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Type": "SendBeacon",
+          "Message": "Machinaria_Heartworks_Heartwinder_Spark_Volley",
+          "Range": 48,
+          "ExpirationTime": 2,
+          "TargetGroups": [
+            "Machinaria_Heartworks_Heartwinder_Group"
+          ]
+        },
+        {
+          "Type": "Simple",
+          "RunTime": 2.3,
+          "Effects": {
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Coil_Crackle",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "CoilTip",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0,
+                  "Z": 0
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 3.8,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

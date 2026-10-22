@@ -1,0 +1,74 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Segment_Lamp.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Segment_Lamp.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Segment_Lamp.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Segment_Lamp/Live.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Segment_Lamp/Live.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Torch_Wall",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#36a"
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Emitter_Arc",
+        "TargetEntityPart": "Self",
+        "PositionOffset": {
+          "Y": 0.45,
+          "Z": -0.06
+        },
+        "Scale": 0.4
+      }
+    ],
+    "State": {
+      "Definitions": {
+        "Dead": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Segment_Lamp/Dead.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Segment_Lamp/Dead.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "Particles": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$Comment": "Hard mode: adds 2,400 max health for the fourth player in the arena (twice the standard 1,200, as the base is twice). Copied from vanilla Gobliterator_Scale_Health_P4.",
+  "RawStatModifiers": {
+    "Health": [
+      {
+        "Amount": 2400,
+        "CalculationType": "Additive",
+        "Target": "Max"
+      }
+    ]
+  },
+  "OverlapBehavior": "Ignore",
+  "Infinite": true,
+  "RemovalBehavior": "Infinite"
+}

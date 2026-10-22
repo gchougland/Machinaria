@@ -1,0 +1,381 @@
+{
+  "$Comment": "The Oiler's brain (DESIGN.md 6.2, 7.6), a copy of vanilla Dungeon_Goblin_Food_Carrier made into an Abstract. It finds its master (any role in TargetGroups, Machinaria_Heartworks_Oiler_Targets: the Heartwinder's phase roles, or the test stand-in Machinaria_Heartworks_Oiler_Dummy), walks to it, and within OilRange tips forward and pumps oil for 1.5 s (the OilAttack root). Only when that finishes does it apply OilEffect and OilFlourish to the master (the heal and a glint; for the Grit Oiler, -100 and a 1 s jam), so killing it in time stops the heal. Then it toddles away and is gone after 2.5 s. Then it beacons the Heartwinder encounter (OilMessage) so the players are told. It ignores players. The encounter can recall every Oiler with the beacon RecallMessage (a wipe), and none lives longer than Lifetime.",
+  "Type": "Abstract",
+  "Parameters": {
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Oiler",
+      "Description": "Model to be used"
+    },
+    "MaxHealth": {
+      "Value": 45,
+      "Description": "Max health (DESIGN.md 6.1 said 30; Gibson round 2 note 22: tankier than goblins. 45 still dies to two or three hits on its walk to the boss)"
+    },
+    "MaxSpeed": {
+      "Value": 2.2,
+      "Description": "Walking speed (DESIGN.md 6.1: 2.2, slow)"
+    },
+    "DropList": {
+      "Value": "Machinaria_Heartworks_Oiler_Drops",
+      "Description": "Drops when killed"
+    },
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Oiler.name",
+      "Description": "Translation key for NPC name display"
+    },
+    "TargetGroups": {
+      "Value": [
+        "Machinaria_Heartworks_Oiler_Targets"
+      ],
+      "Description": "The NPC groups of its master (the Heartwinder in its fight roles, never the pendulums)"
+    },
+    "OilRange": {
+      "Value": 3.5,
+      "Description": "It oils its master from this close (DESIGN.md 6.2)"
+    },
+    "OilAttack": {
+      "Value": "Machinaria_Heartworks_Oiler_Oil",
+      "Description": "The oiling root (1.5 s)"
+    },
+    "OilTime": {
+      "Value": [
+        1.5,
+        1.5
+      ],
+      "Description": "How long the oiling root runs; the heal lands only after it"
+    },
+    "OilEffect": {
+      "Value": "Machinaria_Heartworks_Oiler_Heal",
+      "Description": "Applied to the master when the oiling finishes"
+    },
+    "OilFlourish": {
+      "Value": "Machinaria_Heartworks_Oiler_Sheen",
+      "Description": "Applied to the master after OilEffect"
+    },
+    "RecallMessage": {
+      "Value": "Machinaria_Heartworks_Oilers_Recall",
+      "Description": "Beacon that removes every Oiler at once (the encounter's reset)"
+    },
+    "Lifetime": {
+      "Value": [
+        60,
+        60
+      ],
+      "Description": "Seconds before a lost Oiler gives up and goes"
+    },
+    "AttitudeGroup": {
+      "Value": "Machinaria_Robots",
+      "Description": "Attitude group"
+    },
+    "OilMessage": {
+      "Value": "Machinaria_Heartworks_Heartwinder_Oiled",
+      "Description": "Beacon sent to the Heartwinder encounter when the oiling lands, so it can tell the players (Oiled, or Grit for a Grit Oiler)"
+    }
+  },
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  },
+  "AttitudeGroup": {
+    "Compute": "AttitudeGroup"
+  },
+  "IsMemory": false,
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [
+    "Self"
+  ],
+  "KnockbackScale": 1,
+  "DeathAnimationTime": 1.2,
+  "DeathParticles": "Golem_Clockwork_Steam_Burst",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "Acceleration": 10,
+      "Gravity": 10,
+      "MaxClimbHeight": 1.5,
+      "MaxFallSpeed": 8,
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "RunThreshold": 1
+    }
+  ],
+  "StartState": "Deliver",
+  "Instructions": [
+    {
+      "$Comment": "When the fight resets, the encounter recalls every Oiler: go at once.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Beacon",
+        "Message": {
+          "Compute": "RecallMessage"
+        },
+        "Range": 100
+      },
+      "Actions": [
+        {
+          "Type": "Despawn"
+        }
+      ]
+    },
+    {
+      "$Comment": "A stuck Oiler gives up after Lifetime, so it cannot block its feed's marker.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "ActionsBlocking": true,
+      "Actions": [
+        {
+          "Type": "Timeout",
+          "Delay": {
+            "Compute": "Lifetime"
+          }
+        },
+        {
+          "Type": "Despawn"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Deliver"
+      },
+      "Instructions": [
+        {
+          "$Comment": "Find the master and keep it as the delivery target.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Mob",
+            "Range": 80,
+            "LockOnTarget": true,
+            "LockedTargetSlot": "Master",
+            "Rebind": true,
+            "Filters": [
+              {
+                "Type": "NPCGroup",
+                "IncludeGroups": {
+                  "Compute": "TargetGroups"
+                }
+              }
+            ]
+          },
+          "HeadMotion": {
+            "Type": "Watch"
+          }
+        },
+        {
+          "$Comment": "Oiling (latched in a sub state so the master stepping away does not stall it).",
+          "Sensor": {
+            "Type": "State",
+            "State": ".Oil"
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "Master"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "HeadMotion": {
+                "Type": "Watch"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Attack",
+                  "Attack": {
+                    "Compute": "OilAttack"
+                  },
+                  "AttackPauseRange": [
+                    0,
+                    0
+                  ],
+                  "SkipAiming": true,
+                  "LineOfSight": false,
+                  "AvoidFriendlyFire": false,
+                  "Once": true
+                },
+                {
+                  "$Comment": "The Attack action returns as soon as the root starts (vanilla's Food Carrier waits the same way): wait out the 1.5 s pumping, so killing it now stops the heal.",
+                  "Type": "Timeout",
+                  "Delay": {
+                    "Compute": "OilTime"
+                  }
+                },
+                {
+                  "Type": "ApplyEntityEffect",
+                  "EntityEffect": {
+                    "Compute": "OilEffect"
+                  },
+                  "UseTarget": true
+                },
+                {
+                  "Type": "ApplyEntityEffect",
+                  "EntityEffect": {
+                    "Compute": "OilFlourish"
+                  },
+                  "UseTarget": true
+                },
+                {
+                  "$Comment": "Tell the encounter what landed (it shows the players a title or a message).",
+                  "Type": "Beacon",
+                  "Message": {
+                    "Compute": "OilMessage"
+                  },
+                  "Range": 60,
+                  "ExpirationTime": 3,
+                  "TargetGroups": [
+                    "Machinaria_Heartworks_Heartwinder_Group"
+                  ]
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.3,
+                    0.3
+                  ]
+                },
+                {
+                  "Type": "State",
+                  "State": "Leave"
+                }
+              ]
+            },
+            {
+              "$Comment": "The master is gone: just leave.",
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Leave"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Target",
+            "TargetSlot": "Master",
+            "Range": {
+              "Compute": "OilRange"
+            }
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": ".Oil"
+            }
+          ]
+        },
+        {
+          "$Comment": "Walk to the master.",
+          "Sensor": {
+            "Type": "Target",
+            "TargetSlot": "Master",
+            "Range": 80
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 3,
+            "StopDistance": 2.5,
+            "RelativeSpeed": 1,
+            "UsePathfinder": true
+          }
+        },
+        {
+          "$Comment": "No master to oil (it died or was never there): wait a moment, then leave.",
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                8,
+                8
+              ]
+            },
+            {
+              "Type": "State",
+              "State": "Leave"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Done: toddle away from the master and go.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Leave"
+      },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": {
+            "Type": "Any"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2.5,
+                2.5
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Golem_Clockwork_Steam_Burst",
+              "Offset": [
+                0,
+                0.4,
+                0
+              ]
+            },
+            {
+              "Type": "Despawn"
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Target",
+            "TargetSlot": "Master",
+            "Range": 30
+          },
+          "BodyMotion": {
+            "Type": "Flee",
+            "SlowDownDistance": 6,
+            "StopDistance": 8,
+            "RelativeSpeed": 1
+          }
+        },
+        {
+          "Sensor": {
+            "Type": "Any"
+          },
+          "BodyMotion": {
+            "Type": "Wander",
+            "MaxHeadingChange": 45,
+            "RelativeSpeed": 1
+          }
+        }
+      ]
+    }
+  ]
+}

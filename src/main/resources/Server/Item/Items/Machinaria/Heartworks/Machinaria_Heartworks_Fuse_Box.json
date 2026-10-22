@@ -1,0 +1,79 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Machinaria_Heartworks_Fuse_Box.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Fuse_Box.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Fuse_Box/Full.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Fuse_Box/Full.png",
+        "Weight": 1
+      }
+    ],
+    "Opacity": "Transparent",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    },
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#4a505a",
+    "ParticleColor": "#4a505a",
+    "Light": {
+      "Color": "#076"
+    },
+    "InteractionHint": "server.interactionHints.machinaria.takeFuse",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "Effects": {
+              "WorldSoundEventId": "SFX_Metal_Hit"
+            }
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Empty": {
+          "DrawType": "Model",
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Fuse_Box/Empty.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Fuse_Box/Empty.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "InteractionHint": null,
+          "Interactions": {
+            "Use": null
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$Comment": "Kettle Bomb (wave): the Kettle Bomb that N5's hatch sends up during its coupling waves. It notices the players at once (round 6, Gibson note 6), in the pattern of the Feastmaster's arena adds (Dungeon_Feastmaster_Scrapper: ViewSector 360, a long view and alert range): it sees 40 all round and hears 24, and once alerted it keeps its target to 60. Everything else is the Kettle Bomb's.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Kettle_Bomb_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Kettle_Bomb",
+    "DropList": "Machinaria_Heartworks_Kettle_Bomb_Drops",
+    "MaxHealth": 85,
+    "MaxSpeed": 7.5,
+    "ViewRange": 40,
+    "ViewSector": 360,
+    "HearingRange": 24,
+    "AlertedRange": 60,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Kettle_Bomb.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

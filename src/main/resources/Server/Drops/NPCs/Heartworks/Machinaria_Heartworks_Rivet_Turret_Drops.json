@@ -1,0 +1,63 @@
+{
+  "$Comment": "A destroyed Rivet Turret: scrap, a handful of rivets (bolts for the Bolt Gun), sometimes an iron or bronze bar.",
+  "Container": {
+    "Type": "Multiple",
+    "Containers": [
+      {
+        "Type": "Single",
+        "Item": {
+          "ItemId": "Rubble_ScrapMetal",
+          "QuantityMin": 2,
+          "QuantityMax": 3
+        }
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 25
+          },
+          {
+            "Type": "Single",
+            "Item": {
+              "ItemId": "Weapon_Bolt",
+              "QuantityMin": 4,
+              "QuantityMax": 8
+            },
+            "Weight": 75
+          }
+        ]
+      },
+      {
+        "Type": "Choice",
+        "Weight": 100,
+        "Containers": [
+          {
+            "Type": "Empty",
+            "Weight": 72
+          },
+          {
+            "Type": "Single",
+            "Weight": 28,
+            "Item": {
+              "ItemId": "Ingredient_Bar_Iron",
+              "QuantityMin": 1,
+              "QuantityMax": 1
+            }
+          }
+        ]
+      },
+      {
+        "Type": "Single",
+        "Weight": 12,
+        "Item": {
+          "ItemId": "Ingredient_Bar_Bronze",
+          "QuantityMin": 1,
+          "QuantityMax": 2
+        }
+      }
+    ]
+  }
+}

@@ -2,6 +2,38 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [1.0.0] - Unreleased
+
+### Added
+
+- **The Heartworks:** A new dungeon deep under the Rusted Expanse. Craft a Heartworks Shard at the Mechanics bench to open the way.
+  - Ride the Cog Lift down the Mainspring Shaft, then fight through the assembly line and three wings.
+  - The Boiler Works runs on steam, the Dynamo Hall on live rails and Tesla coils, and the Gearworks on turning cogs and tick gates.
+  - Restart the three couplings to open the Heart Gate, then face the Heartwinder in the Winding Chamber.
+- **Hazards and puzzles:** Steam vents, stamp presses, robot arms, conveyor belts, live rails, Tesla coils and great gears. Valves, levers, breakers, bells and repairs open the way.
+- **New robots:** Coglings, Kettle Bombs, Rivet Turrets, Oilers, Rivet Guards and Arc Tinkers, and three elites: the Boilerback, the Foreman and the Arc Warden.
+- **The Heartwinder:** A three phase boss. Brake its pylons, keep its pendulums in check, and survive the falling ring.
+- **New runes:**
+  - **Overwind:** dropped by the Heartwinder.
+  - **Galvanic:** a reward for solving the Clock Archive's bell puzzle.
+- **The Sunken Pumpworks:** Small flooded ruins out on the Rusted Expanse, in four kinds, with rusted guardians and their own loot.
+- **Gearwood furniture:** A full furniture set in red gearwood, brass and iron, with doors, beds, chests, clocks, chandeliers, a crate and more. Craft it at the Mechanics bench.
+- **New sounds:** The dungeon hums, ticks and hisses, and every machine, hazard and robot has its own sounds.
+- **Rusted Expanse landmarks:** Old machines now jut out of the plain: scrap mounds, broken pipes, smoking stacks and fallen pylons.
+- **Rusted Expanse weather:** A warm rust haze with drifting rust motes. Now and then a dust storm rolls in.
+
+### Changed
+
+- **Rusted Expanse ground:** The plain now has fields of rust grass, red gravel and half-buried hull plates. Oil lakes have scorched shores, and the cliffs show red clay instead of grey stone.
+- **Rusted Expanse fins:** The great rust ribs now have bronze seams.
+- **Rusted Expanse colour:** Grass shifts gently from deep rust to dry ochre across the plain.
+- **Rusted Expanse light:** It is always morning in the Expanse now, so it is much easier to see.
+- **A fresh look:** The Rusted Expanse metals, the robots, the Clockwork Golem and the Mechanics bench are repainted to match Hytale's style.
+
+### Fixed
+
+- **Rusted Expanse:** Repair bays, giant gears, robot heads and scrap no longer appear inside each other.
+
 ## [0.5.0] - 10/12/2026 (Hytale Update 7)
 
 ### Changed

@@ -1,0 +1,19 @@
+{
+  "$Comment": "The basic attack: two staff swipes (right to left, then back); resets after 4 s.",
+  "Interactions": [
+    {
+      "Type": "Chaining",
+      "ChainId": "Machinaria_Heartworks_Arc_Warden_Swipe",
+      "ChainingAllowance": 4,
+      "Next": [
+        "Machinaria_Heartworks_Arc_Warden_Swipe_1",
+        "Machinaria_Heartworks_Arc_Warden_Swipe_2"
+      ]
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

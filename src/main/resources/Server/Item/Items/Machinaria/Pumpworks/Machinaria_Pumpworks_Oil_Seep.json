@@ -1,0 +1,50 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_pumpworks.items.Machinaria_Pumpworks_Oil_Seep.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Pumpworks_Oil_Seep.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Pumpworks"
+    ]
+  },
+  "BlockType": {
+    "BlockSoundSetId": "Mud",
+    "BlockParticleSetId": "Dust",
+    "PhysicalMaterialId": "Dirt",
+    "Group": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "SoftBlocks"
+      }
+    },
+    "Material": "Empty",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Pumpworks/Oil_Seep.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Pumpworks/Oil_Seep.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Block_Flat",
+    "VariantRotation": "NESW",
+    "RequiresAlphaBlending": true,
+    "RandomRotation": "YawStep90",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Pumpworks_Oil_Bubbles",
+        "TargetNodeName": "Pool"
+      }
+    ],
+    "TextureComputedColor": "#18151c",
+    "ParticleColor": "#18151c"
+  }
+}

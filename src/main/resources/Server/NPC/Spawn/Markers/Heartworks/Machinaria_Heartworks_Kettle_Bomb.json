@@ -1,0 +1,15 @@
+{
+  "$Comment": "One Kettle Bomb. The Heartworks' clock is paused, so SpawnAfterGameTime never passes and a burst or killed kettle stays gone for the run.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Kettle_Bomb",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 6,
+  "RealtimeRespawn": false,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

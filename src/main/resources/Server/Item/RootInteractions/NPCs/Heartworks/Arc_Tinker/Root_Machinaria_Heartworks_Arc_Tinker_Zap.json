@@ -1,0 +1,19 @@
+{
+  "$Comment": "The Zap, not while hit-stunned.",
+  "Interactions": [
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Hit_Interrupt_Stunned"
+      ],
+      "Match": "None",
+      "Next": "Machinaria_Heartworks_Arc_Tinker_Zap"
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

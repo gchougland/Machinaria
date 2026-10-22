@@ -1,0 +1,108 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Winch.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Winch.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Winch.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#5a5446",
+    "TextureComputedColor": "#5a5446",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Winch.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Winch.png",
+        "Weight": 1
+      }
+    ],
+    "Light": {
+      "Color": "#066"
+    },
+    "HitboxType": "Machinaria_Heartworks_Winch",
+    "InteractionHint": "machinaria_hw_machines.hints.fitGear",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.25
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Broken": {
+          "InteractionHint": "machinaria_hw_machines.hints.fitGear",
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "Simple",
+                  "RunTime": 0.25
+                }
+              ]
+            }
+          }
+        },
+        "Repaired": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Winch_Repaired.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Winch_Repaired.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "InteractionHint": null,
+          "Interactions": {
+            "Use": null
+          }
+        },
+        "Turning": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Winch_Repaired.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Winch_Repaired.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Winch_Turning.blockyanim",
+          "Looping": true,
+          "Light": {
+            "Color": "#000"
+          },
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A_Steam_Bursts_Winding",
+          "InteractionHint": null,
+          "Interactions": {
+            "Use": null
+          }
+        }
+      }
+    }
+  }
+}

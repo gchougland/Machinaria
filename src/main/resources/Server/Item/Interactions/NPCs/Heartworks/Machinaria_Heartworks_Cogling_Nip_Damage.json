@@ -1,0 +1,18 @@
+{
+  "$Comment": "As vanilla NPC_Attack_Melee_Damage without the knockback: a Cogling nips, it does not shove. 13 (round 2; was 5): above the Deepworks Scrapper's 12 swing.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "BaseDamage": {
+      "Physical": 13
+    }
+  },
+  "DamageEffects": {
+    "WorldSoundEventId": "SFX_Unarmed_Impact",
+    "LocalSoundEventId": "SFX_Unarmed_Impact",
+    "WorldParticles": [
+      {
+        "SystemId": "Impact_Sword_Basic"
+      }
+    ]
+  }
+}

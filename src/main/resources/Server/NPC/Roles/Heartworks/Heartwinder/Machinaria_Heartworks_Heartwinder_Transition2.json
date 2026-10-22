@@ -1,0 +1,254 @@
+{
+  "$Comment": "Transition 2, Casing Breach (DESIGN.md 7.4, at 35%): it staggers and the casing bursts off (the attachment is removed at 1 s), then it walks onto the turntable; the encounter drops the ring, frees the pendulums, clamps the cradle and turns the clock to III. Players cannot hurt it. Ends with a beacon to the encounter.",
+  "Type": "Generic",
+  "Appearance": "Machinaria_Heartworks_Heartwinder",
+  "KnockbackScale": 0,
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "AttitudeGroup": "Machinaria_Robots",
+  "DisableDamageGroups": [
+    "Self",
+    "Player",
+    "Machinaria_Heartworks_Robots"
+  ],
+  "MaxHealth": 4500,
+  "NameTranslationKey": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name",
+  "IsMemory": false,
+  "StartState": "Breach",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 4,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 240,
+      "Acceleration": 10
+    }
+  ],
+  "Instructions": [
+    {
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetHealthRegen",
+          "EnableRegen": false
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Breach"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Flag",
+            "Name": "Breach_Done",
+            "Set": false
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.1,
+                0.1
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "CasingBreach"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Groan"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1,
+                1
+              ]
+            },
+            {
+              "Type": "ModelAttachment",
+              "Slot": "Casing",
+              "Attachment": ""
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Casing_Burst",
+              "TargetNodeName": "Chest",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Breach"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Heart_Flare",
+              "TargetNodeName": "Heart",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Heartworks_Heartwinder_Casing_Burst",
+              "Range": 60,
+              "ExpirationTime": 5,
+              "TargetGroups": [
+                "Machinaria_Heartworks_Heartwinder_Group"
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                2,
+                2
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Breach_Done"
+            },
+            {
+              "Type": "State",
+              "State": "Home"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Home"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Back to the cradle (its spawn point, the leash point): walk while it is more than 0.8 away, for at most a few seconds.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Home"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 0.8
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "UsePathfinder": true
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                4,
+                4
+              ]
+            },
+            {
+              "Type": "State",
+              "State": "Clamped"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Clamped"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Clamped"
+      },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "ClampedIdle"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Heartworks_Heartwinder_Transition2_Finished",
+              "Range": 60,
+              "ExpirationTime": -1,
+              "TargetGroups": [
+                "Machinaria_Heartworks_Heartwinder_Group"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

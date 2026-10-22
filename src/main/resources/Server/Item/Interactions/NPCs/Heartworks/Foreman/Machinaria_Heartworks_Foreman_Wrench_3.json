@@ -1,0 +1,79 @@
+{
+  "$Comment": "Wrench 3 (DESIGN.md 6.2): the overhead. 0.9 s wind-up with the wrench over his head, it lands 0.15 s in front of him (34 and a knock-up), 0.7 s to haul it back up: the punish window. He stands still for all of it.",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 0.9,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Foreman",
+            "ItemAnimationId": "Wrench3",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Foreman_Wrench_Swing"
+          },
+          "Next": {
+            "Type": "Selector",
+            "RunTime": 0.15,
+            "Effects": {
+              "WorldSoundEventId": "SFX_Mace_T2_Impact",
+              "Particles": [
+                {
+                  "SystemId": "Machinaria_Heartworks_Foreman_Wrench_Slam",
+                  "TargetEntityPart": "Entity",
+                  "TargetNodeName": "Origin",
+                  "DetachedFromModel": true,
+                  "PositionOffset": {
+                    "Z": 2.4
+                  }
+                }
+              ]
+            },
+            "Selector": {
+              "Id": "Horizontal",
+              "Direction": "ToRight",
+              "TestLineOfSight": true,
+              "ExtendTop": 1.5,
+              "ExtendBottom": 1,
+              "StartDistance": 0.5,
+              "EndDistance": 3.5,
+              "Length": 70,
+              "YawStartOffset": -35
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "Var": "Wrench_3_Damage",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Foreman_Wrench_3_Damage"
+                    ]
+                  },
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.7
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.75,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

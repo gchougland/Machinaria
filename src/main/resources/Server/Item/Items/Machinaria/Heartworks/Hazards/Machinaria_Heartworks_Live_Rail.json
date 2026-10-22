@@ -1,0 +1,104 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Live_Rail.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Live_Rail.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Live_Rail.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Cube",
+    "VariantRotation": "NESW",
+    "Textures": [
+      {
+        "Up": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail.png",
+        "Down": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Side.png",
+        "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Side.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#4a4644",
+    "ParticleColor": "#9a5a34",
+    "State": {
+      "Definitions": {
+        "Warn": {
+          "Textures": [
+            {
+              "Up": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Warn.png",
+              "Down": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Side.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Side_Warn.png",
+              "Weight": 1
+            }
+          ],
+          "CubeShadingMode": "Fullbright",
+          "Light": {
+            "Color": "#a31"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Rail_Crawl",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 0.5,
+                "Z": 0
+              }
+            }
+          ]
+        },
+        "Live": {
+          "Textures": [
+            {
+              "Up": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Live.png",
+              "Down": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Side.png",
+              "Sides": "BlockTextures/Machinaria/Heartworks/Hazards/Live_Rail_Side_Live.png",
+              "Weight": 1
+            }
+          ],
+          "CubeShadingMode": "Fullbright",
+          "Light": {
+            "Color": "#2ac"
+          },
+          "AmbientSoundEventId": "SFX_GoblinLab_Fence",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Rail_Zap",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 0.5,
+                "Z": 0
+              }
+            },
+            {
+              "SystemId": "Machinaria_Live_Puddle",
+              "PositionOffset": {
+                "X": 0,
+                "Y": 0.5,
+                "Z": 0
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$Comment": "A parts crate on A2's conveyor belts (DESIGN.md 5.3 H5). Inert: no attack, takes no damage, ignores players and NPCs. The belt volumes carry it (KnockbackScale 1: Role.processAddVelocityInstruction multiplies every pushed velocity by it, so 0 kept it still); its Hard HitboxCollision comes from the prefab it is pasted from (Server/Prefabs/Heartworks/Parts_Crate/).",
+  "Type": "Generic",
+  "Appearance": "Machinaria_Heartworks_Parts_Crate",
+  "MaxHealth": 100,
+  "Invulnerable": true,
+  "KnockbackScale": 1,
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [
+    "Self",
+    "Player"
+  ],
+  "IsMemory": false,
+  "MotionControllerList": [
+    {
+      "$Comment": "Gravity makes the crate settle on the belt. No instruction issues a moving BodyMotion; the speed values only satisfy the validator.",
+      "Type": "Walk",
+      "MaxWalkSpeed": 4,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 360,
+      "Acceleration": 10
+    }
+  ],
+  "Instructions": [
+    {
+      "Instructions": [
+        {
+          "$Comment": "Stand still and do nothing: the belt does the moving.",
+          "Sensor": {
+            "Type": "Any"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          }
+        }
+      ]
+    }
+  ],
+  "NameTranslationKey": "machinaria_hw_rooms_assembly.npcRoles.Machinaria_Heartworks_Parts_Crate.name"
+}

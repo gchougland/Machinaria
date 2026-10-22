@@ -1,0 +1,96 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Furniture_Gearwood_Wardrobe.name",
+    "Description": "machinaria_gearwood.items.Furniture_Gearwood_Wardrobe.description"
+  },
+  "PlayerAnimationsId": "Block",
+  "Categories": [
+    "Furniture.Furniture",
+    "Machinaria.Content"
+  ],
+  "Set": "Furniture_Gearwood",
+  "Icon": "Icons/ItemsGenerated/Furniture_Gearwood_Wardrobe.png",
+  "IconProperties": {
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Scale": 0.36,
+    "Translation": [
+      13.8,
+      -22.2
+    ]
+  },
+  "Recipe": {
+    "TimeSeconds": 1.5,
+    "Input": [
+      {
+        "ItemId": "Wood_Gear_Planks",
+        "Quantity": 4
+      },
+      {
+        "ItemId": "Ingredient_Bar_Bronze",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Id": "MechanicsBench",
+        "Categories": [
+          "Mechanics_Furniture"
+        ]
+      }
+    ]
+  },
+  "BlockType": {
+    "BlockParticleSetId": "Wood",
+    "BlockSoundSetId": "Wood",
+    "PhysicalMaterialId": "Wood",
+    "CustomModel": "Blocks/Machinaria/Gearwood/Wardrobe.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Gearwood/Wardrobe_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Woods"
+      }
+    },
+    "HitboxType": "Wardrobe",
+    "Material": "Solid",
+    "ParticleColor": "#4a2418",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "VariantRotation": "NESW",
+    "TextureComputedColor": "#4E2519"
+  },
+  "ResourceTypes": [
+    {
+      "Id": "Fuel"
+    },
+    {
+      "Id": "Charcoal"
+    }
+  ],
+  "Tags": {
+    "Type": [
+      "Furniture"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Scale": 0.8,
+  "ItemSoundSetId": "ISS_Blocks_Wood"
+}

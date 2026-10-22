@@ -1,0 +1,70 @@
+{
+  "$Comment": "The Midnight Chime (DESIGN.md 7.5), if the brake valves fail: it strikes, and a ring runs from the centre to radius 24 in 1.5 s, 2 high (it cannot be jumped): 150. Analogue: the Gobliterator shockwave (a Donut to 50 over 2.25 s).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 0.6,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "MidnightChime",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Toll"
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 1.5,
+      "Selector": {
+        "Id": "Donut",
+        "MinRadius": 0,
+        "MaxRadius": 24,
+        "Width": 2.5,
+        "Height": 2,
+        "Offset": {
+          "Y": -0.5
+        }
+      },
+      "HitEntityRules": [
+        {
+          "Matchers": [
+            {
+              "Type": "Player"
+            }
+          ],
+          "Next": {
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "Midnight_Damage",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Machinaria_Heartworks_Heartwinder_Midnight_Damage"
+                  ]
+                },
+                "DefaultOk": true
+              }
+            ]
+          }
+        }
+      ],
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Midnight_Chime",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Midnight_Ring",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "PositionOffset": {
+              "Y": 0.1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.5
+    }
+  ]
+}

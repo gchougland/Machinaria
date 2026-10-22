@@ -1,0 +1,41 @@
+{
+  "$Comment": "The Arc Bolt wind-up, 1.2 s: sparks drawn in and arcs gathering round the raised staff (or a hand), the glow swelling white and turning red at the very end. Attach at Staff-Yoke (and L-Hand).",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Charge_Draw",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.42,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Charge_Arcs",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.42,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Charge_Arcs_Late",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.42,
+        "Z": 0
+      },
+      "StartDelay": 0.6
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Charge_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.42,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 1.2,
+  "BoundingRadius": 3,
+  "CullDistance": 96
+}

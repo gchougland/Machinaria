@@ -1,0 +1,14 @@
+{
+  "$Comment": "The Foreman, on his office in A4 (the plan's E). The Heartworks' clock is paused, so SpawnAfterGameTime never passes and a killed Foreman stays dead for the run.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Foreman",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 8,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

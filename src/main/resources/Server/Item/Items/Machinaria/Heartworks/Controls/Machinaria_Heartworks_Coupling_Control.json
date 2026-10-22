@@ -1,0 +1,126 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Coupling_Control.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Coupling_Control.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Coupling_Control.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Idle.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Idle.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Chest_Small",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.coupling.engage",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Dead": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Dead.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Dead.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.coupling.check"
+        },
+        "Engaged": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Engaged.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Engaged.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.coupling.check"
+        },
+        "Hold1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Hold1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Hold1.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.coupling.check"
+        },
+        "Hold2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Hold2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Hold2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.coupling.check"
+        },
+        "Running": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Running.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Control/Running.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a92"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.coupling.check",
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$Comment": "A Steam Charge into a primed pylon (DESIGN.md 7.6): Scalded Gears, stunned 8 s and taking 50% more damage. The Gobliterator barrel trick in steam.",
+  "Duration": 8,
+  "OverlapBehavior": "Overwrite",
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.5
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.5
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.5
+      }
+    ]
+  },
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Chest"
+      },
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Head",
+        "PositionOffset": {
+          "Y": 0.8
+        }
+      }
+    ]
+  }
+}

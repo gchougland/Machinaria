@@ -1,0 +1,33 @@
+{
+  "$Comment": "The Ground Ring wind-up, 1.4 s: a floor disc at its feet pulsing faster and turning from blue to red, the fill spreading to the edge. Built as Feastmaster_Slam_Warning, radius 1 at Scale 1: spawn it at Scale 10 for the radius-10 ring.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Ring_Warning_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.012,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Ring_Warning_Fill",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.014,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Ring_Warning_Edge",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.01,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 1.4,
+  "BoundingRadius": 11,
+  "CullDistance": 128,
+  "IsImportant": true
+}

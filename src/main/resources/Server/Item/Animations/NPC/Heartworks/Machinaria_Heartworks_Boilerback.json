@@ -1,0 +1,72 @@
+{
+  "$Comment": "The Boilerback's attack clips (tools/models/heartworks/boilerback.anims.mjs), as vanilla NPC sets: WiggleWeights and Camera included.",
+  "Animations": {
+    "Piston1": {
+      "ThirdPerson": "NPC/Heartworks/Boilerback/Animations/Piston1.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Boilerback/Animations/Piston1.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "Piston2": {
+      "ThirdPerson": "NPC/Heartworks/Boilerback/Animations/Piston2.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Boilerback/Animations/Piston2.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "SlamCharge": {
+      "ThirdPerson": "NPC/Heartworks/Boilerback/Animations/SlamCharge.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Boilerback/Animations/SlamCharge.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.25,
+      "Looping": true
+    },
+    "Slam": {
+      "ThirdPerson": "NPC/Heartworks/Boilerback/Animations/Slam.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Boilerback/Animations/Slam.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.04,
+      "Looping": false
+    },
+    "VentBurst": {
+      "ThirdPerson": "NPC/Heartworks/Boilerback/Animations/VentBurst.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Boilerback/Animations/VentBurst.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 5,
+        "Min": -5
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 12,
+        "Min": -12
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

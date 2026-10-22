@@ -1,0 +1,38 @@
+{
+  "$Comment": "A great boiler bursts where the Boilerback crashed into it (DESIGN.md 6.2, the Boiler Hall twist): a scalding blast within 4 of the boiler: 20 Fire, blown 6 away. The role also takes 5% of its own health and signals the room (see the template).",
+  "Type": "Simple",
+  "RunTime": 0.2,
+  "Effects": {
+    "WorldSoundEventId": "SFX_Machinaria_HW_Boilerback_Charge_Crash",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Boilerback_Boiler_Burst"
+      }
+    ]
+  },
+  "Next": {
+    "Type": "Selector",
+    "RunTime": 0.15,
+    "Effects": {
+      "WorldSoundEventId": "SFX_Machinaria_HW_Boilerback_Vent"
+    },
+    "Selector": {
+      "Id": "AOECircle",
+      "Range": 4
+    },
+    "HitEntity": {
+      "Interactions": [
+        {
+          "Type": "Replace",
+          "Var": "Boiler_Burst_Damage",
+          "DefaultValue": {
+            "Interactions": [
+              "Machinaria_Heartworks_Boilerback_Boiler_Burst_Damage"
+            ]
+          },
+          "DefaultOk": true
+        }
+      ]
+    }
+  }
+}

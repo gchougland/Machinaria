@@ -1,0 +1,193 @@
+{
+  "$Comment": "Transition 1, Pressure Spike (DESIGN.md 7.4, at 70%): it hurries back to its cradle, then a great steam column and a whistle (5 s); the encounter opens the vents and turns the clock to II. Players cannot hurt it (DisableDamageGroups). Ends with a beacon to the encounter.",
+  "Type": "Generic",
+  "Appearance": "Machinaria_Heartworks_Heartwinder",
+  "KnockbackScale": 0,
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "AttitudeGroup": "Machinaria_Robots",
+  "DisableDamageGroups": [
+    "Self",
+    "Player",
+    "Machinaria_Heartworks_Robots"
+  ],
+  "MaxHealth": 4500,
+  "NameTranslationKey": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name",
+  "IsMemory": false,
+  "StartState": "Home",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 6,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 240,
+      "Acceleration": 10
+    }
+  ],
+  "Instructions": [
+    {
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetHealthRegen",
+          "EnableRegen": false
+        }
+      ]
+    },
+    {
+      "$Comment": "Back to the cradle (its spawn point, the leash point): walk while it is more than 0.8 away, for at most a few seconds.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Home"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Leash",
+            "Range": 0.8
+          },
+          "BodyMotion": {
+            "Type": "Seek",
+            "SlowDownDistance": 1,
+            "StopDistance": 0.5,
+            "UsePathfinder": true
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                4,
+                4
+              ]
+            },
+            {
+              "Type": "State",
+              "State": "Spike"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Spike"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Spike"
+      },
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Flag",
+            "Name": "Spike_Done",
+            "Set": false
+          },
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "ActionsBlocking": true,
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action",
+              "Animation": "PressureSpike"
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Steam_Column"
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Column",
+              "TargetNodeName": "Stack",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                1.5,
+                1.5
+              ]
+            },
+            {
+              "Type": "SpawnParticles",
+              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+              "TargetNodeName": "Chest",
+              "Offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "Type": "PlaySound",
+              "SoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast"
+            },
+            {
+              "Type": "Timeout",
+              "Delay": [
+                3.5,
+                3.5
+              ]
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Spike_Done"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          },
+          "Actions": [
+            {
+              "Type": "Beacon",
+              "Message": "Machinaria_Heartworks_Heartwinder_Transition1_Finished",
+              "Range": 60,
+              "ExpirationTime": -1,
+              "TargetGroups": [
+                "Machinaria_Heartworks_Heartwinder_Group"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

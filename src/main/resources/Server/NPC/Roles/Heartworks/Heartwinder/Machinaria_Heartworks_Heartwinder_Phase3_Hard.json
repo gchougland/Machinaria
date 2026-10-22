@@ -1,0 +1,15 @@
+{
+  "$Comment": "Hard mode phase 3: the Lash has a third band behind and turns 30 degrees a second, Overpressure blows ahead and behind, the pendulums swing every 6 s (the encounter).",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Heartwinder_Template",
+  "Modify": {
+    "MaxHealth": 9000,
+    "NameTranslationKey": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder_Hard.name",
+    "DropList": "Drop_Heartwinder_Hard",
+    "Appearance": "Machinaria_Heartworks_Heartwinder_Breached",
+    "MaxSpeed": 0.1,
+    "Stationary": true,
+    "LashTurnSpeed": 30,
+    "_CombatConfig": "Machinaria_Heartworks_Heartwinder_CAE_Phase3_Hard"
+  }
+}

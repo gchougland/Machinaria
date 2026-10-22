@@ -1,0 +1,19 @@
+{
+  "$Comment": "The basic attack in phase 1: the right piston, then the left (a fixed rhythm the player learns); resets after 4 s.",
+  "Interactions": [
+    {
+      "Type": "Chaining",
+      "ChainId": "Root_Machinaria_Heartworks_Heartwinder_Jab",
+      "ChainingAllowance": 4,
+      "Next": [
+        "Machinaria_Heartworks_Heartwinder_Jab_1",
+        "Machinaria_Heartworks_Heartwinder_Jab_2"
+      ]
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

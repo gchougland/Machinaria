@@ -1,0 +1,14 @@
+{
+  "$Comment": "Run by the selector's volume on a player who chose standard mode, or who walked past the selector while it shows standard: tells both encounters.",
+  "Interactions": [
+    {
+      "Type": "SendBeacon",
+      "Message": "Machinaria_Heartworks_Heartwinder_Mode_Standard",
+      "Range": 60,
+      "ExpirationTime": 5,
+      "TargetGroups": [
+        "Machinaria_Heartworks_Heartwinder_Group"
+      ]
+    }
+  ]
+}

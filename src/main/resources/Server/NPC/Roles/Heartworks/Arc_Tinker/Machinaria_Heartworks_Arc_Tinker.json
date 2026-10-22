@@ -1,0 +1,23 @@
+{
+  "$Comment": "The Arc Tinker. Tuned above vanilla Dungeon_Goblin_Lobber (80 HP, kites at 10, 1.9 s lob, bomb 18; Gibson, round 2 note 22: tankier and harder than the goblins): 120 HP, zap 16. Behaviour in Machinaria_Heartworks_Arc_Tinker_Template. The orb's burst (30 Lightning) and puddle (6 every 0.5 s) live in the projectile, which the role's variables do not reach.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Arc_Tinker_Template",
+  "Modify": {
+    "MaxHealth": 120,
+    "MaxSpeed": 5,
+    "_InteractionVars": {
+      "Arc_Tinker_Zap_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Arc_Tinker_Zap_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Lightning": 16
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

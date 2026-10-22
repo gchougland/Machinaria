@@ -1,0 +1,75 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Coupling_Machine.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Coupling_Machine.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Coupling_Machine.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#6a5a46",
+    "TextureComputedColor": "#6a5a46",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Coupling_Machine.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Coupling_Machine.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Coupling_Machine",
+    "State": {
+      "Definitions": {
+        "Idle": {},
+        "Engaging": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Coupling_Machine_Engaging.blockyanim",
+          "Looping": false,
+          "Light": {
+            "Color": "#530"
+          },
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_B_Steam_Bursts_Winding",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Coupling_Engage",
+              "TargetNodeName": "Idler"
+            }
+          ]
+        },
+        "Running": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Coupling_Machine_Lit.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Coupling_Machine_Running.blockyanim",
+          "Looping": true,
+          "Light": {
+            "Color": "#750"
+          },
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A"
+        }
+      }
+    }
+  }
+}

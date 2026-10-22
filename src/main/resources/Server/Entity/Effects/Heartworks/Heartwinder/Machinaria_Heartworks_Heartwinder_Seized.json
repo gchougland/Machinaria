@@ -1,0 +1,39 @@
+{
+  "$Comment": "All four brake valves turned in the climax (DESIGN.md 7.6): seized for 12 s, taking double damage.",
+  "Duration": 12,
+  "OverlapBehavior": "Overwrite",
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -1
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -1
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -1
+      }
+    ]
+  },
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Heartwinder_Seized_Sparks",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Key"
+      },
+      {
+        "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Glow",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Heart"
+      }
+    ]
+  }
+}

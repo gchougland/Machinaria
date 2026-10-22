@@ -1,0 +1,35 @@
+{
+  "Parent": "Metal_Goblin_Iron_Pipe_Glowy",
+  "TranslationProperties": {
+    "Name": "server.items.Machinaria_Heartworks_Pipe_Lamp.name"
+  },
+  "Quality": "Developer",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Opacity": "Transparent",
+    "Light": {
+      "Color": "#e94"
+    },
+    "State": {
+      "Definitions": {
+        "Off": {
+          "DrawType": "Model",
+          "CustomModel": "Blocks/Structures/Tubes/Long_Glowy.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Weight": 1,
+              "Texture": "Blocks/Structures/Tubes/Corner_Textures/Metal_Goblin_Iron_Glowy_Off.png"
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          }
+        }
+      }
+    }
+  }
+}

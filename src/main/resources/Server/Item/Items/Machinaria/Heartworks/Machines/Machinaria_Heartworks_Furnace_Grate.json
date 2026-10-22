@@ -1,0 +1,70 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Furnace_Grate.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Furnace_Grate.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Furnace_Grate.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#4a3a32",
+    "TextureComputedColor": "#4a3a32",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Furnace_Grate.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Furnace_Grate.png",
+        "Weight": 1
+      }
+    ],
+    "Light": {
+      "Color": "#c52"
+    },
+    "AmbientSoundEventId": "SFX_Flame_Default_Loop",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Furnace_Embers",
+        "TargetNodeName": "Coals"
+      }
+    ],
+    "HitboxType": "Full",
+    "State": {
+      "Definitions": {
+        "Lit": {},
+        "Dark": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Furnace_Grate_Dark.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#000"
+          },
+          "AmbientSoundEventId": null,
+          "Particles": []
+        }
+      }
+    }
+  }
+}

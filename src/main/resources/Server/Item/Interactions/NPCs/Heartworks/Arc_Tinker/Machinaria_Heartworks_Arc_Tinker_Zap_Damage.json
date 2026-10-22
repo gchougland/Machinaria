@@ -1,0 +1,26 @@
+{
+  "$Comment": "16 Lightning, a small push (round 2 note 22). The role sets it again through Arc_Tinker_Zap_Damage.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Lightning": 16
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Force": 1,
+      "RelativeX": 0,
+      "RelativeZ": -3,
+      "VelocityY": 1.5
+    },
+    "WorldSoundEventId": "SFX_Emit_Goblin_Electric_Fence_Zap",
+    "LocalSoundEventId": "SFX_Emit_Goblin_Electric_Fence_Zap",
+    "WorldParticles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Tinker_Zap_Hit"
+      }
+    ]
+  }
+}

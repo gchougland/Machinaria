@@ -1,0 +1,25 @@
+{
+  "$Comment": "Overwind rune, the 1 s windup: slowed, no sprint or jump, a key turning on the back.",
+  "Name": "machinaria_hw_items.entityEffects.Rune_Overwind_Windup",
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 0.7,
+    "MovementEffects": {
+      "DisableSprint": true,
+      "DisableJump": true
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Rune_Overwind_Windup",
+        "TargetNodeName": "Chest",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0.1,
+          "Z": -0.45
+        }
+      }
+    ]
+  },
+  "Duration": 1,
+  "OverlapBehavior": "Overwrite",
+  "Debuff": false
+}

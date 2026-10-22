@@ -1,0 +1,24 @@
+{
+  "$Comment": "The tossed gear: 35 Physical, knocked back 8.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Physical": 35
+    },
+    "RandomPercentageModifier": 0.05
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Force": 8,
+      "RelativeX": 0,
+      "RelativeZ": -2,
+      "VelocityY": 2,
+      "VelocityType": "Set",
+      "VelocityConfig": {
+        "Threshold": 0.9
+      }
+    },
+    "WorldSoundEventId": "SFX_Unarmed_Impact"
+  }
+}

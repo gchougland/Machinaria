@@ -1,0 +1,98 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Boiler.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Boiler.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Boiler.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#8a5236",
+    "TextureComputedColor": "#8a5236",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Boiler.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Boiler.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Boiler_Running.blockyanim",
+    "Looping": true,
+    "Light": {
+      "Color": "#952"
+    },
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Liquid_Bubbling_Steam_Bursts",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Boiler_Steam",
+        "TargetNodeName": "ValveCup"
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Boiler",
+    "State": {
+      "Definitions": {
+        "Running": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Boiler.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Boiler_Running.blockyanim",
+          "Looping": true,
+          "Light": {
+            "Color": "#952"
+          },
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Liquid_Bubbling_Steam_Bursts",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Boiler_Steam",
+              "TargetNodeName": "ValveCup"
+            }
+          ]
+        },
+        "Burst": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Boiler_Burst.png",
+              "Weight": 1
+            }
+          ],
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Boiler_Burst.blockyanim",
+          "Looping": false,
+          "Light": {
+            "Color": "#410"
+          },
+          "AmbientSoundEventId": "SFX_Env_Emit_Geyzer",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Boiler_Burst",
+              "TargetNodeName": "PatchPlate"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

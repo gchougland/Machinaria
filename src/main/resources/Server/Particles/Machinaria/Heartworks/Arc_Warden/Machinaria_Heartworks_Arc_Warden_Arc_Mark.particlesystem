@@ -1,0 +1,41 @@
+{
+  "$Comment": "The Arc Bolt target under a player, 1.2 s: a target disc pulsing faster, cyan turning red by the end. Radius 1 at Scale 1: spawn it at Scale 2 for the radius-2 mark.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Mark_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.012,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Mark_Fill",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.014,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Mark_Edge",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.01,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Arc_Warden_Arc_Mark_Target",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.016,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 1.2,
+  "BoundingRadius": 3,
+  "CullDistance": 128,
+  "IsImportant": true
+}

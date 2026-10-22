@@ -1,0 +1,91 @@
+{
+  "$Comment": "The intro slam: 1.5 s with both arms over the head and a radius 5 decal, then a circle 5 for 40 Crush; 0.85 s to recover. The intro role is invulnerable throughout.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 1.5,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "IntroSlam",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Intro_Mark",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 5.05,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Key_Glow",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Key",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.15,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 5
+      },
+      "HitEntityRules": [
+        {
+          "Matchers": [
+            {
+              "Type": "Player"
+            }
+          ],
+          "Next": {
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "Intro_Slam_Damage",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Machinaria_Heartworks_Heartwinder_Intro_Slam_Damage"
+                  ]
+                },
+                "DefaultOk": true
+              }
+            ]
+          }
+        }
+      ],
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Slam",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Slam_Impact",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 5,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.85
+    }
+  ]
+}

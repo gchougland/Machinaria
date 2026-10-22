@@ -1,0 +1,17 @@
+{
+  "$Comment": "Run Down: a last hammer hit, a brass chord, a clock winding down (15.3 s, once). The encounter should hold its StopEncounterMusic about 16 s after Ending, as vanilla's WinMusicDelay (15.5 s for a 14.3 s stinger).",
+  "Type": "SingleTrack",
+  "AudioCategory": "AudioCat_Music_In_Game",
+  "Track": "Music/Machinaria/Heartworks/HW_Boss_Ending.ogg",
+  "LoopCount": 1,
+  "Tempo": {
+    "Bpm": 140,
+    "BeatsPerBar": 4,
+    "BeatValue": 4
+  },
+  "TransitionType": "Crossfade",
+  "TransitionDuration": 1.0,
+  "ExitAt": {
+    "Point": "Immediate"
+  }
+}

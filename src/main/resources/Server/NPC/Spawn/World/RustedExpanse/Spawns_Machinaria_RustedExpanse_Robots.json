@@ -1,0 +1,48 @@
+{
+  "$Comment": "Rusted Expanse surface robots (notes/world-spawns.md, notes/pumpworks.md Round 5). Scoped like the Clockfin: only Env_Machinaria_RustedExpanse. They share the environment budget (SpawnDensity per 1024 column segments) with the Clockfin (weight 16) by weight. Round 5 (Gibson: much too common): robot weights 16 to 4 in all, packs smaller. With the environment at SpawnDensity 0.3125 (pumpworks REQUESTS) that is about 0.06 robots and 0.25 Clockfins per 1024 segments: robots a quarter of before (0.25), the Clockfin as before (0.25). SkyLight 50 to 100 keeps them out of the Sunken Pumpworks rooms and caves. The ground set keeps them on natural soil and red sandstone. The fluid tag names no fluid, so they never spawn in oil.",
+  "Environments": [
+    "Env_Machinaria_RustedExpanse"
+  ],
+  "NPCs": [
+    {
+      "Id": "Machinaria_Pumpworks_Rusted_Cogling",
+      "Weight": 2,
+      "SpawnBlockSet": "Machinaria_RustedExpanse_Ground",
+      "SpawnFluidTag": "Machinaria_RustedExpanse_No_Fluid",
+      "Flock": {
+        "Size": [
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "Id": "Machinaria_RustedExpanse_Kettle_Bomb",
+      "Weight": 0.75,
+      "SpawnBlockSet": "Machinaria_RustedExpanse_Ground",
+      "SpawnFluidTag": "Machinaria_RustedExpanse_No_Fluid"
+    },
+    {
+      "Id": "Machinaria_RustedExpanse_Arc_Tinker",
+      "Weight": 0.75,
+      "SpawnBlockSet": "Machinaria_RustedExpanse_Ground",
+      "SpawnFluidTag": "Machinaria_RustedExpanse_No_Fluid"
+    },
+    {
+      "Id": "Machinaria_RustedExpanse_Rivet_Guard",
+      "Weight": 0.5,
+      "SpawnBlockSet": "Machinaria_RustedExpanse_Ground",
+      "SpawnFluidTag": "Machinaria_RustedExpanse_No_Fluid"
+    }
+  ],
+  "LightRanges": {
+    "SkyLight": [
+      50,
+      100
+    ]
+  },
+  "DayTimeRange": [
+    0,
+    24
+  ]
+}

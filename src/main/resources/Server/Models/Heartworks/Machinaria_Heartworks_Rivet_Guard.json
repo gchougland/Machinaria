@@ -1,0 +1,213 @@
+{
+  "Model": "NPC/Heartworks/Rivet_Guard/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Rivet_Guard/Models/Texture.png",
+  "EyeHeight": 2.1,
+  "CrouchOffset": -0.35,
+  "MinScale": 1,
+  "MaxScale": 1,
+  "HitBox": {
+    "Max": {
+      "X": 0.5,
+      "Y": 2.3,
+      "Z": 0.5
+    },
+    "Min": {
+      "X": -0.5,
+      "Y": 0,
+      "Z": -0.5
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 20,
+        "Min": -20
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 40,
+        "Min": -40
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Goblin_Decorative_Steam",
+      "TargetNodeName": "Stack-Cap",
+      "PositionOffset": {
+        "Y": 0.08
+      },
+      "Scale": 0.7
+    }
+  ],
+  "Light": {
+    "Color": "#642"
+  },
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/WalkBackward.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Run.blockyanim",
+          "BlendingDuration": 0.2
+        }
+      ]
+    },
+    "RunBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/WalkBackward.blockyanim",
+          "BlendingDuration": 0.2,
+          "Speed": 1.3
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Guard.blockyanim",
+          "BlendingDuration": 0.15
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.15,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "CrouchWalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/WalkBackward.blockyanim",
+          "BlendingDuration": 0.15,
+          "Speed": 0.7
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpRun": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Fall.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Alert"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Hurt.blockyanim",
+          "BlendingDuration": 0.05,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Death.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Rivet_Guard_Death"
+        }
+      ]
+    },
+    "Polish": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Polish.blockyanim",
+          "BlendingDuration": 0.3,
+          "Looping": false
+        }
+      ]
+    },
+    "Sentry": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Sentry.blockyanim",
+          "BlendingDuration": 0.3,
+          "Looping": false
+        }
+      ]
+    },
+    "Vent": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Rivet_Guard/Animations/Vent.blockyanim",
+          "BlendingDuration": 0.2,
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

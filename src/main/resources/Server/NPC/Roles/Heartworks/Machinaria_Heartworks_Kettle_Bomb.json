@@ -1,0 +1,20 @@
+{
+  "$Comment": "Kettle Bomb: the Heartworks' bomber, a pot-bellied copper kettle on stubby legs (DESIGN.md 6.1, 6.2). 85 HP (round 2; was 24: above the Deepworks Lobber, 80), speed 7.5. Runs whistling at the nearest player, plants within 2.5, boils for 3 s under a pie timer and a ground ring, bursts for 38 in 3.5 (the Lobber's bomb: 30) (knocked 10 away). Killed first it pops for 24 in 2.5 after a 0.5 s falling whistle. Both hit robots too.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Kettle_Bomb_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Kettle_Bomb",
+    "DropList": "Machinaria_Heartworks_Kettle_Bomb_Drops",
+    "MaxHealth": 85,
+    "MaxSpeed": 7.5,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Kettle_Bomb.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

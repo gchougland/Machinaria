@@ -1,0 +1,71 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Wood_Gear_Planks.name"
+  },
+  "Parent": "Wood_Softwood_Planks",
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Planks.png",
+  "Set": "Wood_Gear_Planks",
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_Gear_Trunk",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Builders",
+        "Type": "StructuralCrafting",
+        "Categories": [
+          "WoodPlanks"
+        ]
+      }
+    ],
+    "OutputQuantity": 1
+  },
+  "BlockType": {
+    "Textures": [
+      {
+        "Sides": "BlockTextures/Machinaria/Gearwood/Wood_Gear_Planks_Side_02.png",
+        "UpDown": "BlockTextures/Machinaria/Gearwood/Wood_Gear_Planks_Top.png",
+        "Weight": 5
+      },
+      {
+        "Sides": "BlockTextures/Machinaria/Gearwood/Wood_Gear_Planks_Side.png",
+        "UpDown": "BlockTextures/Machinaria/Gearwood/Wood_Gear_Planks_Top_02.png",
+        "Weight": 2
+      }
+    ],
+    "ParticleColor": "#4a2418",
+    "TextureComputedColor": "#55271B"
+  },
+  "ResourceTypes": [
+    {
+      "Id": "Wood_Gear"
+    },
+    {
+      "Id": "Wood_Planks"
+    },
+    {
+      "Id": "Wood_All"
+    },
+    {
+      "Id": "Fuel"
+    },
+    {
+      "Id": "Charcoal"
+    }
+  ],
+  "Tags": {
+    "Type": [
+      "Wood"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Categories": [
+    "Blocks.Wood",
+    "Machinaria.Content"
+  ]
+}

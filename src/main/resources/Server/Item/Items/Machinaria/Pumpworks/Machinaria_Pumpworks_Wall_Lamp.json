@@ -1,0 +1,47 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_pumpworks.items.Machinaria_Pumpworks_Wall_Lamp.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Pumpworks_Wall_Lamp.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Pumpworks"
+    ]
+  },
+  "BlockType": {
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Group": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Machinaria_Pumpworks_Scrap_Salvage"
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Pumpworks/Wall_Lamp.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Pumpworks/Wall_Lamp.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Torch_Wall",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#e94",
+      "Radius": 9
+    },
+    "TextureComputedColor": "#a07a40",
+    "ParticleColor": "#6a5a40"
+  }
+}

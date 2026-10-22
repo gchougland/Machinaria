@@ -1,0 +1,256 @@
+{
+  "$Comment": "One of the Winding Chamber's two great pendulums (DESIGN.md 7.2, 7.5): an invulnerable hazard that never moves. Chained at the outer end of its swing until the encounter's release beacon (the casing breach), then it swings for good: the swing clip loops on the Status slot (set once at the release) and Root_..._Pendulum_Swing runs the hits, 75 swings in one chain so they keep the clip's period (round 4); chained again on a reset or the boss's death. Shaped like vanilla's Gobliterator barrel and legs props: a role with no movement.",
+  "Type": "Generic",
+  "Appearance": "Machinaria_Heartworks_Heartwinder_Pendulum",
+  "KnockbackScale": 0,
+  "DefaultPlayerAttitude": "Ignore",
+  "DefaultNPCAttitude": "Ignore",
+  "AttitudeGroup": "Machinaria_Robots",
+  "DisableDamageGroups": [
+    "Self",
+    "Player",
+    "Machinaria_Heartworks_Robots"
+  ],
+  "Invulnerable": true,
+  "MaxHealth": 1000000,
+  "NameTranslationKey": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder_Pendulum.name",
+  "IsMemory": false,
+  "StartState": "Chained",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MinWalkSpeed": 0,
+      "MaxWalkSpeed": 0.01,
+      "Gravity": 10,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 1,
+      "Acceleration": 1
+    }
+  ],
+  "Instructions": [
+    {
+      "Continue": true,
+      "Sensor": {
+        "Type": "Any",
+        "Once": true
+      },
+      "Actions": [
+        {
+          "Type": "SetHealthRegen",
+          "EnableRegen": true
+        }
+      ]
+    },
+    {
+      "Continue": true,
+      "Sensor": {
+        "Type": "Beacon",
+        "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+        "Range": 60
+      },
+      "Actions": [
+        {
+          "Type": "State",
+          "State": "Chained"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Chained"
+      },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Actions": [
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Action"
+            },
+            {
+              "Type": "PlayAnimation",
+              "Slot": "Status",
+              "Animation": "PendulumChained"
+            }
+          ]
+        },
+        {
+          "$Comment": "Round 5 (Gibson note 18): the stop marker, kept on every tick while chained; the swing hits see it and interrupt their chain.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Any"
+          },
+          "Actions": [
+            {
+              "Type": "ApplyEntityEffect",
+              "EntityEffect": "Machinaria_Heartworks_Heartwinder_Pendulum_Stopped",
+              "UseTarget": false
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "Beacon",
+            "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Release",
+            "Range": 60
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Release"
+            }
+          ]
+        },
+        {
+          "$Comment": "Hard mode: the hard encounter releases it to swing faster (6 s).",
+          "Sensor": {
+            "Type": "Beacon",
+            "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Release_Hard",
+            "Range": 60
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "ReleaseHard"
+            }
+          ]
+        },
+        {
+          "HeadMotion": {
+            "Type": "Nothing"
+          },
+          "BodyMotion": {
+            "Type": "Nothing"
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Hard mode release: the same clip at 8/6 speed (the model asset's PendulumSwingFast), hits every 6 s.",
+      "Sensor": {
+        "Type": "State",
+        "State": "ReleaseHard"
+      },
+      "HeadMotion": {
+        "Type": "Nothing"
+      },
+      "BodyMotion": {
+        "Type": "Nothing"
+      },
+      "ActionsBlocking": true,
+      "Actions": [
+        {
+          "Type": "Timeout",
+          "Delay": [
+            3,
+            3
+          ]
+        },
+        {
+          "Type": "PlaySound",
+          "SoundEventId": "SFX_Gobliterator_Chain_Swing_A"
+        },
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Status",
+          "Animation": "PendulumSwingFast"
+        },
+        {
+          "Type": "State",
+          "State": "SwingHard"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "SwingHard"
+      },
+      "HeadMotion": {
+        "Type": "Nothing"
+      },
+      "BodyMotion": {
+        "Type": "Nothing"
+      },
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Attack": "Root_Machinaria_Heartworks_Heartwinder_Pendulum_Swing_Hard",
+          "SkipAiming": true,
+          "LineOfSight": false,
+          "AvoidFriendlyFire": false,
+          "AttackPauseRange": [
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Released (round 4: the swing clip loops on the Status slot from here, set once, so it never restarts; Root_..._Pendulum_Swing only holds the hits, 75 swings a run): the chain lets go with a clank; it starts its swing from the outer end, as a real pendulum.",
+      "Sensor": {
+        "Type": "State",
+        "State": "Release"
+      },
+      "HeadMotion": {
+        "Type": "Nothing"
+      },
+      "BodyMotion": {
+        "Type": "Nothing"
+      },
+      "ActionsBlocking": true,
+      "Actions": [
+        {
+          "Type": "Timeout",
+          "Delay": [
+            3,
+            3
+          ]
+        },
+        {
+          "Type": "PlaySound",
+          "SoundEventId": "SFX_Gobliterator_Chain_Swing_A"
+        },
+        {
+          "Type": "PlayAnimation",
+          "Slot": "Status",
+          "Animation": "PendulumSwing"
+        },
+        {
+          "Type": "State",
+          "State": "Swing"
+        }
+      ]
+    },
+    {
+      "Sensor": {
+        "Type": "State",
+        "State": "Swing"
+      },
+      "HeadMotion": {
+        "Type": "Nothing"
+      },
+      "BodyMotion": {
+        "Type": "Nothing"
+      },
+      "Actions": [
+        {
+          "Type": "Attack",
+          "Attack": "Root_Machinaria_Heartworks_Heartwinder_Pendulum_Swing",
+          "SkipAiming": true,
+          "LineOfSight": false,
+          "AvoidFriendlyFire": false,
+          "AttackPauseRange": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ]
+}

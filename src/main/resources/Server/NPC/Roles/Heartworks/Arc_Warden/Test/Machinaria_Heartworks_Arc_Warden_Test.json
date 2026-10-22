@@ -1,0 +1,16 @@
+{
+  "$Comment": "TEST ONLY: the Arc Warden with the Ground Ring every 6 s and Arc Link every 6 s without needing a live coil (a test arena has none), so one bot sees every move. Delete before release.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Arc_Warden_Template",
+  "Modify": {
+    "MaxHealth": 1000,
+    "MaxSpeed": 4.5,
+    "_CombatConfig": "CAE_Machinaria_Heartworks_Arc_Warden_Test",
+    "ArcLinkWithCoils": false,
+    "ArcLinkWithoutCoils": true,
+    "ArcLinkCooldown": [
+      6,
+      6
+    ]
+  }
+}

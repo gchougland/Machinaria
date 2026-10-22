@@ -1,0 +1,26 @@
+{
+  "$Comment": "The mace chain: two hits in one attack (about 1.85 s), not while hit-stunned, protected as vanilla Root_NPC_Goblin_Guardian_Club_Attack.",
+  "Interactions": [
+    {
+      "Type": "EffectCondition",
+      "Entity": "User",
+      "EntityEffectIds": [
+        "Hit_Interrupt_Stunned"
+      ],
+      "Match": "None",
+      "Next": {
+        "Type": "Serial",
+        "Interactions": [
+          "Hit_Interrupt_Begin_Protected_Attack",
+          "Machinaria_Heartworks_Rivet_Guard_Mace_1",
+          "Machinaria_Heartworks_Rivet_Guard_Mace_2"
+        ]
+      }
+    }
+  ],
+  "Tags": {
+    "Attack": [
+      "Melee"
+    ]
+  }
+}

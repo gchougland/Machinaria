@@ -1,0 +1,83 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Coupling_Lamp.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Coupling_Lamp.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Coupling_Lamp.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Off.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Off.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Plant_Large",
+    "VariantRotation": "NESW",
+    "State": {
+      "Definitions": {
+        "Steam": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Steam.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Steam.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#b52"
+          }
+        },
+        "Power": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Power.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Power.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#36a"
+          }
+        },
+        "Clockwork": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Clockwork.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Coupling_Lamp/Clockwork.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a92"
+          }
+        }
+      }
+    }
+  }
+}

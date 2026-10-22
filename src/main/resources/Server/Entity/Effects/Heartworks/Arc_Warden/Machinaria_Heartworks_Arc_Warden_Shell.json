@@ -1,0 +1,20 @@
+{
+  "$Comment": "The Insulated shell, the look and the sound (the 90% damage cut is the room's DamageMultiplier rule): a blue tint, a shimmer and the shield's buzzing loop. The role re-applies it every tick while a live coil is in range, so it lapses 0.4 s after the last coil goes dark, its loop with it (vanilla Saw_Charge_Loop_Effect's pattern: a short Overwrite effect carrying a looping WorldSoundEventId).",
+  "ApplicationEffects": {
+    "EntityTopTint": "#7fdcff",
+    "EntityBottomTint": "#2a78c8",
+    "WorldSoundEventId": "SFX_Machinaria_HW_Arc_Warden_Shield_Loop",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Shell",
+        "TargetEntityPart": "Self",
+        "TargetNodeName": "Origin"
+      }
+    ]
+  },
+  "Duration": 0.4,
+  "OverlapBehavior": "Overwrite",
+  "Infinite": false,
+  "RemovalBehavior": "Duration",
+  "Debuff": false
+}

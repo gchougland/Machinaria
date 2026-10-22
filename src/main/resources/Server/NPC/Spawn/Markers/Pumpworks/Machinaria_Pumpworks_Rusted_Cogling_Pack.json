@@ -1,0 +1,16 @@
+{
+  "$Comment": "Two to four Rusted Coglings (brave in a flock). Game time is paused in the Rusted Expanse, so they stay dead for the visit.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Pumpworks_Rusted_Cogling",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D",
+      "Flock": "Group_Tiny"
+    }
+  ],
+  "ExclusionRadius": 6,
+  "RealtimeRespawn": false,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

@@ -1,0 +1,25 @@
+{
+  "$Comment": "Grit in the works: a 1 s marker on the master. The Heartwinder senses it and seizes for 3 s (its role's .GritJam: the jam clip, sparks, a grinding bang, its own Machinaria_Heartworks_Heartwinder_Grit_Jammed effect with +25% damage taken). On the test dummy it just stops it for 1 s. Shaped like vanilla Bear_Voidtaken_Charge_Stun.",
+  "Duration": 1,
+  "OverlapBehavior": "Overwrite",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Head"
+      }
+    ],
+    "MovementEffects": {
+      "DisableAll": true
+    },
+    "AbilityEffects": {
+      "Disabled": [
+        "Primary",
+        "Secondary",
+        "Ability1",
+        "Ability3"
+      ]
+    }
+  }
+}

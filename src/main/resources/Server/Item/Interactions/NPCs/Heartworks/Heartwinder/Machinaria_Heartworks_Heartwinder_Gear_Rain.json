@@ -1,0 +1,36 @@
+{
+  "$Comment": "Gear Rain (DESIGN.md 7.5): 1.5 s with both arms raised to the dome and gears rattling; it tells the encounter, which drops gears at and beside each player (Root_..._Gear_Drop: a decal, then a gear falls for 30 in radius 2.5). Analogue: the Gobliterator rocket rain and the stalactites.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 1.5,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "GearRain",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Rattle",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Glow",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Heart",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "SendBeacon",
+      "Message": "Machinaria_Heartworks_Heartwinder_Gear_Rain",
+      "Range": 48,
+      "ExpirationTime": 2,
+      "TargetGroups": [
+        "Machinaria_Heartworks_Heartwinder_Group"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$Comment": "20 Physical (round 2 note 22; the goblin guardian bash is 14), knocked about 6 blocks a second away (DESIGN.md 6.2). The role sets it again through Rivet_Guard_Bash_Damage.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Physical": 20
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Force": 1,
+      "RelativeX": 0,
+      "RelativeZ": -7,
+      "VelocityY": 2.5
+    },
+    "WorldSoundEventId": "SFX_T1_Impact_Blunt",
+    "LocalSoundEventId": "SFX_T1_Impact_Blunt",
+    "CameraEffect": "Impact",
+    "WorldParticles": [
+      {
+        "SystemId": "Impact_Blade_01"
+      }
+    ]
+  }
+}

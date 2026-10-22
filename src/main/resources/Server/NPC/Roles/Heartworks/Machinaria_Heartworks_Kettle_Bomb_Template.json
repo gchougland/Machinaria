@@ -1,0 +1,187 @@
+{
+  "$Comment": "The Kettle Bomb's brain (DESIGN.md 6.2): vanilla has no rushing bomber, so it is built from parts: the goblin Lobber's BlowingUp state (a standing fuse, then a blast and removal), the Gobliterator barrel's pie timer, and Template_Intelligent's detection components. It idles, notices, toots and runs whistling at the nearest player (the whistle scatters Coglings), plants itself within PlantRange and boils over: 0.5 s plant, 2.5 s boil with a pie timer and a ground ring of the blast's radius, then it bursts (BoilAttack) and is removed. Killed first, it pops (DeathInstruction runs PopAttack): a 0.5 s falling whistle, then a smaller blast. Both blasts hit robots too.",
+  "Type": "Abstract",
+  "Parameters": {
+    "Appearance": { "Value": "Machinaria_Heartworks_Kettle_Bomb", "Description": "Model to be used" },
+    "MaxHealth": { "Value": 85, "Description": "Max health" },
+    "MaxSpeed": { "Value": 7.5, "Description": "Running speed" },
+    "DropList": { "Value": "Machinaria_Heartworks_Kettle_Bomb_Drops", "Description": "Drops when killed (it drops nothing when it bursts: it removes itself)" },
+    "NameTranslationKey": { "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Kettle_Bomb.name", "Description": "Translation key for NPC name display" },
+    "ViewRange": { "Value": 16, "Description": "View range" },
+    "ViewSector": { "Value": 220, "Description": "View sector" },
+    "HearingRange": { "Value": 10, "Description": "Hearing range" },
+    "AlertedRange": { "Value": 30, "Description": "Range within which it keeps its target" },
+    "PlantRange": { "Value": 2.5, "Description": "It plants itself when its target is this close (DESIGN.md 6.2)" },
+    "BoilAttack": { "Value": "Machinaria_Heartworks_Kettle_Bomb_Boil", "Description": "Plant, boil, burst" },
+    "PopAttack": { "Value": "Machinaria_Heartworks_Kettle_Bomb_Pop", "Description": "The smaller blast when killed first" },
+    "WhistleMessage": { "Value": "Machinaria_Heartworks_Kettle_Whistle", "Description": "Beacon its whistle sends: Coglings scatter from it" },
+    "WhistleRange": { "Value": 7, "Description": "How far the whistle carries" },
+    "WhistleEvery": { "Value": [ 1.2, 1.6 ], "Description": "Seconds between whistles while it runs" },
+    "WanderRadius": { "Value": 4, "Description": "Idle wander radius" },
+    "AttitudeGroup": { "Value": "Machinaria_Robots", "Description": "Attitude group" },
+    "KnockbackScale": { "Value": 0.6, "Description": "Knockback taken" }
+  },
+  "Appearance": { "Compute": "Appearance" },
+  "MaxHealth": { "Compute": "MaxHealth" },
+  "DropList": { "Compute": "DropList" },
+  "NameTranslationKey": { "Compute": "NameTranslationKey" },
+  "AttitudeGroup": { "Compute": "AttitudeGroup" },
+  "KnockbackScale": { "Compute": "KnockbackScale" },
+  "IsMemory": false,
+  "StartState": "Idle",
+  "DefaultPlayerAttitude": "Hostile",
+  "DefaultNPCAttitude": "Ignore",
+  "DisableDamageGroups": [ "Self" ],
+  "DeathAnimationTime": 0.9,
+  "DeathParticles": "Golem_Clockwork_Steam_Burst",
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": { "Compute": "MaxSpeed" },
+      "Gravity": 10,
+      "RunThreshold": 0.5,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 360,
+      "Acceleration": 12
+    }
+  ],
+  "Instructions": [
+    {
+      "$Comment": "Scale health to the party size on first aggro: the dungeon goblins' lower tier for bombers (x1.2, x1.4, x1.6).",
+      "Continue": true,
+      "Sensor": { "Type": "Not", "Sensor": { "Type": "State", "State": "Idle" } },
+      "Instructions": [
+        {
+          "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health",
+          "Modify": {
+            "EffectP2": "Dungeon_Goblin_Scale_Health_Low_P2",
+            "EffectP3": "Dungeon_Goblin_Scale_Health_Low_P3",
+            "EffectP4": "Dungeon_Goblin_Scale_Health_Low_P4"
+          }
+        }
+      ]
+    },
+    {
+      "Sensor": { "Type": "State", "State": "Idle" },
+      "Instructions": [
+        { "Reference": "Component_Instruction_Clear_Status_Animation" },
+        {
+          "Reference": "Component_Instruction_Damage_Check",
+          "Modify": {
+            "_ExportStates": [ "Chase", "Chase" ],
+            "AlertedRange": { "Compute": "AlertedRange" }
+          }
+        },
+        {
+          "Sensor": {
+            "Type": "Or",
+            "Sensors": [
+              {
+                "Reference": "Component_Sensor_Sight_By_Attitude",
+                "Modify": { "ViewRange": { "Compute": "ViewRange" }, "ViewSector": { "Compute": "ViewSector" }, "Attitudes": [ "Hostile" ] }
+              },
+              {
+                "Reference": "Component_Sensor_Sound_By_Attitude",
+                "Modify": { "HearingRange": { "Compute": "HearingRange" }, "Attitudes": [ "Hostile" ] }
+              }
+            ]
+          },
+          "Actions": [ { "Type": "State", "State": "Alerted" } ]
+        },
+        {
+          "$Comment": "Idle: potter about, sit and simmer.",
+          "Sensor": { "Type": "Any" },
+          "BodyMotion": {
+            "Type": "Sequence",
+            "Looped": true,
+            "Motions": [
+              { "Type": "Timer", "Time": [ 1, 3 ], "Motion": { "Type": "WanderInCircle", "Radius": { "Compute": "WanderRadius" }, "MaxHeadingChange": 60, "RelativeSpeed": 0.3 } },
+              { "Type": "Timer", "Time": [ 3, 7 ], "Motion": { "Type": "Nothing" } }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "$Comment": "Alerted: a startled hop and a toot (the Alerted clip carries the whistle), then the run.",
+      "Sensor": { "Type": "State", "State": "Alerted" },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": { "Type": "Any", "Once": true },
+          "Actions": [
+            { "Type": "PlayAnimation", "Slot": "Status", "Animation": "Alerted" },
+            { "Type": "Beacon", "Message": { "Compute": "WhistleMessage" }, "Range": { "Compute": "WhistleRange" }, "TargetGroups": [ "Machinaria_Heartworks_Robots" ] }
+          ]
+        },
+        {
+          "Sensor": { "Type": "Target", "Range": { "Compute": "AlertedRange" } },
+          "BodyMotion": { "Type": "Nothing" },
+          "HeadMotion": { "Type": "Watch" },
+          "Actions": [ { "Type": "Timeout", "Delay": [ 0.6, 0.6 ], "Action": { "Type": "State", "State": "Chase" } } ]
+        },
+        {
+          "Actions": [ { "Type": "Timeout", "Delay": [ 2, 2 ], "Action": { "Type": "State", "State": "Idle" } } ]
+        }
+      ]
+    },
+    {
+      "Sensor": { "Type": "State", "State": "Chase" },
+      "Instructions": [
+        { "Reference": "Component_Instruction_Clear_Status_Animation" },
+        {
+          "$Comment": "Whistle as it runs: a toot every WhistleEvery seconds, which scatters Coglings near it.",
+          "Continue": true,
+          "Sensor": { "Type": "Timer", "Name": "Whistle_Timer", "State": "Stopped" },
+          "Actions": [
+            { "Type": "Beacon", "Message": { "Compute": "WhistleMessage" }, "Range": { "Compute": "WhistleRange" }, "TargetGroups": [ "Machinaria_Heartworks_Robots" ] },
+            { "Type": "PlaySound", "SoundEventId": "SFX_Arrow_Whistle" },
+            { "Type": "TimerStart", "Name": "Whistle_Timer", "StartValueRange": { "Compute": "WhistleEvery" }, "RestartValueRange": { "Compute": "WhistleEvery" } }
+          ]
+        },
+        {
+          "$Comment": "Close enough: plant and boil over.",
+          "Sensor": { "Type": "Target", "Range": { "Compute": "PlantRange" }, "Filters": [ { "Type": "LineOfSight" } ] },
+          "Actions": [ { "Type": "State", "State": "Plant" } ]
+        },
+        {
+          "Sensor": { "Type": "Target", "Range": { "Compute": "AlertedRange" } },
+          "BodyMotion": { "Type": "Seek", "SlowDownDistance": 1.5, "StopDistance": 1.2, "RelativeSpeed": 1, "UsePathfinder": true },
+          "HeadMotion": { "Type": "Watch" }
+        },
+        {
+          "$Comment": "Lost its target: simmer down.",
+          "ActionsBlocking": true,
+          "Actions": [
+            { "Type": "Timeout", "Delay": [ 2, 3 ] },
+            { "Type": "ReleaseTarget" },
+            { "Type": "State", "State": "Idle" }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "Planted: it never moves again. The Attack action returns as soon as the boil root starts (as vanilla's Lobber and Food Carrier show, a Timeout covers the root's run). The root takes about 3.35 s and removes it when it bursts; the 4.5 s timeout and Die are only a backstop.",
+      "Sensor": { "Type": "State", "State": "Plant" },
+      "BodyMotion": { "Type": "Nothing" },
+      "ActionsBlocking": true,
+      "Actions": [
+        { "Type": "Beacon", "Message": { "Compute": "WhistleMessage" }, "Range": { "Compute": "WhistleRange" }, "TargetGroups": [ "Machinaria_Heartworks_Robots" ] },
+        { "Type": "Attack", "Attack": { "Compute": "BoilAttack" }, "AttackPauseRange": [ 0, 0 ], "SkipAiming": true, "LineOfSight": false, "AvoidFriendlyFire": false, "Once": true },
+        { "Type": "Timeout", "Delay": [ 4.5, 4.5 ] },
+        { "Type": "Die" }
+      ]
+    }
+  ],
+  "DeathInstruction": {
+    "$Comment": "Killed before it boils over, it pops (it never explodes without a warning: the pop has a 0.5 s falling whistle first).",
+    "Sensor": { "Type": "Any" },
+    "Actions": [ { "Type": "Attack", "Attack": { "Compute": "PopAttack" }, "SkipAiming": true, "LineOfSight": false, "AvoidFriendlyFire": false, "Once": true } ]
+  },
+  "StateTransitions": [
+    {
+      "States": [ { "From": [ "Chase" ], "To": [ "Idle" ] } ],
+      "Actions": [ { "Type": "ReleaseTarget" } ]
+    }
+  ]
+}

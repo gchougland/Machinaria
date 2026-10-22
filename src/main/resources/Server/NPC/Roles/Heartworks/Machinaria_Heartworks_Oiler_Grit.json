@@ -1,0 +1,21 @@
+{
+  "$Comment": "The Grit Oiler (DESIGN.md 6.2, 7.6; Gibson round 2 note 27): one in four. Rusted and blackened, sparking, gritty oil dripping. Its oil hurts the Heartwinder: 300 real damage (an effect DamageCalculator, so the hurt shows and the bar drops) and a 1 s jam marker the boss answers with a 3 s seize (sparks, a grinding bang, +25% damage taken). The encounter then shows the players \"Grit in the gears!\". Let it through.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Oiler_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Oiler_Grit",
+    "DropList": "Machinaria_Heartworks_Oiler_Drops",
+    "OilEffect": "Machinaria_Heartworks_Oiler_Grit_Damage",
+    "OilFlourish": "Machinaria_Heartworks_Oiler_Grit_Jam",
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    },
+    "OilMessage": "Machinaria_Heartworks_Heartwinder_Grit"
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Oiler_Grit.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

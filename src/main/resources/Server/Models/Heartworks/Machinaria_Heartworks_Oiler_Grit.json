@@ -1,0 +1,158 @@
+{
+  "Model": "NPC/Heartworks/Oiler/Models/Model.blockymodel",
+  "Texture": "NPC/Heartworks/Oiler/Models/Texture_Grit.png",
+  "EyeHeight": 0.55,
+  "CrouchOffset": 0,
+  "HitBox": {
+    "Max": {
+      "X": 0.32,
+      "Y": 0.8,
+      "Z": 0.32
+    },
+    "Min": {
+      "X": -0.32,
+      "Y": 0,
+      "Z": -0.32
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 12,
+        "Min": -12
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 15,
+        "Min": -15
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Oiler_Grit_Drip",
+      "TargetNodeName": "NozzleTip"
+    },
+    {
+      "SystemId": "Machinaria_Heartworks_Oiler_Grit_Sparks",
+      "TargetNodeName": "BandHigh"
+    }
+  ],
+  "AnimationSets": {
+    "Idle": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Idle.blockyanim"
+        }
+      ]
+    },
+    "Walk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Walk.blockyanim"
+        }
+      ]
+    },
+    "WalkBackward": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Walk.blockyanim"
+        }
+      ]
+    },
+    "Run": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Run.blockyanim"
+        }
+      ]
+    },
+    "Crouch": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "CrouchWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Walk.blockyanim",
+          "BlendingDuration": 0.1
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "JumpWalk": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false
+        }
+      ]
+    },
+    "Fall": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Idle.blockyanim",
+          "BlendingDuration": 0.3
+        }
+      ]
+    },
+    "Alerted": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Alerted.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Oiler_Hurt"
+        }
+      ]
+    },
+    "Hurt": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Hurt.blockyanim",
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Oiler_Hurt"
+        }
+      ]
+    },
+    "Death": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Death.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "SoundEventId": "SFX_Machinaria_HW_Oiler_Death"
+        }
+      ]
+    },
+    "Oil": {
+      "Animations": [
+        {
+          "Animation": "NPC/Heartworks/Oiler/Animations/Oil.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": false
+        }
+      ]
+    }
+  }
+}

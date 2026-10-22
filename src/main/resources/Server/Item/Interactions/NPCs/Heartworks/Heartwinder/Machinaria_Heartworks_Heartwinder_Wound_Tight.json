@@ -1,0 +1,18 @@
+{
+  "$Comment": "The Wind Up was not stopped: Wound Tight for 10 s (30% harder, 30% faster).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "ApplyEffect",
+      "EffectId": "Machinaria_Heartworks_Heartwinder_Wound_Tight",
+      "Entity": "User"
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.3,
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Key_Fast"
+      }
+    }
+  ]
+}

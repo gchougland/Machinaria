@@ -12,7 +12,8 @@
 		"Scale":	80,
 		"Seed":	"1235"
 	},
-	"Delimiters":	[{
+	"Delimiters":	[
+		{
 			"$NodeId":	"Delimiter.FieldFunction.Assignments-5d617402-591e-4712-9c5f-a852882ce6ed",
 			"Max":	0.85,
 			"Min":	0.7,
@@ -21,7 +22,8 @@
 				"Type":	"Weighted",
 				"SkipChance":	0,
 				"Seed":	"A",
-				"WeightedAssignments":	[{
+				"WeightedAssignments":	[
+					{
 						"$NodeId":	"Weight.Weighted.Assignments-63dc3f4f-328a-4c66-9bdf-f7d57e578de3",
 						"Weight":	70,
 						"Assignments":	{
@@ -31,15 +33,18 @@
 								"$NodeId":	"Union.Prop-54a3a590-23b6-4c9e-baeb-34fadf68780e",
 								"Type":	"Union",
 								"Skip":	false,
-								"Props":	[{
+								"Props":	[
+									{
 										"$NodeId":	"Prefab.Prop-32b18796-99ea-4059-aa99-aa3f30fda055",
 										"Type":	"Prefab",
 										"Skip":	false,
-										"WeightedPrefabPaths":	[{
+										"WeightedPrefabPaths":	[
+											{
 												"$NodeId":	"WeightedPath.Prefab.Prop-5065a026-f048-4092-8040-82c21f9cd32b",
 												"Path":	"Trees/Gear/Stage_0",
 												"Weight":	60
-											}],
+											}
+										],
 										"LegacyPath":	false,
 										"LoadEntities":	true,
 										"Directionality":	{
@@ -47,48 +52,127 @@
 											"Type":	"Random",
 											"Seed":	"A",
 											"Pattern":	{
-												"$NodeId":	"Floor.Pattern-c4c95d41-7933-47ef-bb04-6a02b09736ba",
-												"Type":	"Floor",
-												"ExportAs":	"Plains1_OakPattern_Floor_Trees",
-												"Skip":	false,
-												"Origin":	{
-													"$NodeId":	"BlockSet.Pattern-6c1e1d16-6c69-442c-8da8-bef85ea66f8d",
-													"Type":	"BlockSet",
-													"Skip":	false,
-													"BlockSet":	{
-														"$NodeId":	"BlockSet.BlockMask-fe300b56-b58b-4aaf-a12d-b9bbc7476e06",
-														"Inclusive":	true,
-														"Materials":	[{
-																"$NodeId":	"Material-48b86b4c-43da-4ade-a671-2f5946bf6a97",
-																"Solid":	"Empty"
-															}]
+												"Type":	"And",
+												"ExportAs":	"Machinaria_RustedExpanse_Floor_Trees",
+												"Patterns":	[
+													{
+														"$NodeId":	"Floor.Pattern-c4c95d41-7933-47ef-bb04-6a02b09736ba",
+														"Type":	"Floor",
+														"Skip":	false,
+														"Origin":	{
+															"$NodeId":	"BlockSet.Pattern-6c1e1d16-6c69-442c-8da8-bef85ea66f8d",
+															"Type":	"BlockSet",
+															"Skip":	false,
+															"BlockSet":	{
+																"$NodeId":	"BlockSet.BlockMask-fe300b56-b58b-4aaf-a12d-b9bbc7476e06",
+																"Inclusive":	true,
+																"Materials":	[
+																	{
+																		"$NodeId":	"Material-48b86b4c-43da-4ade-a671-2f5946bf6a97",
+																		"Solid":	"Empty"
+																	}
+																]
+															}
+														},
+														"Floor":	{
+															"$NodeId":	"BlockSet.Pattern-9ff58a8d-e767-47f4-95a4-ce46a79cb9ae",
+															"Type":	"BlockSet",
+															"Skip":	false,
+															"BlockSet":	{
+																"$NodeId":	"BlockSet.BlockMask-65678d74-f3db-4911-995e-c8be343fdf10",
+																"Inclusive":	true,
+																"Materials":	[
+																	{
+																		"$NodeId":	"Material-3f8613c2-4f18-4733-b22a-55c5addec9a0",
+																		"Solid":	"Soil_Grass"
+																	},
+																	{
+																		"$NodeId":	"Material-250f6934-3b49-440e-936e-2fa06bddf506",
+																		"Solid":	"Soil_Grass_Sunny"
+																	},
+																	{
+																		"$NodeId":	"Material-ddef840a-b7b4-478d-b13c-6830895d6831",
+																		"Solid":	"Soil_Grass_Full"
+																	},
+																	{
+																		"$NodeId":	"Material-2e849c3d-3809-45b1-9565-da87f5e9c455",
+																		"Solid":	"Soil_Pathway"
+																	},
+																	{
+																		"$NodeId":	"Material-d0ce7fb3-c77a-49c1-abff-557ddddd351e",
+																		"Solid":	"Soil_Leaves"
+																	}
+																]
+															}
+														}
+													},
+													{
+														"Type":	"Cuboid",
+														"$Comment":	"Machinaria clearance",
+														"SubPattern":	{
+															"Type":	"BlockSet",
+															"BlockSet":	{
+																"Inclusive":	true,
+																"Materials":	[
+																	{
+																		"Solid":	"Empty",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Grass",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Grass_Dry",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Grass_Burnt",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Gravel_Sand_Red",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Rock_Sandstone_Red",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Rock_Sandstone_Red_Cobble",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Dirt_Burnt",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Clay_Brick",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Clay_Smooth_Red",
+																		"SolidBottomUp":	false
+																	},
+																	{
+																		"Solid":	"Soil_Clay_Red",
+																		"SolidBottomUp":	false
+																	}
+																]
+															}
+														},
+														"Min":	{
+															"X":	-6,
+															"Y":	2,
+															"Z":	-6
+														},
+														"Max":	{
+															"X":	6,
+															"Y":	20,
+															"Z":	6
+														}
 													}
-												},
-												"Floor":	{
-													"$NodeId":	"BlockSet.Pattern-9ff58a8d-e767-47f4-95a4-ce46a79cb9ae",
-													"Type":	"BlockSet",
-													"Skip":	false,
-													"BlockSet":	{
-														"$NodeId":	"BlockSet.BlockMask-65678d74-f3db-4911-995e-c8be343fdf10",
-														"Inclusive":	true,
-														"Materials":	[{
-																"$NodeId":	"Material-3f8613c2-4f18-4733-b22a-55c5addec9a0",
-																"Solid":	"Soil_Grass"
-															}, {
-																"$NodeId":	"Material-250f6934-3b49-440e-936e-2fa06bddf506",
-																"Solid":	"Soil_Grass_Sunny"
-															}, {
-																"$NodeId":	"Material-ddef840a-b7b4-478d-b13c-6830895d6831",
-																"Solid":	"Soil_Grass_Full"
-															}, {
-																"$NodeId":	"Material-2e849c3d-3809-45b1-9565-da87f5e9c455",
-																"Solid":	"Soil_Pathway"
-															}, {
-																"$NodeId":	"Material-d0ce7fb3-c77a-49c1-abff-557ddddd351e",
-																"Solid":	"Soil_Leaves"
-															}]
-													}
-												}
+												]
 											}
 										},
 										"Scanner":	{
@@ -104,7 +188,8 @@
 										},
 										"MoldingDirection":	"None",
 										"MoldingChildren":	false
-									}, {
+									},
+									{
 										"$NodeId":	"Cluster.Prop-5e410a35-97c5-467a-ae2d-13834f9cd8f0",
 										"Type":	"Cluster",
 										"Skip":	false,
@@ -113,31 +198,37 @@
 										"DistanceCurve":	{
 											"$NodeId":	"ManualCurve-f06cd094-a0d1-4fd3-b3fc-c1d367633066",
 											"Type":	"Manual",
-											"Points":	[{
+											"Points":	[
+												{
 													"$NodeId":	"CurvePoint-e4863df6-e7e3-4541-959f-cfb3b651e59c",
 													"In":	9,
 													"Out":	0.005
-												}, {
+												},
+												{
 													"$NodeId":	"CurvePoint-a700e43d-a5ee-4671-ba86-3fc00c6626e8",
 													"In":	10,
 													"Out":	0
-												}]
+												}
+											]
 										},
-										"WeightedProps":	[{
+										"WeightedProps":	[
+											{
 												"$NodeId":	"Weighted.Cluster.Prop-a381765e-83d2-403e-884c-8a10dd6b9183",
 												"Weight":	1,
 												"ColumnProp":	{
 													"$NodeId":	"Column.Prop-f2ac520a-1acc-4132-9cc4-4b26527c0f81",
 													"Type":	"Column",
 													"Skip":	false,
-													"ColumnBlocks":	[{
+													"ColumnBlocks":	[
+														{
 															"$NodeId":	"Block.Column.Prop-d675be8d-e1c9-46d8-979e-a5e0c3971586",
 															"Y":	0,
 															"Material":	{
 																"$NodeId":	"Material-b6825965-3e3b-4b82-8d34-03a186e211f9",
 																"Solid":	"Rubble_ScrapMetal"
 															}
-														}],
+														}
+													],
 													"Directionality":	{
 														"$NodeId":	"Static.Directionality-be41441f-a400-4504-884b-75d0f727c422",
 														"Type":	"Static",
@@ -146,7 +237,7 @@
 															"$NodeId":	"Imported.Pattern-b80b3abf-0d31-423e-b3f8-ca4d1be41ef9",
 															"Type":	"Imported",
 															"Skip":	false,
-															"Name":	"Plains1_OakPattern_Floor_Trees"
+															"Name":	"Machinaria_RustedExpanse_Floor_Trees"
 														}
 													},
 													"Scanner":	{
@@ -161,12 +252,13 @@
 														"ResultCap":	1
 													}
 												}
-											}],
+											}
+										],
 										"Pattern":	{
 											"$NodeId":	"Imported.Pattern-3a2219f4-f64f-4234-b0a8-8d9532a4563c",
 											"Type":	"Imported",
 											"Skip":	false,
-											"Name":	"Plains1_OakPattern_Floor"
+											"Name":	"Machinaria_RustedExpanse_Floor_Rings"
 										},
 										"Scanner":	{
 											"$NodeId":	"ColumnLinear.Scanner-a86d0509-1564-4da9-bfd1-9229c3c173d7",
@@ -179,12 +271,15 @@
 											"TopDownOrder":	true,
 											"ResultCap":	1
 										}
-									}]
+									}
+								]
 							}
 						}
-					}]
+					}
+				]
 			}
-		}, {
+		},
+		{
 			"$NodeId":	"Delimiter.FieldFunction.Assignments-10e45be9-e3d0-4520-8907-c3314011e475",
 			"Max":	1,
 			"Min":	0.85,
@@ -195,19 +290,23 @@
 					"$NodeId":	"Union.Prop-c92727b7-37ac-4aab-989f-4bdb4eae8b0e",
 					"Type":	"Union",
 					"Skip":	false,
-					"Props":	[{
+					"Props":	[
+						{
 							"$NodeId":	"Prefab.Prop-9f5938ab-b117-4aa0-acf6-4e86908539e6",
 							"Type":	"Prefab",
 							"Skip":	false,
-							"WeightedPrefabPaths":	[{
+							"WeightedPrefabPaths":	[
+								{
 									"$NodeId":	"WeightedPath.Prefab.Prop-40b7dc77-c7c6-4561-ad81-5800e317d213",
 									"Path":	"Trees/Gear/Stage_4",
 									"Weight":	15
-								}, {
+								},
+								{
 									"$NodeId":	"WeightedPath.Prefab.Prop-bbbd00c8-21f6-4e0a-a422-88117dad9fc7",
 									"Path":	"Trees/Gear/Stage_3",
 									"Weight":	35
-								}],
+								}
+							],
 							"LegacyPath":	false,
 							"LoadEntities":	true,
 							"Directionality":	{
@@ -218,7 +317,7 @@
 									"$NodeId":	"Imported.Pattern-8c468d80-dfa9-4a60-8011-306c3f2a24c9",
 									"Type":	"Imported",
 									"Skip":	false,
-									"Name":	"Plains1_OakPattern_Floor_Trees"
+									"Name":	"Machinaria_RustedExpanse_Floor_Trees"
 								}
 							},
 							"Scanner":	{
@@ -234,7 +333,8 @@
 							},
 							"MoldingDirection":	"None",
 							"MoldingChildren":	false
-						}, {
+						},
+						{
 							"$NodeId":	"Cluster.Prop-b14e2a52-7b8d-48d7-bfbe-94d8032849e3",
 							"Type":	"Cluster",
 							"Skip":	false,
@@ -243,31 +343,37 @@
 							"DistanceCurve":	{
 								"$NodeId":	"ManualCurve-21bbe46d-9fbc-4032-a8da-4f5e93eedcee",
 								"Type":	"Manual",
-								"Points":	[{
+								"Points":	[
+									{
 										"$NodeId":	"CurvePoint-111decae-12c7-4df8-96ad-39ace41a1a7a",
 										"In":	9,
 										"Out":	0.005
-									}, {
+									},
+									{
 										"$NodeId":	"CurvePoint-7503fff8-3151-496f-92c4-4696774715c0",
 										"In":	10,
 										"Out":	0
-									}]
+									}
+								]
 							},
-							"WeightedProps":	[{
+							"WeightedProps":	[
+								{
 									"$NodeId":	"Weighted.Cluster.Prop-76bf856f-d96e-4719-b10c-697cad9e4e22",
 									"Weight":	1,
 									"ColumnProp":	{
 										"$NodeId":	"Column.Prop-e575cf9b-6be4-4edf-b472-4726a5ea0f36",
 										"Type":	"Column",
 										"Skip":	false,
-										"ColumnBlocks":	[{
+										"ColumnBlocks":	[
+											{
 												"$NodeId":	"Block.Column.Prop-c4a88468-12da-4bbc-bb20-b578029d8bee",
 												"Y":	0,
 												"Material":	{
 													"$NodeId":	"Material-61e8bdba-4977-4e97-8d51-05138ca67fe4",
 													"Solid":	"Rubble_ScrapMetal"
 												}
-											}],
+											}
+										],
 										"Directionality":	{
 											"$NodeId":	"Static.Directionality-93360736-ece0-45e8-8f38-f57b24b09986",
 											"Type":	"Static",
@@ -276,7 +382,7 @@
 												"$NodeId":	"Imported.Pattern-23e8e08d-b3af-49c9-b519-a69aa00b7c25",
 												"Type":	"Imported",
 												"Skip":	false,
-												"Name":	"Plains1_OakPattern_Floor_Trees"
+												"Name":	"Machinaria_RustedExpanse_Floor_Trees"
 											}
 										},
 										"Scanner":	{
@@ -291,12 +397,13 @@
 											"ResultCap":	1
 										}
 									}
-								}],
+								}
+							],
 							"Pattern":	{
 								"$NodeId":	"Imported.Pattern-d77b7cde-8e4a-4f8e-b6aa-8901a217e7a4",
 								"Type":	"Imported",
 								"Skip":	false,
-								"Name":	"Plains1_OakPattern_Floor"
+								"Name":	"Machinaria_RustedExpanse_Floor_Rings"
 							},
 							"Scanner":	{
 								"$NodeId":	"ColumnLinear.Scanner-b64deb35-4d5f-4f59-85f2-3154ef849003",
@@ -309,7 +416,8 @@
 								"TopDownOrder":	true,
 								"ResultCap":	1
 							}
-						}, {
+						},
+						{
 							"$NodeId":	"Cluster.Prop-e72ac605-6c49-48df-a439-0a7de75f39d3",
 							"Type":	"Cluster",
 							"Skip":	false,
@@ -318,31 +426,37 @@
 							"DistanceCurve":	{
 								"$NodeId":	"ManualCurve-5d3f774c-220c-49eb-8a41-604a6adba829",
 								"Type":	"Manual",
-								"Points":	[{
+								"Points":	[
+									{
 										"$NodeId":	"CurvePoint-92a73830-d5ff-4bef-9d6d-875104f7d422",
 										"In":	9,
 										"Out":	0.05
-									}, {
+									},
+									{
 										"$NodeId":	"CurvePoint-1af3018b-0c03-4631-94d7-e16bf07149e4",
 										"In":	10,
 										"Out":	0
-									}]
+									}
+								]
 							},
-							"WeightedProps":	[{
+							"WeightedProps":	[
+								{
 									"$NodeId":	"Weighted.Cluster.Prop-62a1ce9d-db51-418a-8162-ce8e94743a06",
 									"Weight":	1,
 									"ColumnProp":	{
 										"$NodeId":	"Column.Prop-ad0b794a-1646-4cfc-9af8-56c3e2bb62b1",
 										"Type":	"Column",
 										"Skip":	false,
-										"ColumnBlocks":	[{
+										"ColumnBlocks":	[
+											{
 												"$NodeId":	"Block.Column.Prop-0def1678-4245-473a-91a4-79189c73caa6",
 												"Y":	0,
 												"Material":	{
 													"$NodeId":	"Material-1079b637-2b51-4f3b-be2f-676375f84085",
 													"Solid":	"Plant_Crop_Mushroom_Cap_Red"
 												}
-											}],
+											}
+										],
 										"Directionality":	{
 											"$NodeId":	"Static.Directionality-59dc5a0c-1718-41a6-9928-509eed7761a0",
 											"Type":	"Static",
@@ -367,13 +481,16 @@
 													"BlockSet":	{
 														"$NodeId":	"BlockSet.BlockMask-e34d918a-8a47-4f77-a028-cfce5936c5f7",
 														"Inclusive":	true,
-														"Materials":	[{
+														"Materials":	[
+															{
 																"$NodeId":	"Material-36051f3e-2852-43ea-9f3b-14b022ce6a49",
 																"Solid":	"Soil_Pathway"
-															}, {
+															},
+															{
 																"$NodeId":	"Material-f72a7a73-c7d3-40dd-9cf8-fb272f774991",
 																"Solid":	"Soil_Leaves"
-															}]
+															}
+														]
 													}
 												}
 											}
@@ -390,12 +507,13 @@
 											"ResultCap":	1
 										}
 									}
-								}],
+								}
+							],
 							"Pattern":	{
 								"$NodeId":	"Imported.Pattern-aa7d6694-b03e-4905-a038-92f5b2ba393c",
 								"Type":	"Imported",
 								"Skip":	false,
-								"Name":	"Plains1_OakPattern_Floor"
+								"Name":	"Machinaria_RustedExpanse_Floor_Rings"
 							},
 							"Scanner":	{
 								"$NodeId":	"ColumnLinear.Scanner-18b67766-520a-40b4-97f7-3afc6c1e6737",
@@ -408,10 +526,12 @@
 								"TopDownOrder":	true,
 								"ResultCap":	1
 							}
-						}]
+						}
+					]
 				}
 			}
-		}],
+		}
+	],
 	"$NodeEditorMetadata":	{
 		"$Nodes":	{
 			"FieldFunction.Assignments-77f1eb86-98ec-4e10-b18d-f07abf66ea98":	{
@@ -968,7 +1088,8 @@
 				}
 			}
 		},
-		"$FloatingNodes":	[{
+		"$FloatingNodes":	[
+			{
 				"$NodeId":	"Weight.Weighted.Assignments-45897d2f-afb0-4484-acf5-94ad6771b9ca",
 				"Weight":	30,
 				"Assignments":	{
@@ -983,35 +1104,42 @@
 						"DistanceCurve":	{
 							"$NodeId":	"ManualCurve-6a288294-e533-48b3-8fb4-0f135cf27e1c",
 							"Type":	"Manual",
-							"Points":	[{
+							"Points":	[
+								{
 									"$NodeId":	"CurvePoint-d4593e27-9b94-4525-8ca5-f2445cfa55e9",
 									"In":	0,
 									"Out":	0.8
-								}, {
+								},
+								{
 									"$NodeId":	"CurvePoint-81414372-0005-45e3-97d8-30db5ddd53b6",
 									"In":	2,
 									"Out":	0.8
-								}, {
+								},
+								{
 									"$NodeId":	"CurvePoint-9097463e-1321-4899-b675-0cbb367bf43f",
 									"In":	3,
 									"Out":	0
-								}]
+								}
+							]
 						},
-						"WeightedProps":	[{
+						"WeightedProps":	[
+							{
 								"$NodeId":	"Weighted.Cluster.Prop-aa95a3ce-cd16-4a16-98a4-c3ac152e88b4",
 								"Weight":	1,
 								"ColumnProp":	{
 									"$NodeId":	"Column.Prop-dba0370c-e454-4429-9b2e-aa3de1ddda89",
 									"Type":	"Column",
 									"Skip":	false,
-									"ColumnBlocks":	[{
+									"ColumnBlocks":	[
+										{
 											"$NodeId":	"Block.Column.Prop-6e7aa5a4-3b43-4fe0-9fa1-766f2cf61cd9",
 											"Y":	0,
 											"Material":	{
 												"$NodeId":	"Material-65cd4c3e-91f7-4a58-8871-00b0d1f9fdac",
 												"Solid":	"Plant_Bush_Green"
 											}
-										}],
+										}
+									],
 									"Directionality":	{
 										"$NodeId":	"Static.Directionality-d99ef63c-8d9a-4c83-9d2a-3423b6ff77cd",
 										"Type":	"Static",
@@ -1020,7 +1148,7 @@
 											"$NodeId":	"Imported.Pattern-1590f62f-4632-4d90-954d-a1bdadfcb0c7",
 											"Type":	"Imported",
 											"Skip":	false,
-											"Name":	"Plains1_OakPattern_Floor_Trees"
+											"Name":	"Machinaria_RustedExpanse_Floor_Trees"
 										}
 									},
 									"Scanner":	{
@@ -1035,12 +1163,13 @@
 										"ResultCap":	1
 									}
 								}
-							}],
+							}
+						],
 						"Pattern":	{
 							"$NodeId":	"Imported.Pattern-44958bd0-a0dd-468b-9fba-db07f0ab92c4",
 							"Type":	"Imported",
 							"Skip":	false,
-							"Name":	"Plains1_OakPattern_Floor"
+							"Name":	"Machinaria_RustedExpanse_Floor_Rings"
 						},
 						"Scanner":	{
 							"$NodeId":	"ColumnLinear.Scanner-3193e602-9fa2-410d-93f4-4a742c6d6de0",
@@ -1055,10 +1184,11 @@
 						}
 					}
 				}
-			}],
-		"$Links":	{
-		},
-		"$Groups":	[{
+			}
+		],
+		"$Links":	{},
+		"$Groups":	[
+			{
 				"$Position":	{
 					"$x":	730.875,
 					"$y":	4531.3125
@@ -1066,7 +1196,8 @@
 				"$width":	5216.25,
 				"$height":	2427,
 				"$name":	"Small Trees"
-			}, {
+			},
+			{
 				"$Position":	{
 					"$x":	695.8125,
 					"$y":	7095.0625
@@ -1074,7 +1205,8 @@
 				"$width":	4289.1875,
 				"$height":	1929.125,
 				"$name":	"Bushes"
-			}, {
+			},
+			{
 				"$Position":	{
 					"$x":	-85.875,
 					"$y":	9375.5
@@ -1082,7 +1214,8 @@
 				"$width":	6831.75,
 				"$height":	4249.5,
 				"$name":	"Large Trees"
-			}],
+			}
+		],
 		"$Comments":	[],
 		"$WorkspaceID":	"HytaleGenerator - Assignments"
 	}

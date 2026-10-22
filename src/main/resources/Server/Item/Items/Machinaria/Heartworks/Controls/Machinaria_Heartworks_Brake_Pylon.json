@@ -1,0 +1,160 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Brake_Pylon.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Brake_Pylon.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Brake_Pylon.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Idle.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Idle.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Statue",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.pylon.turn",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Turn1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Turn1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Turn1.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Turn2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Turn2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Turn2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Turn3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Turn3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Turn3.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Primed": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Primed.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Primed.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#c83"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Steam_Leak",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 2.1
+              }
+            }
+          ],
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_B_Steam_Bursts_Winding"
+        },
+        "Burst": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Burst.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Burst.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a21"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.pylon.check",
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Smoke_Stack",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 1.6
+              }
+            },
+            {
+              "SystemId": "Machinaria_Emitter_Sparks",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 1.5
+              }
+            }
+          ]
+        },
+        "Brake": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Brake.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Brake_Pylon/Brake.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#b52"
+          },
+          "InteractionHint": "machinaria_hw_controls.hints.pylon.check"
+        }
+      }
+    }
+  }
+}

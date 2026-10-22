@@ -1,0 +1,58 @@
+{
+  "$Comment": "Overtime vents: big steam jets blast out of both sides and the front of the chest for 1.5 s. Attach at Origin (the chest is 2.0 up; the front is +Z).",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Overtime_Vent_Jet",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 2,
+        "Z": 0.35
+      },
+      "RotationOffset": {
+        "Yaw": 180
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Overtime_Vent_Jet",
+      "PositionOffset": {
+        "X": 0.55,
+        "Y": 2,
+        "Z": 0
+      },
+      "RotationOffset": {
+        "Yaw": -90
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Overtime_Vent_Jet",
+      "PositionOffset": {
+        "X": -0.55,
+        "Y": 2,
+        "Z": 0
+      },
+      "RotationOffset": {
+        "Yaw": 90
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Overtime_Vent_Burst",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 2,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Overtime_Vent_Glow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 2,
+        "Z": 0.35
+      }
+    }
+  ],
+  "LifeSpan": 1.5,
+  "BoundingRadius": 6,
+  "CullDistance": 96,
+  "IsImportant": true
+}

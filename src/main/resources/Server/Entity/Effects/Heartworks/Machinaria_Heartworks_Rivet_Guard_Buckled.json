@@ -1,0 +1,19 @@
+{
+  "$Comment": "Plate Buckled: the Rivet Guard has lost its shield for good; small sparks spit from the torn shield mount. (The role reads the shield in the off hand, as vanilla, not this effect.)",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Rivet_Guard_Mount_Sparks",
+        "TargetNodeName": "L-Forearm",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      }
+    ]
+  },
+  "OverlapBehavior": "Ignore",
+  "Infinite": true,
+  "RemovalBehavior": "Infinite"
+}

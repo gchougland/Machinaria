@@ -1,0 +1,55 @@
+{
+  "$Comment": "The Cogling's attack clips: the Nip and the Pounce (WiggleWeights included: the server requires them).",
+  "Animations": {
+    "Nip": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Heartworks/Cogling/Animations/Nip.blockyanim",
+      "BlendingDuration": 0.08
+    },
+    "PounceWindup": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Heartworks/Cogling/Animations/PounceWindup.blockyanim",
+      "BlendingDuration": 0.08
+    },
+    "Pounce": {
+      "Speed": 1,
+      "Looping": false,
+      "ThirdPerson": "NPC/Heartworks/Cogling/Animations/Pounce.blockyanim",
+      "BlendingDuration": 0.05
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 45,
+        "Min": -45
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Mainspring_Column.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Mainspring_Column.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Mainspring_Column.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#7a5a30",
+    "TextureComputedColor": "#7a5a30",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Mainspring_Column.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Mainspring_Column.png",
+        "Weight": 1
+      }
+    ],
+    "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Mainspring_Column_Turn.blockyanim",
+    "Looping": true,
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_Drone_A",
+    "HitboxType": "Machinaria_Heartworks_Mainspring_Column",
+    "State": {
+      "Definitions": {
+        "Segment": {},
+        "Foot": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Mainspring_Column_Foot.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Mainspring_Column_Foot.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Crown": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Mainspring_Column_Crown.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Mainspring_Column_Crown.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

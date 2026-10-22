@@ -1,0 +1,58 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Oil_Feed.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Oil_Feed.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Oil_Feed.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#3a3430",
+    "TextureComputedColor": "#3a3430",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Oil_Feed.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Oil_Feed.png",
+        "Weight": 1
+      }
+    ],
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Oil_Drip",
+        "TargetNodeName": "Nozzle"
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Oil_Feed",
+    "State": {
+      "Definitions": {
+        "Idle": {},
+        "Pumping": {
+          "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Machines/Animations/Oil_Feed_Pumping.blockyanim",
+          "Looping": true,
+          "AmbientSoundEventId": "SFX_Emit_Goblin_Liquid_Thick_Bubbling"
+        }
+      }
+    }
+  }
+}

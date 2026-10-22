@@ -1,0 +1,22 @@
+{
+  "$Comment": "The Kettle Bomb's pop when killed before it boils over (DESIGN.md 6.2): 24 (round 2; was 18), knocked 6 away. Set it per role with the Pop_Damage interaction var.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Physical": 24
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Point",
+      "Force": 6,
+      "VelocityY": 3,
+      "VelocityType": "Add"
+    },
+    "WorldSoundEventId": "SFX_Golem_Clockwork_Steam_Vent",
+    "LocalSoundEventId": "SFX_Golem_Clockwork_Steam_Vent",
+    "CameraEffect": "Impact"
+  }
+}

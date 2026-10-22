@@ -1,0 +1,49 @@
+{
+  "$Comment": "The Boilerback's Steam Breath (round 6, vanilla Flamethrower made steam): a dense scalding white jet from the firebox mouth to about 6 blocks, a bright core, clouds rolling up where it ends, heat haze. Spawned by each 0.4 s breath cycle at node Firebox (Z 0.2).",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Steam_Breath_Jet",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0.1
+      },
+      "RotationOffset": {
+        "Yaw": 180
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Steam_Breath_Core",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0.1
+      },
+      "RotationOffset": {
+        "Yaw": 180
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Boilerback_Steam_Breath_Billow",
+      "PositionOffset": {
+        "X": 0,
+        "Y": -0.4,
+        "Z": 5.2
+      }
+    },
+    {
+      "SpawnerId": "Flamethrower_Distortion",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 2
+      },
+      "RotationOffset": {
+        "Yaw": 180
+      }
+    }
+  ],
+  "CullDistance": 96,
+  "BoundingRadius": 7,
+  "IsImportant": true
+}

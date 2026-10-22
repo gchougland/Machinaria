@@ -1,0 +1,75 @@
+{
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "BillboardY",
+  "LinearFiltering": true,
+  "LightInfluence": 0,
+  "ParticleRotateWithSpawner": false,
+  "MaxConcurrentParticles": 96,
+  "ParticleLifeSpan": {
+    "Min": 1,
+    "Max": 1
+  },
+  "SpawnRate": {
+    "Min": 96,
+    "Max": 96
+  },
+  "TotalParticles": {
+    "Min": 96,
+    "Max": 96
+  },
+  "SpawnBurst": true,
+  "Shape": "Sphere",
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 10,
+      "Max": 10
+    },
+    "Yaw": {
+      "Min": 0,
+      "Max": 360
+    },
+    "Pitch": {
+      "Min": 0,
+      "Max": 0
+    }
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Gradient_Reflected.png",
+    "ScaleRatioConstraint": "None",
+    "UVOption": "None",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.9,
+          "Max": 0.9
+        },
+        "Y": {
+          "Min": 1.1,
+          "Max": 1.1
+        }
+      },
+      "Opacity": 0.6,
+      "Color": "#3aa8ff"
+    },
+    "Animation": {
+      "0": {
+        "Opacity": 0.12
+      },
+      "12": {
+        "Opacity": 0.3
+      },
+      "30": {
+        "Opacity": 0.6
+      },
+      "55": {
+        "Opacity": 0.9
+      },
+      "92": {
+        "Opacity": 1
+      },
+      "100": {
+        "Opacity": 0
+      }
+    }
+  }
+}

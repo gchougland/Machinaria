@@ -1,0 +1,39 @@
+{
+  "$Comment": "The Arc Bolt in flight: the tinker's spark orb (its crackling Orb particles and blue light) at 0.6 scale, spinning as vanilla's staff orb does.",
+  "Model": "NPC/Heartworks/Arc_Tinker/Models/Spark_Orb.blockymodel",
+  "Texture": "NPC/Heartworks/Arc_Tinker/Models/Spark_Orb.png",
+  "EyeHeight": 0.05,
+  "MinScale": 0.6,
+  "MaxScale": 0.6,
+  "HitBox": {
+    "Max": {
+      "X": 0.12,
+      "Y": 0.12,
+      "Z": 0.12
+    },
+    "Min": {
+      "X": -0.12,
+      "Y": -0.12,
+      "Z": -0.12
+    }
+  },
+  "AnimationSets": {
+    "FlyIdle": {
+      "Animations": [
+        {
+          "Animation": "Items/Animations/Spin_Roll/Spin_Roll_Left.blockyanim",
+          "BlendingDuration": 0
+        }
+      ]
+    }
+  },
+  "Particles": [
+    {
+      "SystemId": "Machinaria_Heartworks_Arc_Tinker_Orb",
+      "TargetNodeName": "Core"
+    }
+  ],
+  "Light": {
+    "Color": "#4be"
+  }
+}

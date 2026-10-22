@@ -1,0 +1,80 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Hanging_Cable.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Hanging_Cable.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Hanging_Cable.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Hanging_Cable/Straight.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Hanging_Cable/Straight.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Chain",
+    "VariantRotation": "NESW",
+    "Support": {},
+    "State": {
+      "Definitions": {
+        "Loop": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Hanging_Cable/Loop.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Hanging_Cable/Loop.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "End": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Hanging_Cable/End.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Hanging_Cable/End.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#310"
+          },
+          "Particles": [
+            {
+              "SystemId": "Machinaria_Emitter_Sparks",
+              "TargetEntityPart": "Self",
+              "PositionOffset": {
+                "Y": 0.3
+              },
+              "Scale": 0.5
+            }
+          ]
+        }
+      }
+    }
+  }
+}

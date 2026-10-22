@@ -1,0 +1,14 @@
+{
+  "$Comment": "Run by the SE pylon's volume on the player who turned its brake in the climax: tells the encounter.",
+  "Interactions": [
+    {
+      "Type": "SendBeacon",
+      "Message": "Machinaria_Heartworks_Heartwinder_Brake_SE",
+      "Range": 48,
+      "ExpirationTime": 30,
+      "TargetGroups": [
+        "Machinaria_Heartworks_Heartwinder_Group"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "$Comment": "Scalding vent burst: a fast white steam jet from a 1-block grate, about 4 blocks high. Made from vanilla Dungeon_Goblin_Cauldron_Steam.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "BillboardY",
+  "MaxConcurrentParticles": 40,
+  "ParticleLifeSpan": {
+    "Min": 0.6,
+    "Max": 1.1
+  },
+  "SpawnRate": {
+    "Min": 26,
+    "Max": 34
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "ScaleRatioConstraint": "None",
+    "SoftParticles": "Enable",
+    "Animation": {
+      "0": {
+        "Opacity": 0,
+        "Scale": {
+          "X": { "Min": 0.6, "Max": 0.6 },
+          "Y": { "Min": 0.6, "Max": 0.6 }
+        },
+        "Color": "#f2efe8"
+      },
+      "15": {
+        "Opacity": 0.85
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": { "Min": 1.8, "Max": 1.8 },
+          "Y": { "Min": 1.4, "Max": 1.4 }
+        },
+        "Color": "#b9b4aa"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": { "Min": 0.8, "Max": 1.4 },
+        "Y": { "Min": 1.6, "Max": 2.6 }
+      },
+      "Opacity": 1,
+      "FrameIndex": { "Min": 0, "Max": 3 }
+    },
+    "UVOption": "RandomFlipUV",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    }
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": { "Min": 0, "Max": 0.35 },
+    "Z": { "Min": 0, "Max": 0.35 }
+  },
+  "Attractors": [
+    {
+      "DampingMultiplier": { "X": 0.9, "Y": 0.92, "Z": 0.9 },
+      "LinearAcceleration": { "Y": 0.4 }
+    }
+  ],
+  "TrailSpawnerPositionMultiplier": 1,
+  "TrailSpawnerRotationMultiplier": 0,
+  "ParticleRotateWithSpawner": false,
+  "UVMotion": {
+    "Texture": "Particles/Textures/UVMotion/FlowMapSmoke.png",
+    "SpeedX": 0.1,
+    "SpeedY": 0.6,
+    "Strength": 4,
+    "AddRandomUVOffset": true,
+    "Scale": 1
+  },
+  "InitialVelocity": {
+    "Speed": { "Min": 6, "Max": 9 },
+    "Pitch": { "Min": 84, "Max": 90 }
+  }
+}

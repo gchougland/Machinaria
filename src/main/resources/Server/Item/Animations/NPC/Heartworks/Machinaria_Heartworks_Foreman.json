@@ -1,0 +1,86 @@
+{
+  "$Comment": "The Foreman's attack clips (tools/models/heartworks/foreman.anims.mjs), as vanilla NPC sets: WiggleWeights and Camera included.",
+  "Animations": {
+    "Wrench1": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/Wrench1.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/Wrench1.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "Wrench2": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/Wrench2.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/Wrench2.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "Wrench3": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/Wrench3.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/Wrench3.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "Throw": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/Throw.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/Throw.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.12,
+      "Looping": false
+    },
+    "SpinWindup": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/SpinWindup.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/SpinWindup.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.15,
+      "Looping": false
+    },
+    "Spin": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/Spin.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/Spin.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.1,
+      "Looping": true
+    },
+    "Dizzy": {
+      "ThirdPerson": "NPC/Heartworks/Foreman/Animations/Dizzy.blockyanim",
+      "ThirdPersonMoving": "NPC/Heartworks/Foreman/Animations/Dizzy.blockyanim",
+      "Speed": 1,
+      "BlendingDuration": 0.2,
+      "Looping": true
+    }
+  },
+  "Camera": {
+    "Pitch": {
+      "AngleRange": {
+        "Max": 10,
+        "Min": -10
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    },
+    "Yaw": {
+      "AngleRange": {
+        "Max": 20,
+        "Min": -20
+      },
+      "TargetNodes": [
+        "Head"
+      ]
+    }
+  },
+  "WiggleWeights": {
+    "Pitch": 2,
+    "PitchDeceleration": 0.1,
+    "Roll": 0.1,
+    "RollDeceleration": 0.1,
+    "X": 3,
+    "XDeceleration": 0.1,
+    "Y": 0.1,
+    "YDeceleration": 0.1,
+    "Z": 0.1,
+    "ZDeceleration": 0.1
+  }
+}

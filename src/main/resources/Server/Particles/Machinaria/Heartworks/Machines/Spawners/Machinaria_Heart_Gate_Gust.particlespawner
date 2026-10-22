@@ -1,0 +1,100 @@
+{
+  "$Comment": "Heart Gate rolling open: a slow gust of steam and warm glints out of the opening.",
+  "RenderMode": "BlendLinear",
+  "ParticleRotationInfluence": "Billboard",
+  "LightInfluence": 1,
+  "MaxConcurrentParticles": 30,
+  "ParticleLifeSpan": {
+    "Min": 1.2,
+    "Max": 2
+  },
+  "SpawnRate": {
+    "Min": 30,
+    "Max": 30
+  },
+  "TotalParticles": {
+    "Min": 30,
+    "Max": 30
+  },
+  "SpawnBurst": true,
+  "Particle": {
+    "Texture": "Particles/Textures/Smoke/Smoke_Cartoon.png",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 64
+    },
+    "ScaleRatioConstraint": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 0
+      },
+      "15": {
+        "Opacity": 0.6
+      },
+      "100": {
+        "Opacity": 0,
+        "Scale": {
+          "X": {
+            "Min": 2.6,
+            "Max": 2.6
+          },
+          "Y": {
+            "Min": 2.6,
+            "Max": 2.6
+          }
+        },
+        "Color": "#c4b8a6"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.6,
+          "Max": 0.8
+        },
+        "Y": {
+          "Min": 0.6,
+          "Max": 0.8
+        }
+      },
+      "Opacity": 1,
+      "Color": "#efe6da",
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 3
+      }
+    },
+    "UVOption": "RandomFlipUV"
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 1.8
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 1.8
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.4
+    }
+  },
+  "Attractors": [
+    {
+      "DampingMultiplier": {
+        "X": 0.85,
+        "Y": 0.85,
+        "Z": 0.85
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false,
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 1.5,
+      "Max": 3.5
+    }
+  }
+}

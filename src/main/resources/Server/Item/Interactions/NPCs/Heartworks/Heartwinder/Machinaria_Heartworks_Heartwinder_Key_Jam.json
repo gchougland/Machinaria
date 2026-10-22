@@ -1,0 +1,32 @@
+{
+  "$Comment": "The key jammed by 150 damage during the Wind Up: a 2 s stagger with a bang and sparks, no buff.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "ApplyEffect",
+      "EffectId": "Machinaria_Heartworks_Heartwinder_Key_Jammed",
+      "Entity": "User"
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 2,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "KeyJam",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Key_Jam",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Seized_Sparks",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Key",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

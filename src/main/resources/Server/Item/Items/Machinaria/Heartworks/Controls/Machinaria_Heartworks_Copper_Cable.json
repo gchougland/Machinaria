@@ -1,0 +1,103 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Copper_Cable.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Copper_Cable.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Copper_Cable.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Straight.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Straight.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Block_Flat",
+    "VariantRotation": "All",
+    "Support": {},
+    "State": {
+      "Definitions": {
+        "Live": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Straight_Live.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Straight_Live.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#124"
+          }
+        },
+        "Corner": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Corner.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Corner.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Corner_Live": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Corner_Live.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Corner_Live.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#124"
+          }
+        },
+        "Tee": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Tee.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Tee.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Tee_Live": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Tee_Live.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Copper_Cable/Tee_Live.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#124"
+          }
+        }
+      }
+    }
+  }
+}

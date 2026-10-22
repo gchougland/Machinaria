@@ -1,0 +1,69 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Deco_Machinaria_Broken_Automaton.name",
+    "Description": "machinaria_hw_controls.items.Deco_Machinaria_Broken_Automaton.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Deco_Machinaria_Broken_Automaton.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Empty"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Broken_Automaton/Head.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Broken_Automaton/Head.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Plant_Large",
+    "VariantRotation": "NESW",
+    "RandomRotation": "YawStep90",
+    "State": {
+      "Definitions": {
+        "Torso": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Broken_Automaton/Torso.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Broken_Automaton/Torso.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Chest_Small"
+        },
+        "Arm": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Broken_Automaton/Arm.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Broken_Automaton/Arm.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Rubble"
+        }
+      }
+    }
+  }
+}

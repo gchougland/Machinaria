@@ -1,0 +1,75 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Door_Gauge.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Door_Gauge.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Door_Gauge.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level0.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level0.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Painting_2x2",
+    "VariantRotation": "NESW",
+    "RequiresAlphaBlending": true,
+    "State": {
+      "Definitions": {
+        "Level1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level1.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Level2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level2.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "Level3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Door_Gauge/Level3.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

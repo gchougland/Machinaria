@@ -1,0 +1,47 @@
+{
+  "$Comment": "Rusted Cogling (DESIGN.md 9.4): the Cogling after years in the rust plains. 16 HP, a nip of 4 (the Cogling: 22 and 5), a little slower. The Cogling's nip and clips, by id; the damage through its Melee_Damage var.",
+  "Type": "Variant",
+  "Reference": "Template_Scarak_Louse",
+  "Modify": {
+    "Appearance": "Machinaria_Pumpworks_Rusted_Cogling",
+    "DropList": "Machinaria_Pumpworks_Drop_Rusted_Cogling",
+    "AttackDistance": 1.6,
+    "Attack": "Machinaria_Heartworks_Cogling_Nip",
+    "AttitudeGroup": "Machinaria_Robots",
+    "FlockArray": [
+      "Machinaria_Pumpworks_Rusted_Cogling"
+    ],
+    "MaxHealth": 16,
+    "MaxSpeed": 8,
+    "_CombatConfig": {
+      "EntityEffects": [
+        "Immunity_Environmental",
+        "Immunity_Poison"
+      ]
+    },
+    "_InteractionVars": {
+      "Melee_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Cogling_Nip_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 4
+              }
+            }
+          }
+        ]
+      }
+    },
+    "IsMemory": false,
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_pumpworks.npcRoles.Machinaria_Pumpworks_Rusted_Cogling.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

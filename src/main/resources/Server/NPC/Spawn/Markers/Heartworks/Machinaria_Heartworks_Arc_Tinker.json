@@ -1,0 +1,14 @@
+{
+  "$Comment": "One Arc Tinker. The Heartworks clock is paused, so SpawnAfterGameTime never passes and a destroyed tinker stays down for the run (as the Cogling marker).",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Arc_Tinker",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 8,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 60
+}

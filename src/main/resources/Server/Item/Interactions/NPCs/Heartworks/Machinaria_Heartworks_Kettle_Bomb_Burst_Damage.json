@@ -1,0 +1,22 @@
+{
+  "$Comment": "The Kettle Bomb's burst (DESIGN.md 6.2): 38 (round 2; was 28: above the Lobber bomb's 30), knocked 10 away and up. Set it per role with the Burst_Damage interaction var.",
+  "Parent": "DamageEntityParent",
+  "DamageCalculator": {
+    "Type": "Absolute",
+    "BaseDamage": {
+      "Physical": 38
+    },
+    "RandomPercentageModifier": 0.1
+  },
+  "DamageEffects": {
+    "Knockback": {
+      "Type": "Point",
+      "Force": 10,
+      "VelocityY": 5,
+      "VelocityType": "Add"
+    },
+    "WorldSoundEventId": "SFX_Golem_Clockwork_Steam_Vent",
+    "LocalSoundEventId": "SFX_Golem_Clockwork_Steam_Vent",
+    "CameraEffect": "Impact_Strong"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$Comment": "Gear Toss (DESIGN.md 7.5; round 4): 1.0 s lifting a gear from its back, turning to follow its target for the first 0.8 s (.GearToss), with three red lanes 20 long that turn with it; then it bowls three gears along the ground in a fan (0 and 15 degrees either way) at 14 a second, each 35 and a knock of 8 if it rolls into a player. 0.6 s recovery. Analogue: the Gobliterator sawblades (fixed yaws) and cannon lane.",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+            "ItemAnimationId": "GearToss",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Rattle",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                },
+                "RotationOffset": {
+                  "Yaw": 15
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                },
+                "RotationOffset": {
+                  "Yaw": -15
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "Parallel",
+                "Interactions": [
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss_L",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss_R",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  }
+                ],
+                "Effects": {
+                  "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Roll"
+                }
+              },
+              {
+                "Type": "Simple",
+                "RunTime": 0.6
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.1,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

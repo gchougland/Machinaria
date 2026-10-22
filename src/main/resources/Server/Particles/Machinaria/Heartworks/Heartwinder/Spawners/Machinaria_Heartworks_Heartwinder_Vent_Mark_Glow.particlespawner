@@ -1,0 +1,74 @@
+{
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "None",
+  "ParticleLifeSpan": {
+    "Min": 1.21,
+    "Max": 1.21
+  },
+  "ParticleRotateWithSpawner": false,
+  "TrailSpawnerPositionMultiplier": 0,
+  "TrailSpawnerRotationMultiplier": 0,
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Ball5.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "None",
+    "Animation": {
+      "0": {
+        "Opacity": 0,
+        "Color": "#f2f1ec"
+      },
+      "15": {
+        "Opacity": 1
+      },
+      "30": {
+        "Opacity": 0.35
+      },
+      "45": {
+        "Opacity": 1
+      },
+      "60": {
+        "Opacity": 0.35
+      },
+      "75": {
+        "Opacity": 1,
+        "Color": "#f2f1ec"
+      },
+      "85": {
+        "Opacity": 1,
+        "Color": "#ff7a2a"
+      },
+      "100": {
+        "Opacity": 0,
+        "Color": "#ff7a2a"
+      }
+    },
+    "SoftParticles": "Disable",
+    "InitialAnimationFrame": {
+      "Opacity": 0.5,
+      "Rotation": {
+        "X": {
+          "Min": 90,
+          "Max": 90
+        }
+      },
+      "Scale": {
+        "X": {
+          "Min": 1,
+          "Max": 1
+        }
+      }
+    }
+  },
+  "Shape": "Sphere",
+  "TotalParticles": {
+    "Min": 1,
+    "Max": 1
+  },
+  "SpawnRate": {
+    "Min": 1,
+    "Max": 1
+  },
+  "MaxConcurrentParticles": 1,
+  "SpawnBurst": true,
+  "LinearFiltering": true
+}

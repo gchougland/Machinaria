@@ -1,0 +1,96 @@
+{
+  "$Comment": "Mainspring Lash, hard mode: three bands (left, right and behind), each with its own ground line through the 3.0 s charge, then they sweep while it turns (the hard phase 3 role turns 30 degrees a second, not 25). Jump each band as it passes; the front is clear.",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 3,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "LashCharge",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Lash_Charge",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            },
+            "RotationOffset": {
+              "Yaw": 90
+            },
+            "DetachedFromModel": true
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            },
+            "RotationOffset": {
+              "Yaw": -90
+            },
+            "DetachedFromModel": true
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            },
+            "RotationOffset": {
+              "Yaw": 180
+            },
+            "DetachedFromModel": true
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Glow",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Heart",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 0.01,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "Lash",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Lash_Loop"
+      }
+    },
+    {
+      "Type": "Repeat",
+      "Repeat": 30,
+      "ForkInteractions": {
+        "Interactions": [
+          "Machinaria_Heartworks_Heartwinder_Lash_Tick_Hard"
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 1,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "LashCharge",
+        "ClearAnimationOnFinish": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "$Comment": "A Grit Oiler got through (Gibson round 2 note 27): grit in the gears. 3 s seized, sparks at the key and chest, taking 25% more damage. Applied by the boss itself when it senses the Oiler's jam marker (role sub state .GritJam); its presence also stops a second jam starting.",
+  "Duration": 3,
+  "OverlapBehavior": "Overwrite",
+  "DamageResistance": {
+    "Physical": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.25
+      }
+    ],
+    "Elemental": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.25
+      }
+    ],
+    "Projectile": [
+      {
+        "CalculationType": "Percent",
+        "Amount": -0.25
+      }
+    ]
+  },
+  "ApplicationEffects": {
+    "MovementEffects": {
+      "DisableAll": true
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Heartwinder_Seized_Sparks",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Key"
+      },
+      {
+        "SystemId": "Machinaria_Heartworks_Heartwinder_Seized_Sparks",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Chest"
+      },
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Head",
+        "PositionOffset": {
+          "Y": 0.8
+        }
+      }
+    ]
+  }
+}

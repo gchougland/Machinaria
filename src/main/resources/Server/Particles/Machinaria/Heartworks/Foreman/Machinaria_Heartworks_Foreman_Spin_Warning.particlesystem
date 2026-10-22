@@ -1,0 +1,25 @@
+{
+  "$Comment": "The Wrench Spin tell: a red disc and ring of radius 3.25 (the spin's reach) on the floor round him for 1.0 s, pulsing, flashing orange as he lets go. Attach at Origin, not detached: it moves with him.",
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Spin_Warning_Fill",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.02,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Foreman_Spin_Warning_Edge",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.03,
+        "Z": 0
+      }
+    }
+  ],
+  "LifeSpan": 1,
+  "BoundingRadius": 4,
+  "CullDistance": 128,
+  "IsImportant": true
+}

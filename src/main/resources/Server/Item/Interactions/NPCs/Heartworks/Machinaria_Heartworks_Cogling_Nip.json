@@ -1,0 +1,63 @@
+{
+  "$Comment": "The Cogling's nip (DESIGN.md 6.2): 0.25 s wind-up with the key spinning, 0.12 s active, 0.2 s recovery; 5 Physical, no knockback. Shaped like vanilla Scarak_Louse_Bite.",
+  "Type": "Simple",
+  "Effects": {
+    "ItemPlayerAnimationsId": "Machinaria_Heartworks_Cogling",
+    "ItemAnimationId": "Nip"
+  },
+  "RunTime": 0.25,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "RunTime": 0.12,
+            "Selector": {
+              "Id": "Horizontal",
+              "Direction": "ToLeft",
+              "TestLineOfSight": true,
+              "ExtendTop": 0.5,
+              "ExtendBottom": 0.5,
+              "StartDistance": 0.5,
+              "EndDistance": 1.8,
+              "Length": 40,
+              "RollOffset": -90,
+              "YawStartOffset": -20
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "Replace",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Machinaria_Heartworks_Cogling_Nip_Damage"
+                    ]
+                  },
+                  "Var": "Melee_Damage",
+                  "DefaultOk": true
+                }
+              ]
+            },
+            "Next": {
+              "Type": "Simple",
+              "RunTime": 0.2
+            }
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Simple",
+            "RunTime": 0.12,
+            "Effects": {
+              "WorldSoundEventId": "SFX_NPC_Unarmed_Swing"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

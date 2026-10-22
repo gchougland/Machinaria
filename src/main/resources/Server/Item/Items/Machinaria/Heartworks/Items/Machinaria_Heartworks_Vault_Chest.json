@@ -1,0 +1,99 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_items.items.Machinaria_Heartworks_Vault_Chest.name"
+  },
+  "PlayerAnimationsId": "Block",
+  "Categories": [
+    "Furniture.Containers",
+    "Machinaria.Content"
+  ],
+  "BlockType": {
+    "BlockParticleSetId": "Metal",
+    "BlockSoundSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "CustomModel": "Items/Machinaria/Heartworks/Items/Strongbox.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Machinaria/Heartworks/Items/Strongbox.png",
+        "Weight": 1
+      }
+    ],
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "ParticleColor": "#3b3f48",
+    "State": {
+      "Definitions": {
+        "CloseWindow": {
+          "InteractionSoundEventId": "SFX_Chest_Wooden_Close",
+          "CustomModelAnimation": "Items/Machinaria/Heartworks/Items/Strongbox_Close.blockyanim"
+        },
+        "OpenWindow": {
+          "InteractionSoundEventId": "SFX_Machinaria_HW_Strongbox_Open",
+          "CustomModelAnimation": "Items/Machinaria/Heartworks/Items/Strongbox_Open.blockyanim"
+        }
+      }
+    },
+    "BlockEntity": {
+      "Components": {
+        "ItemContainerBlock": {
+          "Capacity": 18
+        }
+      }
+    },
+    "Supporting": {
+      "Up": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "VariantRotation": "NESW",
+    "InteractionHint": "server.interactionHints.openDoor",
+    "Interactions": {
+      "Use": "Open_Container"
+    },
+    "TextureComputedColor": "#3b3f48",
+    "Light": {
+      "Color": "#320",
+      "Radius": 1
+    }
+  },
+  "IconProperties": {
+    "Scale": 0.55,
+    "Translation": [
+      0,
+      -15
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Vault_Chest.png",
+  "Tags": {
+    "Type": [
+      "Furniture"
+    ],
+    "Family": [
+      "Machinaria"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Items_Ingots",
+  "ItemLevel": 56,
+  "MaxStack": 25
+}

@@ -1,0 +1,35 @@
+{
+  "$Comment": "The Rivet Guard. Tuned above vanilla Dungeon_Goblin_Guardian (90 HP, 95 degree shield, club 16 to 20, bash 14) and Dungeon_Goblin_Mace (160 HP, mace 25), as Gibson asked (round 2 note 22): 220 HP, mace 26, bash 20. Behaviour in Machinaria_Heartworks_Rivet_Guard_Template.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Rivet_Guard_Template",
+  "Modify": {
+    "MaxHealth": 220,
+    "MaxSpeed": 4.5,
+    "_InteractionVars": {
+      "Rivet_Guard_Mace_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Rivet_Guard_Mace_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 26
+              }
+            }
+          }
+        ]
+      },
+      "Rivet_Guard_Bash_Damage": {
+        "Interactions": [
+          {
+            "Parent": "Machinaria_Heartworks_Rivet_Guard_Shield_Bash_Damage",
+            "DamageCalculator": {
+              "BaseDamage": {
+                "Physical": 20
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

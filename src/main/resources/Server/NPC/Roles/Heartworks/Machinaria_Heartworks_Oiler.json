@@ -1,0 +1,20 @@
+{
+  "$Comment": "Oiler: the Heartwinder's support, a brass oil can on three legs with a long spout (DESIGN.md 6.1, 6.2, 7.6). 45 HP (Gibson round 2 note 22), walks at 2.2. It walks to its master and oils it for +120 (phases 1 and 2), then leaves; kill it on the way (analogue vanilla Dungeon_Goblin_Food_Carrier, +85 to the Feastmaster). The spawn marker of the same id makes one in four a Grit Oiler.",
+  "Type": "Variant",
+  "Reference": "Machinaria_Heartworks_Oiler_Template",
+  "Modify": {
+    "Appearance": "Machinaria_Heartworks_Oiler",
+    "DropList": "Machinaria_Heartworks_Oiler_Drops",
+    "OilEffect": "Machinaria_Heartworks_Oiler_Heal",
+    "OilFlourish": "Machinaria_Heartworks_Oiler_Sheen",
+    "NameTranslationKey": {
+      "Compute": "NameTranslationKey"
+    }
+  },
+  "Parameters": {
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Oiler.name",
+      "Description": "Translation key for NPC name display"
+    }
+  }
+}

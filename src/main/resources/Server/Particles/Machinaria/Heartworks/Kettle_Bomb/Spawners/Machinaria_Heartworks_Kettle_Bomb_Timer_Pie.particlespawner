@@ -1,0 +1,126 @@
+{
+  "RenderMode": "Erosion",
+  "ParticleRotationInfluence": "Billboard",
+  "LinearFiltering": true,
+  "LightInfluence": 0,
+  "ParticleRotateWithSpawner": false,
+  "MaxConcurrentParticles": 1,
+  "ParticleLifeSpan": {
+    "Min": 3,
+    "Max": 3
+  },
+  "SpawnRate": {
+    "Min": 1,
+    "Max": 1
+  },
+  "TotalParticles": {
+    "Min": 1,
+    "Max": 1
+  },
+  "SpawnBurst": true,
+  "Particle": {
+    "Texture": "Particles/Textures/Indicators/Timer_Pie8_Erosion.png",
+    "FrameSize": {
+      "Width": 128,
+      "Height": 128
+    },
+    "ScaleRatioConstraint": "OneToOne",
+    "UVOption": "None",
+    "Animation": {
+      "0": {
+        "FrameIndex": {
+          "Min": 8,
+          "Max": 8
+        },
+        "Color": "#ff9900",
+        "Opacity": 1
+      },
+      "10": {
+        "FrameIndex": {
+          "Min": 7,
+          "Max": 7
+        },
+        "Color": "#ff5140",
+        "Opacity": 1
+      },
+      "20": {
+        "FrameIndex": {
+          "Min": 6,
+          "Max": 6
+        },
+        "Color": "#ff9900",
+        "Opacity": 1
+      },
+      "30": {
+        "FrameIndex": {
+          "Min": 5,
+          "Max": 5
+        },
+        "Color": "#ff5140",
+        "Opacity": 1
+      },
+      "40": {
+        "FrameIndex": {
+          "Min": 4,
+          "Max": 4
+        },
+        "Color": "#ff9900",
+        "Opacity": 1
+      },
+      "50": {
+        "FrameIndex": {
+          "Min": 3,
+          "Max": 3
+        },
+        "Color": "#ff5140",
+        "Opacity": 1
+      },
+      "60": {
+        "FrameIndex": {
+          "Min": 2,
+          "Max": 2
+        },
+        "Color": "#ff9900",
+        "Opacity": 1
+      },
+      "70": {
+        "FrameIndex": {
+          "Min": 1,
+          "Max": 1
+        },
+        "Color": "#ff5140",
+        "Opacity": 1
+      },
+      "80": {
+        "FrameIndex": {
+          "Min": 0,
+          "Max": 0
+        },
+        "Color": "#ff9900",
+        "Opacity": 1
+      },
+      "85": {
+        "Color": "#ff2200"
+      },
+      "90": {
+        "Color": "#ff9900"
+      },
+      "95": {
+        "Color": "#ff2200"
+      },
+      "100": {
+        "Opacity": 1,
+        "Color": "#ff2200"
+      }
+    },
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.2,
+          "Max": 0.2
+        }
+      },
+      "Opacity": 1
+    }
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "Type": "CombatActionEvaluator",
+  "$Comment": "Hard mode phase 1: jabs 1.4 to 1.8 s, Hammer Slam with aftershock (every 11 s), Gear Toss of five (every 9 s), Wind Up (every 26 s once hurt; 250 on the key jams it). Lists the Hard_Mode marker (vanilla CAE_Goblin_Gobliterator_Phase2_HM lists Gobliterator_Hard_Mode).",
+  "EntityEffects": [
+    "Immunity_Slow",
+    "Immunity_Freeze",
+    "Immunity_Poison",
+    "Machinaria_Heartworks_Heartwinder_Hard_Mode"
+  ],
+  "TargetMemoryDuration": 30,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "Type": "Switch",
+          "SwitchPoint": 2.5
+        }
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "NoAimDefault": {
+        "Type": "State",
+        "Description": "Leave NoAim for Default",
+        "State": "Combat",
+        "SubState": "Default",
+        "Target": "Hostile",
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 0.1
+            }
+          }
+        ]
+      },
+      "SelectTarget": {
+        "Type": "SelectBasicAttackTarget",
+        "OffhandSlot": -1,
+        "Conditions": [
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "ResponseCurve": "SimpleDescendingLogistic",
+              "XRange": [
+                0,
+                8
+              ]
+            }
+          }
+        ]
+      },
+      "Slam": {
+        "Type": "Ability",
+        "Description": "Hammer Slam with its aftershock (hard): within 5, every 11 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          5
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Slam_Hard",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.6,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 11
+            }
+          }
+        ]
+      },
+      "GearToss": {
+        "Type": "Ability",
+        "Description": "Gear Toss, five gears (hard): 6 to 18 away, every 9 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          6,
+          18
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Gear_Toss_Hard",
+        "SubState": "GearToss",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.4,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 9
+            }
+          },
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 6
+            }
+          }
+        ]
+      },
+      "WindUp": {
+        "Type": "Ability",
+        "Description": "Wind Up (hard): every 26 s once it has taken 500",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          40
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Wind_Up",
+        "SubState": "WindUp",
+        "RequireAiming": false,
+        "WeightCoefficient": 1.2,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 26
+            }
+          },
+          {
+            "Type": "TotalSustainedDamage",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 500
+            }
+          }
+        ]
+      },
+      "KeyJam": {
+        "Type": "Ability",
+        "Description": "The key was struck for 250 in the Wind Up (hard): jammed",
+        "Target": "Self",
+        "AttackDistanceRange": [
+          1,
+          1
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Key_Jam",
+        "SubState": "NoAim",
+        "RequireAiming": false,
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "RecentSustainedDamage",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 250
+            }
+          }
+        ]
+      },
+      "WoundTight": {
+        "Type": "Ability",
+        "Description": "The Wind Up was not stopped (hard: under 250): Wound Tight",
+        "Target": "Self",
+        "AttackDistanceRange": [
+          1,
+          1
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Heartwinder_Wound_Tight",
+        "SubState": "Default",
+        "RequireAiming": false,
+        "WeightCoefficient": 100,
+        "Conditions": [
+          {
+            "Type": "RecentSustainedDamage",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 250,
+              "InitialState": 1,
+              "FinalState": 0
+            }
+          }
+        ]
+      }
+    },
+    "ActionSets": {
+      "Default": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Heartwinder_Jab"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 5,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1.4,
+            1.8
+          ]
+        },
+        "Actions": [
+          "Slam",
+          "GearToss",
+          "WindUp",
+          "SelectTarget"
+        ]
+      },
+      "NoAim": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      },
+      "GearToss": {
+        "Actions": [
+          "NoAimDefault"
+        ]
+      },
+      "WindUp": {
+        "Actions": [
+          "KeyJam",
+          "WoundTight"
+        ]
+      }
+    }
+  }
+}

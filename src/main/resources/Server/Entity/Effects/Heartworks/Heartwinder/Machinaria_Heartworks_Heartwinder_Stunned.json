@@ -1,0 +1,17 @@
+{
+  "$Comment": "A Steam Charge into a wall: 3 s stunned.",
+  "Duration": 3,
+  "OverlapBehavior": "Overwrite",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Stunned",
+        "TargetEntityPart": "Entity",
+        "TargetNodeName": "Head",
+        "PositionOffset": {
+          "Y": 0.8
+        }
+      }
+    ]
+  }
+}

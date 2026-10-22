@@ -1,0 +1,31 @@
+{
+  "InstanceId": "The_Heartworks",
+  "GameplayConfig": "MachinariaHeartworks",
+  "Description": {
+    "DisplayName": "server.portals.the_heartworks",
+    "FlavorText": "server.portals.the_heartworks.description",
+    "ThemeColor": "#b8862e",
+    "SplashImage": "DefaultArtwork.png"
+  },
+  "EphemeralItems": [
+    "Machinaria_Heartworks_Spare_Fuse",
+    "Machinaria_Heartworks_Valve_Wheel",
+    "Machinaria_Heartworks_Escapement_Gear",
+    "Machinaria_Heartworks_Dynamo_Fuse"
+  ],
+  "Spawn": {
+    "SpawnReturnPortal": false,
+    "SpawnProviderOverride": {
+      "Id": "Global",
+      "SpawnPoint": {
+        "X": 0.5,
+        "Y": 160.0,
+        "Z": 89.5
+      }
+    }
+  },
+  "CloseWhenEmpty": true,
+  "AllowedEntryCount": 0,
+  "TimeLimitSeconds": -1,
+  "AllowPlayersToLeaveViaMap": true
+}

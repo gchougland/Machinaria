@@ -1,0 +1,1405 @@
+{
+  "$Comment": "The wave Cogling brain (round 6): a copy of Machinaria_Heartworks_Cogling_Template whose alerted Cogling always chases. The base Cogling (a Scarak Louse copy) is brave only in a flock and flees when alone; a coupling hatch sends them up one at a time in different corners, so with long sight they saw the player before any flock formed and fled. Everything else is the base template. Machinaria_Heartworks_Cogling_Wave is its Variant.",
+  "Type": "Abstract",
+  "Parameters": {
+    "Appearance": {
+      "Value": "Machinaria_Heartworks_Cogling",
+      "Description": "Model to be used"
+    },
+    "WanderRadius": {
+      "Value": 6,
+      "Description": "General wander radius"
+    },
+    "ViewRange": {
+      "Value": 12,
+      "Description": "View range"
+    },
+    "ViewSector": {
+      "Value": 180,
+      "Description": "View sector"
+    },
+    "HearingRange": {
+      "Value": 8,
+      "Description": "Hearing range"
+    },
+    "FleeRange": {
+      "Value": 15,
+      "Description": "How far to try and get away when fleeing"
+    },
+    "AlertedRange": {
+      "Value": 30,
+      "Description": "A range within which the player can be seen/sensed when the NPC is alerted to their presence"
+    },
+    "DropList": {
+      "Value": "Machinaria_Heartworks_Drop_Cogling",
+      "Description": "Drop Items"
+    },
+    "MaxSpeed": {
+      "Value": 9,
+      "Description": "Maximum walking speed"
+    },
+    "Attack": {
+      "Value": "Machinaria_Heartworks_Cogling_Nip",
+      "Description": "The attack to use"
+    },
+    "AttackDistance": {
+      "Value": 1.6,
+      "Description": "The distance to attack from"
+    },
+    "AttackPauseRange": {
+      "Value": [
+        1,
+        1.8
+      ],
+      "Description": "Pause between nips (DESIGN.md 6.2: 1.0 to 1.8)"
+    },
+    "PounceAttack": {
+      "Value": "Machinaria_Heartworks_Cogling_Pounce",
+      "Description": "The pounce root (crouch, leap, bite)"
+    },
+    "PounceRange": {
+      "Value": 5,
+      "Description": "Pounce when the target is at most this far"
+    },
+    "PounceMinRange": {
+      "Value": 3,
+      "Description": "and at least this far"
+    },
+    "PounceCooldown": {
+      "Value": [
+        8,
+        8
+      ],
+      "Description": "Seconds between pounces"
+    },
+    "PounceTime": {
+      "Value": [
+        1.1,
+        1.1
+      ],
+      "Description": "How long the pounce root runs (0.5 s crouch, the leap, 0.2 s bite): the Attack action returns as soon as the root starts, so the role waits this long before tipping over"
+    },
+    "FlippedTime": {
+      "Value": [
+        0.5,
+        0.5
+      ],
+      "Description": "Seconds tipped on its side after a pounce (the window)"
+    },
+    "RewindEvery": {
+      "Value": [
+        20,
+        20
+      ],
+      "Description": "Seconds of chasing between rewinds"
+    },
+    "RewindTime": {
+      "Value": [
+        1.5,
+        1.5
+      ],
+      "Description": "Seconds it stands still winding its key (the window)"
+    },
+    "SortEvery": {
+      "Value": [
+        8,
+        18
+      ],
+      "Description": "Seconds between Sort flavour scenes while idle"
+    },
+    "ScatterTime": {
+      "Value": [
+        2.5,
+        2.5
+      ],
+      "Description": "Seconds it runs from a Kettle Bomb's whistle"
+    },
+    "ScatterMessage": {
+      "Value": "Machinaria_Heartworks_Kettle_Whistle",
+      "Description": "The beacon a Kettle Bomb whistles"
+    },
+    "AttitudeGroup": {
+      "Value": "Machinaria_Robots",
+      "Description": "This NPCs attitude group"
+    },
+    "FlockArray": {
+      "Value": [
+        "Machinaria_Heartworks_Cogling"
+      ],
+      "Description": "Array containing NPCs for this flock type"
+    },
+    "CombatRelativeTurnSpeed": {
+      "Value": 1.5,
+      "Description": "Modifier that decides turn speed difference in combat"
+    },
+    "MaxHealth": {
+      "Value": 50,
+      "Description": "Max health for the NPC"
+    },
+    "DeathParticles": {
+      "Value": "Machinaria_Heartworks_Cogling_Death_Gears",
+      "Description": "Particles when the corpse goes: it pops into gears"
+    },
+    "IsMemory": {
+      "Value": false,
+      "Description": "Defines if the NPC is a memory"
+    },
+    "MemoriesCategory": {
+      "Value": "Other",
+      "Description": "Defines the category of the memory"
+    },
+    "MemoriesNameOverride": {
+      "Value": "",
+      "Description": "Overrides the memory name if set"
+    },
+    "NameTranslationKey": {
+      "Value": "machinaria_hw_small.npcRoles.Machinaria_Heartworks_Cogling.name",
+      "Description": "Translation key for NPC name display"
+    }
+  },
+  "IsMemory": {
+    "Compute": "IsMemory"
+  },
+  "MemoriesCategory": {
+    "Compute": "MemoriesCategory"
+  },
+  "MemoriesNameOverride": {
+    "Compute": "MemoriesNameOverride"
+  },
+  "Appearance": {
+    "Compute": "Appearance"
+  },
+  "StartState": "Idle",
+  "DropList": {
+    "Compute": "DropList"
+  },
+  "DisableDamageGroups": [
+    "Self"
+  ],
+  "DefaultNPCAttitude": "Ignore",
+  "DefaultPlayerAttitude": "Neutral",
+  "AttitudeGroup": {
+    "Compute": "AttitudeGroup"
+  },
+  "FlockSpawnTypes": {
+    "Compute": "FlockArray"
+  },
+  "FlockAllowedNPC": {
+    "Compute": "FlockArray"
+  },
+  "BusyStates": [
+    "Chase"
+  ],
+  "KnockbackScale": 0.5,
+  "DeathAnimationTime": 1,
+  "DeathParticles": {
+    "Compute": "DeathParticles"
+  },
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": {
+        "Compute": "MaxSpeed"
+      },
+      "Gravity": 10,
+      "RunThreshold": 0.3,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 360,
+      "Acceleration": 10
+    }
+  ],
+  "MaxHealth": {
+    "Compute": "MaxHealth"
+  },
+  "Instructions": [
+    {
+      "Continue": true,
+      "$Comment": "Run all the time, whatever the state: flocking, the Kettle Bomb's whistle, party scaling.",
+      "Instructions": [
+        {
+          "Enabled": {
+            "Compute": "!isEmptyStringArray(FlockArray)"
+          },
+          "Continue": true,
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "FlockLeader"
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Flock",
+                    "FlockStatus": "Follower"
+                  }
+                ]
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "Timeout",
+              "Delay": [
+                0.5,
+                2
+              ],
+              "Action": {
+                "Type": "SetLeashPosition",
+                "ToTarget": true
+              }
+            }
+          ]
+        },
+        {
+          "Enabled": {
+            "Compute": "!isEmptyStringArray(FlockArray)"
+          },
+          "Continue": true,
+          "Sensor": {
+            "Type": "Mob",
+            "Range": 20,
+            "ExcludeOwnType": false,
+            "LockOnTarget": true,
+            "Filters": [
+              {
+                "Type": "NPCGroup",
+                "IncludeGroups": [
+                  "Self"
+                ]
+              },
+              {
+                "Type": "Flock",
+                "FlockStatus": "NotMember"
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "JoinFlock"
+            }
+          ]
+        },
+        {
+          "$Comment": "A Kettle Bomb whistles as it runs and plants: Coglings near it scatter (DESIGN.md 6.2). The sender is kept in the Kettle slot to flee from.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "State",
+                  "State": "Scatter"
+                }
+              },
+              {
+                "Type": "Beacon",
+                "Message": {
+                  "Compute": "ScatterMessage"
+                },
+                "Range": 9,
+                "TargetSlot": "Kettle"
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "State",
+              "State": "Scatter"
+            }
+          ]
+        },
+        {
+          "$Comment": "Scale health to the party size on first aggro, as the dungeon goblins do (x1.55, x2.1, x2.65).",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Not",
+            "Sensor": {
+              "Type": "State",
+              "State": "Idle"
+            }
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Dungeon_Goblin_Scale_Health"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Idle"
+          },
+          "Instructions": [
+            {
+              "Reference": "Component_Instruction_Clear_Status_Animation"
+            },
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "TimerStart",
+                  "Name": "Sort_Timer",
+                  "StartValueRange": {
+                    "Compute": "SortEvery"
+                  },
+                  "RestartValueRange": {
+                    "Compute": "SortEvery"
+                  }
+                }
+              ]
+            },
+            {
+              "Enabled": {
+                "Compute": "!isEmptyStringArray(FlockArray)"
+              },
+              "Sensor": {
+                "Type": "Beacon",
+                "Message": "Flock_Attack",
+                "TargetSlot": "LockedTarget"
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Chase"
+                }
+              ]
+            },
+            {
+              "Reference": "Component_Instruction_Damage_Check",
+              "Modify": {
+                "_ExportStates": [
+                  "Chase",
+                  "Panic"
+                ],
+                "AlertedRange": {
+                  "Compute": "AlertedRange"
+                }
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Or",
+                "Sensors": [
+                  {
+                    "Reference": "Component_Sensor_Sight_By_Attitude",
+                    "Modify": {
+                      "ViewRange": {
+                        "Compute": "ViewRange"
+                      },
+                      "ViewSector": {
+                        "Compute": "ViewSector"
+                      },
+                      "Attitudes": [
+                        "Hostile",
+                        "Neutral"
+                      ]
+                    }
+                  },
+                  {
+                    "Reference": "Component_Sensor_Sound_By_Attitude",
+                    "Modify": {
+                      "HearingRange": {
+                        "Compute": "HearingRange"
+                      },
+                      "Attitudes": [
+                        "Hostile",
+                        "Neutral"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Alerted"
+                }
+              ]
+            },
+            {
+              "$Comment": "Sort (DESIGN.md 6.3): now and then it stops, picks up a scrap nut, looks round with it and drops it.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Timer",
+                    "Name": "Sort_Timer",
+                    "State": "Stopped"
+                  },
+                  {
+                    "Type": "OnGround"
+                  }
+                ]
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Sort"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Metal_Hit"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    3,
+                    3
+                  ]
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "Sort_Timer"
+                }
+              ]
+            },
+            {
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Mob",
+                    "Range": 2,
+                    "ExcludeOwnType": false,
+                    "LockOnTarget": false,
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Self"
+                        ]
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Wander",
+                    "MaxHeadingChange": 45,
+                    "RelativeSpeed": 0.8
+                  }
+                },
+                {
+                  "Enabled": {
+                    "Compute": "!isEmptyStringArray(FlockArray)"
+                  },
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "And",
+                        "Sensors": [
+                          {
+                            "Type": "FlockLeader"
+                          },
+                          {
+                            "Type": "Self",
+                            "Filters": [
+                              {
+                                "Type": "Flock",
+                                "FlockStatus": "Follower"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Leash",
+                        "Range": {
+                          "Compute": "WanderRadius"
+                        }
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Seek",
+                    "SlowDownDistance": 5,
+                    "StopDistance": 3,
+                    "RelativeSpeed": 1,
+                    "AbortDistance": 100
+                  }
+                },
+                {
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "BodyMotion": {
+                    "Type": "Sequence",
+                    "Looped": true,
+                    "Motions": [
+                      {
+                        "Type": "Timer",
+                        "Time": [
+                          1,
+                          5
+                        ],
+                        "Motion": {
+                          "Type": "WanderInCircle",
+                          "Radius": {
+                            "Compute": "WanderRadius"
+                          },
+                          "MaxHeadingChange": 60,
+                          "RelativeSpeed": 0.43
+                        }
+                      },
+                      {
+                        "Type": "Timer",
+                        "Time": [
+                          3,
+                          8
+                        ],
+                        "Motion": {
+                          "Type": "Nothing"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Alerted"
+          },
+          "Instructions": [
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": ".Evaluate"
+              },
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": "Chase"
+                    }
+                  ],
+                  "$Comment": "Wave Coglings are brave alone: an alerted wave Cogling always chases (round 6: alone at its hatch, the base Cogling fled from players it saw at once)."
+                },
+                {
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": "Flee"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Alerted"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "Offset": [
+                    0,
+                    0.8,
+                    0
+                  ],
+                  "ParticleSystem": "Alerted"
+                }
+              ]
+            },
+            {
+              "Reference": "Component_Instruction_Damage_Check",
+              "Modify": {
+                "_ExportStates": [
+                  "Alerted.Evaluate",
+                  "Alerted.Evaluate"
+                ],
+                "AlertedRange": {
+                  "Compute": "AlertedRange"
+                }
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Range": 3,
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.1,
+                    0.1
+                  ],
+                  "Action": {
+                    "Type": "State",
+                    "State": ".Evaluate"
+                  }
+                }
+              ],
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Range": {
+                  "Compute": "ViewRange"
+                }
+              },
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1,
+                    1
+                  ],
+                  "Action": {
+                    "Type": "State",
+                    "State": ".Evaluate"
+                  }
+                }
+              ],
+              "HeadMotion": {
+                "Type": "Watch"
+              }
+            },
+            {
+              "ActionsAtomic": true,
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    2,
+                    2
+                  ]
+                },
+                {
+                  "Type": "ReleaseTarget"
+                },
+                {
+                  "Type": "State",
+                  "State": "Idle"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Chase"
+          },
+          "Instructions": [
+            {
+              "$Comment": "Pounce: crouch and chirp (0.5 s), leap, bite (7), then tipped on its side for FlippedTime: the player's window.",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Pounce"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "Attack",
+                  "Attack": {
+                    "Compute": "PounceAttack"
+                  },
+                  "AttackPauseRange": [
+                    0,
+                    0
+                  ],
+                  "AimingTimeRange": [
+                    0,
+                    0
+                  ],
+                  "Once": true,
+                  "SkipAiming": true,
+                  "LineOfSight": false,
+                  "AvoidFriendlyFire": false
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": {
+                    "Compute": "PounceTime"
+                  }
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "Pounce_Timer"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Flipped"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": ".Flipped"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Flipped"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Sawblade_Bounce"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": {
+                    "Compute": "FlippedTime"
+                  }
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "$Comment": "Rewind: after RewindEvery seconds of chasing it stops and winds its key for RewindTime (the second window).",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Rewind"
+              },
+              "BodyMotion": {
+                "Type": "Nothing"
+              },
+              "ActionsBlocking": true,
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Rewind"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": {
+                    "Compute": "RewindTime"
+                  }
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "TimerRestart",
+                  "Name": "Rewind_Timer"
+                },
+                {
+                  "Type": "State",
+                  "State": ".Default"
+                }
+              ]
+            },
+            {
+              "$Comment": "The chase itself (sub state Default).",
+              "Sensor": {
+                "Type": "State",
+                "State": ".Default"
+              },
+              "Instructions": [
+                {
+                  "Reference": "Component_Instruction_Clear_Status_Animation"
+                },
+                {
+                  "Enabled": {
+                    "Compute": "!isEmptyStringArray(FlockArray)"
+                  },
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Any",
+                    "Once": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "FlockBeacon",
+                      "Message": "Flock_Attack",
+                      "SendTargetSlot": "LockedTarget"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Rewind_Timer",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Rewind"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Pounce_Timer",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "OnGround"
+                      },
+                      {
+                        "Type": "Target",
+                        "Range": {
+                          "Compute": "PounceRange"
+                        },
+                        "Filters": [
+                          {
+                            "Type": "LineOfSight"
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Not",
+                        "Sensor": {
+                          "Type": "Target",
+                          "Range": {
+                            "Compute": "PounceMinRange"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "State",
+                      "State": ".Pounce"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AttackDistance"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Attack",
+                      "Attack": {
+                        "Compute": "Attack"
+                      },
+                      "AttackPauseRange": {
+                        "Compute": "AttackPauseRange"
+                      }
+                    }
+                  ],
+                  "HeadMotion": {
+                    "Type": "Aim",
+                    "RelativeTurnSpeed": {
+                      "Compute": "CombatRelativeTurnSpeed"
+                    }
+                  }
+                },
+                {
+                  "Reference": "Component_Instruction_Intelligent_Chase",
+                  "Modify": {
+                    "_ExportStates": [
+                      "Idle",
+                      "Idle",
+                      "Idle"
+                    ],
+                    "ViewRange": {
+                      "Compute": "AlertedRange"
+                    },
+                    "HearingRange": {
+                      "Compute": "HearingRange"
+                    },
+                    "StopDistance": {
+                      "Compute": "AttackDistance"
+                    },
+                    "RelativeSpeed": 0.67
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "Scatter: a Kettle Bomb whistled nearby. Run from it for ScatterTime, then back to the chase (or to idle with no target).",
+          "Sensor": {
+            "Type": "State",
+            "State": "Scatter"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "Offset": [
+                    0,
+                    0.8,
+                    0
+                  ],
+                  "ParticleSystem": "Alerted"
+                },
+                {
+                  "Type": "PlaySound",
+                  "SoundEventId": "SFX_Larva_Alerted"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Timer",
+                    "Name": "Scatter_Timer",
+                    "State": "Stopped"
+                  },
+                  {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "AlertedRange"
+                    }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Chase"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Timer",
+                "Name": "Scatter_Timer",
+                "State": "Stopped"
+              },
+              "Actions": [
+                {
+                  "Type": "ReleaseTarget"
+                },
+                {
+                  "Type": "State",
+                  "State": "Idle"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "TargetSlot": "Kettle",
+                "Range": 14
+              },
+              "BodyMotion": {
+                "Type": "Flee",
+                "SlowDownDistance": 8,
+                "StopDistance": 10,
+                "RelativeSpeed": 1
+              }
+            },
+            {
+              "Sensor": {
+                "Type": "Any"
+              },
+              "BodyMotion": {
+                "Type": "Wander",
+                "MaxHeadingChange": 90,
+                "RelativeSpeed": 1
+              }
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Flee"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                }
+              ]
+            },
+            {
+              "Reference": "Component_Instruction_Damage_Check",
+              "Modify": {
+                "_ExportStates": [
+                  "Chase",
+                  "Panic"
+                ],
+                "AlertedRange": {
+                  "Compute": "AlertedRange"
+                }
+              }
+            },
+            {
+              "Continue": true,
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Mob",
+                    "Range": 2,
+                    "ExcludeOwnType": false,
+                    "LockOnTarget": false,
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Self"
+                        ]
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Wander",
+                    "MaxHeadingChange": 45,
+                    "RelativeSpeed": 0.8
+                  }
+                },
+                {
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": {
+                      "Compute": "FleeRange"
+                    },
+                    "Filters": [
+                      {
+                        "Type": "LineOfSight"
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Flee",
+                    "SlowDownDistance": {
+                      "Compute": "ViewRange"
+                    },
+                    "StopDistance": {
+                      "Compute": "FleeRange + 1"
+                    },
+                    "RelativeSpeed": 0.68
+                  }
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Target",
+                "Range": 2,
+                "Filters": [
+                  {
+                    "Type": "LineOfSight"
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Chase"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Target",
+                  "Range": {
+                    "Compute": "FleeRange"
+                  },
+                  "Filters": [
+                    {
+                      "Type": "LineOfSight"
+                    }
+                  ]
+                }
+              },
+              "Actions": [
+                {
+                  "Type": "ReleaseTarget"
+                },
+                {
+                  "Type": "State",
+                  "State": "Idle"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Panic"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "SpawnParticles",
+                  "Offset": [
+                    0,
+                    0.8,
+                    0
+                  ],
+                  "ParticleSystem": "Alerted"
+                }
+              ]
+            },
+            {
+              "$Comment": "Motions",
+              "Continue": true,
+              "Instructions": [
+                {
+                  "Sensor": {
+                    "Type": "Or",
+                    "Sensors": [
+                      {
+                        "Type": "Player",
+                        "Range": {
+                          "Compute": "ViewRange / 2"
+                        }
+                      },
+                      {
+                        "Type": "Mob",
+                        "GetPlayers": true,
+                        "Range": {
+                          "Compute": "ViewRange / 2"
+                        },
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Aggressive"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "BodyMotion": {
+                    "Type": "Flee",
+                    "SlowDownDistance": {
+                      "Compute": "ViewRange"
+                    },
+                    "StopDistance": {
+                      "Compute": "FleeRange + 1"
+                    },
+                    "RelativeSpeed": 1
+                  }
+                },
+                {
+                  "Sensor": {
+                    "Type": "Any"
+                  },
+                  "BodyMotion": {
+                    "Type": "WanderInCircle",
+                    "Radius": {
+                      "Compute": "WanderRadius * 2"
+                    },
+                    "MaxHeadingChange": 90,
+                    "RelativeSpeed": 1
+                  }
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Or",
+                "Sensors": [
+                  {
+                    "Reference": "Component_Sensor_Sight_By_Attitude",
+                    "Modify": {
+                      "ViewRange": {
+                        "Compute": "AlertedRange"
+                      },
+                      "ViewSector": {
+                        "Compute": "ViewSector"
+                      },
+                      "Attitudes": [
+                        "Hostile",
+                        "Neutral"
+                      ]
+                    }
+                  },
+                  {
+                    "Reference": "Component_Sensor_Sound_By_Attitude",
+                    "Modify": {
+                      "HearingRange": {
+                        "Compute": "HearingRange"
+                      },
+                      "Attitudes": [
+                        "Hostile",
+                        "Neutral"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "State",
+                  "State": "Alerted"
+                }
+              ]
+            },
+            {
+              "Actions": [
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    5,
+                    8
+                  ],
+                  "Action": {
+                    "Type": "State",
+                    "State": "Idle"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "StateTransitions": [
+    {
+      "$Comment": "Arm the chase timers each time a chase begins: the first pounce comes soon, the first rewind after RewindEvery.",
+      "States": [
+        {
+          "From": [],
+          "To": [
+            "Chase"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "TimerStart",
+          "Name": "Pounce_Timer",
+          "StartValueRange": [
+            1.5,
+            3
+          ],
+          "RestartValueRange": {
+            "Compute": "PounceCooldown"
+          }
+        },
+        {
+          "Type": "TimerStart",
+          "Name": "Rewind_Timer",
+          "StartValueRange": {
+            "Compute": "RewindEvery"
+          },
+          "RestartValueRange": {
+            "Compute": "RewindEvery"
+          }
+        }
+      ]
+    },
+    {
+      "States": [
+        {
+          "From": [],
+          "To": [
+            "Scatter"
+          ]
+        }
+      ],
+      "Actions": [
+        {
+          "Type": "TimerStart",
+          "Name": "Scatter_Timer",
+          "StartValueRange": {
+            "Compute": "ScatterTime"
+          },
+          "RestartValueRange": {
+            "Compute": "ScatterTime"
+          }
+        }
+      ]
+    }
+  ],
+  "NameTranslationKey": {
+    "Compute": "NameTranslationKey"
+  }
+}

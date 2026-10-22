@@ -1,0 +1,19 @@
+{
+  "$Comment": "Riposte Ready (round 5 note 7): a blow landed on the Rivet Guard's raised shield, so its guard ends in the riposte. The tell: steam puffs from its stack. Each blocked blow renews it; it lapses 2.5 s after the last.",
+  "ApplicationEffects": {
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Rivet_Guard_Stack_Puff",
+        "TargetNodeName": "Stack-Cap",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0.08,
+          "Z": 0
+        }
+      }
+    ]
+  },
+  "Duration": 2.5,
+  "OverlapBehavior": "Overwrite",
+  "Debuff": false
+}

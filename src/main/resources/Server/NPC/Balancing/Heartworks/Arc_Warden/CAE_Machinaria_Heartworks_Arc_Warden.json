@@ -1,0 +1,107 @@
+{
+  "Type": "CombatActionEvaluator",
+  "$Comment": "The Arc Warden's moves (DESIGN.md 6.2): the two-swipe staff chain as the basic attack (1.5 to 2 s between chains), the Ground Ring (within 6, every 12 s). Arc Link, Grounded and Overload are the role's (they depend on the coils).",
+  "EntityEffects": [
+    "Immunity_Poison",
+    "Machinaria_Heartworks_Arc_Warden_Hum"
+  ],
+  "TargetMemoryDuration": 20,
+  "CombatActionEvaluator": {
+    "RunConditions": [
+      {
+        "Type": "TimeSinceLastUsed",
+        "Curve": {
+          "ResponseCurve": "Linear",
+          "XRange": [
+            0,
+            4
+          ]
+        }
+      }
+    ],
+    "MinRunUtility": 0.5,
+    "MinActionUtility": 0.01,
+    "AvailableActions": {
+      "SelectTarget": {
+        "Type": "SelectBasicAttackTarget",
+        "OffhandSlot": -1,
+        "Conditions": [
+          {
+            "Type": "TargetDistance",
+            "Curve": {
+              "ResponseCurve": "SimpleDescendingLogistic",
+              "XRange": [
+                0,
+                6
+              ]
+            }
+          }
+        ]
+      },
+      "GroundRing": {
+        "Type": "Ability",
+        "Description": "Ground Ring: within 6, every 12 s",
+        "Target": "Hostile",
+        "AttackDistanceRange": [
+          0,
+          6
+        ],
+        "PostExecuteDistanceRange": [
+          3,
+          3
+        ],
+        "Ability": "Root_Machinaria_Heartworks_Arc_Warden_Ground_Ring",
+        "WeightCoefficient": 1.5,
+        "Conditions": [
+          {
+            "Type": "TimeSinceLastUsed",
+            "Curve": {
+              "Type": "Switch",
+              "SwitchPoint": 12
+            }
+          }
+        ]
+      }
+    },
+    "ActionSets": {
+      "Default": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Arc_Warden_Swipe"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 3.5,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1.5,
+            2
+          ]
+        },
+        "Actions": [
+          "GroundRing",
+          "SelectTarget"
+        ]
+      },
+      "Seek": {
+        "BasicAttacks": {
+          "Attacks": [
+            "Root_Machinaria_Heartworks_Arc_Warden_Swipe"
+          ],
+          "Randomise": false,
+          "UseProjectedDistance": true,
+          "MaxRange": 3.5,
+          "Timeout": 0.001,
+          "CooldownRange": [
+            1.5,
+            2
+          ]
+        },
+        "Actions": [
+          "GroundRing",
+          "SelectTarget"
+        ]
+      }
+    }
+  }
+}

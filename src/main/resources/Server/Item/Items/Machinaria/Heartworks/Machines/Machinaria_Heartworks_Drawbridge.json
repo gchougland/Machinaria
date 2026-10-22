@@ -1,0 +1,87 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_machines.items.Machinaria_Heartworks_Drawbridge.name",
+    "Description": "machinaria_hw_machines.items.Machinaria_Heartworks_Drawbridge.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Drawbridge.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "VariantRotation": "NESW",
+    "BlockSoundSetId": "Wood",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#6a5034",
+    "TextureComputedColor": "#6a5034",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Drawbridge.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Machines/Drawbridge.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Machinaria_Heartworks_Drawbridge",
+    "State": {
+      "Definitions": {
+        "Deck": {},
+        "Hinge": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Hinge.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Hinge.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Machinaria_Heartworks_Drawbridge_Hinge"
+        },
+        "Edge": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Edge.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Edge.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Machinaria_Heartworks_Drawbridge_Edge"
+        },
+        "Raised": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Raised.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Raised.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Machinaria_Heartworks_Drawbridge_Raised"
+        },
+        "Tilted": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Tilted.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Machines/Drawbridge_Tilted.png",
+              "Weight": 1
+            }
+          ],
+          "HitboxType": "Machinaria_Heartworks_Drawbridge_Tilted"
+        }
+      }
+    }
+  }
+}

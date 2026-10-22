@@ -1,0 +1,60 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_pumpworks.items.Machinaria_Pumpworks_Radio_Set.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Pumpworks_Radio_Set.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Pumpworks"
+    ]
+  },
+  "BlockType": {
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Group": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks",
+        "DropList": "Machinaria_Pumpworks_Scrap_Salvage"
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Pumpworks/Radio_Set.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Pumpworks/Radio_Set.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Block_Half",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#a60",
+      "Radius": 3
+    },
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Pumpworks_Radio_Sparks",
+        "TargetNodeName": "AerialTip",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0.05,
+          "Z": 0
+        },
+        "Scale": 0.5
+      }
+    ],
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_A_Steam_Bursts_Winding",
+    "TextureComputedColor": "#3a3d44",
+    "ParticleColor": "#3a3d44"
+  }
+}

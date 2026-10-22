@@ -1,0 +1,49 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_gearwood.items.Wood_Gear_Ornate.name"
+  },
+  "Parent": "Wood_Gear_Planks",
+  "Icon": "Icons/ItemsGenerated/Wood_Gear_Ornate.png",
+  "Set": "Wood_Gear_Planks",
+  "BlockType": {
+    "Textures": [
+      {
+        "Sides": "BlockTextures/Machinaria/Gearwood/Wood_Gear_Ornate.png",
+        "UpDown": "BlockTextures/Machinaria/Gearwood/Wood_Gear_Ornate_Top.png",
+        "Weight": 1
+      }
+    ],
+    "TextureComputedColor": "#55271B",
+    "ParticleColor": "#4a2418"
+  },
+  "Tags": {
+    "Type": [
+      "Wood"
+    ],
+    "Family": [
+      "Gearwood"
+    ]
+  },
+  "Recipe": {
+    "Input": [
+      {
+        "ResourceTypeId": "Wood_Gear_Trunk",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Id": "Builders",
+        "Type": "StructuralCrafting",
+        "Categories": [
+          "OrnatePlanks"
+        ]
+      }
+    ],
+    "OutputQuantity": 1
+  },
+  "Categories": [
+    "Blocks.Wood",
+    "Machinaria.Content"
+  ]
+}

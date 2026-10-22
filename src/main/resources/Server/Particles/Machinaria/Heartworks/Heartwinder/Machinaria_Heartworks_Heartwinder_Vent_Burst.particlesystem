@@ -1,0 +1,58 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Dust",
+      "PositionOffset": {
+        "Y": 0.03
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Wave",
+      "PositionOffset": {
+        "Y": 0.04
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Puffs",
+      "PositionOffset": {
+        "Y": 0.1
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Jets",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.1,
+        "Z": 0.45
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Jets",
+      "PositionOffset": {
+        "X": 0.45,
+        "Y": 0.1,
+        "Z": 0
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Jets",
+      "PositionOffset": {
+        "X": 0,
+        "Y": 0.1,
+        "Z": -0.45
+      }
+    },
+    {
+      "SpawnerId": "Machinaria_Heartworks_Heartwinder_Vent_Burst_Jets",
+      "PositionOffset": {
+        "X": -0.45,
+        "Y": 0.1,
+        "Z": 0
+      }
+    }
+  ],
+  "$Comment": "The cradle vents blow (phase 3 anti-melee): the white steam ring and puffs out to radius 1 at Scale 1, and four short jets up out of the cradle's vents at radius 0.45 (spawned at Scale 6: jets 2.7 out, about 3 high).",
+  "LifeSpan": 1.35,
+  "CullDistance": 96,
+  "IsImportant": true
+}

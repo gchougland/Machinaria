@@ -1,0 +1,54 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_items.items.Rune_Galvanic.name",
+    "Description": "machinaria_hw_items.items.Rune_Galvanic.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Rune_Galvanic.png",
+  "Quality": "Rare",
+  "ItemLevel": 56,
+  "Categories": [
+    "Items.Ingredients",
+    "Machinaria.Content"
+  ],
+  "Model": "Items/Runes/Rune_Modifier.blockymodel",
+  "Texture": "Items/Machinaria/Runes/Rune_Galvanic.png",
+  "PlayerAnimationsId": "Item",
+  "IconProperties": {
+    "Scale": 0.75,
+    "Rotation": [
+      0,
+      30,
+      15
+    ],
+    "Translation": [
+      5,
+      -21
+    ]
+  },
+  "MaxStack": 1,
+  "Scale": 0.8,
+  "ItemSoundSetId": "ISS_Items_Gems",
+  "Ability": {
+    "Slot": "Support",
+    "RequiresAnyAbilityKeyword": [
+      "Damage"
+    ],
+    "AttributeModifiers": {
+      "Damage": [
+        {
+          "CalculationType": "Multiplicative",
+          "Amount": 0.9
+        }
+      ],
+      "Cost": [
+        {
+          "CalculationType": "Multiplicative",
+          "Amount": 1.15
+        }
+      ]
+    },
+    "OnHitEffects": [
+      "Machinaria_Galvanized"
+    ]
+  }
+}

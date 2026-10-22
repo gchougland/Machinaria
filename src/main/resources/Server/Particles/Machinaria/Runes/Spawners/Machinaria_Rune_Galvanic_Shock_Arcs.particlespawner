@@ -1,0 +1,87 @@
+{
+  "$Comment": "Blue arcs crawling over a Galvanized target (from vanilla Hazard_Electric_Stun, recoloured).",
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "Billboard",
+  "ParticleLifeSpan": {
+    "Min": 0.25,
+    "Max": 0.4
+  },
+  "SpawnRate": {
+    "Min": 2,
+    "Max": 3
+  },
+  "MaxConcurrentParticles": 8,
+  "SpawnBurst": true,
+  "WaveDelay": {
+    "Min": 0.15,
+    "Max": 0.3
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Rnd/LightningArch.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "SoftParticles": "Enable",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.28,
+          "Max": 0.42
+        },
+        "Y": {
+          "Min": 0.28,
+          "Max": 0.42
+        }
+      },
+      "Opacity": 1,
+      "FrameIndex": {
+        "Min": 0,
+        "Max": 5
+      },
+      "Rotation": {
+        "Z": {
+          "Min": -180,
+          "Max": 180
+        }
+      },
+      "Color": "#9ad6ff"
+    },
+    "Animation": {
+      "0": {
+        "Color": "#b4e4ff",
+        "Opacity": 1
+      },
+      "30": {
+        "Color": "#4aa2ff",
+        "Opacity": 0.2
+      },
+      "50": {
+        "Color": "#7cc4ff",
+        "Opacity": 0.9
+      },
+      "100": {
+        "Color": "#1e5cff",
+        "Opacity": 0
+      }
+    },
+    "UVOption": "RandomFlipUV",
+    "FrameSize": {
+      "Width": 64,
+      "Height": 128
+    }
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 0.35
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.6
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.35
+    }
+  },
+  "ParticleRotateWithSpawner": true
+}

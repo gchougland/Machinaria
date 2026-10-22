@@ -1,0 +1,23 @@
+{
+  "$Comment": "Overwind rune, the 2 s after: the spring has run down, 30% slower. Applied by the stat Machinaria_Overwind_Tension when Overwound ends.",
+  "Name": "machinaria_hw_items.entityEffects.Rune_Overwind_Unwound",
+  "ApplicationEffects": {
+    "HorizontalSpeedMultiplier": 0.7,
+    "WorldSoundEventId": "SFX_Machinaria_HW_Overwind_Unwind",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Rune_Overwind_Unwound",
+        "TargetNodeName": "Chest",
+        "PositionOffset": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0
+        }
+      }
+    ]
+  },
+  "Duration": 2,
+  "OverlapBehavior": "Overwrite",
+  "Debuff": true,
+  "StatusEffectIcon": "Icons/ItemsGenerated/Ingredient_Tarnished_Mainspring.png"
+}

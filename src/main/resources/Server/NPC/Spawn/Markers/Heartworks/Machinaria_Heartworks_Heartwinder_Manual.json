@@ -1,0 +1,15 @@
+{
+  "$Comment": "The Heartwinder, dormant in its cradle, spawned by its encounter (TriggerSpawners) when a player comes near, and again after a reset.",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Heartwinder_Intro",
+      "Weight": 100,
+      "SpawnAfterGameTime": "PT1S"
+    }
+  ],
+  "ManualTrigger": true,
+  "ExclusionRadius": 0,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 150
+}

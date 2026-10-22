@@ -1,0 +1,3768 @@
+{
+  "Class": "EncounterManager",
+  "Type": "Generic",
+  "StartState": "Waiting",
+  "$Comment": "The Heartwinder's fight, standard mode (DESIGN.md 7; notes/boss.md \"Hard mode\"). It runs only while its flag Hard_Mode is false; the selector by B2's south door sets that flag in both encounters (its beacons are heard only while no fight is live, so the choice locks when the boss wakes). Waiting: when a player comes near, it spawns the boss dormant in its cradle. The boss wakes when a player steps onto the inner floor and tells this encounter, which seals the door, shows the bar and starts the music; the intro ends with a beacon and the phases follow: Phase1 -> Transition1 at 70% -> Phase2 -> Transition2 at 35% -> Phase3 -> Overwind at 12% (a countdown by party size; four brakes seize it, midnight chimes) -> Dead (the vault opens) -> Complete. A wipe, an empty arena for 10 s or the restart beacon resets everything (vanilla Encounter_Macro_Reset_Arena). Built by tools/models/heartworks/heartwinder.npc.encounter.mjs.",
+  "Instructions": [
+    {
+      "$Comment": "The selector chose hard mode (heard only while no fight is live: the choice is locked once the boss wakes).",
+      "Continue": true,
+      "Sensor": {
+        "Type": "And",
+        "Sensors": [
+          {
+            "Type": "Beacon",
+            "Message": "Machinaria_Heartworks_Heartwinder_Mode_Hard",
+            "Range": 60
+          },
+          {
+            "Type": "Flag",
+            "Name": "Encounter_Live",
+            "Set": false
+          }
+        ]
+      },
+      "Actions": [
+        {
+          "Type": "Log",
+          "Message": "[Heartwinder] encounter: mode Hard"
+        },
+        {
+          "Type": "SetFlag",
+          "Name": "Hard_Mode"
+        }
+      ]
+    },
+    {
+      "$Comment": "The selector chose standard mode.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "And",
+        "Sensors": [
+          {
+            "Type": "Beacon",
+            "Message": "Machinaria_Heartworks_Heartwinder_Mode_Standard",
+            "Range": 60
+          },
+          {
+            "Type": "Flag",
+            "Name": "Encounter_Live",
+            "Set": false
+          }
+        ]
+      },
+      "Actions": [
+        {
+          "Type": "Log",
+          "Message": "[Heartwinder] encounter: mode Standard"
+        },
+        {
+          "Type": "SetFlag",
+          "Name": "Hard_Mode",
+          "SetTo": false
+        }
+      ]
+    },
+    {
+      "$Comment": "Handover (vanilla: \"Removes the bound boss when this encounter goes inactive\"): the hard mode is chosen and this encounter has a dormant boss: remove it; the hard encounter spawns its own.",
+      "Continue": true,
+      "Sensor": {
+        "Type": "And",
+        "Sensors": [
+          {
+            "Type": "Flag",
+            "Name": "Hard_Mode"
+          },
+          {
+            "Type": "Flag",
+            "Name": "Encounter_Live",
+            "Set": false
+          }
+        ]
+      },
+      "Instructions": [
+        {
+          "Continue": true,
+          "Sensor": {
+            "Type": "Target",
+            "Range": 60,
+            "TargetSlot": "Boss"
+          },
+          "Actions": [
+            {
+              "Type": "Log",
+              "Message": "[Heartwinder] encounter: hands over"
+            },
+            {
+              "Type": "Remove"
+            },
+            {
+              "Type": "ReleaseTarget",
+              "TargetSlot": "Boss"
+            },
+            {
+              "Type": "SetFlag",
+              "Name": "Spawn_Armed",
+              "SetTo": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$Comment": "The whole fight: only while this encounter's mode is chosen (vanilla: the Flag ModeFlag gate).",
+      "Sensor": {
+        "Type": "Flag",
+        "Name": "Hard_Mode",
+        "Set": false
+      },
+      "Instructions": [
+        {
+          "$Comment": "Reset on the restart beacon, a party wipe, or an empty arena for 10 s (vanilla macro): it removes the boss, signals every reset volume and returns to Waiting.",
+          "Reference": "Encounter_Macro_Reset_Arena",
+          "Modify": {
+            "_ExportStates": [
+              "Resetting",
+              "Waiting"
+            ],
+            "LiveFlag": "Encounter_Live",
+            "RestartMessage": "Machinaria_Heartworks_Heartwinder_Restart",
+            "BeaconRange": 60,
+            "Slot": "Boss",
+            "SlotRange": 60,
+            "RemoveGroups": [
+              "Machinaria_Heartworks_Heartwinder_Boss_Group"
+            ],
+            "RemoveRadius": 40,
+            "ArenaRange": 24,
+            "CorpseRange": 32,
+            "ResetOnEmptyArena": false,
+            "ResetTag": "Machinaria_HW_B2_Reset",
+            "ResetSignalKey": "Reset",
+            "ResetRadius": 60
+          }
+        },
+        {
+          "$Comment": "The empty-arena reset, only while the fight is live (the macro's own would also clear the dormant boss while the party waits in B1): hold a 10 s countdown full while a living player is in the arena.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "Player",
+            "Range": 24
+          },
+          "Actions": [
+            {
+              "Type": "TimerStart",
+              "Name": "EmptyArena",
+              "StartValueRange": [
+                10,
+                10
+              ],
+              "RestartValueRange": [
+                10,
+                10
+              ],
+              "Repeating": false
+            },
+            {
+              "Type": "TimerRestart",
+              "Name": "EmptyArena"
+            }
+          ]
+        },
+        {
+          "$Comment": "No living player in the arena for 10 s while the fight is live: reset (DESIGN.md 7.7).",
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Encounter_Live"
+              },
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Player",
+                  "Range": 24
+                }
+              },
+              {
+                "Type": "Timer",
+                "Name": "EmptyArena",
+                "State": "Stopped"
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": 60,
+                "TargetSlot": "Boss"
+              },
+              "Actions": [
+                {
+                  "Type": "Remove"
+                }
+              ]
+            },
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Mob",
+                "Range": 45,
+                "MultiTarget": true,
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": [
+                      "Machinaria_Heartworks_Heartwinder_Boss_Group"
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "ForEach",
+                  "Actions": [
+                    {
+                      "Type": "Remove",
+                      "UseTarget": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "ReleaseTarget",
+                  "TargetSlot": "Boss"
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Reset",
+                  "SignalKey": "Reset",
+                  "Radius": 60,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "StopEncounterMusic"
+                },
+                {
+                  "Type": "ClearEncounterBossBar"
+                },
+                {
+                  "Type": "ClearEncounterWeather"
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Encounter_Live",
+                  "SetTo": false
+                },
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] encounter -> Waiting"
+                },
+                {
+                  "Type": "State",
+                  "State": "Waiting"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "The boss pulled out of its arena (DESIGN.md 7.7): reset.",
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Encounter_Live"
+              },
+              {
+                "Type": "Target",
+                "Range": 200,
+                "TargetSlot": "Boss"
+              },
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Target",
+                  "Range": 26,
+                  "TargetSlot": "Boss"
+                }
+              }
+            ]
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Target",
+                "Range": 60,
+                "TargetSlot": "Boss"
+              },
+              "Actions": [
+                {
+                  "Type": "Remove"
+                }
+              ]
+            },
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Mob",
+                "Range": 45,
+                "MultiTarget": true,
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": [
+                      "Machinaria_Heartworks_Heartwinder_Boss_Group"
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "ForEach",
+                  "Actions": [
+                    {
+                      "Type": "Remove",
+                      "UseTarget": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "ReleaseTarget",
+                  "TargetSlot": "Boss"
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Reset",
+                  "SignalKey": "Reset",
+                  "Radius": 60,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "StopEncounterMusic"
+                },
+                {
+                  "Type": "ClearEncounterBossBar"
+                },
+                {
+                  "Type": "ClearEncounterWeather"
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Encounter_Live",
+                  "SetTo": false
+                },
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] encounter -> Waiting"
+                },
+                {
+                  "Type": "State",
+                  "State": "Waiting"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "While the reset runs: clear the adds.",
+          "Continue": true,
+          "Sensor": {
+            "Type": "State",
+            "State": "Resetting"
+          },
+          "Instructions": [
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Mob",
+                "Range": 45,
+                "MultiTarget": true,
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": [
+                      "Machinaria_Heartworks_Heartwinder_Adds"
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "ForEach",
+                  "Actions": [
+                    {
+                      "Type": "Remove",
+                      "UseTarget": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Waiting"
+          },
+          "Instructions": [
+            {
+              "$Comment": "A fresh start: clear the flags, chain the pendulums, send any Oiler home.",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Any",
+                "Once": true
+              },
+              "Actions": [
+                {
+                  "Type": "SetFlag",
+                  "Name": "Brake_NE",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Brake_SE",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Brake_SW",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Brake_NW",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Countdown_Started",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Guards_Sent",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Sparks_Active",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Gears_Active",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Overwind_Wait",
+                  "SetTo": false
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Spawn_Armed",
+                  "SetTo": false
+                },
+                {
+                  "Type": "Beacon",
+                  "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                  "Range": 60,
+                  "ExpirationTime": 3,
+                  "TargetGroups": [
+                    "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                  ]
+                },
+                {
+                  "Type": "Beacon",
+                  "Message": "Machinaria_Heartworks_Oilers_Recall",
+                  "Range": 60,
+                  "ExpirationTime": 3,
+                  "TargetGroups": [
+                    "Machinaria_Heartworks_Robots"
+                  ]
+                }
+              ]
+            },
+            {
+              "Continue": true,
+              "Sensor": {
+                "Type": "Mob",
+                "Range": 45,
+                "MultiTarget": true,
+                "Filters": [
+                  {
+                    "Type": "NPCGroup",
+                    "IncludeGroups": [
+                      "Machinaria_Heartworks_Heartwinder_Adds"
+                    ]
+                  }
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "ForEach",
+                  "Actions": [
+                    {
+                      "Type": "Remove",
+                      "UseTarget": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "The boss woke (a player came within 15 of it): tell the arena the mode, seal the door, the bar, the music.",
+              "Sensor": {
+                "Type": "Beacon",
+                "Message": "Machinaria_Heartworks_Heartwinder_Woke",
+                "Range": 60,
+                "TargetSlot": "Boss",
+                "Rebind": true
+              },
+              "Actions": [
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Stage",
+                  "SignalKey": "Stage",
+                  "SignalValue": "ModeStandard",
+                  "Radius": 50,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Stage",
+                  "SignalKey": "Stage",
+                  "SignalValue": "Seal",
+                  "Radius": 50,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Clock",
+                  "SignalKey": "Clock",
+                  "SignalValue": "I",
+                  "Radius": 50,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                },
+                {
+                  "Type": "SetFlag",
+                  "Name": "Encounter_Live"
+                },
+                {
+                  "Type": "SetEncounterBossBar",
+                  "Name": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name"
+                },
+                {
+                  "Type": "StartEncounterMusic",
+                  "MusicContainer": "Track_Machinaria_Heartworks_Boss"
+                },
+                {
+                  "Type": "SetEncounterAudioState",
+                  "AudioState": "AudioState_Dungeon_Intensity",
+                  "Value": "Combat"
+                },
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] encounter -> Intro"
+                },
+                {
+                  "Type": "State",
+                  "State": "Intro"
+                }
+              ]
+            },
+            {
+              "$Comment": "A player near and no boss bound: spawn it dormant from the cradle's manual marker, and retry every 5 s until one is bound.",
+              "Sensor": {
+                "Type": "And",
+                "Sensors": [
+                  {
+                    "Type": "Player",
+                    "Range": 45
+                  },
+                  {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Target",
+                      "Range": 60,
+                      "TargetSlot": "Boss"
+                    }
+                  }
+                ]
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Spawn_Armed",
+                    "Set": false
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Spawn_Armed"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Spawn_Retry",
+                      "StartValueRange": [
+                        5,
+                        5
+                      ],
+                      "RestartValueRange": [
+                        5,
+                        5
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "TimerStop",
+                      "Name": "Spawn_Retry"
+                    }
+                  ]
+                },
+                {
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Spawn_Retry",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Manual",
+                      "Range": 30,
+                      "Count": 1,
+                      "TargetSlot": "Boss",
+                      "Rebind": true
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Spawn_Retry"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$Comment": "The fight: players in the arena are its members (the bar, the music).",
+          "Sensor": {
+            "Type": "Player",
+            "Range": 24,
+            "Collector": {
+              "Type": "EncounterMembers"
+            }
+          },
+          "Instructions": [
+            {
+              "$Comment": "A Grit Oiler got through (Gibson round 2 note 27): tell the players (B2_Arena shows the title).",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Beacon",
+                "Message": "Machinaria_Heartworks_Heartwinder_Grit",
+                "Range": 60
+              },
+              "Actions": [
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] encounter: grit oiler landed"
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Stage",
+                  "SignalKey": "Stage",
+                  "SignalValue": "Grit",
+                  "Radius": 50,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                }
+              ]
+            },
+            {
+              "$Comment": "A clean Oiler oiled it: tell the players (a short message).",
+              "Continue": true,
+              "Sensor": {
+                "Type": "Beacon",
+                "Message": "Machinaria_Heartworks_Heartwinder_Oiled",
+                "Range": 60
+              },
+              "Actions": [
+                {
+                  "Type": "Log",
+                  "Message": "[Heartwinder] encounter: oiler landed"
+                },
+                {
+                  "Type": "SignalTaggedVolumes",
+                  "MatchTag": "Machinaria_HW_B2_Stage",
+                  "SignalKey": "Stage",
+                  "SignalValue": "Oiled",
+                  "Radius": 50,
+                  "MaxTargets": 0,
+                  "PositionSource": "Self"
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Intro"
+              },
+              "Instructions": [
+                {
+                  "$Comment": "Party scaling (vanilla macro): +1,200 max health for player 2.",
+                  "Reference": "Macro_Goblin_Gobliterator_Scale_Health",
+                  "Modify": {
+                    "Effect": "Machinaria_Heartworks_Heartwinder_Scale_Health_P2",
+                    "PlayerCount": [
+                      2,
+                      99
+                    ],
+                    "PlayerRange": [
+                      0,
+                      24
+                    ],
+                    "Slot": "Boss",
+                    "Range": 60
+                  }
+                },
+                {
+                  "$Comment": "Party scaling (vanilla macro): +1,200 max health for player 3.",
+                  "Reference": "Macro_Goblin_Gobliterator_Scale_Health",
+                  "Modify": {
+                    "Effect": "Machinaria_Heartworks_Heartwinder_Scale_Health_P3",
+                    "PlayerCount": [
+                      3,
+                      99
+                    ],
+                    "PlayerRange": [
+                      0,
+                      24
+                    ],
+                    "Slot": "Boss",
+                    "Range": 60
+                  }
+                },
+                {
+                  "$Comment": "Party scaling (vanilla macro): +1,200 max health for player 4.",
+                  "Reference": "Macro_Goblin_Gobliterator_Scale_Health",
+                  "Modify": {
+                    "Effect": "Machinaria_Heartworks_Heartwinder_Scale_Health_P4",
+                    "PlayerCount": [
+                      4,
+                      99
+                    ],
+                    "PlayerRange": [
+                      0,
+                      24
+                    ],
+                    "Slot": "Boss",
+                    "Range": 60
+                  }
+                },
+                {
+                  "$Comment": "Refill the boss to its scaled max.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss",
+                    "Filters": [
+                      {
+                        "Type": "Stat",
+                        "StatTarget": "Value",
+                        "RelativeTo": "Health",
+                        "Stat": "Health",
+                        "RelativeToTarget": "Max",
+                        "ValueRange": [
+                          0,
+                          0.999
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "ApplyEntityEffect",
+                      "EntityEffect": "Machinaria_Heartworks_Heartwinder_Scale_TopUp",
+                      "UseTarget": true
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The intro slam is done: phase 1.",
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Intro_Finished",
+                    "Range": 60,
+                    "TargetSlot": "Boss",
+                    "Rebind": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": false
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Phase1",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetEncounterBossBar",
+                      "Name": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Oilers",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Phase1"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Coglings",
+                      "StartValueRange": [
+                        10,
+                        10
+                      ],
+                      "RestartValueRange": [
+                        25,
+                        25
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Oilers",
+                      "StartValueRange": [
+                        8,
+                        8
+                      ],
+                      "RestartValueRange": [
+                        20,
+                        20
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Phase1"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Phase1"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss vanished before the fight began: reset.",
+                  "Sensor": {
+                    "Type": "Not",
+                    "Sensor": {
+                      "Type": "Target",
+                      "Range": 60,
+                      "TargetSlot": "Boss"
+                    }
+                  },
+                  "Instructions": [
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "Target",
+                        "Range": 60,
+                        "TargetSlot": "Boss"
+                      },
+                      "Actions": [
+                        {
+                          "Type": "Remove"
+                        }
+                      ]
+                    },
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "Mob",
+                        "Range": 45,
+                        "MultiTarget": true,
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Machinaria_Heartworks_Heartwinder_Boss_Group"
+                            ]
+                          }
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "Remove",
+                              "UseTarget": true
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Sensor": {
+                        "Type": "Any"
+                      },
+                      "Actions": [
+                        {
+                          "Type": "ReleaseTarget",
+                          "TargetSlot": "Boss"
+                        },
+                        {
+                          "Type": "SignalTaggedVolumes",
+                          "MatchTag": "Machinaria_HW_B2_Reset",
+                          "SignalKey": "Reset",
+                          "Radius": 60,
+                          "MaxTargets": 0,
+                          "PositionSource": "Self"
+                        },
+                        {
+                          "Type": "StopEncounterMusic"
+                        },
+                        {
+                          "Type": "ClearEncounterBossBar"
+                        },
+                        {
+                          "Type": "ClearEncounterWeather"
+                        },
+                        {
+                          "Type": "SetFlag",
+                          "Name": "Encounter_Live",
+                          "SetTo": false
+                        },
+                        {
+                          "Type": "Log",
+                          "Message": "[Heartwinder] encounter -> Waiting"
+                        },
+                        {
+                          "Type": "State",
+                          "State": "Waiting"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Phase1"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Coglings",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          3
+                        ],
+                        "Range": [
+                          0,
+                          40
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Heartwinder_Adds"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Hatch",
+                      "SignalKey": "Spawn",
+                      "SignalValue": "Cogling",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Coglings"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Coglings",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Coglings"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Oiler_Manual",
+                      "Range": 30,
+                      "Count": 1
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Health in [0,0.7] and not mid-move: swap to Machinaria_Heartworks_Heartwinder_Transition1.",
+                  "Sensor": {
+                    "Type": "Mob",
+                    "Range": 60,
+                    "LockOnTarget": true,
+                    "Rebind": true,
+                    "LockedTargetSlot": "Boss",
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                        ]
+                      },
+                      {
+                        "Type": "Stat",
+                        "StatTarget": "Value",
+                        "RelativeTo": "Health",
+                        "Stat": "Health",
+                        "RelativeToTarget": "Max",
+                        "ValueRange": [
+                          0,
+                          0.7
+                        ]
+                      },
+                      {
+                        "Type": "Not",
+                        "Filter": {
+                          "Type": "Or",
+                          "Filters": [
+                            {
+                              "Type": "IsExecutingInteraction"
+                            },
+                            {
+                              "Type": "EntityEffect",
+                              "EffectId": "Machinaria_Heartworks_Heartwinder_Charging"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": true
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Transition1",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "T1_Guard_Armed",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Vents",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Clock",
+                      "SignalKey": "Clock",
+                      "SignalValue": "II",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Interlude"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Transition1"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Transition1"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Health in range for 10 s while always busy: swap anyway (vanilla guard timeout).",
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Mob",
+                        "Range": 60,
+                        "LockOnTarget": true,
+                        "Rebind": true,
+                        "LockedTargetSlot": "Boss",
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                            ]
+                          },
+                          {
+                            "Type": "Stat",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "Stat": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [
+                              0,
+                              0.7
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "T1_Guard_Armed"
+                      },
+                      {
+                        "Type": "Timer",
+                        "Name": "T1_Guard_Timer",
+                        "State": "Stopped"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": true
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Transition1",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "T1_Guard_Armed",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Vents",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Clock",
+                      "SignalKey": "Clock",
+                      "SignalValue": "II",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Interlude"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Transition1"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Transition1"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Arm the guard timeout when the health first enters the range.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Flag",
+                        "Name": "T1_Guard_Armed",
+                        "Set": false
+                      },
+                      {
+                        "Type": "Mob",
+                        "Range": 60,
+                        "LockOnTarget": true,
+                        "Rebind": true,
+                        "LockedTargetSlot": "Boss",
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                            ]
+                          },
+                          {
+                            "Type": "Stat",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "Stat": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [
+                              0,
+                              0.7
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "T1_Guard_Armed"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "T1_Guard_Timer",
+                      "StartValueRange": [
+                        10,
+                        10
+                      ],
+                      "RestartValueRange": [
+                        10,
+                        10
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "T1_Guard_Timer"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Transition1"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Coglings",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          3
+                        ],
+                        "Range": [
+                          0,
+                          40
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Heartwinder_Adds"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Hatch",
+                      "SignalKey": "Spawn",
+                      "SignalValue": "Cogling",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Coglings"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Coglings",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Coglings"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Oiler_Manual",
+                      "Range": 30,
+                      "Count": 1
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The Pressure Spike is done: phase 2, the vents start their cycle.",
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Transition1_Finished",
+                    "Range": 60,
+                    "TargetSlot": "Boss",
+                    "Rebind": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": false
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Phase2",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetEncounterBossBar",
+                      "Name": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Phase2"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "VentsOn",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Kettles",
+                      "StartValueRange": [
+                        10,
+                        10
+                      ],
+                      "RestartValueRange": [
+                        30,
+                        30
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Phase2"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Phase2"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Phase2"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Oiler_Manual",
+                      "Range": 30,
+                      "Count": 1
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Kettles",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Hatch",
+                      "SignalKey": "Spawn",
+                      "SignalValue": "Kettle",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Kettles"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Kettles",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Kettles"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "At 50%: two Rivet Guards march out of the hatches (once).",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Target",
+                        "Range": 60,
+                        "TargetSlot": "Boss",
+                        "Filters": [
+                          {
+                            "Type": "Stat",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "Stat": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [
+                              0,
+                              0.5
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "Guards_Sent",
+                        "Set": false
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Hatch",
+                      "SignalKey": "Spawn",
+                      "SignalValue": "Guard",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Guards_Sent"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Spark Volley: the boss asked for sparks.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Spark_Volley",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter: spark volley"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Sparks_Active"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "5 waves, 0.3 s apart, each at every player's position then.",
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Player",
+                        "Range": 24,
+                        "MultiTarget": true
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "Sparks_Active"
+                      }
+                    ]
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.3,
+                        0.3
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.3,
+                        0.3
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.3,
+                        0.3
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.3,
+                        0.3
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Sparks_Active",
+                      "SetTo": false
+                    }
+                  ],
+                  "Continue": true
+                },
+                {
+                  "$Comment": "Health in [0,0.35] and not mid-move: swap to Machinaria_Heartworks_Heartwinder_Transition2.",
+                  "Sensor": {
+                    "Type": "Mob",
+                    "Range": 60,
+                    "LockOnTarget": true,
+                    "Rebind": true,
+                    "LockedTargetSlot": "Boss",
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                        ]
+                      },
+                      {
+                        "Type": "Stat",
+                        "StatTarget": "Value",
+                        "RelativeTo": "Health",
+                        "Stat": "Health",
+                        "RelativeToTarget": "Max",
+                        "ValueRange": [
+                          0,
+                          0.35
+                        ]
+                      },
+                      {
+                        "Type": "Not",
+                        "Filter": {
+                          "Type": "Or",
+                          "Filters": [
+                            {
+                              "Type": "IsExecutingInteraction"
+                            },
+                            {
+                              "Type": "EntityEffect",
+                              "EffectId": "Machinaria_Heartworks_Heartwinder_Charging"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": true
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Transition2",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "T2_Guard_Armed",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "VentsOff",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Sparks_Active",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Interlude"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Transition2"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Transition2"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Health in range for 10 s while always busy: swap anyway (vanilla guard timeout).",
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Mob",
+                        "Range": 60,
+                        "LockOnTarget": true,
+                        "Rebind": true,
+                        "LockedTargetSlot": "Boss",
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                            ]
+                          },
+                          {
+                            "Type": "Stat",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "Stat": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [
+                              0,
+                              0.35
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "T2_Guard_Armed"
+                      },
+                      {
+                        "Type": "Timer",
+                        "Name": "T2_Guard_Timer",
+                        "State": "Stopped"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": true
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Transition2",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "T2_Guard_Armed",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "VentsOff",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Sparks_Active",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Interlude"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Transition2"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Transition2"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Arm the guard timeout when the health first enters the range.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Flag",
+                        "Name": "T2_Guard_Armed",
+                        "Set": false
+                      },
+                      {
+                        "Type": "Mob",
+                        "Range": 60,
+                        "LockOnTarget": true,
+                        "Rebind": true,
+                        "LockedTargetSlot": "Boss",
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                            ]
+                          },
+                          {
+                            "Type": "Stat",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "Stat": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [
+                              0,
+                              0.35
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "T2_Guard_Armed"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "T2_Guard_Timer",
+                      "StartValueRange": [
+                        10,
+                        10
+                      ],
+                      "RestartValueRange": [
+                        10,
+                        10
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "T2_Guard_Timer"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Transition2"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Mob",
+                    "Range": 45,
+                    "MultiTarget": true,
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Heartwinder_Adds"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "ForEach",
+                      "Actions": [
+                        {
+                          "Type": "Remove",
+                          "UseTarget": true
+                        }
+                      ]
+                    }
+                  ],
+                  "$Comment": "Adds cleared at the breach."
+                },
+                {
+                  "$Comment": "The casing burst: the ring falls, the pendulums are freed, clock III.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Casing_Burst",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Breach",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Clock",
+                      "SignalKey": "Clock",
+                      "SignalValue": "III",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Release",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "On the turntable: the cradle clamps it; phase 3.",
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Transition2_Finished",
+                    "Range": 60,
+                    "TargetSlot": "Boss",
+                    "Rebind": true
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Clamp",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetTargetNPCInvulnerable",
+                      "Invulnerable": false
+                    },
+                    {
+                      "Type": "ChangeTargetRole",
+                      "Role": "Machinaria_Heartworks_Heartwinder_Phase3",
+                      "ChangeAppearance": true
+                    },
+                    {
+                      "Type": "SetEncounterBossBar",
+                      "Name": "machinaria_hw_boss.npcRoles.Machinaria_Heartworks_Heartwinder.name"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Phase3"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Oilers",
+                      "StartValueRange": [
+                        6,
+                        6
+                      ],
+                      "RestartValueRange": [
+                        15,
+                        15
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Phase3"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Phase3"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Phase3"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Oiler_Phase3_Manual",
+                      "Range": 30,
+                      "Count": 1
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Oilers",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Gear Rain: the boss asked for gears.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Gear_Rain",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter: gear rain"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Gears_Active"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "3 waves, 0.5 s apart, each at every player's position then.",
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Player",
+                        "Range": 24,
+                        "MultiTarget": true
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "Gears_Active"
+                      }
+                    ]
+                  },
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Gear_Drop",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Gear_Drop",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Gear_Drop",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Gears_Active",
+                      "SetTo": false
+                    }
+                  ],
+                  "Continue": true
+                },
+                {
+                  "$Comment": "After a seizure or a chime, the next countdown waits 25 s.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Flag",
+                        "Name": "Overwind_Wait"
+                      },
+                      {
+                        "Type": "Timer",
+                        "Name": "Recount",
+                        "State": "Stopped"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Overwind_Wait",
+                      "SetTo": false
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "At 12% (and not mid-move): Overwind. Invulnerable while it winds; the clock counts to midnight; the pylons become brake valves.",
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Mob",
+                        "Range": 60,
+                        "LockOnTarget": true,
+                        "Rebind": true,
+                        "LockedTargetSlot": "Boss",
+                        "Filters": [
+                          {
+                            "Type": "NPCGroup",
+                            "IncludeGroups": [
+                              "Machinaria_Heartworks_Heartwinder_Fight_Group"
+                            ]
+                          },
+                          {
+                            "Type": "Stat",
+                            "StatTarget": "Value",
+                            "RelativeTo": "Health",
+                            "Stat": "Health",
+                            "RelativeToTarget": "Max",
+                            "ValueRange": [
+                              0,
+                              0.12
+                            ]
+                          },
+                          {
+                            "Type": "Not",
+                            "Filter": {
+                              "Type": "Or",
+                              "Filters": [
+                                {
+                                  "Type": "IsExecutingInteraction"
+                                },
+                                {
+                                  "Type": "EntityEffect",
+                                  "EffectId": "Machinaria_Heartworks_Heartwinder_Charging"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "Overwind_Wait",
+                        "Set": false
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_NE",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_SE",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_SW",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_NW",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Countdown_Started",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Overwind",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Boss_Group"
+                      ]
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_Pylon",
+                      "SignalKey": "Machinaria_HW_Brake",
+                      "SignalValue": "arm",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Overwind",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Overwind"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Overwind"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Overwind"
+              },
+              "Instructions": [
+                {
+                  "$Comment": "The countdown by party size (DESIGN.md 7.6): 21, 18, 15 s for one, two, three or four.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Countdown_Started",
+                    "Set": false
+                  },
+                  "Instructions": [
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "And",
+                        "Sensors": [
+                          {
+                            "Type": "Count",
+                            "Count": [
+                              1,
+                              1
+                            ],
+                            "Range": [
+                              0,
+                              24
+                            ],
+                            "IncludeGroups": [
+                              "Player"
+                            ]
+                          },
+                          {
+                            "Type": "Flag",
+                            "Name": "Countdown_Started",
+                            "Set": false
+                          }
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "TimerStart",
+                          "Name": "Midnight",
+                          "StartValueRange": [
+                            21,
+                            21
+                          ],
+                          "RestartValueRange": [
+                            21,
+                            21
+                          ],
+                          "Repeating": false
+                        },
+                        {
+                          "Type": "TimerRestart",
+                          "Name": "Midnight"
+                        },
+                        {
+                          "Type": "SignalTaggedVolumes",
+                          "MatchTag": "Machinaria_HW_B2_Clock",
+                          "SignalKey": "Clock",
+                          "SignalValue": "Count21",
+                          "Radius": 50,
+                          "MaxTargets": 0,
+                          "PositionSource": "Self"
+                        },
+                        {
+                          "Type": "SetFlag",
+                          "Name": "Countdown_Started"
+                        }
+                      ]
+                    },
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "And",
+                        "Sensors": [
+                          {
+                            "Type": "Count",
+                            "Count": [
+                              2,
+                              2
+                            ],
+                            "Range": [
+                              0,
+                              24
+                            ],
+                            "IncludeGroups": [
+                              "Player"
+                            ]
+                          },
+                          {
+                            "Type": "Flag",
+                            "Name": "Countdown_Started",
+                            "Set": false
+                          }
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "TimerStart",
+                          "Name": "Midnight",
+                          "StartValueRange": [
+                            18,
+                            18
+                          ],
+                          "RestartValueRange": [
+                            18,
+                            18
+                          ],
+                          "Repeating": false
+                        },
+                        {
+                          "Type": "TimerRestart",
+                          "Name": "Midnight"
+                        },
+                        {
+                          "Type": "SignalTaggedVolumes",
+                          "MatchTag": "Machinaria_HW_B2_Clock",
+                          "SignalKey": "Clock",
+                          "SignalValue": "Count18",
+                          "Radius": 50,
+                          "MaxTargets": 0,
+                          "PositionSource": "Self"
+                        },
+                        {
+                          "Type": "SetFlag",
+                          "Name": "Countdown_Started"
+                        }
+                      ]
+                    },
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "And",
+                        "Sensors": [
+                          {
+                            "Type": "Count",
+                            "Count": [
+                              3,
+                              99
+                            ],
+                            "Range": [
+                              0,
+                              24
+                            ],
+                            "IncludeGroups": [
+                              "Player"
+                            ]
+                          },
+                          {
+                            "Type": "Flag",
+                            "Name": "Countdown_Started",
+                            "Set": false
+                          }
+                        ]
+                      },
+                      "Actions": [
+                        {
+                          "Type": "TimerStart",
+                          "Name": "Midnight",
+                          "StartValueRange": [
+                            15,
+                            15
+                          ],
+                          "RestartValueRange": [
+                            15,
+                            15
+                          ],
+                          "Repeating": false
+                        },
+                        {
+                          "Type": "TimerRestart",
+                          "Name": "Midnight"
+                        },
+                        {
+                          "Type": "SignalTaggedVolumes",
+                          "MatchTag": "Machinaria_HW_B2_Clock",
+                          "SignalKey": "Clock",
+                          "SignalValue": "Count15",
+                          "Radius": 50,
+                          "MaxTargets": 0,
+                          "PositionSource": "Self"
+                        },
+                        {
+                          "Type": "SetFlag",
+                          "Name": "Countdown_Started"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The NE brake is on.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Brake_NE",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter: brake NE on"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_NE"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The SE brake is on.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Brake_SE",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter: brake SE on"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_SE"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The SW brake is on.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Brake_SW",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter: brake SW on"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_SW"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The NW brake is on.",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Beacon",
+                    "Message": "Machinaria_Heartworks_Heartwinder_Brake_NW",
+                    "Range": 60
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter: brake NW on"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_NW"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "All four brakes on: it seizes (12 s of double damage).",
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Brake_NE"
+                  },
+                  "Instructions": [
+                    {
+                      "Continue": true,
+                      "Sensor": {
+                        "Type": "Flag",
+                        "Name": "Brake_SE"
+                      },
+                      "Instructions": [
+                        {
+                          "Continue": true,
+                          "Sensor": {
+                            "Type": "Flag",
+                            "Name": "Brake_SW"
+                          },
+                          "Instructions": [
+                            {
+                              "Sensor": {
+                                "Type": "Flag",
+                                "Name": "Brake_NW"
+                              },
+                              "Actions": [
+                                {
+                                  "Type": "Beacon",
+                                  "Message": "Machinaria_Heartworks_Heartwinder_Seize",
+                                  "Range": 60,
+                                  "ExpirationTime": 3,
+                                  "TargetGroups": [
+                                    "Machinaria_Heartworks_Heartwinder_Boss_Group"
+                                  ]
+                                },
+                                {
+                                  "Type": "SignalTaggedVolumes",
+                                  "MatchTag": "Machinaria_HW_B2_Clock",
+                                  "SignalKey": "Clock",
+                                  "SignalValue": "Stop",
+                                  "Radius": 50,
+                                  "MaxTargets": 0,
+                                  "PositionSource": "Self"
+                                },
+                                {
+                                  "Type": "SignalTaggedVolumes",
+                                  "MatchTag": "Machinaria_HW_Pylon",
+                                  "SignalKey": "Machinaria_HW_Brake",
+                                  "SignalValue": "reset",
+                                  "Radius": 50,
+                                  "MaxTargets": 0,
+                                  "PositionSource": "Self"
+                                },
+                                {
+                                  "Type": "SignalTaggedVolumes",
+                                  "MatchTag": "Machinaria_HW_B2_Stage",
+                                  "SignalKey": "Stage",
+                                  "SignalValue": "Seized",
+                                  "Radius": 50,
+                                  "MaxTargets": 0,
+                                  "PositionSource": "Self"
+                                },
+                                {
+                                  "Type": "SetFlag",
+                                  "Name": "Brake_NE",
+                                  "SetTo": false
+                                },
+                                {
+                                  "Type": "SetFlag",
+                                  "Name": "Brake_SE",
+                                  "SetTo": false
+                                },
+                                {
+                                  "Type": "SetFlag",
+                                  "Name": "Brake_SW",
+                                  "SetTo": false
+                                },
+                                {
+                                  "Type": "SetFlag",
+                                  "Name": "Brake_NW",
+                                  "SetTo": false
+                                },
+                                {
+                                  "Type": "SetFlag",
+                                  "Name": "Countdown_Started",
+                                  "SetTo": false
+                                },
+                                {
+                                  "Type": "TimerStart",
+                                  "Name": "Seized",
+                                  "StartValueRange": [
+                                    12,
+                                    12
+                                  ],
+                                  "RestartValueRange": [
+                                    12,
+                                    12
+                                  ],
+                                  "Repeating": false
+                                },
+                                {
+                                  "Type": "TimerRestart",
+                                  "Name": "Seized"
+                                },
+                                {
+                                  "Type": "Log",
+                                  "Message": "[Heartwinder] encounter -> Seized"
+                                },
+                                {
+                                  "Type": "State",
+                                  "State": "Seized"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Midnight: the brakes failed. The chime; a new countdown in 25 s.",
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Midnight",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Flag",
+                        "Name": "Countdown_Started"
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Midnight",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Boss_Group"
+                      ]
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Clock",
+                      "SignalKey": "Clock",
+                      "SignalValue": "Midnight",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_Pylon",
+                      "SignalKey": "Machinaria_HW_Brake",
+                      "SignalValue": "reset",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Stage",
+                      "SignalKey": "Stage",
+                      "SignalValue": "Midnight",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_NE",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_SE",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_SW",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Brake_NW",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Countdown_Started",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Overwind_Wait"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Recount",
+                      "StartValueRange": [
+                        27,
+                        27
+                      ],
+                      "RestartValueRange": [
+                        27,
+                        27
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Recount"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Phase3"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Phase3"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Seized"
+              },
+              "Instructions": [
+                {
+                  "$Comment": "It shook free: back to phase 3; the next countdown in 25 s.",
+                  "Sensor": {
+                    "Type": "Timer",
+                    "Name": "Seized",
+                    "State": "Stopped"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Overwind_Wait"
+                    },
+                    {
+                      "Type": "TimerStart",
+                      "Name": "Recount",
+                      "StartValueRange": [
+                        25,
+                        25
+                      ],
+                      "RestartValueRange": [
+                        25,
+                        25
+                      ],
+                      "Repeating": false
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Recount"
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Clock",
+                      "SignalKey": "Clock",
+                      "SignalValue": "III",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Phase3"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Phase3"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The boss lives.",
+                  "Sensor": {
+                    "Type": "Target",
+                    "Range": 60,
+                    "TargetSlot": "Boss"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "Nothing"
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "The slot is empty while the fight is live: the Heartwinder ran down.",
+                  "Sensor": {
+                    "Type": "Flag",
+                    "Name": "Encounter_Live"
+                  },
+                  "Actions": [
+                    {
+                      "Type": "SetFlag",
+                      "Name": "Encounter_Live",
+                      "SetTo": false
+                    },
+                    {
+                      "Type": "ClearEncounterBossBar"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Goblin_Boss_Phase",
+                      "Value": "Ending"
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Oilers_Recall",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Robots"
+                      ]
+                    },
+                    {
+                      "Type": "Beacon",
+                      "Message": "Machinaria_Heartworks_Heartwinder_Pendulum_Chain",
+                      "Range": 60,
+                      "ExpirationTime": 3,
+                      "TargetGroups": [
+                        "Machinaria_Heartworks_Heartwinder_Pendulum_Group"
+                      ]
+                    },
+                    {
+                      "Type": "ReleaseTarget",
+                      "TargetSlot": "Boss"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Dead"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Dead"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Sensor": {
+                "Type": "State",
+                "State": "Dead"
+              },
+              "Instructions": [
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "Mob",
+                    "Range": 45,
+                    "MultiTarget": true,
+                    "Filters": [
+                      {
+                        "Type": "NPCGroup",
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Heartwinder_Adds"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "ForEach",
+                      "Actions": [
+                        {
+                          "Type": "Remove",
+                          "UseTarget": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$Comment": "Run Down: 3 s of silence, then the vault rolls open and the way out lights.",
+                  "ActionsBlocking": true,
+                  "Actions": [
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        3,
+                        3
+                      ]
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Win",
+                      "SignalKey": "Win",
+                      "SignalValue": "true",
+                      "Radius": 70,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        13,
+                        13
+                      ]
+                    },
+                    {
+                      "Type": "StopEncounterMusic"
+                    },
+                    {
+                      "Type": "SetEncounterAudioState",
+                      "AudioState": "AudioState_Dungeon_Intensity",
+                      "Value": "Explore"
+                    },
+                    {
+                      "Type": "Log",
+                      "Message": "[Heartwinder] encounter -> Complete"
+                    },
+                    {
+                      "Type": "State",
+                      "State": "Complete"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "$Comment": "Done: every set state is also sensed.",
+              "Sensor": {
+                "Type": "State",
+                "State": "Complete"
+              },
+              "Actions": [
+                {
+                  "Type": "Nothing"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

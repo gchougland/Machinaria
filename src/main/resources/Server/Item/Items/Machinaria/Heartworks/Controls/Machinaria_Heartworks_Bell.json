@@ -1,0 +1,144 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_controls.items.Machinaria_Heartworks_Bell.name",
+    "Description": "machinaria_hw_controls.items.Machinaria_Heartworks_Bell.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Bell.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Interactions": {
+    "Secondary": "Block_Secondary"
+  },
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks"
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Note1.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Note1.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Chest_Small",
+    "VariantRotation": "NESW",
+    "Light": {
+      "Color": "#078"
+    },
+    "InteractionHint": "machinaria_hw_controls.hints.bell",
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "Simple"
+          }
+        ]
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Note2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Note2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Note2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Note3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Note3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Note3.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Note4": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Note4.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Note4.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#078"
+          }
+        },
+        "Rung1": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung1.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung1.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          }
+        },
+        "Rung2": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung2.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung2.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          }
+        },
+        "Rung3": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung3.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung3.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          }
+        },
+        "Rung4": {
+          "CustomModel": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung4.blockymodel",
+          "CustomModelTexture": [
+            {
+              "Texture": "Blocks/Machinaria/Heartworks/Controls/Bell/Rung4.png",
+              "Weight": 1
+            }
+          ],
+          "Light": {
+            "Color": "#a62"
+          }
+        }
+      }
+    }
+  }
+}

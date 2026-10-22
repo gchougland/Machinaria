@@ -1,0 +1,82 @@
+{
+  "TranslationProperties": {
+    "Name": "machinaria_hw_hazards.items.Machinaria_Heartworks_Great_Gear_3.name",
+    "Description": "machinaria_hw_hazards.items.Machinaria_Heartworks_Great_Gear_3.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Machinaria_Heartworks_Great_Gear_3.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "ItemSoundSetId": "ISS_Blocks_Stone",
+  "Tags": {
+    "Type": [
+      "Machinaria_Heartworks",
+      "Machinaria_Heartworks_Hazard"
+    ]
+  },
+  "IconProperties": {
+    "Scale": 0.35,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      0
+    ]
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "Group": "Metal",
+    "BlockSoundSetId": "Metal",
+    "BlockParticleSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Machinaria/Heartworks/Hazards/Great_Gear_3.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Machinaria/Heartworks/Hazards/Great_Gear_3.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "Full",
+    "VariantRotation": "NESW",
+    "CustomModelAnimation": "Blocks/Machinaria/Heartworks/Hazards/Animations/Great_Gear_3_Turn.blockyanim",
+    "Looping": true,
+    "AmbientSoundEventId": "SFX_Emit_Goblin_Machine_Drone_A",
+    "TextureComputedColor": "#7a5a30",
+    "ParticleColor": "#8a6634",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Gear_Grind_Sparks",
+        "PositionOffset": {
+          "X": 1.35,
+          "Y": 0.02,
+          "Z": 0
+        }
+      },
+      {
+        "SystemId": "Machinaria_Gear_Grind_Sparks",
+        "PositionOffset": {
+          "X": -1.35,
+          "Y": 0.02,
+          "Z": 0
+        },
+        "RotationOffset": {
+          "Pitch": 0,
+          "Yaw": 180,
+          "Roll": 0
+        }
+      }
+    ]
+  }
+}

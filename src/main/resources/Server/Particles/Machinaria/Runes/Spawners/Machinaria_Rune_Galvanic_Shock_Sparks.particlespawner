@@ -1,0 +1,98 @@
+{
+  "$Comment": "Blue-white sparks spitting off a Galvanized target.",
+  "RenderMode": "BlendAdd",
+  "ParticleRotationInfluence": "Billboard",
+  "ParticleLifeSpan": {
+    "Min": 0.2,
+    "Max": 0.35
+  },
+  "SpawnRate": {
+    "Min": 4,
+    "Max": 6
+  },
+  "MaxConcurrentParticles": 18,
+  "SpawnBurst": true,
+  "WaveDelay": {
+    "Min": 0.3,
+    "Max": 0.5
+  },
+  "Particle": {
+    "Texture": "Particles/Textures/Basic/Spark.png",
+    "ScaleRatioConstraint": "OneToOne",
+    "InitialAnimationFrame": {
+      "Scale": {
+        "X": {
+          "Min": 0.1,
+          "Max": 0.16
+        },
+        "Y": {
+          "Min": 0.1,
+          "Max": 0.16
+        }
+      },
+      "Opacity": 1,
+      "Color": "#e0f6ff"
+    },
+    "Animation": {
+      "0": {
+        "Color": "#ffffff"
+      },
+      "100": {
+        "Opacity": 0,
+        "Color": "#3a8cff",
+        "Scale": {
+          "X": {
+            "Min": 0.4,
+            "Max": 0.4
+          },
+          "Y": {
+            "Min": 0.4,
+            "Max": 0.4
+          }
+        }
+      }
+    }
+  },
+  "Shape": "Sphere",
+  "EmitOffset": {
+    "X": {
+      "Min": 0,
+      "Max": 0.3
+    },
+    "Y": {
+      "Min": 0,
+      "Max": 0.5
+    },
+    "Z": {
+      "Min": 0,
+      "Max": 0.3
+    }
+  },
+  "InitialVelocity": {
+    "Speed": {
+      "Min": 1.5,
+      "Max": 3.5
+    },
+    "Pitch": {
+      "Min": -30,
+      "Max": 70
+    },
+    "Yaw": {
+      "Min": -180,
+      "Max": 180
+    }
+  },
+  "Attractors": [
+    {
+      "LinearAcceleration": {
+        "Y": -5
+      },
+      "DampingMultiplier": {
+        "X": 0.7,
+        "Y": 0.8,
+        "Z": 0.7
+      }
+    }
+  ],
+  "ParticleRotateWithSpawner": false
+}

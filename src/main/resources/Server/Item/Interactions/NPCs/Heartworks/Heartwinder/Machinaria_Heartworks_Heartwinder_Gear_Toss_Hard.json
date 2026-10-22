@@ -1,0 +1,163 @@
+{
+  "$Comment": "Gear Toss, hard mode: as the standard toss (1.0 s, tracking for the first 0.8 s, lanes that turn with it), but five gears and five lanes, at 0, 15 and 30 degrees either way.",
+  "Type": "Parallel",
+  "Interactions": [
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1,
+          "Effects": {
+            "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+            "ItemAnimationId": "GearToss",
+            "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Rattle",
+            "Particles": [
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                },
+                "RotationOffset": {
+                  "Yaw": 15
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                },
+                "RotationOffset": {
+                  "Yaw": -15
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                },
+                "RotationOffset": {
+                  "Yaw": 30
+                }
+              },
+              {
+                "SystemId": "Machinaria_Heartworks_Heartwinder_Lane_Warning",
+                "TargetEntityPart": "Entity",
+                "TargetNodeName": "Origin",
+                "PositionOffset": {
+                  "X": 0,
+                  "Y": 0.05,
+                  "Z": 0
+                },
+                "RotationOffset": {
+                  "Yaw": -30
+                }
+              }
+            ]
+          },
+          "Next": {
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "Parallel",
+                "Interactions": [
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss_L",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss_R",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss_LL",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  },
+                  {
+                    "Interactions": [
+                      {
+                        "Type": "Projectile",
+                        "Config": "Machinaria_Heartworks_Heartwinder_Gear_Toss_RR",
+                        "IgnorePitch": true,
+                        "RunTime": 0.1
+                      }
+                    ]
+                  }
+                ],
+                "Effects": {
+                  "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Gear_Roll"
+                }
+              },
+              {
+                "Type": "Simple",
+                "RunTime": 0.6
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Interactions": [
+        {
+          "Type": "Simple",
+          "RunTime": 1.1,
+          "Effects": {
+            "MovementEffects": {
+              "DisableAll": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

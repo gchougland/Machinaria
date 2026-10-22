@@ -1,0 +1,45 @@
+{
+  "$Comment": "Intro (27.2 s: the clock alone, the build) once, then the battle loop (28 bars at 140) forever. Both cut from one generation, so the hand-over is the music's own.",
+  "Type": "Sequence",
+  "AudioCategory": "AudioCat_Music_In_Game",
+  "LoopCount": 1,
+  "TransitionType": "Crossfade",
+  "TransitionDuration": 2.0,
+  "ExitAt": {
+    "Point": "Immediate"
+  },
+  "Children": [
+    {
+      "Type": "Segment",
+      "LoopCount": 1,
+      "Tempo": {
+        "Bpm": 140,
+        "BeatsPerBar": 4,
+        "BeatValue": 4
+      },
+      "EntryMarker": {
+        "Beats": 0
+      },
+      "Layers": [
+        {
+          "Name": "intro",
+          "Container": {
+            "Type": "SingleTrack",
+            "Track": "Music/Machinaria/Heartworks/HW_Boss_Phase1_Intro.ogg",
+            "LoopCount": 1
+          }
+        }
+      ]
+    },
+    {
+      "Type": "SingleTrack",
+      "Track": "Music/Machinaria/Heartworks/HW_Boss_Phase1_Loop.ogg",
+      "LoopCount": 0,
+      "Tempo": {
+        "Bpm": 140,
+        "BeatsPerBar": 4,
+        "BeatValue": 4
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$Comment": "One Rivet Turret that starts powered down (its room's lever starts off).",
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Machinaria_Heartworks_Rivet_Turret_Unpowered",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 10,
+  "RealtimeRespawn": false,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 120
+}

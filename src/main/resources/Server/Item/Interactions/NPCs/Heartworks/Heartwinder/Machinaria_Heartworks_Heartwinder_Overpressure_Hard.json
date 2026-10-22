@@ -1,0 +1,210 @@
+{
+  "$Comment": "Overpressure, hard mode: the same 4.5 s tell with two cone decals, ahead and behind; then both blow (350 each, knocked 40). Only its sides are safe. Analogue: vanilla Goblin_Gobliterator_Flame_Quadrant_HM (three cones at once).",
+  "Type": "Serial",
+  "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 4.5,
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "OverpressureCharge",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Overpressure_Charge",
+        "Particles": [
+          {
+            "SystemId": "Gobliterator_Quadrant_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "RotationOffset": {
+              "Yaw": 180
+            },
+            "PositionOffset": {
+              "Y": 0.5
+            }
+          },
+          {
+            "SystemId": "Gobliterator_Quadrant_Charge",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "RotationOffset": {
+              "Yaw": 180
+            },
+            "PositionOffset": {
+              "Y": 0.5
+            }
+          },
+          {
+            "SystemId": "Gobliterator_Quadrant_Warning",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "RotationOffset": {
+              "Yaw": 0
+            },
+            "PositionOffset": {
+              "Y": 0.5
+            }
+          },
+          {
+            "SystemId": "Gobliterator_Quadrant_Charge",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "RotationOffset": {
+              "Yaw": 0
+            },
+            "PositionOffset": {
+              "Y": 0.5
+            }
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Heart_Flare",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Heart",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Parallel",
+      "Interactions": [
+        {
+          "Interactions": [
+            {
+              "Type": "Selector",
+              "RunTime": 0.3,
+              "Selector": {
+                "Id": "Donut",
+                "MinRadius": 12,
+                "MaxRadius": 12,
+                "Width": 20,
+                "Height": 5,
+                "AngleDeg": 80,
+                "Offset": {
+                  "Y": -1
+                }
+              },
+              "HitEntityRules": [
+                {
+                  "Matchers": [
+                    {
+                      "Type": "Player"
+                    }
+                  ],
+                  "Next": {
+                    "Interactions": [
+                      {
+                        "Type": "Replace",
+                        "Var": "Overpressure_Damage",
+                        "DefaultValue": {
+                          "Interactions": [
+                            "Machinaria_Heartworks_Heartwinder_Overpressure_Damage"
+                          ]
+                        },
+                        "DefaultOk": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Interactions": [
+            {
+              "Type": "Selector",
+              "RunTime": 0.3,
+              "Selector": {
+                "Id": "Donut",
+                "MinRadius": 12,
+                "MaxRadius": 12,
+                "Width": 20,
+                "Height": 5,
+                "AngleDeg": 80,
+                "YawOffsetDeg": 180,
+                "Offset": {
+                  "Y": -1
+                }
+              },
+              "HitEntityRules": [
+                {
+                  "Matchers": [
+                    {
+                      "Type": "Player"
+                    }
+                  ],
+                  "Next": {
+                    "Interactions": [
+                      {
+                        "Type": "Replace",
+                        "Var": "Overpressure_Damage",
+                        "DefaultValue": {
+                          "Interactions": [
+                            "Machinaria_Heartworks_Heartwinder_Overpressure_Damage"
+                          ]
+                        },
+                        "DefaultOk": true
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "Effects": {
+        "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
+        "ItemAnimationId": "Overpressure",
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Overpressure_Blast",
+        "Particles": [
+          {
+            "SystemId": "Gobliterator_Quadrant_Blast",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "RotationOffset": {
+              "Yaw": 180
+            },
+            "PositionOffset": {
+              "Y": 0.5
+            },
+            "DetachedFromModel": true
+          },
+          {
+            "SystemId": "Gobliterator_Quadrant_Blast",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "RotationOffset": {
+              "Yaw": 0
+            },
+            "PositionOffset": {
+              "Y": 0.5
+            },
+            "DetachedFromModel": true
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Simple",
+      "RunTime": 1.5,
+      "Effects": {
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Chest",
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
