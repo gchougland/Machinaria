@@ -294842,6 +294842,31 @@
               "Delay": 2.5
             },
             {
+              "Type": "MachinariaCameraShot",
+              "Event": "TAG_ADDED",
+              "Entry": 1,
+              "Delay": 2,
+              "From": {
+                "X": 1,
+                "Y": 2.4,
+                "Z": 7.5
+              },
+              "To": {
+                "X": 0,
+                "Y": 1.8,
+                "Z": 5
+              },
+              "LookAt": {
+                "X": -2.5,
+                "Y": 1.5,
+                "Z": -0.3
+              },
+              "Duration": 4.2,
+              "Glide": 0.02,
+              "Radius": 128,
+              "HoldMovement": true
+            },
+            {
               "Type": "ReplaceBlockType",
               "Event": "SIGNAL_RECEIVED",
               "Entry": 1,
@@ -294931,6 +294956,31 @@
               "Style": "Default",
               "Recipient": "AllPlayers",
               "Delay": 2.5
+            },
+            {
+              "Type": "MachinariaCameraShot",
+              "Event": "SIGNAL_RECEIVED",
+              "Entry": 1,
+              "Delay": 2,
+              "From": {
+                "X": 1,
+                "Y": 2.4,
+                "Z": 7.5
+              },
+              "To": {
+                "X": 0,
+                "Y": 1.8,
+                "Z": 5
+              },
+              "LookAt": {
+                "X": -2.5,
+                "Y": 1.5,
+                "Z": -0.3
+              },
+              "Duration": 4.2,
+              "Glide": 0.02,
+              "Radius": 128,
+              "HoldMovement": true
             }
           ],
           "Conditions": [

@@ -18,6 +18,8 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jspecify.annotations.NonNull;
 import com.hexvane.machinaria.command.MachinariaPrefabsCommand;
 import com.hexvane.machinaria.heartworks.PendulumPassthroughSystem;
+import com.hexvane.machinaria.heartworks.CameraShotEffect;
+import com.hypixel.hytale.builtin.triggervolumes.effect.TriggerEffect;
 
 public class MachinariaPlugin extends JavaPlugin {
     private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
@@ -77,6 +79,8 @@ public class MachinariaPlugin extends JavaPlugin {
                 MovingPlatformComponent.CODEC);
         this.getEntityStoreRegistry().registerSystem(new MovingPlatformSystem(movingPlatformComponentType));
         this.getEntityStoreRegistry().registerSystem(new PendulumPassthroughSystem());
+        // The Heartworks' cutscene shots (the Heart Gate and the vault door opening): a trigger volume effect type.
+        this.getCodecRegistry(TriggerEffect.CODEC).register(CameraShotEffect.TYPE, CameraShotEffect.class, CameraShotEffect.CODEC);
         // /machinariaprefabs: the vanilla prefab editor on the Machinaria prefabs.
         this.getCommandRegistry().registerCommand(new MachinariaPrefabsCommand());
         AetherhavenIntegration.setup();

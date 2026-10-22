@@ -703089,6 +703089,31 @@
               "Delay": 3
             },
             {
+              "Type": "MachinariaCameraShot",
+              "Event": "SIGNAL_RECEIVED",
+              "Entry": 15,
+              "Delay": 3,
+              "From": {
+                "X": 7,
+                "Y": 0.1,
+                "Z": -14
+              },
+              "To": {
+                "X": 5,
+                "Y": -0.5,
+                "Z": -17
+              },
+              "LookAt": {
+                "X": -2.5,
+                "Y": 0,
+                "Z": -23.1
+              },
+              "Duration": 4.5,
+              "Glide": 0.02,
+              "Radius": 40,
+              "HoldMovement": true
+            },
+            {
               "Type": "ShowEventTitle",
               "Event": "SIGNAL_RECEIVED",
               "PrimaryTitle": "machinaria_hw_boss.titles.win",

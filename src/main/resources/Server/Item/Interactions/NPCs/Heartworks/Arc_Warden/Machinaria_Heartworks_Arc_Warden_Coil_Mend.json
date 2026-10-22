@@ -1,8 +1,16 @@
 {
-  "$Comment": "Coil Mend: spawned by the role at a live coil (an interaction host there, the Warden its owner). The arc to its spine, then 1.2 s with the coil whining and sparking; the host goes when the chain ends and the arc with it.",
-  "Type": "AttachBeam",
-  "BeamConfig": "Machinaria_Heartworks_Arc_Warden_Mend",
-  "TargetEntity": "Owner",
-  "TargetNodeName": "Spine-Hub",
-  "Scale": 0.6
+  "$Comment": "Coil Mend: spawned by the role at a live coil (an interaction host there, the Warden its owner). The coil discharges: a small bolt and a zap at the coil, as the role zaps the Warden's spine and heals it. No beam: AttachBeam crashes the world when an NPC or host runs it (round 7, see arc_warden.data.mjs).",
+  "Type": "Simple",
+  "RunTime": 0.1,
+  "Effects": {
+    "WorldSoundEventId": "SFX_Emit_Goblin_Electric_Fence_Zap",
+    "Particles": [
+      {
+        "SystemId": "Machinaria_Heartworks_Arc_Warden_Arc_Bolt",
+        "Scale": 0.5,
+        "TargetEntityPart": "Entity",
+        "DetachedFromModel": true
+      }
+    ]
+  }
 }

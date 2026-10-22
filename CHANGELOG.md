@@ -21,6 +21,14 @@ All notable changes to Machinaria are documented in this file.
 - **New sounds:** The dungeon hums, ticks and hisses, and every machine, hazard and robot has its own sounds.
 - **Rusted Expanse landmarks:** Old machines now jut out of the plain: scrap mounds, broken pipes, smoking stacks and fallen pylons.
 - **Rusted Expanse weather:** A warm rust haze with drifting rust motes. Now and then a dust storm rolls in.
+- **Heartwinder hard mode:** Pull the clutch by the Winding Chamber door to face a harder Heartwinder with new attacks, an Overwound stage and ordered brakes. Beat it for extra loot and a Golden Mainspring trophy.
+- **New weapons:** Craft the Rivet Club, Rivet Guard Shield, Arc Tinker Staff, Steam Hammer and Cogblade at the Mechanics bench with the Heartwinder's Mainspring.
+- **Robots on the surface:** Rusted Coglings, Kettle Bombs, Arc Tinkers and Rivet Guards now roam the Rusted Expanse.
+- **More loot:** Robots now drop bronze bars, and the tougher ones Lightning Essence. Both turn up in chests too.
+- **Runebinder's Lattice:** Change your runes in the Antechamber before the boss.
+- **Door cutscenes:** The Heart Gate and the vault door show you when they open.
+- **Music:** The Heartworks has its own exploration music and a boss theme.
+- **Creative tab:** The new weapons, Gearwood blocks and blueprints are in the Machinaria tab.
 
 ### Changed
 
@@ -33,6 +41,7 @@ All notable changes to Machinaria are documented in this file.
 ### Fixed
 
 - **Rusted Expanse:** Repair bays, giant gears, robot heads and scrap no longer appear inside each other.
+- **Rusted Expanse:** The return portal no longer puts you in oil, and the world loads faster.
 
 ## [0.5.0] - 10/12/2026 (Hytale Update 7)
 
