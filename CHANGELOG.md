@@ -9,6 +9,7 @@ All notable changes to Machinaria are documented in this file.
 - **Heartwinder Gear Toss:** It now locks its aim almost as soon as the wind-up starts, so the gears roll down the lanes you see instead of following you. The gears and their lanes are narrower.
 - **Heartwinder Oilers (hard mode):** No more than three Oilers are out at once.
 - **Mainspring Lash:** The warning lines are amber so they stand out on the arena floor, and they stay under each band through the whole sweep.
+- **Brake order (hard mode):** Each brake now shows its place in the order on a large plate round its column, as one to four red dots set out like dice, in place of the thin red rings that were hard to count.
 - **Heartwinder's cradle:** Its low rim no longer stops you a step short of the boss, so you can dash or charge right up to it.
 
 ### Fixed
