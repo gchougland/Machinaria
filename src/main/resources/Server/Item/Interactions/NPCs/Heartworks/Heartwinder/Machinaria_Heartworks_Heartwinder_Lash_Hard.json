@@ -1,5 +1,5 @@
 {
-  "$Comment": "Mainspring Lash, hard mode: three bands (left, right and behind), each with its own ground line through the 3.0 s charge, then they sweep while it turns (the hard phase 3 role turns 30 degrees a second, not 25). Jump each band as it passes; the front is clear.",
+  "$Comment": "Mainspring Lash, hard mode: three bands (left, right and behind), each with its own ground line through the 3.0 s charge, then they sweep while it turns. The sweep plays LashHard, the Lash clip with the third band (B-Band0..8) shown behind it; before, the rear band hit with nothing shown (the hard phase 3 role turns 30 degrees a second, not 25). Jump each band as it passes; the front is clear. Through the sweep an amber floor band lies under each spring band and turns with the boss (Lash_Sweep), so the bands can be counted and tracked.",
   "Type": "Serial",
   "Interactions": [
     {
@@ -70,18 +70,78 @@
       "RunTime": 0.01,
       "Effects": {
         "ItemPlayerAnimationsId": "Machinaria_Heartworks_Heartwinder",
-        "ItemAnimationId": "Lash",
+        "ItemAnimationId": "LashHard",
         "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Lash_Loop"
       }
     },
     {
-      "Type": "Repeat",
-      "Repeat": 30,
-      "ForkInteractions": {
-        "Interactions": [
-          "Machinaria_Heartworks_Heartwinder_Lash_Tick_Hard"
-        ]
-      }
+      "Type": "Parallel",
+      "Interactions": [
+        {
+          "Interactions": [
+            {
+              "Type": "Simple",
+              "RunTime": 6,
+              "Effects": {
+                "Particles": [
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Sweep",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Origin",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.05,
+                      "Z": 0
+                    },
+                    "RotationOffset": {
+                      "Yaw": -90
+                    }
+                  },
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Sweep",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Origin",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.05,
+                      "Z": 0
+                    },
+                    "RotationOffset": {
+                      "Yaw": 90
+                    }
+                  },
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Sweep",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Origin",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.05,
+                      "Z": 0
+                    },
+                    "RotationOffset": {
+                      "Yaw": 0
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Interactions": [
+            {
+              "Type": "Repeat",
+              "Repeat": 30,
+              "ForkInteractions": {
+                "Interactions": [
+                  "Machinaria_Heartworks_Heartwinder_Lash_Tick_Hard"
+                ]
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "Type": "Simple",

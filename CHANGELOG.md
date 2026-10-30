@@ -2,6 +2,21 @@
 
 All notable changes to Machinaria are documented in this file.
 
+## [Unreleased]
+
+### Changed
+
+- **Heartwinder Gear Toss:** It now locks its aim almost as soon as the wind-up starts, so the gears roll down the lanes you see instead of following you. The gears and their lanes are narrower.
+- **Heartwinder Oilers (hard mode):** No more than three Oilers are out at once.
+- **Mainspring Lash:** The warning lines are amber so they stand out on the arena floor, and they stay under each band through the whole sweep.
+- **Heartwinder's cradle:** Its low rim no longer stops you a step short of the boss, so you can dash or charge right up to it.
+
+### Fixed
+
+- **Heartwinder pendulums:** They no longer hit you when the blade passes beside you or over your head.
+- **Mainspring Lash (hard mode):** The third band behind the boss now shows during the sweep. Before, it hit you with nothing there.
+- **Grit in the gears:** The Heartwinder now finishes the move it is making before it jams. Before, a move cut off by the jam could still hit you while the boss looked stunned.
+
 ## [1.0.0] - Unreleased
 
 ### Added

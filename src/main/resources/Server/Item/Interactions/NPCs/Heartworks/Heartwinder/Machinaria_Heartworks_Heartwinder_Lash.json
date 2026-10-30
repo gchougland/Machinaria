@@ -1,5 +1,5 @@
 {
-  "$Comment": "Mainspring Lash (DESIGN.md 7.5): 3.0 s charging with two ground lines where the bands lie and the spring coils glowing, then two steel bands lie flat out to each side (2 to 20, 0.75 high) while the boss turns 25 degrees a second for 6 s (its .Lash sub state turns it): 30 ticks of 0.2 s, 20 a touch, knocked 6. Jump them. 1.0 s recovery. Analogue: the Gobliterator Flamethrower (3.6 s charge, four beams turning 20 degrees a second for 7 s).",
+  "$Comment": "Mainspring Lash (DESIGN.md 7.5): 3.0 s charging with two ground lines where the bands lie and the spring coils glowing, then two steel bands lie flat out to each side (2 to 20, 0.75 high) while the boss turns 25 degrees a second for 6 s (its .Lash sub state turns it): 30 ticks of 0.2 s, 20 a touch, knocked 6. Jump them. 1.0 s recovery. Analogue: the Gobliterator Flamethrower (3.6 s charge, four beams turning 20 degrees a second for 7 s). Through the sweep an amber floor band lies under each spring band and turns with the boss (Lash_Sweep), so the bands can be counted and tracked.",
   "Type": "Serial",
   "Interactions": [
     {
@@ -61,13 +61,60 @@
       }
     },
     {
-      "Type": "Repeat",
-      "Repeat": 30,
-      "ForkInteractions": {
-        "Interactions": [
-          "Machinaria_Heartworks_Heartwinder_Lash_Tick"
-        ]
-      }
+      "Type": "Parallel",
+      "Interactions": [
+        {
+          "Interactions": [
+            {
+              "Type": "Simple",
+              "RunTime": 6,
+              "Effects": {
+                "Particles": [
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Sweep",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Origin",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.05,
+                      "Z": 0
+                    },
+                    "RotationOffset": {
+                      "Yaw": -90
+                    }
+                  },
+                  {
+                    "SystemId": "Machinaria_Heartworks_Heartwinder_Lash_Sweep",
+                    "TargetEntityPart": "Entity",
+                    "TargetNodeName": "Origin",
+                    "PositionOffset": {
+                      "X": 0,
+                      "Y": 0.05,
+                      "Z": 0
+                    },
+                    "RotationOffset": {
+                      "Yaw": 90
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Interactions": [
+            {
+              "Type": "Repeat",
+              "Repeat": 30,
+              "ForkInteractions": {
+                "Interactions": [
+                  "Machinaria_Heartworks_Heartwinder_Lash_Tick"
+                ]
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "Type": "Simple",

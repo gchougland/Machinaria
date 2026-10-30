@@ -1050,11 +1050,31 @@
                   ]
                 },
                 {
+                  "$Comment": "Oiler wave: both feeds when at most one Oiler is out, one feed when two are, none at three (no more than three at once).",
                   "Continue": true,
                   "Sensor": {
-                    "Type": "Timer",
-                    "Name": "Oilers",
-                    "State": "Stopped"
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          1
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
                   },
                   "Actions": [
                     {
@@ -1062,6 +1082,54 @@
                       "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
                       "Range": 30,
                       "Count": 2
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          2,
+                          2
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
+                      "Range": 30,
+                      "Count": 1
                     },
                     {
                       "Type": "SignalTaggedVolumes",
@@ -1498,11 +1566,31 @@
                   ]
                 },
                 {
+                  "$Comment": "Oiler wave: both feeds when at most one Oiler is out, one feed when two are, none at three (no more than three at once).",
                   "Continue": true,
                   "Sensor": {
-                    "Type": "Timer",
-                    "Name": "Oilers",
-                    "State": "Stopped"
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          1
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
                   },
                   "Actions": [
                     {
@@ -1510,6 +1598,54 @@
                       "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
                       "Range": 30,
                       "Count": 2
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          2,
+                          2
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
+                      "Range": 30,
+                      "Count": 1
                     },
                     {
                       "Type": "SignalTaggedVolumes",
@@ -1707,11 +1843,31 @@
               },
               "Instructions": [
                 {
+                  "$Comment": "Oiler wave: both feeds when at most one Oiler is out, one feed when two are, none at three (no more than three at once).",
                   "Continue": true,
                   "Sensor": {
-                    "Type": "Timer",
-                    "Name": "Oilers",
-                    "State": "Stopped"
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          1
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
                   },
                   "Actions": [
                     {
@@ -1719,6 +1875,54 @@
                       "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
                       "Range": 30,
                       "Count": 2
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          2,
+                          2
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
+                      "Range": 30,
+                      "Count": 1
                     },
                     {
                       "Type": "SignalTaggedVolumes",
@@ -2636,11 +2840,31 @@
               },
               "Instructions": [
                 {
+                  "$Comment": "Oiler wave: both feeds when at most one Oiler is out, one feed when two are, none at three (no more than three at once).",
                   "Continue": true,
                   "Sensor": {
-                    "Type": "Timer",
-                    "Name": "Oilers",
-                    "State": "Stopped"
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          1
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
                   },
                   "Actions": [
                     {
@@ -2648,6 +2872,54 @@
                       "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
                       "Range": 30,
                       "Count": 2
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          2,
+                          2
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
+                      "Range": 30,
+                      "Count": 1
                     },
                     {
                       "Type": "SignalTaggedVolumes",
@@ -2828,11 +3100,31 @@
               },
               "Instructions": [
                 {
+                  "$Comment": "Oiler wave: both feeds when at most one Oiler is out, one feed when two are, none at three (no more than three at once).",
                   "Continue": true,
                   "Sensor": {
-                    "Type": "Timer",
-                    "Name": "Oilers",
-                    "State": "Stopped"
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          1
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
                   },
                   "Actions": [
                     {
@@ -2840,6 +3132,54 @@
                       "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
                       "Range": 30,
                       "Count": 2
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          2,
+                          2
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Hard",
+                      "Range": 30,
+                      "Count": 1
                     },
                     {
                       "Type": "SignalTaggedVolumes",
@@ -3752,11 +4092,31 @@
               },
               "Instructions": [
                 {
+                  "$Comment": "Oiler wave: both feeds when at most one Oiler is out, one feed when two are, none at three (no more than three at once).",
                   "Continue": true,
                   "Sensor": {
-                    "Type": "Timer",
-                    "Name": "Oilers",
-                    "State": "Stopped"
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          0,
+                          1
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
                   },
                   "Actions": [
                     {
@@ -3764,6 +4124,54 @@
                       "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Phase3_Hard",
                       "Range": 30,
                       "Count": 2
+                    },
+                    {
+                      "Type": "SignalTaggedVolumes",
+                      "MatchTag": "Machinaria_HW_B2_Feed",
+                      "SignalKey": "Pump",
+                      "SignalValue": "true",
+                      "Radius": 50,
+                      "MaxTargets": 0,
+                      "PositionSource": "Self"
+                    },
+                    {
+                      "Type": "TimerRestart",
+                      "Name": "Oilers"
+                    }
+                  ]
+                },
+                {
+                  "Continue": true,
+                  "Sensor": {
+                    "Type": "And",
+                    "Sensors": [
+                      {
+                        "Type": "Timer",
+                        "Name": "Oilers",
+                        "State": "Stopped"
+                      },
+                      {
+                        "Type": "Count",
+                        "Count": [
+                          2,
+                          2
+                        ],
+                        "Range": [
+                          0,
+                          50
+                        ],
+                        "IncludeGroups": [
+                          "Machinaria_Heartworks_Oilers"
+                        ]
+                      }
+                    ]
+                  },
+                  "Actions": [
+                    {
+                      "Type": "TriggerSpawners",
+                      "SpawnMarker": "Machinaria_Heartworks_Heartwinder_Oiler_Phase3_Hard",
+                      "Range": 30,
+                      "Count": 1
                     },
                     {
                       "Type": "SignalTaggedVolumes",
