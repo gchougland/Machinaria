@@ -1373,7 +1373,7 @@
               ]
             },
             {
-              "$Comment": "Gear Toss: the head aims at its target for the first 0.15 s of the 1.0 s wind-up (TossTrackTime), then holds. The gears fly along the head's look, but the lanes hang on the body, so the body keeps matching the look for the whole move (MatchLook): by the throw the lanes lie exactly on the gears' paths. Before, the body stopped turning when the head did, the lanes lagged the aim, and gears hit players standing outside the lanes (it read as homing).",
+              "$Comment": "Gear Toss: it turns to its target for the first 0.15 s of the 1.0 s wind-up (TossTrackTime), then body and head hold, so the lanes (on the body) stop moving. The gears fly along the look, not the body, so the toss turns the look to the body just before the throw (AlignLookToBody): the gears go exactly down the lanes shown, however far the body lagged the look",
               "Sensor": {
                 "Type": "State",
                 "State": ".GearToss",
@@ -1426,7 +1426,30 @@
                     ]
                   },
                   "BodyMotion": {
-                    "Type": "MatchLook"
+                    "Type": "Sequence",
+                    "Looped": false,
+                    "RestartOnActivate": true,
+                    "Motions": [
+                      {
+                        "Type": "Timer",
+                        "Time": {
+                          "Compute": "TossTrackTime"
+                        },
+                        "Motion": {
+                          "Type": "MatchLook"
+                        }
+                      },
+                      {
+                        "Type": "Timer",
+                        "Time": [
+                          1.4,
+                          1.4
+                        ],
+                        "Motion": {
+                          "Type": "Nothing"
+                        }
+                      }
+                    ]
                   },
                   "Actions": [
                     {

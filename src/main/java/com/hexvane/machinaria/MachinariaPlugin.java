@@ -17,6 +17,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.jspecify.annotations.NonNull;
 import com.hexvane.machinaria.command.MachinariaPrefabsCommand;
+import com.hexvane.machinaria.heartworks.AlignLookToBodyInteraction;
 import com.hexvane.machinaria.heartworks.PendulumPassthroughSystem;
 import com.hexvane.machinaria.heartworks.CameraShotEffect;
 import com.hypixel.hytale.builtin.triggervolumes.effect.TriggerEffect;
@@ -50,6 +51,11 @@ public class MachinariaPlugin extends JavaPlugin {
                 "AccelerateTime",
                 AccelerateTimeInteraction.class,
                 AccelerateTimeInteraction.CODEC
+        );
+        this.getCodecRegistry(Interaction.CODEC).register(
+                "AlignLookToBody",
+                AlignLookToBodyInteraction.class,
+                AlignLookToBodyInteraction.CODEC
         );
         pocketwatchStoredTimeComponentComponentType = getEntityStoreRegistry().registerComponent(
                 PocketwatchStoredTimeComponent.class,

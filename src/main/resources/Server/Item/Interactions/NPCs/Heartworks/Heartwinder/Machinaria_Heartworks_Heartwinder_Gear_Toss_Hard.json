@@ -1,5 +1,5 @@
 {
-  "$Comment": "Gear Toss, hard mode: as the standard toss (1.0 s, tracking for the first 0.8 s, lanes that turn with it), but five gears and five lanes, at 0, 15 and 30 degrees either way.",
+  "$Comment": "Gear Toss, hard mode: as the standard toss (1.0 s, tracking for the first 0.8 s, lanes that turn with it), but five gears and five lanes, at 0, 15 and 30 degrees either way. Just before the throw, AlignLookToBody turns its look to its body: the gears fly along the look but the lanes hang on the body, so this puts the gears exactly on the lanes shown.",
   "Type": "Parallel",
   "Interactions": [
     {
@@ -82,6 +82,9 @@
           "Next": {
             "Type": "Serial",
             "Interactions": [
+              {
+                "Type": "AlignLookToBody"
+              },
               {
                 "Type": "Parallel",
                 "Interactions": [
