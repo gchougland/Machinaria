@@ -1858,29 +1858,20 @@
                           "Type": "ForEach",
                           "Actions": [
                             {
-                              "Type": "SpawnInteraction",
+                              "Type": "SpawnParticles",
                               "PositionSource": "Sensor",
-                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
-                              "OrientationSource": "Absolute",
-                              "Ttl": 4
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "Type": "Timeout",
-                      "Delay": [
-                        0.3,
-                        0.3
-                      ]
-                    },
-                    {
-                      "Type": "ProjectToGround",
-                      "Actions": [
-                        {
-                          "Type": "ForEach",
-                          "Actions": [
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
+                              "Scale": 2.55
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
+                              "Delay": [
+                                1.2,
+                                1.2
+                              ]
+                            },
                             {
                               "Type": "SpawnInteraction",
                               "PositionSource": "Sensor",
@@ -1906,29 +1897,20 @@
                           "Type": "ForEach",
                           "Actions": [
                             {
-                              "Type": "SpawnInteraction",
+                              "Type": "SpawnParticles",
                               "PositionSource": "Sensor",
-                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
-                              "OrientationSource": "Absolute",
-                              "Ttl": 4
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "Type": "Timeout",
-                      "Delay": [
-                        0.3,
-                        0.3
-                      ]
-                    },
-                    {
-                      "Type": "ProjectToGround",
-                      "Actions": [
-                        {
-                          "Type": "ForEach",
-                          "Actions": [
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
+                              "Scale": 2.55
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
+                              "Delay": [
+                                1.2,
+                                1.2
+                              ]
+                            },
                             {
                               "Type": "SpawnInteraction",
                               "PositionSource": "Sensor",
@@ -1953,6 +1935,99 @@
                         {
                           "Type": "ForEach",
                           "Actions": [
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
+                              "Scale": 2.55
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
+                              "Delay": [
+                                1.2,
+                                1.2
+                              ]
+                            },
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.3,
+                        0.3
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
+                              "Scale": 2.55
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
+                              "Delay": [
+                                1.2,
+                                1.2
+                              ]
+                            },
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Spark",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.3,
+                        0.3
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
+                              "Scale": 2.55
+                            },
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
+                              "Delay": [
+                                1.2,
+                                1.2
+                              ]
+                            },
                             {
                               "Type": "SpawnInteraction",
                               "PositionSource": "Sensor",
@@ -2633,29 +2708,11 @@
                           "Type": "ForEach",
                           "Actions": [
                             {
-                              "Type": "SpawnInteraction",
+                              "Type": "SpawnParticles",
                               "PositionSource": "Sensor",
-                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Gear_Drop",
-                              "OrientationSource": "Absolute",
-                              "Ttl": 4
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "Type": "Timeout",
-                      "Delay": [
-                        0.5,
-                        0.5
-                      ]
-                    },
-                    {
-                      "Type": "ProjectToGround",
-                      "Actions": [
-                        {
-                          "Type": "ForEach",
-                          "Actions": [
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Gear_Mark",
+                              "Scale": 2.55
+                            },
                             {
                               "Type": "SpawnInteraction",
                               "PositionSource": "Sensor",
@@ -2680,6 +2737,42 @@
                         {
                           "Type": "ForEach",
                           "Actions": [
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Gear_Mark",
+                              "Scale": 2.55
+                            },
+                            {
+                              "Type": "SpawnInteraction",
+                              "PositionSource": "Sensor",
+                              "Interaction": "Root_Machinaria_Heartworks_Heartwinder_Gear_Drop",
+                              "OrientationSource": "Absolute",
+                              "Ttl": 4
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "Type": "Timeout",
+                      "Delay": [
+                        0.5,
+                        0.5
+                      ]
+                    },
+                    {
+                      "Type": "ProjectToGround",
+                      "Actions": [
+                        {
+                          "Type": "ForEach",
+                          "Actions": [
+                            {
+                              "Type": "SpawnParticles",
+                              "PositionSource": "Sensor",
+                              "ParticleSystem": "Machinaria_Heartworks_Heartwinder_Gear_Mark",
+                              "Scale": 2.55
+                            },
                             {
                               "Type": "SpawnInteraction",
                               "PositionSource": "Sensor",

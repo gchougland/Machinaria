@@ -1,7 +1,7 @@
 {
-  "$Comment": "The Arc Warden, for its encounter (the boss bar).",
+  "$Comment": "The Arc Warden, for its encounter (the boss bar). A ? stands in for one letter of each role name: the server checks plain names before the mod's roles have loaded and warns about every one, while a pattern matching that one role alone is resolved once they have.",
   "IncludeRoles": [
-    "Machinaria_Heartworks_Arc_Warden",
-    "Machinaria_Heartworks_Arc_Warden_Test"
+    "Machinaria_Heartworks_Arc_Warde?",
+    "Machinaria_Heartworks_Arc_Warden_Tes?"
   ]
 }

@@ -246,7 +246,7 @@
       },
       "GearRain": {
         "Type": "Ability",
-        "Description": "Gear Rain: every 20 s",
+        "Description": "Gear Rain: every 30 s, weighted above the anti-melee pair so it still comes in melee",
         "Target": "Hostile",
         "AttackDistanceRange": [
           0,
@@ -255,13 +255,13 @@
         "Ability": "Root_Machinaria_Heartworks_Heartwinder_Gear_Rain",
         "SubState": "NoAim",
         "RequireAiming": false,
-        "WeightCoefficient": 1.3,
+        "WeightCoefficient": 3.2,
         "Conditions": [
           {
             "Type": "TimeSinceLastUsed",
             "Curve": {
               "Type": "Switch",
-              "SwitchPoint": 7
+              "SwitchPoint": 10
             }
           }
         ]

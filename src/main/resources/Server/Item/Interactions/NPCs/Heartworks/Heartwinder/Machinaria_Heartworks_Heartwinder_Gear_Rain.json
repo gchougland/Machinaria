@@ -1,7 +1,88 @@
 {
-  "$Comment": "Gear Rain (DESIGN.md 7.5): 1.5 s with both arms raised to the dome and gears rattling; it tells the encounter, which drops gears at and beside each player (Root_..._Gear_Drop: a decal, then a gear falls for 30 in radius 2.5). Analogue: the Gobliterator rocket rain and the stalactites.",
+  "$Comment": "Gear Rain (DESIGN.md 7.5): 1.2 s with the vents hissing, steam wisps at its feet and a pale radius 6 ring on the floor; then a circle 6 of steam that pushes players out (14, no damage), so melee has to move; then 1.5 s with both arms raised to the dome and gears rattling; it tells the encounter, which drops gears at and beside each player (Root_..._Gear_Drop: a decal, then a gear falls for 30 in radius 2.5). Analogue: the Gobliterator rocket rain and the stalactites.",
   "Type": "Serial",
   "Interactions": [
+    {
+      "Type": "Simple",
+      "RunTime": 1.2,
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Vent_Warn",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Vent_Mark",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 6.05,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          },
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Steam_Jets",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 1,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.2,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Type": "Selector",
+      "RunTime": 0.3,
+      "Selector": {
+        "Id": "AOECircle",
+        "Range": 6
+      },
+      "HitEntityRules": [
+        {
+          "Matchers": [
+            {
+              "Type": "Player"
+            }
+          ],
+          "Next": {
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "Gear_Rain_Push",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Machinaria_Heartworks_Heartwinder_Gear_Rain_Push"
+                  ]
+                },
+                "DefaultOk": true
+              }
+            ]
+          }
+        }
+      ],
+      "Effects": {
+        "WorldSoundEventId": "SFX_Machinaria_HW_Vent_Burst",
+        "Particles": [
+          {
+            "SystemId": "Machinaria_Heartworks_Heartwinder_Vent_Burst",
+            "TargetEntityPart": "Entity",
+            "TargetNodeName": "Origin",
+            "DetachedFromModel": true,
+            "Scale": 6,
+            "PositionOffset": {
+              "X": 0,
+              "Y": 0.05,
+              "Z": 0
+            }
+          }
+        ]
+      }
+    },
     {
       "Type": "Simple",
       "RunTime": 1.5,

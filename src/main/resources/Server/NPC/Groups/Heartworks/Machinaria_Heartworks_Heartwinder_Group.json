@@ -1,7 +1,7 @@
 {
-  "$Comment": "The Heartwinder's two encounters (standard and hard), as vanilla Goblin_Gobliterator_Group lists both of its: the boss, the selector, the pylons and the spark and gear beacons reach them through this group.",
+  "$Comment": "The Heartwinder's two encounters (standard and hard), as vanilla Goblin_Gobliterator_Group lists both of its: the boss, the selector, the pylons and the spark and gear beacons reach them through this group. A ? stands in for one letter of each role name: the server checks plain names before the mod's roles have loaded and warns about every one, while a pattern matching that one role alone is resolved once they have.",
   "IncludeRoles": [
-    "Machinaria_Heartworks_Heartwinder_Encounter",
-    "Machinaria_Heartworks_Heartwinder_Encounter_Hard"
+    "Machinaria_Heartworks_Heartwinder_Encounte?",
+    "Machinaria_Heartworks_Heartwinder_Encounter_Har?"
   ]
 }

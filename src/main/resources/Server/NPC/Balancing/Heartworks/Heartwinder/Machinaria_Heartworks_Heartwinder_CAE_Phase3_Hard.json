@@ -1,6 +1,6 @@
 {
   "Type": "CombatActionEvaluator",
-  "$Comment": "Hard mode phase 3: the three-band Lash (every 15 s, weighted first), Gear Rain (every 16 s; the hard encounter drops five waves), two-cone Overpressure (every 15 s), Heart Burst (within 5, every 5 s), Cradle Vents (within 6, every 6 s).",
+  "$Comment": "Hard mode phase 3: the three-band Lash (every 15 s, weighted first), Gear Rain (every 24 s, weighted second; the hard encounter drops five waves), two-cone Overpressure (every 15 s), Heart Burst (within 5, every 5 s), Cradle Vents (within 6, every 6 s).",
   "EntityEffects": [
     "Immunity_Slow",
     "Immunity_Freeze",
@@ -62,7 +62,7 @@
       },
       "GearRain": {
         "Type": "Ability",
-        "Description": "Gear Rain (hard): every 16 s",
+        "Description": "Gear Rain (hard): every 24 s, weighted above the anti-melee pair",
         "Target": "Hostile",
         "AttackDistanceRange": [
           0,
@@ -71,13 +71,13 @@
         "Ability": "Root_Machinaria_Heartworks_Heartwinder_Gear_Rain",
         "SubState": "NoAim",
         "RequireAiming": false,
-        "WeightCoefficient": 1.3,
+        "WeightCoefficient": 3.2,
         "Conditions": [
           {
             "Type": "TimeSinceLastUsed",
             "Curve": {
               "Type": "Switch",
-              "SwitchPoint": 16
+              "SwitchPoint": 24
             }
           }
         ]

@@ -120,18 +120,18 @@
     },
     "TossTrackTime": {
       "Value": [
-        0.8,
-        0.8
+        0.15,
+        0.15
       ],
-      "Description": "Gear Toss: seconds it keeps turning to its target in the 1.0 s wind-up"
+      "Description": "Gear Toss: seconds it turns to its target at the start of the 1.0 s wind-up; then the aim and lanes lock (no tracking)"
     },
     "ChargeTwice": {
       "Value": false,
       "Description": "Hard mode: every Steam Charge chains straight into a second one"
     },
     "TossTurnSpeed": {
-      "Value": 0.6,
-      "Description": "Gear Toss: relative turn speed while it tracks (a little slow, so a running player gains on it)",
+      "Value": 1,
+      "Description": "Gear Toss: relative turn speed for its quick face-up before the aim locks",
       "TypeHint": "Double"
     }
   },
@@ -755,7 +755,8 @@
           ]
         },
         {
-          "$Comment": "A Grit Oiler got through (Gibson round 2 note 27): its jam marker is on the boss and it is not already jammed. Sensed after the climax and the stun sub states, so it never cuts a Scalded or Seized window short. Apply the 3 s Grit_Jammed at once (it also blocks a second start), then seize.",
+          "$Comment": "A Grit Oiler got through (Gibson round 2 note 27): its 1 s jam marker is on the boss and it is not already jammed. Remember it (Grit_Pending), so the jam can wait for the move in hand to finish. Sensed after the climax and the stun sub states, so it never cuts a Scalded or Seized window short.",
+          "Continue": true,
           "Sensor": {
             "Type": "And",
             "Sensors": [
@@ -783,6 +784,53 @@
             ]
           },
           "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Grit_Pending"
+            }
+          ]
+        },
+        {
+          "$Comment": "Grit pending and no move in hand: jam now. Waiting for the move matters: a move's hits run on their own (a Lash's 30 ticks, a Slam's circle) and the jam clip would hide the move while it still hit. Apply the 3 s Grit_Jammed at once (it also blocks a second start), then seize.",
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "Flag",
+                "Name": "Grit_Pending",
+                "Set": true
+              },
+              {
+                "Type": "Self",
+                "Filters": [
+                  {
+                    "Type": "Not",
+                    "Filter": {
+                      "Type": "IsExecutingInteraction"
+                    }
+                  }
+                ]
+              },
+              {
+                "Type": "Not",
+                "Sensor": {
+                  "Type": "Self",
+                  "Filters": [
+                    {
+                      "Type": "EntityEffect",
+                      "EffectId": "Machinaria_Heartworks_Heartwinder_Grit_Jammed"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "Actions": [
+            {
+              "Type": "SetFlag",
+              "Name": "Grit_Pending",
+              "SetTo": false
+            },
             {
               "Type": "Log",
               "Message": "[Heartwinder] boss: grit in the gears"
@@ -1325,7 +1373,7 @@
               ]
             },
             {
-              "$Comment": "Gear Toss (round 4, Gibson note 32): it keeps turning to its target for the first 0.8 s of the 1.0 s wind-up (body and head), then holds still so the last 0.2 s and the throw are fair to dodge; the lanes are attached and turn with it. An NPC Aim cannot lead a target without a ballistic weapon, so this is the tracking.",
+              "$Comment": "Gear Toss: it turns to its target for the first 0.15 s of the 1.0 s wind-up (TossTrackTime), then body and head hold, so the lanes (on the body) stop moving. The gears fly along the look, not the body, so the toss turns the look to the body just before the throw (AlignLookToBody): the gears go exactly down the lanes shown, however far the body lagged the look",
               "Sensor": {
                 "Type": "State",
                 "State": ".GearToss",

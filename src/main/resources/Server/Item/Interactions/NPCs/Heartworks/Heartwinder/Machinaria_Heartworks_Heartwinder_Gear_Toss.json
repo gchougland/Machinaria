@@ -1,5 +1,5 @@
 {
-  "$Comment": "Gear Toss (DESIGN.md 7.5; round 4): 1.0 s lifting a gear from its back, turning to follow its target for the first 0.8 s (.GearToss), with three red lanes 20 long that turn with it; then it bowls three gears along the ground in a fan (0 and 15 degrees either way) at 14 a second, each 35 and a knock of 8 if it rolls into a player. 0.6 s recovery. Analogue: the Gobliterator sawblades (fixed yaws) and cannon lane.",
+  "$Comment": "Gear Toss (DESIGN.md 7.5; round 4): 1.0 s lifting a gear from its back, turning to follow its target for the first 0.8 s (.GearToss), with three red lanes 20 long that turn with it; then it bowls three gears along the ground in a fan (0 and 15 degrees either way) at 14 a second, each 35 and a knock of 8 if it rolls into a player. 0.6 s recovery. Analogue: the Gobliterator sawblades (fixed yaws) and cannon lane. Just before the throw, AlignLookToBody turns its look to its body: the gears fly along the look but the lanes hang on the body, so this puts the gears exactly on the lanes shown.",
   "Type": "Parallel",
   "Interactions": [
     {
@@ -56,6 +56,9 @@
           "Next": {
             "Type": "Serial",
             "Interactions": [
+              {
+                "Type": "AlignLookToBody"
+              },
               {
                 "Type": "Parallel",
                 "Interactions": [

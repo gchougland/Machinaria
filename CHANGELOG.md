@@ -2,7 +2,38 @@
 
 All notable changes to Machinaria are documented in this file.
 
-## [1.0.0] - Unreleased
+## [1.0.3] - 10/30/2026
+
+### Changed
+
+- **Heartwinder Gear Toss:** It now locks its aim almost as soon as the wind-up starts, and the gears always roll exactly down the lanes you see. Before, the lanes could lag behind its aim and a gear could hit you outside them. The gears and their lanes are narrower.
+- **Heartwinder Oilers (hard mode):** No more than three Oilers are out at once.
+- **Mainspring Lash:** The warning lines are amber so they stand out on the arena floor, and they stay under each band through the whole sweep.
+- **Brake order (hard mode):** Each brake now shows its place in the order on a large plate round its column, as one to four red dots set out like dice, in place of the thin red rings that were hard to count.
+- **Heartwinder's cradle:** Its low rim no longer stops you a step short of the boss, so you can dash or charge right up to it.
+- **Gear Rain:** The Heartwinder now calls it in the final phase even when you fight up close, where it almost never came before. A pale ring warns you first, then a ring of steam pushes you back without hurting you, and then the gears fall. It comes a little less often: every 30 seconds, or 24 in hard mode.
+
+### Fixed
+
+- **Gear Rain:** The warning circle under each falling gear now shows.
+- **Heartwinder pendulums:** They no longer hit you when the blade passes beside you or over your head.
+- **Mainspring Lash (hard mode):** The third band behind the boss now shows during the sweep. Before, it hit you with nothing there.
+- **Grit in the gears:** The Heartwinder now finishes the move it is making before it jams. Before, a move cut off by the jam could still hit you while the boss looked stunned.
+
+## [1.0.2] - 10/27/2026
+
+### Fixed
+
+- **Spark Volley:** The Heartwinder's sparks now show a blue warning circle on the ground before they strike, and you can see each strike land.
+
+## [1.0.1] - 10/22/2026
+
+### Fixed
+
+- **Hytale 0.7.4:** Machinaria loads again on Hytale 0.7.4, and Reginald Volt keeps his red top hat.
+- **Server log:** Machinaria no longer fills the server log with almost a thousand warnings when the server starts.
+
+## [1.0.0] - 10/21/2026
 
 ### Added
 
@@ -18,16 +49,11 @@ All notable changes to Machinaria are documented in this file.
   - **Galvanic:** a reward for solving the Clock Archive's bell puzzle.
 - **The Sunken Pumpworks:** Small flooded ruins out on the Rusted Expanse, in four kinds, with rusted guardians and their own loot.
 - **Gearwood furniture:** A full furniture set in red gearwood, brass and iron, with doors, beds, chests, clocks, chandeliers, a crate and more. Craft it at the Mechanics bench.
-- **New sounds:** The dungeon hums, ticks and hisses, and every machine, hazard and robot has its own sounds.
 - **Rusted Expanse landmarks:** Old machines now jut out of the plain: scrap mounds, broken pipes, smoking stacks and fallen pylons.
 - **Rusted Expanse weather:** A warm rust haze with drifting rust motes. Now and then a dust storm rolls in.
 - **Heartwinder hard mode:** Pull the clutch by the Winding Chamber door to face a harder Heartwinder with new attacks, an Overwound stage and ordered brakes. Beat it for extra loot and a Golden Mainspring trophy.
 - **New weapons:** Craft the Rivet Club, Rivet Guard Shield, Arc Tinker Staff, Steam Hammer and Cogblade at the Mechanics bench with the Heartwinder's Mainspring.
 - **Robots on the surface:** Rusted Coglings, Kettle Bombs, Arc Tinkers and Rivet Guards now roam the Rusted Expanse.
-- **More loot:** Robots now drop bronze bars, and the tougher ones Lightning Essence. Both turn up in chests too.
-- **Runebinder's Lattice:** Change your runes in the Antechamber before the boss.
-- **Door cutscenes:** The Heart Gate and the vault door show you when they open.
-- **Music:** The Heartworks has its own exploration music and a boss theme.
 - **Creative tab:** The new weapons, Gearwood blocks and blueprints are in the Machinaria tab.
 
 ### Changed

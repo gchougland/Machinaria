@@ -1,22 +1,12 @@
 {
-  "$Comment": "One spark of the volley, spawned by the encounter at a player: a decal for 1.2 s, then a strike in radius 2.5 for 25 Lightning (players only).",
+  "$Comment": "One spark of the volley, spawned by the encounter at a player: a strike in radius 2.5 for 25 Lightning (players only) 1.2 s later. Its host entity is server-only, so the client draws nothing attached to it: the mark and the strike come from SpawnParticles in the encounter (dropAtPlayers).",
   "Type": "Serial",
   "Interactions": [
     {
       "Type": "Simple",
       "RunTime": 1.2,
       "Effects": {
-        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Charge",
-        "Particles": [
-          {
-            "SystemId": "Machinaria_Heartworks_Heartwinder_Spark_Mark",
-            "TargetEntityPart": "Entity",
-            "Scale": 2.55,
-            "PositionOffset": {
-              "Y": 0.05
-            }
-          }
-        ]
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Charge"
       }
     },
     {
@@ -50,13 +40,7 @@
         }
       ],
       "Effects": {
-        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Fall",
-        "Particles": [
-          {
-            "SystemId": "Machinaria_Heartworks_Heartwinder_Spark_Strike",
-            "TargetEntityPart": "Entity"
-          }
-        ]
+        "WorldSoundEventId": "SFX_Machinaria_HW_Boss_Spark_Fall"
       }
     }
   ]
